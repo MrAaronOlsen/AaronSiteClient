@@ -1,0 +1,11 @@
+@import '~mixins/shadow';
+@import '~mixins/flex';
+
+.main {
+  @include flex(column);
+
+  width: 800px;
+  height: 100%;
+
+  @include shadow;
+}
