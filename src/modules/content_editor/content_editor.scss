@@ -3,35 +3,11 @@
 
 @import '~colors';
 
-.editor {
+.content-editor {
   height: 100%;
   margin: 20px;
 
   overflow: scroll;
 
   cursor: text;
-}
-
-.headlineButtonWrapper {
-  display: inline-block;
-}
-
-.headlineButton {
-  height: 34px;
-  width: 36px;
-
-  padding-top: 5px;
-  vertical-align: bottom;
-
-  background: #eaeaea;
-
-  color: $text-light;
-  font-size: 18px;
-
-  border: 0;
-}
-
-.headlineButton:hover,
-.headlineButton:focus {
-  background: #dadada;
 }

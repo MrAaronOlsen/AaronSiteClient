@@ -1,0 +1,25 @@
+@import '~colors';
+
+.headlineButtonWrapper {
+  display: inline-block;
+}
+
+.headlineButton {
+  height: 34px;
+  width: 36px;
+
+  padding-top: 5px;
+  vertical-align: bottom;
+
+  background: #eaeaea;
+
+  color: $text-light;
+  font-size: 18px;
+
+  border: 0;
+}
+
+.headlineButton:hover,
+.headlineButton:focus {
+  background: #dadada;
+}

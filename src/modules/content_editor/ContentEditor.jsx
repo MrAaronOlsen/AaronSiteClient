@@ -16,75 +16,26 @@ import {
   CodeBlockButton,
 } from 'draft-js-buttons';
 
+import HeadlinesButton from './HeadlinesButton.jsx'
+
 import './content_editor.scss';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
-
-class HeadlinesPicker extends Component {
-  componentDidMount() {
-    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.onWindowClick);
-  }
-
-  onWindowClick = () =>
-    // Call `onOverrideContent` again with `undefined`
-    // so the toolbar can show its regular content again.
-    this.props.onOverrideContent(undefined);
-
-  render() {
-    const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
-    return (
-      <div>
-        {buttons.map((Button, i) => // eslint-disable-next-line
-          <Button key={i} {...this.props} />
-        )}
-      </div>
-    );
-  }
-}
-
-class HeadlinesButton extends Component {
-  // When using a click event inside overridden content, mouse down
-  // events needs to be prevented so the focus stays in the editor
-  // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = (event) => event.preventDefault()
-
-  onClick = () =>
-    // A button can call `onOverrideContent` to replace the content
-    // of the toolbar. This can be useful for displaying sub
-    // menus or requesting additional information from the user.
-    this.props.onOverrideContent(HeadlinesPicker);
-
-  render() {
-    return (
-      <div onMouseDown={this.onMouseDown} className={"headlineButtonWrapper"}>
-        <button onClick={this.onClick} className={"headlineButton"}>
-          H
-        </button>
-      </div>
-    );
-  }
-}
 
 const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
-const text = 'In this editor a toolbar shows up once you select part of the text …';
+const defaultText = '';
 
-export default class ContentEditor extends Component {
+class ContentEditor extends Component {
 
   state = {
-    editorState: createEditorStateWithText(text),
+    editorState: createEditorStateWithText(defaultText)
   };
 
   onChange = (editorState) => {
     this.setState({
       editorState,
     });
-
-    console.log(editorState.getCurrentContent().getPlainText());
   };
 
   focus = () => {
@@ -93,7 +44,7 @@ export default class ContentEditor extends Component {
 
   render() {
     return (
-      <div className={"editor"} onClick={this.focus}>
+      <div className={"content-editor"} onClick={this.focus}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}
@@ -123,3 +74,5 @@ export default class ContentEditor extends Component {
     );
   }
 }
+
+export default ContentEditor;
