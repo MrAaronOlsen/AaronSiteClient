@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
 import Main from './main/Main.jsx';
+import EditBlog from './admin/EditBlog.jsx';
 
 import "./app.scss";
 
@@ -12,7 +13,8 @@ class App extends Component {
       <BrowserRouter>
         <div className='app'>
           <Switch>
-            <Route exact path='/' component={Main}/>
+            <Route exact path='/' component={EditBlog}/>
+            <Route exact path='/blog' component={Main}/>
           </Switch>
         </div>
       </BrowserRouter>

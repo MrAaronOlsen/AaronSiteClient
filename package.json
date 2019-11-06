@@ -10,10 +10,11 @@
   "author": "Aaron Olsen",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^1.0.1",
     "node-sass": "^4.13.0",
@@ -24,6 +25,12 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
+    "draft-js": "^0.11.2",
+    "draft-js-editor": "^1.12.4",
+    "draft-js-export-html": "^1.4.1",
+    "draft-js-import-html": "^1.4.1",
+    "draft-js-inline-toolbar-plugin": "^3.0.1",
+    "draft-js-plugins-editor": "^3.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-hot-loader": "^4.12.15",
