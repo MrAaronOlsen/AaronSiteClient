@@ -1,0 +1,43 @@
+@import '~mixins/shadow';
+@import '~colors';
+
+.actionBtn {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 25px;
+  max-height: 25px;
+
+  padding: 0 5px 0 5px;
+
+  border: 1px solid $transparent;
+  border-radius: 5px;
+
+  background-color: $main-color;
+
+  cursor: pointer;
+
+  .text {
+    display: flex;
+
+    width: max-content;
+    height: min-content;
+
+    font-size: 1vw;
+  }
+
+  @include shadow()
+}
+
+.actionBtn:hover {
+  border-color: $light-background;
+}
+
+.disabled {
+  background-color: $main-background;
+
+  cursor:not-allowed;
+}

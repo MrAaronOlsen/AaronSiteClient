@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Component} from "react";
 
 import { EditorState } from 'draft-js'
 import ContentEditor from 'modules/content_editor/ContentEditor.jsx';
 
-import './edit_blog_main.scss'
+import styles from './editBlog.mod.scss'
 
 const initialContent = {
   body: "",
   id: null
 }
 
-export default class EditBlog extends React.Component {
+export default class EditBlog extends Component {
   constructor(props) {
     super(props)
 
@@ -21,7 +21,7 @@ export default class EditBlog extends React.Component {
   render() {
     return (
 
-      <div className="edit-blog-main">
+      <div className={styles.editBlog}>
 
         <ContentEditor
           editorState = { this.state.editorState }

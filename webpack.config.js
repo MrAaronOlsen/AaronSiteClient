@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: ['react-hot-loader/patch', './src/index.js'],
+  entry: ['./src/index.js'],
   mode: "development",
   module: {
     rules: [
@@ -17,13 +17,28 @@ module.exports = {
         }
       },
       {
-        test: /\.(js|jsx)$/,
-        use: 'react-hot-loader/webpack',
-        include: /node_modules/
+        test: /\.(css|scss)$/,
+        use: [
+          "style-loader",
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          },
+          "sass-loader"
+        ],
+        include: /\.mod\.scss$/
       },
       {
         test: /\.(css|scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [
+          "style-loader",
+          'css-loader',
+          "sass-loader"
+        ],
+        exclude: /\.mod\.scss$/
       }
     ]
   },
@@ -43,10 +58,12 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: path.join(__dirname, "public/"),
+    contentBase: path.join(__dirname, 'public'),
+    publicPath: "/dist/",
     port: 3000,
-    publicPath: "http://localhost:3000/dist/",
-    hot: true
+    hot: true,
+    inline: true,
+    historyApiFallback: true
   },
   devtool : 'inline-source-map',
   plugins: [

@@ -1,12 +1,12 @@
 import React, { Component} from "react";
 import Header from './header/Header.jsx'
 
-import "./main.scss";
+import styles from "./main.mod.scss";
 
 export default class Main extends Component {
   render(){
     return(
-      <div className='main'>
+      <div className={styles.main}>
         <Header />
       </div>
     );

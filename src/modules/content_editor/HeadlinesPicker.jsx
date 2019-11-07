@@ -15,16 +15,13 @@ class HeadlinesPicker extends Component {
     window.removeEventListener('click', this.onWindowClick);
   }
 
-  onWindowClick = () =>
-    // Call `onOverrideContent` again with `undefined`
-    // so the toolbar can show its regular content again.
-    this.props.onOverrideContent(undefined);
+  onWindowClick = () => this.props.onOverrideContent(undefined);
 
   render() {
     const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
     return (
       <div>
-        {buttons.map((Button, i) => // eslint-disable-next-line
+        {buttons.map((Button, i) =>
           <Button key={i} {...this.props} />
         )}
       </div>

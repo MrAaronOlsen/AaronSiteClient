@@ -18,8 +18,8 @@ import {
 
 import HeadlinesButton from './HeadlinesButton.jsx'
 
-import './content_editor.scss';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
+import styles from './contentEditor.mod.scss';
 
 const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
@@ -44,7 +44,7 @@ class ContentEditor extends Component {
 
   render() {
     return (
-      <div className={"content-editor"} onClick={this.focus}>
+      <div className={styles.contentEditor} onClick={this.focus}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

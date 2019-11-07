@@ -1,4 +1,5 @@
 @import '~mixins/shadow';
+@import '~mixins/borders';
 @import '~mixins/flex';
 
 .main {
@@ -8,4 +9,7 @@
   height: 100%;
 
   @include shadow;
+  @include border($color: #ddd);
+
+  background-color: white;
 }
