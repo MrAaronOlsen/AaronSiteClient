@@ -1,5 +1,6 @@
-@mixin border($color: black, $width: 1px, $radius: 3px) {
+@import "~colors";
 
+@mixin border($color: white-overlay($level: "0"), $width: 1px, $radius: 3px) {
   border: $width solid $color;
   border-radius: $radius;
 }

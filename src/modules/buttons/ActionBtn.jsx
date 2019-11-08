@@ -33,7 +33,7 @@ export default class ActionBtn extends React.Component {
         onClick={this.getAction()}
         data-id={this.props.dataId}>
 
-        <div className={styles.actionBtn.text}>
+        <div className={styles.text}>
           {this.props.text}
         </div>
       </div>

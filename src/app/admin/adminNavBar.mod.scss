@@ -1,0 +1,14 @@
+@import '~mixins/flex';
+@import '~colors';
+
+.adminNavBarWrapper {
+  @include flex();
+
+  min-width: 100px;
+  max-width: max-content;
+  height: 100%;
+
+  padding: 10px;
+
+  background-color: white-overlay($level: "1");
+}

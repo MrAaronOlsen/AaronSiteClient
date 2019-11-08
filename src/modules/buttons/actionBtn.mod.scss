@@ -1,4 +1,5 @@
 @import '~mixins/shadow';
+@import '~mixins/borders';
 @import '~colors';
 
 .actionBtn {
@@ -13,10 +14,8 @@
 
   padding: 0 5px 0 5px;
 
-  border: 1px solid $transparent;
-  border-radius: 5px;
-
-  background-color: $main-color;
+  @include border($radius: 2px);
+  background-color: white-overlay($level: "8");
 
   cursor: pointer;
 
@@ -27,17 +26,18 @@
     height: min-content;
 
     font-size: 1vw;
+    color: $text-main;
   }
 
   @include shadow()
 }
 
 .actionBtn:hover {
-  border-color: $light-background;
+  background-color: white-overlay($level: "6");
 }
 
 .disabled {
-  background-color: $main-background;
+  background-color: white-overlay($level: "1");
 
   cursor:not-allowed;
 }

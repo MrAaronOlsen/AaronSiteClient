@@ -1,6 +1,7 @@
 @import '~mixins/shadow';
 @import '~mixins/borders';
 @import '~mixins/flex';
+@import '~colors';
 
 .main {
   @include flex(column);
@@ -9,7 +10,6 @@
   height: 100%;
 
   @include shadow;
-  @include border($color: #ddd);
 
-  background-color: white;
+  background-color: white-overlay($level: "1");
 }

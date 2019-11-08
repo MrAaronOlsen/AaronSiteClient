@@ -1,4 +1,4 @@
-@mixin shadow($x: 0px, $y: 0px, $blur: 4px, $spread: 1px, $color: rgba(0,0,0,0.1)) {
+@mixin shadow($x: 0px, $y: 0px, $blur: 4px, $spread: 1px, $color: rgba(100,100,100,0.1)) {
   -webkit-box-shadow: $x $y $blur $spread $color;
   -moz-box-shadow: $x $y $blur $spread $color;
   box-shadow: $x $y $blur $spread $color;
