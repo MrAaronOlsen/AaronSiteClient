@@ -1,16 +1,21 @@
 import Payload from './Payload.js';
 
-const executeRequest = function(request, callback) {
+const executeRequest = (request, callback) => {
   fetch(request)
     .then(response => {
       if (!response.ok) {
-        throw Error('Bad request. ' + response.statusText)
+        throw Error('Request not ok: ' + response.statusText)
       }
 
       return response.json();
     })
     .then(data => {
-      callback(new Payload(data));
+      if (data && data.data) {
+        callback(new Payload(data.data));
+      } else {
+        callback(new Payload());
+      }
+
     })
     .catch(err => {
       callback(new Payload("").withErrors([err, request.url]))

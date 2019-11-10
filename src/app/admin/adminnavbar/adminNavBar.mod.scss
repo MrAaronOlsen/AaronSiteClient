@@ -1,0 +1,19 @@
+@import '~mixins/flex';
+@import '~mixins/borders';
+@import '~colors';
+
+.adminNavBarWrapper {
+  @include flex($dir: column);
+
+  min-width: max-content;
+  height: 100%;
+
+  padding: 10px;
+
+  @include borderRight;
+  background-color: white-overlay($level: "1");
+
+  .buttonWrapper {
+    margin-top: 20px;
+  }
+}

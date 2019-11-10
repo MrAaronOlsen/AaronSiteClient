@@ -1,0 +1,15 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+
+.editPostsNavBarWrapper {
+  @include flex;
+  @include center($horz: flex-start)
+
+  width: 100%;
+  height: 50px;
+
+  padding-left: 20px;
+
+  @include borderBottom;
+}

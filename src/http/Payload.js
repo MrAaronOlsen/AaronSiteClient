@@ -1,6 +1,6 @@
 export default class Payload {
 
-  constructor(data) {
+  constructor(data = {}) {
     this.data = data;
     this.errors = [];
   }
@@ -21,5 +21,9 @@ export default class Payload {
 
   getErrors() {
     return this.errors.join(', ');
+  }
+
+  getData() {
+    return this.data;
   }
 }

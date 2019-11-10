@@ -5,9 +5,9 @@ export default class ActionBtn extends React.Component {
 
   getClasses() {
     if (this.props.disabled) {
-      return styles.actionBtn + styles.disabled
+      return [styles.actionBtn, styles.disabled, this.props.classNames].join(" ")
     } else {
-      return styles.actionBtn
+      return [styles.actionBtn, this.props.classNames].join(" ")
     }
   }
 

@@ -1,4 +1,4 @@
-@mixin center {
-  align-items: center;
-  justify-content: center;
+@mixin center($horz: center, $vert: center) {
+  align-items: $horz;
+  justify-content: $vert;
 }

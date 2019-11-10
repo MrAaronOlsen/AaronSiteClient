@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import { EditorState } from 'draft-js';
 
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import {
@@ -16,7 +17,10 @@ import {
   CodeBlockButton,
 } from 'draft-js-buttons';
 
-import HeadlinesButton from './HeadlinesButton.jsx'
+import { stateToHTML } from 'draft-js-export-html';
+import { stateFromHTML } from 'draft-js-import-html';
+
+import HeadlinesButton from './headlinesbutton/HeadlinesButton.jsx'
 
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import styles from './contentEditor.mod.scss';
@@ -26,21 +30,47 @@ const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
 const defaultText = '';
 
+const htmlOptions = { defaultBlockTag: 'div' };
+
 class ContentEditor extends Component {
+  constructor(props) {
+    super(props)
+
+    this.props.stateHandler('getEditorContent', this.getContent.bind(this))
+  }
 
   state = {
-    editorState: createEditorStateWithText(defaultText)
+    contentId: null,
+    editorState: EditorState.createEmpty()
   };
+
+  componentDidUpdate() {
+    const id = this.props.id;
+    const content = this.props.content;
+
+    if (id != null && id != this.state.contentId) {
+      const editorContent = stateFromHTML(content)
+
+      this.setState({
+        contentId: id,
+        editorState: EditorState.createWithContent(editorContent)
+      })
+    }
+  }
 
   onChange = (editorState) => {
     this.setState({
-      editorState,
+      editorState
     });
   };
 
   focus = () => {
     this.editor.focus();
   };
+
+  getContent() {
+    return stateToHTML(this.state.editorState.getCurrentContent(), htmlOptions)
+  }
 
   render() {
     return (

@@ -1,0 +1,18 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~colors';
+
+.editPostWrapper {
+  @include flex;
+  @include center($horz: flex-start);
+
+  height: 50px;
+  padding: 5px;
+
+  @include borderBottom;
+}
+
+.editPostWrapper:hover {
+  background-color: white-overlay($level: "2")
+}

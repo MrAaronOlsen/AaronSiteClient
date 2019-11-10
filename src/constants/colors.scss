@@ -1,11 +1,11 @@
 $text-main: hsl(0, 0%, 75%);
 $text-dark: hsl(0, 0%, 50%);
 
-$main-background: hsla(0, 0%, 7%, 1);
+$main-background: hsla(40%, 5%, 7%, 1);
 
-$white-overlay: hsla(0, 0%, 100%, 1);
+$white-overlay: hsl(0, 0%, 100%);
 $white-overlay-levels: (
-  "0": 0.01,
+  "0": 0.00,
   "1": 0.05,
   "2": 0.07,
   "3": 0.08,
@@ -14,12 +14,20 @@ $white-overlay-levels: (
   "6": 0.12,
   "7": 0.14,
   "8": 0.15,
-  "9": 0.16
+  "9": 0.16,
+  "10": 0.2,
+  "11": 0.5
 );
 
-@function white-overlay($color: hsla(0, 0%, 100%, 1), $level: "1") {
+@function white-overlay($color: $white-overlay, $level: "0") {
   @return rgba($color, map-get($white-overlay-levels, $level));
 }
+
+@function dark-overlay($color: $main-background, $level: "0") {
+  @return rgba($color, map-get($white-overlay-levels, $level));
+}
+
+$main-border: hsl(0, 0%, 25%);
 
 $brand-light: hsla(25, 100%, 72%, 1);
 $brand-dark: hsla(25, 100%, 50%, 1);

@@ -1,5 +1,8 @@
 @import '~mixins/shadow';
 @import '~mixins/borders';
+@import '~mixins/flex';
+@import '~mixins/center';
+
 @import '~colors';
 
 .actionBtn {
@@ -9,9 +12,7 @@
   align-items: center;
   justify-content: center;
 
-  min-height: 25px;
-  max-height: 25px;
-
+  height: 25px;
   padding: 0 5px 0 5px;
 
   @include border($radius: 2px);
@@ -20,7 +21,8 @@
   cursor: pointer;
 
   .text {
-    display: flex;
+    @include flex;
+    @include center;
 
     width: max-content;
     height: min-content;

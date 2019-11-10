@@ -1,0 +1,26 @@
+@import '~colors';
+@import '~mixins/shadow';
+
+.postWrapper {
+  @include shadow();
+  margin-bottom: 20px;
+  padding: 10px;
+
+  h4 {
+    padding: 5px;
+    background-color: white-overlay($level: "4");
+  }
+
+  p {
+    padding: 10px;
+    background-color: white-overlay($level: "4");
+  }
+
+  h4, p {
+    margin: 0;
+  }
+}
+
+.postWrapper:first-child {
+  margin-top: 10px;
+}

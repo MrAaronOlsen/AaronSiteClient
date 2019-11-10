@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HeadlinesPicker from './HeadlinesPicker.jsx'
+import HeadlinesPicker from './headlinespicker/HeadlinesPicker.jsx'
 
 import styles from './headlinesButton.mod.scss';
 

@@ -65,7 +65,7 @@ module.exports = {
     inline: true,
     historyApiFallback: true
   },
-  devtool : 'inline-source-map',
+  devtool : '#eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]

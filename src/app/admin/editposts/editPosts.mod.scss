@@ -1,0 +1,32 @@
+@import '~mixins/shadow';
+@import '~mixins/borders';
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~colors';
+
+.editPostsWrapper {
+  @include flex($dir: column);
+
+  height: 100%;
+  width: 100%;
+
+  color: $text-main;
+
+  .contentEditorWrapper {
+    @include flex;
+    @include center;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 20px;
+    background-color: white-overlay($level: "1");
+  }
+
+  .editPostsContentWrapper {
+    @include flex($dir: row);
+
+    height: 100%;
+    width: 100%;
+  }
+}

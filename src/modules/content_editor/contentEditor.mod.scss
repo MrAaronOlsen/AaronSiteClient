@@ -5,9 +5,12 @@
 
 .contentEditor {
   height: 100%;
-  margin: 20px;
+  width: 100%;
 
+  padding: 10px;
   overflow: scroll;
 
   cursor: text;
+
+  background-color: white-overlay($level: "1")
 }

@@ -1,4 +1,4 @@
-@mixin flex($dir: row) {
+@mixin flex($dir: column) {
   display: flex;
   flex-direction: $dir;
 }
