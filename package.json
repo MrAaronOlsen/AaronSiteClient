@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -p --progress && node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p --progress"
   },
   "author": "Aaron Olsen",
   "license": "ISC",
@@ -16,11 +17,14 @@
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.0.6",
     "css-loader": "^1.0.1",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^0.23.1",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
   },
   "dependencies": {
     "draft-js": "^0.11.2",
@@ -32,9 +36,6 @@
     "interweave": "^12.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-router-dom": "^5.1.2",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "babel-loader": "^8.0.6"
+    "react-router-dom": "^5.1.2"
   }
 }
