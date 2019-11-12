@@ -4,7 +4,7 @@ import EditPostsNavBar from './editpostsnavbar/EditPostsNavBar.jsx';
 import EditPostsList from './editpostslist/EditPostsList.jsx';
 import ContentEditor from 'modules/content_editor/ContentEditor.jsx';
 
-import Logger from 'logger'
+import Logger from 'logger';
 import { GET } from 'http/get.js';
 import { PUT } from 'http/put.js';
 import { POST } from 'http/post.js';
@@ -12,7 +12,7 @@ import { DELETE } from 'http/delete.js';
 
 import { API_V1 } from 'http/url.js';
 
-import styles from './editPosts.mod.scss'
+import styles from './editPosts.mod.scss';
 
 const getNewPost = () => {
   return {

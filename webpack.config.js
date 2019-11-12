@@ -43,14 +43,14 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"],
+    extensions: ["scss", ".js", ".jsx"],
     alias: {
       mixins: path.resolve(__dirname, 'src/mixins'),
       colors: path.resolve(__dirname, 'src/constants/colors.scss'),
       modules: path.resolve(__dirname, 'src/modules'),
       http: path.resolve(__dirname, 'src/http'),
       auth: path.resolve(__dirname, 'src/auth'),
-      logger: path.resolve(__dirname, 'src/utils/logger.js'),
+      logger$: path.resolve(__dirname, 'src/utils/Logger.js'),
     }
   },
   output: {
