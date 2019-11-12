@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Interweave from 'interweave';
 
 import styles from './post.mod.scss'
 
@@ -8,7 +9,11 @@ class Post extends Component {
     return(
       <div className={styles.postWrapper}>
         <h4>{this.props.post.header}</h4>
-        <p>{this.props.post.body}</p>
+
+        <div className={styles.textWrapper}>
+          <Interweave content={this.props.post.body} />
+        </div>
+
       </div>
     )
   }

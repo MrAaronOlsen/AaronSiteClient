@@ -4,20 +4,18 @@
 .postWrapper {
   @include shadow();
   margin-bottom: 20px;
-  padding: 10px;
 
   h4 {
     padding: 5px;
-    background-color: white-overlay($level: "4");
+    margin: 0;
+
+    color: $main-background;
+    background-color: $brand-light;
   }
 
-  p {
+  .textWrapper {
     padding: 10px;
     background-color: white-overlay($level: "4");
-  }
-
-  h4, p {
-    margin: 0;
   }
 }
 

@@ -49,7 +49,8 @@ module.exports = {
       colors: path.resolve(__dirname, 'src/constants/colors.scss'),
       modules: path.resolve(__dirname, 'src/modules'),
       http: path.resolve(__dirname, 'src/http'),
-      auth: path.resolve(__dirname, 'src/auth')
+      auth: path.resolve(__dirname, 'src/auth'),
+      logger: path.resolve(__dirname, 'src/utils/logger.js'),
     }
   },
   output: {

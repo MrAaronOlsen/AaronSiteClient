@@ -26,4 +26,12 @@ export default class Payload {
   getData() {
     return this.data;
   }
+
+  getFirst() {
+    if (this.data && this.data[0]) {
+      return this.data[0]
+    } else {
+      return this.data
+    }
+  }
 }

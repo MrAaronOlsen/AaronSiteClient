@@ -8,10 +8,11 @@ export default class EditPostsList extends Component {
   render() {
     return(
       <div className={styles.editPostsListWrapper}>
-        {this.props.posts.map((post) => {
-          return <EditPost key={post.id}
+        {this.props.posts.map((post, i) => {
+          return <EditPost key={i}
             post={post}
-            focusPost={this.props.focusPost}/>
+            watch={this.props.watch}
+            focus={this.props.focus}/>
         })}
       </div>
     )

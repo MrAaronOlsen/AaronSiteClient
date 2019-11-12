@@ -1,9 +1,11 @@
 @import '~mixins/flex';
-@import '~mixins/shadow';
+@import '~mixins/center';
+@import '~mixins/borders';
 @import '~colors';
 
 .header {
   @include flex($dir: row);
+  @include center($horz: flex-start)
   flex-flow: row;
 
   width: 100%;
@@ -11,11 +13,9 @@
 
   padding: 20px 20px 20px 20px;
 
-  justify-content: center;
-
   font-size: 40px;
   color: $text-main;
 
-  background-color: white-overlay($level: "4");
-  @include shadow($y: 5px)
+  background-color: white-overlay($level: "1");
+  @include borderBottom;
 }

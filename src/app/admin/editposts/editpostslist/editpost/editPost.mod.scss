@@ -5,14 +5,22 @@
 
 .editPostWrapper {
   @include flex;
-  @include center($horz: flex-start);
+  @include center($vert: flex-start);
 
   height: 50px;
   padding: 5px;
 
   @include borderBottom;
+
+  .inputWrapper {
+    width: 100%;
+  }
+}
+
+.inFocus {
+  background-color: $brand-dark;
 }
 
 .editPostWrapper:hover {
-  background-color: white-overlay($level: "2")
+  @include borderBottom($color: $brand-light)
 }

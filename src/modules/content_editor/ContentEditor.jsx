@@ -37,25 +37,19 @@ class ContentEditor extends Component {
     super(props)
 
     this.props.stateHandler('getEditorContent', this.getContent.bind(this))
+    this.props.stateHandler('updateEditorContent', this.updateEditor.bind(this))
   }
 
   state = {
-    contentId: null,
     editorState: EditorState.createEmpty()
   };
 
-  componentDidUpdate() {
-    const id = this.props.id;
-    const content = this.props.content;
+  updateEditor(id, content) {
+    const editorContent = stateFromHTML(content)
 
-    if (id != null && id != this.state.contentId) {
-      const editorContent = stateFromHTML(content)
-
-      this.setState({
-        contentId: id,
-        editorState: EditorState.createWithContent(editorContent)
-      })
-    }
+    this.setState({
+      editorState: EditorState.createWithContent(editorContent)
+    })
   }
 
   onChange = (editorState) => {

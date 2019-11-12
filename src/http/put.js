@@ -3,7 +3,7 @@ import { BASE_URL } from './url.js';
 import JwtToken from 'auth/JwtToken.js';
 import executeRequest from './executeRequest.js'
 
-const put = function(address, body, callback) {
+export const PUT = function(address, body, callback) {
   var token = JwtToken.getToken();
 
   var headers = new Headers();
@@ -19,5 +19,3 @@ const put = function(address, body, callback) {
 
   executeRequest(request, callback);
 }
-
-export default put;
