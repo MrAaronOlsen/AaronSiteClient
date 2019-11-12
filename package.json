@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "heroku-postbuild": "webpack -p"
+    "start": "./node_modules/webpack/bin/webpack.js -p --progress && node server.js"
   },
   "author": "Aaron Olsen",
   "license": "ISC",
