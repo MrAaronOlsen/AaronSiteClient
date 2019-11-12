@@ -13,7 +13,6 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
@@ -27,6 +26,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@babel/core": "^7.7.2",
     "draft-js": "^0.11.2",
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
