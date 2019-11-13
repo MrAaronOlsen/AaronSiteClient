@@ -43,4 +43,4 @@ setInterval(function() {
     .then(data => {
       console.log("[Keep Alive] API: " + data);
     })
-}, 30000);
+}, 300000);
