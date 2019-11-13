@@ -1,7 +1,5 @@
 // This can be run with npm start.
 // Dev builds are always run via npm run dev which does not use express.
-
-const keepAlive = require("./src/utils/KeepAlive.js");
 const path = require('path');
 const express = require('express');
 
