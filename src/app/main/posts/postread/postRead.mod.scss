@@ -1,0 +1,6 @@
+@import '~mixins/flex';
+
+.postListsWrapper {
+  @include flex($dir: column)
+
+}

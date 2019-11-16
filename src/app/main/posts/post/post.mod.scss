@@ -6,6 +6,7 @@
   margin-bottom: 20px;
 
   h4 {
+    height: 25px;
     padding: 5px;
     margin: 0;
 
@@ -14,6 +15,7 @@
   }
 
   .textWrapper {
+    min-height: 50px;
     padding: 10px;
     background-color: white-overlay($level: "4");
   }

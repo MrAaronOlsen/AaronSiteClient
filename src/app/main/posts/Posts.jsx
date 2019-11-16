@@ -1,35 +1,31 @@
 import React, { Component} from "react";
 
 import PostsList from './postslist/PostsList.jsx';
-
-import { API_V1 } from 'http/url.js';
-import { GET } from 'http/get.js';
-
-import Logger from 'logger';
+import PostRead from './postread/PostRead.jsx';
 import styles from './posts.mod.scss';
 
 class Posts extends Component {
-
   state = {
-    posts: []
+    page: "",
+    readPost: "57"
   }
 
-  componentDidMount() {
-    GET(API_V1 + 'posts', (payload) => {
-      if (payload.hasErrors()) {
-        Logger.error("Failed to load posts. Cause: " + payload.getErrors());
-      } else {
-        this.setState({
-          posts: payload.getData()
-        })
-      }
-    })
+  handleState(state) {
+    this.setState(state)
+  }
+
+  getPage() {
+    if (this.state.page == "READ_POST") {
+      return <PostRead handleState={this.handleState.bind(this)} postId={this.state.readPost}/>;
+    } else {
+      return <PostsList handleState={this.handleState.bind(this)} />
+    }
   }
 
   render() {
     return(
       <div className={styles.postsWrapper}>
-        <PostsList posts={this.state.posts} />
+        {this.getPage()}
       </div>
     )
   }
