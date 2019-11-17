@@ -16,7 +16,7 @@ export default class Header extends Component {
       <div className={this.getClasses()}>
         <div className={styles.logo}>Aaron Olsen</div>
         <div className={styles.links}>
-          <a href='https://github.com/mraaronolsen'>
+          <a href='https://github.com/mraaronolsen' target='_blank'>
             <img src={GithubLogo} />Github
           </a>
         </div>
