@@ -6,7 +6,11 @@
 .postWrapper {
   position:relative;
 
-  max-width: 800px;
+  @include media($media-min-large) {
+    width: 800px;
+  }
+
+  width: 100%;
   margin-bottom: 20px;
 
   padding-left: 20px;
