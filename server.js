@@ -4,12 +4,16 @@ const path = require('path');
 const express = require('express');
 
 var app = express();
+var env = process.env.NODE_ENV;
+
+console.log("[SERVER] Running in " + env + " server environment.")
 
 // Force all http requests to server to be secured https.
 // This is needed because cors policy on the API only accepts https:<site> as origin.
 function forceHTTPS(req, res, next) {
   // Heroku ovewrites x-forwarded-proto with the originating protocol of the HTTP request.
-  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
+  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && env !== "development") {
+    console.log("[SERVER] Forcing https...")
     return res.redirect('https://' + req.get('host') + req.url);
   }
 
