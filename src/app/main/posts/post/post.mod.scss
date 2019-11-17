@@ -1,19 +1,25 @@
 @import '~colors';
+@import '~media';
 @import '~mixins/shadow';
 @import '~mixins/borders';
 
 .postWrapper {
-  width: 800px;
+  position:relative;
+
+  max-width: 800px;
   margin-bottom: 20px;
+
+  padding-left: 20px;
+  padding-right: 20px;
 
   h4 {
     min-height: 25px;
     padding: 5px;
     margin: 0;
 
-    font-size: 40px;
+    font-size: 1.5em;
     font-weight: 400;
-    
+
     color: $foreground;
 
     @include borderBottom($color: $brand);
@@ -22,7 +28,29 @@
   .textWrapper {
     min-height: 50px;
     padding: 10px;
+
+    @include media($media-max-small) {
+      font-size: 12px;
+    }
   }
+}
+
+.preview {
+  height: 200px;
+  overflow: hidden;
+}
+
+.preview:after {
+  content:"";
+
+  position: absolute;
+  top: 100px;
+  left:0;
+
+  height: 100px;
+  width: 800px;
+
+  background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 1));
 }
 
 .postWrapper:first-child {

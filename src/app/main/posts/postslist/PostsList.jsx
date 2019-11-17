@@ -38,7 +38,10 @@ class PostsList extends Component {
     return(
       <div className={styles.postListsWrapper}>
         {this.state.posts.map((post) => {
-          return <Post key={post.id} post={post} onClick={this.handleClick.bind(this)}/>
+          return <Post key={post.id}
+            post={post}
+            classNames="preview"
+            onClick={this.handleClick.bind(this)}/>
         })}
       </div>
     )

@@ -2,6 +2,7 @@
 @import '~mixins/center';
 @import '~mixins/shadow';
 @import '~mixins/borders';
+@import '~media';
 @import '~colors';
 
 .header {
@@ -17,10 +18,24 @@
 
   padding: 20px 20px 20px 20px;
 
+  @include media($media-max-medium) {
+    height: 75px;
+    background-color: white-overlay($alpha: 0.25);
+  }
+
   @include shadow();
 
   .logo {
     color: $foreground;
+
+    @include media($media-small-dev) {
+      font-size: 25px;
+    }
+
+    @include media($media-medium-dev) {
+      font-size: 35px;
+    }
+
     font-size: 50px;
     font-weight: bold;
   }

@@ -68,6 +68,7 @@ module.exports = {
       modules: path.resolve(__dirname, 'src/modules'),
       http: path.resolve(__dirname, 'src/http'),
       auth: path.resolve(__dirname, 'src/auth'),
+      media: path.resolve(__dirname, 'src/constants/media.scss'),
       logger$: path.resolve(__dirname, 'src/utils/Logger.js'),
     }
   },

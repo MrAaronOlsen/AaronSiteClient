@@ -1,0 +1,15 @@
+$media-max-small: " and (max-width: 340px)";
+
+$media-min-medium: " and (min-width: 341px)";
+$media-max-medium: " and (max-width: 450px)";
+
+$media-min-large: " and (min-width: 800px)";
+
+$media-small-dev: $media-max-small;
+$media-medium-dev: #{$media-min-medium} + #{$media-max-medium};
+
+@mixin media($query) {
+  @media only screen #{$query} {
+    @content;
+  }
+}
