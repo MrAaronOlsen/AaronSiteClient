@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --config webpack.dev.js",
     "start": "node server.js --env prod --config webpack.prod.js",
-    "heroku-postbuild": "webpack -p --progress",
+    "heroku-postbuild": "webpack -p --progress --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Aaron Olsen",
