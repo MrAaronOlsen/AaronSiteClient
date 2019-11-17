@@ -1,6 +1,7 @@
 @import '~mixins/flex';
+@import '~mixins/center';
 
-.postListsWrapper {
+.postReadWrapper {
   @include flex($dir: column)
-
+  @include center($horz: flex-start)
 }

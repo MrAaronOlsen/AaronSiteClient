@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: ['./src/index.js'],
-  mode: "production",
+  mode: "development",
   module: {
     rules: [
       {
@@ -39,12 +39,25 @@ module.exports = {
           "sass-loader"
         ],
         exclude: /\.mod\.scss$/
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '/images'
+            },
+          },
+        ],
       }
     ]
   },
   resolve: {
     extensions: ["scss", ".js", ".jsx"],
     alias: {
+      public: path.resolve(__dirname, 'public'),
       mixins: path.resolve(__dirname, 'src/mixins'),
       colors: path.resolve(__dirname, 'src/constants/colors.scss'),
       modules: path.resolve(__dirname, 'src/modules'),
@@ -54,12 +67,12 @@ module.exports = {
     }
   },
   output: {
-    path: path.resolve(__dirname, "dist/"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    publicPath: "/dist/",
+    contentBase: path.resolve(__dirname, "public"),
+    publicPath: "/dist",
     port: 3000,
     hot: true,
     inline: true,

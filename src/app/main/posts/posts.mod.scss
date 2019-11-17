@@ -1,5 +1,6 @@
 @import '~colors';
 @import '~mixins/flex';
+@import '~mixins/center';
 
 .postsWrapper {
   @include flex;
@@ -7,6 +8,5 @@
   width: 100%;
   height: 100%;
 
-  padding: 10px;
-  color: $text-main;
+  color: $foreground;
 }

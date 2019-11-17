@@ -11,7 +11,6 @@
   padding: 10px;
 
   @include borderRight;
-  background-color: white-overlay($level: "1");
 
   .buttonWrapper {
     margin-top: 20px;

@@ -13,10 +13,10 @@
   justify-content: center;
 
   height: 25px;
-  padding: 0 5px 0 5px;
+  width: max-content;
+  padding: 5px;
 
-  @include border($radius: 2px);
-  background-color: white-overlay($level: "8");
+  @include border($color: $transparent, $radius: 3px);
 
   cursor: pointer;
 
@@ -24,22 +24,23 @@
     @include flex;
     @include center;
 
-    width: max-content;
-    height: min-content;
+    width: 100%;
+    height: 100%;
 
     font-size: 1vw;
-    color: $text-main;
+    color: $foreground;
   }
 
+  background-color: $brand;
   @include shadow()
 }
 
 .actionBtn:hover {
-  background-color: white-overlay($level: "6");
+  background-color: white-overlay();
 }
 
 .disabled {
-  background-color: white-overlay($level: "1");
+  background-color: white-overlay();
 
   cursor:not-allowed;
 }

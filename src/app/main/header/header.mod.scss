@@ -1,21 +1,50 @@
 @import '~mixins/flex';
 @import '~mixins/center';
+@import '~mixins/shadow';
 @import '~mixins/borders';
 @import '~colors';
 
 .header {
   @include flex($dir: row);
-  @include center($horz: flex-start)
-  flex-flow: row;
+  @include center($horz: space-between)
+
+  position: sticky;
+  left: 0;
+  top: 0;
 
   width: 100%;
   height: 100px;
 
   padding: 20px 20px 20px 20px;
 
-  font-size: 40px;
-  color: $text-main;
+  @include shadow();
 
-  background-color: white-overlay($level: "1");
-  @include borderBottom;
+  .logo {
+    color: $foreground;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .links {
+    height: 100%;
+
+    a {
+      @include flex($dir: row);
+      @include center($horz: flex-start)
+      height: 20px;
+
+      color: $brand;
+      font-size: 17px;
+      text-decoration: none;
+
+      img {
+        height: 16px;
+        padding-right: 7px;
+      }
+    }
+
+    a:hover {
+      @include borderBottom($color: $brand);
+    }
+  }
 }

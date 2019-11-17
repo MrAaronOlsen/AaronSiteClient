@@ -1,6 +1,7 @@
 @import '~mixins/flex';
 @import '~mixins/center';
 @import '~mixins/borders';
+@import '~mixins/shadow';
 @import '~colors';
 
 .editPostWrapper {
@@ -18,9 +19,10 @@
 }
 
 .inFocus {
-  background-color: $brand-dark;
+  @include borderBottom($color: $brand);
+  @include shadow;
 }
 
 .editPostWrapper:hover {
-  @include borderBottom($color: $brand-light)
+  @include borderBottom($color: $brand)
 }

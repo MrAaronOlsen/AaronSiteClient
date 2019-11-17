@@ -10,7 +10,7 @@
   height: 100%;
   width: 100%;
 
-  color: $text-main;
+  color: $foreground;
 
   .contentEditorWrapper {
     @include flex;
@@ -20,7 +20,6 @@
     width: 100%;
 
     padding: 20px;
-    background-color: white-overlay($level: "1");
   }
 
   .editPostsContentWrapper {

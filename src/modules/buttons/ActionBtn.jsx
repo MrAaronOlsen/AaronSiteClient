@@ -21,7 +21,7 @@ export default class ActionBtn extends React.Component {
 
   getStyles() {
     return {
-      width: this.props.width || '50px'
+      width: this.props.width || 'max-content'
     }
   }
 

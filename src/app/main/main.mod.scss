@@ -1,15 +1,13 @@
 @import '~mixins/shadow';
 @import '~mixins/borders';
 @import '~mixins/flex';
+@import '~mixins/center';
 @import '~colors';
 
 .main {
   @include flex(column);
+  @include center;
 
-  width: 800px;
+  width: 100%;
   height: 100%;
-
-  @include shadow;
-  @include borderRight;
-  @include borderLeft;
 }
