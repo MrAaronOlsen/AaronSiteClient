@@ -4,10 +4,10 @@
   "description": "Client code for Aaron Site",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "heroku-postbuild": "webpack -p --progress"
+    "dev": "webpack-dev-server --mode development --env dev",
+    "start": "node server.js --env prod",
+    "heroku-postbuild": "webpack -p --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Aaron Olsen",
   "license": "ISC",
@@ -34,7 +34,6 @@
     "draft-js-inline-toolbar-plugin": "^3.0.1",
     "draft-js-plugins-editor": "^3.0.0",
     "express": "^4.17.1",
-    "force-secure-express": "^1.0.1",
     "interweave": "^12.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
