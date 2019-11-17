@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: ['./src/index.js'],
-  mode: "development",
+  mode: "production",
   module: {
     rules: [
       {
@@ -68,6 +68,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/public",
     filename: "bundle.js"
   },
   devServer: {
