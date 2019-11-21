@@ -10,7 +10,7 @@
     width: 800px;
   }
 
-  width: 100%;
+  width: 100vw;
   margin-bottom: 20px;
 
   padding-left: 20px;
@@ -37,6 +37,21 @@
       font-size: 12px;
     }
   }
+
+  left: 0;
+  transition: left 1.1s;
+}
+
+.startOffScreen {
+  left: calc(800px * 2);
+}
+
+.exitLeft {
+  left: calc(800px * -2);
+}
+
+.enterRight {
+  left: 0;
 }
 
 .preview {

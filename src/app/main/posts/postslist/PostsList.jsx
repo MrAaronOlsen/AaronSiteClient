@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Post from '../post/Post.jsx';
+import Transition from 'modules/transition/Transition.jsx';
 import Logger from 'logger';
 
 import { API_V1 } from 'http/url.js';
@@ -13,13 +14,17 @@ class PostsList extends Component {
     posts: []
   }
 
-  handleClick(action) {
-    var id = action.currentTarget.dataset.id;
-
-    this.props.handleState({
-      page: "READ_POST",
-      readPost: id
+  handleClick(id) {
+    this.state['unMount' + id](() => {
+      this.props.handleState({
+        page: "READ_POST",
+        readPost: id
+      })
     })
+  }
+
+  handleState(stateChange) {
+    this.setState(stateChange)
   }
 
   componentDidMount() {
@@ -37,11 +42,16 @@ class PostsList extends Component {
   render() {
     return(
       <div className={styles.postListsWrapper}>
-        {this.state.posts.map((post) => {
-          return <Post key={post.id}
-            post={post}
-            classNames="preview"
-            onClick={this.handleClick.bind(this)}/>
+        {this.state.posts.map((post, i) => {
+          return(
+            <Transition key={i}
+              duration={500 + i * 50}
+              unMount={this.handleState.bind(this)}
+              unMountId={post.id} >
+
+              <Post post={post} classNames="preview" onClick={this.handleClick.bind(this)}/>
+            </Transition>
+          )
         })}
       </div>
     )

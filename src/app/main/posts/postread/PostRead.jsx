@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Post from '../post/Post.jsx';
 import ActionBtn from 'modules/buttons/ActionBtn.jsx';
+import Transition from 'modules/transition/Transition.jsx';
+
 import Logger from 'logger';
 
 import { API_V1 } from 'http/url.js';
@@ -15,9 +17,15 @@ class PostsList extends Component {
   }
 
   returnToList() {
-    this.props.handleState({
-      page: "POST_LIST"
+    this.state.unMount(() => {
+      this.props.handleState({
+        page: "POST_LIST"
+      })
     })
+  }
+
+  handleState(stateChange) {
+    this.setState(stateChange)
   }
 
   componentDidMount() {
@@ -34,10 +42,12 @@ class PostsList extends Component {
 
   render() {
     return(
-      <div className={styles.postReadWrapper}>
-        <Post post={this.state.post} />
-        <ActionBtn text="Go Back" onClick={this.returnToList.bind(this)} />
-      </div>
+      <Transition unMount={this.handleState.bind(this)}>
+        <div className={styles.postReadWrapper}>
+          <Post post={this.state.post} />
+          <ActionBtn text="Go Back" onClick={this.returnToList.bind(this)} />
+        </div>
+      </Transition>
     )
   }
 }

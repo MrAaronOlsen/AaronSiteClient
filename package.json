@@ -38,6 +38,7 @@
     "interweave": "^12.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-proptypes": "^1.0.0",
     "react-router-dom": "^5.1.2"
   }
 }

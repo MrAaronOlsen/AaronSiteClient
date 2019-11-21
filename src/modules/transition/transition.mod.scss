@@ -1,0 +1,9 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/transition';
+
+.wrapper {
+  position: relative;
+
+  @include transition($property: var(--property), $duration: var(--duration), $type: var(--type))
+}
