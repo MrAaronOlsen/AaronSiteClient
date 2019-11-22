@@ -1,9 +1,11 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 import styles from './transition.mod.scss'
 
 export default class Transition extends Component {
+  id = 'transition' + '-' + shortid.generate();
   ref = createRef();
 
   duration = this.props.duration;
@@ -13,6 +15,7 @@ export default class Transition extends Component {
   restPos = this.props.restPos;
   endPos = this.props.endPos;
   unMountId = this.props.unMountId;
+  width = this.props.width;
 
   state = {
     pos: this.props.startPos
@@ -31,6 +34,7 @@ export default class Transition extends Component {
     this.ref.current.style.setProperty('--duration', this.duration + 'ms');
     this.ref.current.style.setProperty('--property', this.property);
     this.ref.current.style.setProperty('--type', this.type);
+    this.ref.current.style.setProperty('--width', this.width);
   }
 
   executeMountingTransition() {
@@ -61,7 +65,7 @@ export default class Transition extends Component {
 
   render() {
     return(
-      <div ref={this.ref} className={styles.wrapper} style={{[this.property]: this.state.pos}}>
+      <div id={this.id} ref={this.ref} className={styles.wrapper} style={{[this.property]: this.state.pos}}>
         {this.props.children}
       </div>
     )
@@ -75,7 +79,8 @@ Transition.propTypes = {
   startPos: PropTypes.string,
   restPos: PropTypes.string,
   endPos: PropTypes.string,
-  unMountId: PropTypes.string
+  unMountId: PropTypes.string,
+  width: PropTypes.string
 };
 
 Transition.defaultProps = {
@@ -85,5 +90,6 @@ Transition.defaultProps = {
   startPos: '100vw',
   restPos: '0',
   endPos: '100vw',
-  unMountId: ''
+  unMountId: '',
+  width: '100%'
 }

@@ -11,7 +11,7 @@ class App extends Component {
   render(){
     return(
       <BrowserRouter>
-        <div className={styles.app}>
+        <div id='app' className={styles.app}>
           <Switch>
             <Route exact path='/' component={Main}/>
             <Route exact path='/admin' component={Admin}/>

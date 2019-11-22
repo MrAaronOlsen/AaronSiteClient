@@ -2,22 +2,18 @@
 @import '~media';
 @import '~mixins/shadow';
 @import '~mixins/borders';
+@import '~mixins/flex';
 
 .postWrapper {
-  position:relative;
+  @include flex;
 
-  @include media($media-min-large) {
-    width: 800px;
-  }
-
-  width: 100vw;
-  margin-bottom: 20px;
+  width: 100%;
 
   padding-left: 20px;
   padding-right: 20px;
 
   h4 {
-    min-height: 25px;
+    height: 50px;
     padding: 5px;
     margin: 0;
 
@@ -37,21 +33,6 @@
       font-size: 12px;
     }
   }
-
-  left: 0;
-  transition: left 1.1s;
-}
-
-.startOffScreen {
-  left: calc(800px * 2);
-}
-
-.exitLeft {
-  left: calc(800px * -2);
-}
-
-.enterRight {
-  left: 0;
 }
 
 .preview {
@@ -63,11 +44,11 @@
   content:"";
 
   position: absolute;
-  top: 100px;
+  top: 110px;
   left:0;
 
   height: 100px;
-  width: 800px;
+  width: 100%;
 
   background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 1));
 }

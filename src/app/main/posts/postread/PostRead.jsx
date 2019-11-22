@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Post from '../post/Post.jsx';
-import ActionBtn from 'modules/buttons/ActionBtn.jsx';
+import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
 
 import Logger from 'logger';
@@ -42,10 +42,10 @@ class PostsList extends Component {
 
   render() {
     return(
-      <Transition unMount={this.handleState.bind(this)}>
-        <div className={styles.postReadWrapper}>
+      <Transition startPos={'-100vw'} endPos='-100vw' unMount={this.handleState.bind(this)}>
+        <div id='post-read' className={styles.postReadWrapper}>
+          <ArrowBtn direction='left' onClick={this.returnToList.bind(this)} />
           <Post post={this.state.post} />
-          <ActionBtn text="Go Back" onClick={this.returnToList.bind(this)} />
         </div>
       </Transition>
     )

@@ -1,0 +1,57 @@
+@import '~mixins/shadow';
+@import '~mixins/borders';
+@import '~mixins/flex';
+@import '~mixins/center';
+
+@import '~colors';
+@import '~media';
+
+.arrowBtnWrapper {
+  @include flex;
+  @include center;
+
+  background-color: $background;
+  opacity: 75%;
+
+  width: var(--hover-circle-size);
+  height: var(--hover-circle-size);
+
+  z-index: 999;
+
+  .circle {
+    position: fixed;
+    pointer-events: none;
+
+    height: 0;
+    width: 0;
+
+    transition: width 300ms cubic-bezier(0.270, 0.600, 0.375, 1.000), height 300ms cubic-bezier(0.270, 0.600, 0.375, 1.000);
+  }
+
+  img {
+    z-index: 998;
+  }
+}
+
+.arrowBtnWrapper:hover {
+
+  .circle {
+    height: var(--hover-circle-size);
+    width: var(--hover-circle-size);
+
+    background-color: white-overlay($alpha: 0.5);
+    @include border($radius: 25px, $color: $transparent)
+  }
+}
+
+.left {
+  transform: rotate(-90deg);
+}
+
+.right {
+  transform: rotate(90deg);
+}
+
+.down {
+  transform: rotate(180deg);
+}

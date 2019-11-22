@@ -3,10 +3,12 @@
 @import '~mixins/center';
 
 .postsWrapper {
-  @include flex;
+  @include flex($dir: column)
+  @include center($horz: flex-start)
+  position: relative;
 
   width: 100%;
-  height: 100%;
+  max-width: 800px;
 
-  color: $foreground;
+  height: 100%;
 }

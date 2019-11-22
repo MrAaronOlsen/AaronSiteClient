@@ -24,7 +24,7 @@ class Posts extends Component {
 
   render() {
     return(
-      <div className={styles.postsWrapper}>
+      <div id='posts' className={styles.postsWrapper}>
         {this.getPage()}
       </div>
     )

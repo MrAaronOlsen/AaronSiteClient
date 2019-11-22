@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 import Post from '../post/Post.jsx';
+
+import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
+
 import Logger from 'logger';
 
 import { API_V1 } from 'http/url.js';
@@ -41,7 +44,7 @@ class PostsList extends Component {
 
   render() {
     return(
-      <div className={styles.postListsWrapper}>
+      <div id='post-list' className={styles.postListsWrapper}>
         {this.state.posts.map((post, i) => {
           return(
             <Transition key={i}
@@ -49,7 +52,11 @@ class PostsList extends Component {
               unMount={this.handleState.bind(this)}
               unMountId={post.id} >
 
-              <Post post={post} classNames="preview" onClick={this.handleClick.bind(this)}/>
+              <div className={styles.postWrapper}>
+                <Post post={post} classNames="preview"/>
+                <ArrowBtn direction='right' sendBack={post.id} onClick={this.handleClick.bind(this)} />
+              </div>
+
             </Transition>
           )
         })}

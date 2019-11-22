@@ -11,12 +11,14 @@ class Post extends Component {
   }
 
   onClick(action) {
-    this.props.onClick(this.id)
+    if (this.props.onClick) {
+      this.props.onClick(this.id)
+    }
   }
 
   render() {
     return(
-      <div id={this.id}
+      <div id={'post' + '-' + this.id}
         className={this.getClasses()}
         data-id={this.id}
         onClick={this.onClick.bind(this)}>

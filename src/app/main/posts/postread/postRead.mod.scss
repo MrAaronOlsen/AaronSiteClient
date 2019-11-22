@@ -2,7 +2,7 @@
 @import '~mixins/center';
 
 .postReadWrapper {
-  @include flex($dir: column)
+  @include flex($dir: row);
   @include center($horz: flex-start)
 
   width: 100%;
@@ -10,6 +10,4 @@
 
   padding-top: 20px;
   padding-bottom: 20px;
-
-  overflow: scroll;
 }

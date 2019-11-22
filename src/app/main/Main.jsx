@@ -7,7 +7,7 @@ import styles from "./main.mod.scss";
 export default class Main extends Component {
   render(){
     return(
-      <div className={styles.main}>
+      <div id='main' className={styles.main}>
         <Header />
         <Posts />
       </div>
