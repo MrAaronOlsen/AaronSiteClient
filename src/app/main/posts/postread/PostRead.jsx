@@ -16,11 +16,16 @@ class PostsList extends Component {
     post: {}
   }
 
+  handleClick() {
+    this.setState({
+      triggerOut: true
+    })
+  }
+
+
   returnToList() {
-    this.state.unMount(() => {
-      this.props.handleState({
-        page: "POST_LIST"
-      })
+    this.props.handleState({
+      page: "POST_LIST"
     })
   }
 
@@ -42,9 +47,25 @@ class PostsList extends Component {
 
   render() {
     return(
-      <Transition startPos={'-100vw'} endPos='-100vw' unMount={this.handleState.bind(this)}>
+      <Transition
+        startValue='-100vw'
+        outValue='-100vw'
+        outDelay={300}
+        outTrigger={this.state.triggerOut}
+        outCallback={this.returnToList.bind(this)}>
+
         <div id='post-read' className={styles.postReadWrapper}>
-          <ArrowBtn direction='left' onClick={this.returnToList.bind(this)} />
+
+          <Transition
+            startValue='-100vw'
+            outValue='-100vw'
+            transDuration='750ms'
+            outTrigger={this.state.triggerOut}
+            width='auto'>
+
+            <ArrowBtn direction='left' onClick={this.handleClick.bind(this)} />
+          </Transition>
+
           <Post post={this.state.post} />
         </div>
       </Transition>

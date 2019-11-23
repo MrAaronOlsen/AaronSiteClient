@@ -14,15 +14,21 @@ import styles from './postsList.mod.scss'
 
 class PostsList extends Component {
   state = {
-    posts: []
+    posts: [],
+    triggerOut: false
   }
 
   handleClick(id) {
-    this.state['unMount' + id](() => {
-      this.props.handleState({
-        page: "READ_POST",
-        readPost: id
-      })
+    this.setState({
+      triggerOut: true,
+      readPostId: id
+    })
+  }
+
+  readPost() {
+    this.props.handleState({
+      page: "READ_POST",
+      readPost: this.state.readPostId
     })
   }
 
@@ -46,15 +52,29 @@ class PostsList extends Component {
     return(
       <div id='post-list' className={styles.postListsWrapper}>
         {this.state.posts.map((post, i) => {
+          var timing = 500 + (i * 50);
+
           return(
             <Transition key={i}
-              duration={500 + i * 50}
-              unMount={this.handleState.bind(this)}
-              unMountId={post.id} >
+              setId={post.id}
+              targetId={this.state.readPostId}
+              transDuration={timing + 'ms'}
+              outTrigger={this.state.triggerOut}
+              outDelay={500}
+              outCallback={this.readPost.bind(this)}>
 
               <div className={styles.postWrapper}>
                 <Post post={post} classNames="preview"/>
-                <ArrowBtn direction='right' sendBack={post.id} onClick={this.handleClick.bind(this)} />
+
+                <Transition
+                  setId={post.id}
+                  targetId={this.state.readPostId}
+                  transDuration={(timing * 1.5) + 'ms'}
+                  outTrigger={this.state.triggerOut}
+                  width='auto'>
+
+                  <ArrowBtn direction='right' sendBack={post.id} onClick={this.handleClick.bind(this)} />
+                </Transition>
               </div>
 
             </Transition>
