@@ -5,7 +5,7 @@
 @import '~media';
 @import '~colors';
 
-.main {
+.wrapper {
   @include flex($dir: column)
   @include center($horz: flex-start)
 

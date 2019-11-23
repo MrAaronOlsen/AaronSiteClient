@@ -1,10 +1,8 @@
-@import '~mixins/shadow';
-@import '~mixins/borders';
 @import '~mixins/flex';
 @import '~mixins/center';
 @import '~colors';
 
-.editPostsWrapper {
+.wrapper {
   @include flex($dir: column);
 
   height: 100%;
@@ -12,7 +10,14 @@
 
   color: $foreground;
 
-  .contentEditorWrapper {
+  .editWrapper {
+    @include flex($dir: row);
+
+    height: 100%;
+    width: 100%;
+  }
+
+  .contentWrapper {
     @include flex;
     @include center;
 
@@ -20,12 +25,5 @@
     width: 100%;
 
     padding: 20px;
-  }
-
-  .editPostsContentWrapper {
-    @include flex($dir: row);
-
-    height: 100%;
-    width: 100%;
   }
 }

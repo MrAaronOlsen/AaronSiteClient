@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Interweave from 'interweave';
 
-import styles from './post.mod.scss'
+import styles from './page.mod.scss'
 
-class Post extends Component {
-  id = this.props.post.id;
+class Page extends Component {
+  id = this.props.page.id;
 
   getClasses() {
-    return [styles.postWrapper, styles[this.props.classNames]].join(" ")
+    return [styles.wrapper, styles[this.props.classNames]].join(" ")
   }
 
   onClick(action) {
@@ -18,15 +18,15 @@ class Post extends Component {
 
   render() {
     return(
-      <div id={'post' + '-' + this.id}
+      <div id={'page' + '-' + this.id}
         className={this.getClasses()}
         data-id={this.id}
         onClick={this.onClick.bind(this)}>
 
-        <h4>{this.props.post.header}</h4>
+        <h4>{this.props.page.header}</h4>
 
         <div className={styles.textWrapper}>
-          <Interweave content={this.props.post.body} />
+          <Interweave content={this.props.page.body} />
         </div>
 
       </div>
@@ -34,4 +34,4 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default Page;

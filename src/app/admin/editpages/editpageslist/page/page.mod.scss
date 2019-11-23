@@ -4,7 +4,7 @@
 @import '~mixins/shadow';
 @import '~colors';
 
-.editPostWrapper {
+.wrapper {
   @include flex;
   @include center($vert: flex-start);
 
@@ -23,6 +23,6 @@
   @include shadow;
 }
 
-.editPostWrapper:hover {
+.wrapper:hover {
   @include borderBottom($color: $brand)
 }

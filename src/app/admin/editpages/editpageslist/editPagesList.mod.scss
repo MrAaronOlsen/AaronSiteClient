@@ -1,7 +1,7 @@
 @import '~mixins/flex';
 @import '~mixins/borders';
 
-.editPostsListWrapper {
+.wrapper {
   @include flex;
 
   height: 100%;

@@ -2,7 +2,7 @@
 @import '~mixins/borders';
 @import '~colors';
 
-.adminNavBarWrapper {
+.wrapper {
   @include flex($dir: column);
 
   min-width: max-content;

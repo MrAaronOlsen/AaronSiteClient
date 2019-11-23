@@ -2,7 +2,7 @@
 @import '~mixins/center';
 @import '~mixins/borders';
 
-.editPostsNavBarWrapper {
+.wrapper {
   @include flex($dir: row)
   @include center($horz: flex-start)
 

@@ -1,8 +1,8 @@
 @import '~mixins/flex';
 @import '~mixins/center';
 
-.postReadWrapper {
-  @include flex($dir: row);
+.wrapper {
+  @include flex($dir: column);
   @include center($horz: flex-start)
 
   width: 100%;
@@ -10,4 +10,9 @@
 
   padding-top: 20px;
   padding-bottom: 20px;
+
+  .page {
+    @include flex($dir: row);
+    @include center($horz: flex-start)
+  }
 }

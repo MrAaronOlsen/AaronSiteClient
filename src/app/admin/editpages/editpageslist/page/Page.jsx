@@ -1,16 +1,16 @@
 import React, { Component} from "react";
 
 import TextInput from 'modules/textinput/TextInput.jsx'
-import styles from './editPost.mod.scss'
+import styles from './page.mod.scss'
 
-export default class EditPost extends Component {
+export default class Page extends Component {
 
   focus() {
-    this.props.focus(this.props.post)
+    this.props.focus(this.props.page)
   }
 
   getClassNames() {
-    return [styles.editPostWrapper, styles[this.props.post.inFocus]].join(" ")
+    return [styles.wrapper, styles[this.props.page.inFocus]].join(" ")
   }
 
   render() {
@@ -20,7 +20,7 @@ export default class EditPost extends Component {
 
         <TextInput
           classNames={styles.inputWrapper}
-          text={this.props.post.header}
+          text={this.props.page.header}
           name="header"
           onChange={this.props.watch} />
 

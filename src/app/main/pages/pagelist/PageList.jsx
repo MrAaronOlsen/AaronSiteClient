@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Post from '../post/Post.jsx';
+import Page from '../page/Page.jsx';
 
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
@@ -10,25 +10,25 @@ import Logger from 'logger';
 import { API_V1 } from 'http/url.js';
 import { GET } from 'http/get.js';
 
-import styles from './postsList.mod.scss'
+import styles from './pageList.mod.scss'
 
-class PostsList extends Component {
+class PageList extends Component {
   state = {
-    posts: [],
+    pages: [],
     triggerOut: false
   }
 
   handleClick(id) {
     this.setState({
       triggerOut: true,
-      readPostId: id
+      readPageId: id
     })
   }
 
-  readPost() {
+  readPage() {
     this.props.handleState({
-      page: "READ_POST",
-      readPost: this.state.readPostId
+      page: "READ_PAGE",
+      readPage: this.state.readPageId
     })
   }
 
@@ -37,12 +37,12 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    GET(API_V1 + 'posts', (payload) => {
+    GET(API_V1 + 'pages', (payload) => {
       if (payload.hasErrors()) {
-        Logger.error("Failed to load posts. Cause: " + payload.getErrors());
+        Logger.error("Failed to load pages. Cause: " + payload.getErrors());
       } else {
         this.setState({
-          posts: payload.getData()
+          pages: payload.getData()
         })
       }
     })
@@ -50,30 +50,30 @@ class PostsList extends Component {
 
   render() {
     return(
-      <div id='post-list' className={styles.postListsWrapper}>
-        {this.state.posts.map((post, i) => {
+      <div id='page-list' className={styles.wrapper}>
+        {this.state.pages.map((page, i) => {
           var timing = 500 + (i * 50);
 
           return(
             <Transition key={i}
-              setId={post.id}
-              targetId={this.state.readPostId}
+              setId={page.id}
+              targetId={this.state.readPageId}
               transDuration={timing + 'ms'}
               outTrigger={this.state.triggerOut}
               outDelay={500}
-              outCallback={this.readPost.bind(this)}>
+              outCallback={this.readPage.bind(this)}>
 
-              <div className={styles.postWrapper}>
-                <Post post={post} classNames="preview"/>
+              <div className={styles.page}>
+                <Page page={page} classNames="preview"/>
 
                 <Transition
-                  setId={post.id}
-                  targetId={this.state.readPostId}
+                  setId={page.id}
+                  targetId={this.state.readPageId}
                   transDuration={(timing * 1.5) + 'ms'}
                   outTrigger={this.state.triggerOut}
                   width='auto'>
 
-                  <ArrowBtn direction='right' sendBack={post.id} onClick={this.handleClick.bind(this)} />
+                  <ArrowBtn direction='right' sendBack={page.id} onClick={this.handleClick.bind(this)} />
                 </Transition>
               </div>
 
@@ -85,4 +85,4 @@ class PostsList extends Component {
   }
 }
 
-export default PostsList;
+export default PageList;

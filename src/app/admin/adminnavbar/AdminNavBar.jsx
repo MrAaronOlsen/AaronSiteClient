@@ -14,10 +14,10 @@ class AdminNavBar extends Component {
 
   render() {
     return(
-      <div className={styles.adminNavBarWrapper}>
-        <ActionBtn text='Edit Blog'
+      <div className={styles.wrapper}>
+        <ActionBtn text='Edit Pages'
           width='100px'
-          dataId="EDIT_BLOG"
+          dataId="EDIT_PAGES"
           onClick= { this.handleAction.bind(this) }/>
 
         <ActionBtn text='Clear Screen'

@@ -4,7 +4,7 @@
 @import '~mixins/borders';
 @import '~mixins/flex';
 
-.postWrapper {
+.wrapper {
   @include flex;
 
   width: 100%;
@@ -25,7 +25,7 @@
     @include borderBottom($color: $brand);
   }
 
-  .textWrapper {
+  .text {
     min-height: 50px;
     padding: 10px;
 
@@ -53,6 +53,6 @@
   background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 1));
 }
 
-.postWrapper:first-child {
+.wrapper:first-child {
   margin-top: 10px;
 }

@@ -1,14 +1,14 @@
 import React, { Component} from "react";
 
 import AdminNavBar from './adminnavbar/AdminNavBar.jsx'
-import EditPosts from './editposts/EditPosts.jsx'
+import EditPages from './editPages/EditPages.jsx'
 
 import styles from './admin.mod.scss';
 
 class Admin extends Component {
 
   state = {
-    page: "EDIT_BLOG"
+    page: "EDIT_PAGES"
   }
 
   handleState(state) {
@@ -16,8 +16,8 @@ class Admin extends Component {
   }
 
   getPage() {
-    if (this.state.page == "EDIT_BLOG") {
-      return <EditPosts />
+    if (this.state.page == "EDIT_PAGES") {
+      return <EditPages />
     } else {
       return
     }
@@ -25,10 +25,10 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className={styles.adminWrapper}>
+      <div className={styles.wrapper}>
         <AdminNavBar handleState={this.handleState.bind(this)}/>
 
-        <div className={styles.adminWindow}>
+        <div className={styles.viewWrapper}>
           { this.getPage() }
         </div>
       </div>

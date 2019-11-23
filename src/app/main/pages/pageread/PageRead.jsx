@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Post from '../post/Post.jsx';
+import Page from '../page/Page.jsx';
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
 
@@ -9,11 +9,11 @@ import Logger from 'logger';
 import { API_V1 } from 'http/url.js';
 import { GET } from 'http/get.js';
 
-import styles from './postRead.mod.scss'
+import styles from './pageRead.mod.scss'
 
-class PostsList extends Component {
+class PageList extends Component {
   state = {
-    post: {}
+    page: {}
   }
 
   handleClick() {
@@ -25,7 +25,7 @@ class PostsList extends Component {
 
   returnToList() {
     this.props.handleState({
-      page: "POST_LIST"
+      page: "LIST_PAGES"
     })
   }
 
@@ -34,12 +34,12 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    GET(API_V1 + 'posts/' + this.props.postId, (payload) => {
+    GET(API_V1 + 'pages/' + this.props.pageId, (payload) => {
       if (payload.hasErrors()) {
-        Logger.error("Failed to load post. Cause: " + payload.getErrors());
+        Logger.error("Failed to load page. Cause: " + payload.getErrors());
       } else {
         this.setState({
-          post: payload.getFirst()
+          page: payload.getFirst()
         })
       }
     })
@@ -54,23 +54,25 @@ class PostsList extends Component {
         outTrigger={this.state.triggerOut}
         outCallback={this.returnToList.bind(this)}>
 
-        <div id='post-read' className={styles.postReadWrapper}>
+        <div id='page-read' className={styles.wrapper}>
 
-          <Transition
-            startValue='-100vw'
-            outValue='-100vw'
-            transDuration='750ms'
-            outTrigger={this.state.triggerOut}
-            width='auto'>
+          <div className={styles.page}>
+            <Transition
+              startValue='-100vw'
+              outValue='-100vw'
+              transDuration='750ms'
+              outTrigger={this.state.triggerOut}
+              width='auto'>
 
-            <ArrowBtn direction='left' onClick={this.handleClick.bind(this)} />
-          </Transition>
+              <ArrowBtn direction='left' onClick={this.handleClick.bind(this)} />
+            </Transition>
 
-          <Post post={this.state.post} />
+            <Page page={this.state.page} />
+          </div>
         </div>
       </Transition>
     )
   }
 }
 
-export default PostsList;
+export default PageList;
