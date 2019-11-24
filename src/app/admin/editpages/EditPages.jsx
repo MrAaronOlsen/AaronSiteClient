@@ -14,7 +14,6 @@ import styles from './editPages.mod.scss';
 
 export default class EditPages extends Component {
   state = {
-    pages: [],
     pageId: ""
   }
 
@@ -25,6 +24,12 @@ export default class EditPages extends Component {
   focus(id) {
     this.setState({
       pageId: id
+    })
+  }
+
+  reloadList() {
+    this.setState({
+      reload: !this.state.reload
     })
   }
 
@@ -52,8 +57,13 @@ export default class EditPages extends Component {
         <MenuBar save={this.state.save} new={this.state.new}/>
 
         <div className={styles.editWrapper}>
-          <PageList focus={this.focus.bind(this)}/>
-          <PageForm pageId={this.state.pageId} stateHandler={this.stateHandler.bind(this)}/>
+          <PageList reload={this.state.reload}
+            focus={this.focus.bind(this)}
+            onChange={this.state.watchContent}/>
+
+          <PageForm pageId={this.state.pageId}
+            reloadList={this.reloadList.bind(this)}
+            stateHandler={this.stateHandler.bind(this)}/>
         </div>
       </div>
     )

@@ -12,7 +12,17 @@ export default class Page extends Component {
   render() {
     return(
       <div className={styles.wrapper} onClick={this.focus.bind(this)}>
-        <span>{this.props.page.header}</span>
+        <TextInput
+          classNames={styles.headerWrapper}
+          onChange={this.props.onChange}
+          name="header"
+          text={this.props.page.header}/>
+
+        <TextInput
+          classNames={styles.sequenceWrapper}
+          onChange={this.props.onChange}
+          name="sequence"
+          text={this.props.page.sequence}/>
       </div>
     )
   }

@@ -37,7 +37,7 @@ class PageList extends Component {
   }
 
   componentDidMount() {
-    GET(API_V1 + 'pages?fields=id,header,preview', (payload) => {
+    GET(API_V1 + 'pages?fields=id,header,preview&sort=sequence', (payload) => {
       if (payload.hasErrors()) {
         Logger.error("Failed to load pages. Cause: " + payload.getErrors());
       } else {

@@ -17,9 +17,15 @@ export default class PageList extends Component {
     this.load()
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.reload != this.props.reload) {
+      this.load()
+    }
+  }
+
   load() {
 
-    GET(API_V1 + 'pages?fields=id,header', (payload) => {
+    GET(API_V1 + 'pages?fields=id,header,sequence&sort=sequence', (payload) => {
       if (payload.hasErrors()) {
         Logger.error("Failed to fetch pages. Cause: " + payload.getErrors())
       } else {
@@ -37,6 +43,7 @@ export default class PageList extends Component {
         {this.state.pages.map((page, i) => {
           return <Page key={i}
             page={page}
+            onChange={this.props.onChange}
             focus={this.props.focus}/>
         })}
       </div>

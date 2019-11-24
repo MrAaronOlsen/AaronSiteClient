@@ -5,17 +5,32 @@
 @import '~colors';
 
 .wrapper {
-  @include flex;
+  @include flex($dir: row)
   @include center($vert: flex-start);
 
   height: 50px;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
+
+  font-size: 20px;
 
   @include borderBottom;
 
-  span {
+  .headerWrapper {
+    font-size: 14px;
+    height: 100%;
     width: 100%;
+  }
+
+  .sequenceWrapper {
+    height: 100%;
+    width: 30px;
+
+    font-size: 14px;
+    text-align: center;
+
+    padding-left: 10px;
+    @include borderLeft;
   }
 }
 

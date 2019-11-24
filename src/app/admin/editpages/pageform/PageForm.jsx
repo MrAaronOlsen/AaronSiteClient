@@ -16,6 +16,8 @@ export default class PageForm extends Component {
     super(props)
 
     this.props.stateHandler({save: this.save.bind(this)})
+    this.props.stateHandler({new: this.new.bind(this)})
+    this.props.stateHandler({watchContent: this.watchContent.bind(this)})
   }
 
   state = {};
@@ -25,7 +27,8 @@ export default class PageForm extends Component {
       id: page.id,
       header: page.header,
       preview: page.preview,
-      body: page.body
+      body: page.body,
+      sequence: page.sequence
     })
   }
 
@@ -34,7 +37,8 @@ export default class PageForm extends Component {
       id: this.state.id,
       header: this.state.header,
       preview: this.state.preview,
-      body: this.state.body
+      body: this.state.body,
+      sequence: this.state.sequence
     }
   }
 
@@ -48,15 +52,15 @@ export default class PageForm extends Component {
     }
   }
 
-  contentWatcher(content) {
-    this.setState({
-      body: content
-    })
-  }
-
   watchContent(content, name) {
     this.setState({
       [name]: content
+    })
+  }
+
+  new() {
+    this.insert({
+      header: "New Page"
     })
   }
 
@@ -77,30 +81,21 @@ export default class PageForm extends Component {
     }
   }
 
-  save() {
-    var page = this.getObjectFromState();
-
-    if (page.status == "new") {
-      this.insert(page);
-    } else {
-      this.update(page);
-    }
-  }
-
   insert(page) {
 
     POST(API_V1 + 'pages/', page, (payload) => {
       if (payload.hasErrors()) {
         Logger.error("Insert failed for Page. Cause: " + payload.getErrors());
       } else {
-        var newPage = payload.getFirst();
-        page.id = newPage.id;
-        Logger.info("Inserted Page. Id: " + newPage.id);
+        Logger.info("Inserted Page. Id: " + payload.getFirst().id);
+
+        this.props.reloadList()
       }
     })
   }
 
-  update(page) {
+  save() {
+    var page = this.getObjectFromState();
 
     PUT(API_V1 + 'pages/' + page.id, page, (payload) => {
       if (payload.hasErrors()) {
@@ -123,8 +118,9 @@ export default class PageForm extends Component {
         </div>
         <div className={styles.contentWrapper}>
           <ContentEditor
+            name="body"
             stateHandler={this.stateHandler.bind(this)}
-            contentWatcher={this.contentWatcher.bind(this)} />
+            onChange={this.watchContent.bind(this)} />
         </div>
       </div>
     )

@@ -57,8 +57,8 @@ class ContentEditor extends Component {
   }
 
   onChange = (editorState) => {
-    if (this.props.contentWatcher) {
-      this.props.contentWatcher(this.getEditorContent())
+    if (this.props.onChange) {
+      this.props.onChange(this.getEditorContent(), this.props.name)
     }
 
     this.setState({
