@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Page from '../page/Page.jsx';
+import Page from './page/Page.jsx';
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
 

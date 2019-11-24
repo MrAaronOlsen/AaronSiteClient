@@ -1,11 +1,11 @@
 @import '~colors';
 
 .textAreaWrapper {
-  width: max-content;
-
-  color: $foreground;
+  height: 100%;
+  width: 100%;
 
   border-style: none;
+  color: $foreground;
 }
 
 .textAreaWrapper:focus {

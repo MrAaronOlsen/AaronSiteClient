@@ -36,15 +36,19 @@ class ContentEditor extends Component {
   constructor(props) {
     super(props)
 
-    this.props.stateHandler({getEditorContent: this.getContent.bind(this)})
-    this.props.stateHandler({updateEditorContent: this.updateEditor.bind(this)})
+    this.props.stateHandler({getEditorContent: this.getEditorContent.bind(this)})
+    this.props.stateHandler({updateEditorContent: this.updateEditorContent.bind(this)})
   }
 
   state = {
     editorState: EditorState.createEmpty()
   };
 
-  updateEditor(id, content) {
+  getEditorContent() {
+    return stateToHTML(this.state.editorState.getCurrentContent(), htmlOptions)
+  }
+
+  updateEditorContent(id, content) {
     const editorContent = stateFromHTML(content)
 
     this.setState({
@@ -53,6 +57,10 @@ class ContentEditor extends Component {
   }
 
   onChange = (editorState) => {
+    if (this.props.contentWatcher) {
+      this.props.contentWatcher(this.getEditorContent())
+    }
+
     this.setState({
       editorState
     });
@@ -61,10 +69,6 @@ class ContentEditor extends Component {
   focus = () => {
     this.editor.focus();
   };
-
-  getContent() {
-    return stateToHTML(this.state.editorState.getCurrentContent(), htmlOptions)
-  }
 
   render() {
     return (

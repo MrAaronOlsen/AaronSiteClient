@@ -1,8 +1,6 @@
 import React, { Component} from "react";
 
 import ActionBtn from 'modules/buttons/ActionBtn.jsx';
-import TextInput from 'modules/textinput/TextInput.jsx';
-
 import styles from './menuBar.mod.scss';
 
 export default class MenuBar extends Component {
@@ -17,11 +15,6 @@ export default class MenuBar extends Component {
         <ActionBtn text="New"
           classNames={styles.button}
           onClick={this.props.new}/>
-
-        <ActionBtn text="Delete"
-          classNames={styles.button}
-          onClick={this.props.delete}/>
-
       </div>
     )
   }

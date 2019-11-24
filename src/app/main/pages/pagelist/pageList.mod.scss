@@ -12,6 +12,7 @@
     @include flex($dir: row)
     @include center($horz: flex-start)
 
+    height: 200px;
     margin-bottom: 50px;
   }
 }

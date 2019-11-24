@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Page from '../page/Page.jsx';
+import Page from './page/Page.jsx';
 
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
@@ -37,7 +37,7 @@ class PageList extends Component {
   }
 
   componentDidMount() {
-    GET(API_V1 + 'pages', (payload) => {
+    GET(API_V1 + 'pages?fields=id,header,preview', (payload) => {
       if (payload.hasErrors()) {
         Logger.error("Failed to load pages. Cause: " + payload.getErrors());
       } else {

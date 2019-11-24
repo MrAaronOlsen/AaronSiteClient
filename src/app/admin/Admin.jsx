@@ -1,7 +1,7 @@
 import React, { Component} from "react";
 
 import AdminNavBar from './adminnavbar/AdminNavBar.jsx'
-import EditPages from './editPages/EditPages.jsx'
+import EditPages from './editpages/EditPages.jsx'
 
 import styles from './admin.mod.scss';
 
