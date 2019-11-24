@@ -9,18 +9,14 @@
   @include center($vert: flex-start);
 
   height: 50px;
-  padding: 5px;
+  width: 100%;
+  padding: 20px;
 
   @include borderBottom;
 
-  .inputWrapper {
+  span {
     width: 100%;
   }
-}
-
-.inFocus {
-  @include borderBottom($color: $brand);
-  @include shadow;
 }
 
 .wrapper:hover {

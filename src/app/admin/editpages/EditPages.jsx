@@ -1,8 +1,8 @@
 import React, { Component} from "react";
 
-import EditPagesNavBar from './editpagesnavbar/EditPagesNavBar.jsx';
-import EditPagesList from './editpageslist/EditPagesList.jsx';
-import ContentEditor from 'modules/content_editor/ContentEditor.jsx';
+import MenuBar from './menubar/MenuBar.jsx';
+import PageList from './pagelist/PageList.jsx';
+import PageForm from './pageForm/PageForm.jsx'
 
 import Logger from 'logger';
 import { GET } from 'http/get.js';
@@ -14,97 +14,20 @@ import { API_V1 } from 'http/url.js';
 
 import styles from './editPages.mod.scss';
 
-const getNewPage = () => {
-  return {
-    header: "Page name...",
-    preview: 'Preview...',
-    body: "",
-    state: "new",
-    inFocus: "inFocus"
-  }
-}
-
 export default class EditPages extends Component {
   state = {
     pages: [],
-    pageInFocus: {
-      header: "",
-      preview: "",
-      body: ""
-    }
+    pageId: ""
   }
 
-  componentDidMount() {
-    this.load();
-  }
-
-  // Used by ContentEditor to set state entries
-  // - getEditorContent()
-  // - updateEditorContent()
-  stateHandler(key, value) {
+  focus(id) {
     this.setState({
-      [key]: value
-    })
-  }
-
-  // Watches the page in focus. Can be sent to monitor onChange events. Text fields must have a name that matches a field in pages.
-  //
-  watch(event) {
-    var name = event.target.name;
-    var value = event.target.value;
-
-    this.state.pageInFocus[name] = value;
-
-    this.setState({
-      pageInFocus: this.state.pageInFocus
-    })
-  }
-
-  focus(page) {
-    this.state.pageInFocus.inFocus = "";
-    page.inFocus = "inFocus";
-
-    this.setState({
-      pageInFocus: page
-    })
-
-    this.state.updateEditorContent(page.id, page.body);
-  }
-
-  new() {
-    this.state.pageInFocus.inFocus = "";
-
-    var newPage = getNewPage();
-    this.state.pages.push(newPage)
-
-    this.setState({
-      pageInFocus: newPage,
-      pages: this.state.pages
-    })
-
-    this.state.updateEditorContent("", newPage.body);
-  }
-
-  load() {
-
-    this.setState({
-      pages: []
-    })
-
-    GET(API_V1 + 'pages', (payload) => {
-      if (payload.hasErrors()) {
-        Logger.error("Failed to fetch pages. Cause: " + payload.getErrors())
-      } else {
-        Logger.info("Loading all pages.")
-        this.setState({
-          pages: payload.getData()
-        })
-      }
+      pageId: id
     })
   }
 
   save() {
-    if (this.state.pageInFocus.state == "new") {
+    if (this.state.pageId.state == "new") {
       this.insert();
     } else {
       this.update();
@@ -112,7 +35,7 @@ export default class EditPages extends Component {
   }
 
   insert() {
-    var page = this.state.pageInFocus
+    var page = this.state.pageId
     page.body = this.state.getEditorContent();
 
     POST(API_V1 + 'pages/', page, (payload) => {
@@ -127,13 +50,13 @@ export default class EditPages extends Component {
   }
 
   update() {
-    const id = this.state.pageInFocus.id;
+    const id = this.state.pageId;
 
     if (!id) {
       return;
     }
 
-    var body = this.state.pageInFocus
+    var body = this.state.pageId
     body.body = this.state.getEditorContent();
 
     PUT(API_V1 + 'pages/' + id, body, (payload) => {
@@ -146,7 +69,7 @@ export default class EditPages extends Component {
   }
 
   delete() {
-    const id = this.state.pageInFocus.id;
+    const id = this.state.pageId;
 
     if (!id) {
       return;
@@ -166,21 +89,11 @@ export default class EditPages extends Component {
     return (
 
       <div className={styles.wrapper}>
-        <EditPagesNavBar
-          save={this.save.bind(this)}
-          new={this.new.bind(this)}
-          delete={this.delete.bind(this)}/>
+        <MenuBar />
 
         <div className={styles.editWrapper}>
-          <EditPagesList
-            pages={this.state.pages}
-            watch={this.watch.bind(this)}
-            focus={this.focus.bind(this)}/>
-
-          <div className={styles.contentWrapper}>
-            <ContentEditor
-              stateHandler={this.stateHandler.bind(this)} />
-          </div>
+          <PageList focus={this.focus.bind(this)}/>
+          <PageForm pageId={this.state.pageId}/>
         </div>
       </div>
     )

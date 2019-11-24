@@ -36,8 +36,8 @@ class ContentEditor extends Component {
   constructor(props) {
     super(props)
 
-    this.props.stateHandler('getEditorContent', this.getContent.bind(this))
-    this.props.stateHandler('updateEditorContent', this.updateEditor.bind(this))
+    this.props.stateHandler({getEditorContent: this.getContent.bind(this)})
+    this.props.stateHandler({updateEditorContent: this.updateEditor.bind(this)})
   }
 
   state = {

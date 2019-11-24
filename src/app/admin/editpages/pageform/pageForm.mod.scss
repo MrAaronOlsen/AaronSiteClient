@@ -1,0 +1,17 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+
+  .contentWrapper {
+    @include flex;
+    @include center;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 10px;
+  }
+}

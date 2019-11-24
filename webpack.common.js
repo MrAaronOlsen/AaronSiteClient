@@ -1,5 +1,5 @@
 const path = require("path");
-const { webpack, HotModuleReplacementPlugin } = require("webpack");
+const webpack = require("webpack");
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -13,8 +13,8 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
+        exclude: /node_modules/,
+        loaders: "babel-loader",
         include: /src/,
         options: {
           presets: ["@babel/env"],
@@ -73,6 +73,6 @@ module.exports = {
     }
   },
   plugins: [
-    new HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ]
 };

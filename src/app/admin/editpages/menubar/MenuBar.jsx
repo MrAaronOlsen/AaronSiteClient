@@ -3,9 +3,9 @@ import React, { Component} from "react";
 import ActionBtn from 'modules/buttons/ActionBtn.jsx';
 import TextInput from 'modules/textinput/TextInput.jsx';
 
-import styles from './editPagesNavBar.mod.scss';
+import styles from './menuBar.mod.scss';
 
-export default class EditPagesNavBar extends Component {
+export default class MenuBar extends Component {
 
   render() {
     return(
