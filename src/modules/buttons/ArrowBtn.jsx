@@ -12,7 +12,7 @@ export default class ArrowBtn extends React.Component {
   }
 
   getClasses() {
-    return [styles.arrowBtnWrapper, styles[this.props.direction]].join(' ');
+    return [styles.wrapper, styles[this.props.direction], this.props.classNames].join(' ');
   }
 
   getImgSize() {
@@ -29,13 +29,9 @@ export default class ArrowBtn extends React.Component {
     }
   }
 
-  onClick(target) {
+  onClick() {
     if (this.props.onClick) {
-      if (this.props.sendBack) {
-        this.props.onClick(this.props.sendBack);
-      } else {
-        this.props.onClick(target)
-      }
+      this.props.onClick(this.props.name)
     }
   }
 
@@ -51,7 +47,8 @@ export default class ArrowBtn extends React.Component {
 
 ArrowBtn.propTypes = {
   direction: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  name: PropTypes.string
 };
 
 ArrowBtn.defaultProps = {

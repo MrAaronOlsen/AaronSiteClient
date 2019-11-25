@@ -1,35 +1,28 @@
-import React, { Component} from "react";
+import React, { Component } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import PageList from './pagelist/PageList.jsx';
-import PageRead from './pageread/PageRead.jsx';
+import List from './list/List.jsx'
+import About from './about/About.jsx'
+import Portfolio from './portfolio/Portfolio.jsx'
+import Stack from './stack/Stack.jsx'
 
-import styles from './pages.mod.scss';
+import styles from './pages.mod.scss'
 
-class Pages extends Component {
-  state = {
-    view: 'LIST_PAGES',
-    readPage: ''
-  }
+export default class Pages extends Component {
 
-  handleState(state) {
-    this.setState(state)
-  }
+  render(){
 
-  getPage() {
-    if (this.state.page == 'READ_PAGE') {
-      return <PageRead handleState={this.handleState.bind(this)} pageId={this.state.readPage}/>;
-    } else {
-      return <PageList handleState={this.handleState.bind(this)} />
-    }
-  }
-
-  render() {
     return(
-      <div id='pages' className={styles.wrapper}>
-        {this.getPage()}
-      </div>
+        <div className={styles.wrapper}>
+          <Switch>
+            <Route path='/pages/about' component={About} />
+            <Route path='/pages/portfolio' component={Portfolio} />
+            <Route path='/pages/stack' component={Stack} />
+            <Route path='/pages' component={List} />
+
+            <Redirect to='/pages' />
+          </Switch>
+        </div>
     )
   }
 }
-
-export default Pages

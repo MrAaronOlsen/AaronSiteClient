@@ -52,13 +52,13 @@ class PageList extends Component {
     return(
       <div id='page-list' className={styles.wrapper}>
         {this.state.pages.map((page, i) => {
-          var timing = 500 + (i * 50);
+          var timing = 500 + (i * 200);
 
           return(
             <Transition key={i}
               setId={page.id}
               targetId={this.state.readPageId}
-              transDuration={timing + 'ms'}
+              transInDuration={timing + 'ms'}
               outTrigger={this.state.triggerOut}
               outDelay={500}
               outCallback={this.readPage.bind(this)}>
@@ -69,7 +69,7 @@ class PageList extends Component {
                 <Transition
                   setId={page.id}
                   targetId={this.state.readPageId}
-                  transDuration={(timing * 1.5) + 'ms'}
+                  transInDuration={(timing * 1.5) + 'ms'}
                   outTrigger={this.state.triggerOut}
                   width='auto'>
 

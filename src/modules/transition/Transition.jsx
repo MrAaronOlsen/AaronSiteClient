@@ -8,7 +8,9 @@ export default class Transition extends Component {
   id = 'transition' + '-' + shortid.generate();
 
   property = this.props.transProperty;
-  duration = this.props.transDuration;
+  durationIn = this.props.transInDuration;
+  durationOut = this.props.transOutDuration;
+
   type = this.props.transType;
   delay = this.props.transDelay;
 
@@ -51,7 +53,7 @@ export default class Transition extends Component {
     var element = document.getElementById(this.id)
 
     if (element) {
-      element.style.setProperty('--duration', this.duration);
+      element.style.setProperty('--duration', this.durationIn);
       element.style.setProperty('--property', this.property);
       element.style.setProperty('--type', this.type);
       element.style.setProperty('--width', this.width);
@@ -80,6 +82,11 @@ export default class Transition extends Component {
 
   // Triggers the out transition by changing the state of transValue to the outValue
   executeOutTransition() {
+    var element = document.getElementById(this.id)
+    if (element) {
+      element.style.setProperty('--duration', this.durationOut);
+    }
+
     setTimeout(function() {
 
       this.setState({
@@ -106,7 +113,9 @@ export default class Transition extends Component {
 
 Transition.propTypes = {
   transProperty: PropTypes.string,
-  transDuration: PropTypes.string,
+  transInDuration: PropTypes.string,
+  transOutDuration: PropTypes.string,
+
   transType: PropTypes.string,
   transDelay: PropTypes.number,
 
@@ -125,7 +134,8 @@ Transition.propTypes = {
 
 Transition.defaultProps = {
   transProperty: 'left',
-  transDuration: '500ms',
+  transInDuration: '500ms',
+  transOutDuration: '500ms',
   transType: 'ease',
   transDelay: 500,
 

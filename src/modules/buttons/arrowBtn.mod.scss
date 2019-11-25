@@ -6,7 +6,7 @@
 @import '~colors';
 @import '~media';
 
-.arrowBtnWrapper {
+.wrapper {
   @include flex;
   @include center;
 
@@ -33,7 +33,7 @@
   }
 }
 
-.arrowBtnWrapper:hover {
+.wrapper:hover {
 
   .circle {
     height: var(--hover-circle-size);

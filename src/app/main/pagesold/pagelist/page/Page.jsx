@@ -18,17 +18,12 @@ class Page extends Component {
 
   render() {
     return(
-      <div id={'page' + '-' + this.id}
-        className={this.getClasses()}
-        data-id={this.id}
-        onClick={this.onClick.bind(this)}>
-
+      <div className={this.getClasses()} onClick={this.onClick.bind(this)}>
         <h4>{this.props.page.header}</h4>
 
         <div className={styles.textWrapper}>
           {this.props.page.preview}
         </div>
-
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import ActionBtn from 'modules/buttons/ActionBtn.jsx'
-import styles from './adminNavBar.mod.scss';
+import styles from './navBar.mod.scss';
 
 class AdminNavBar extends Component {
 

@@ -13,8 +13,8 @@ class App extends Component {
       <BrowserRouter>
         <div id='app' className={styles.wrapper}>
           <Switch>
-            <Route exact path='/' component={Main}/>
             <Route exact path='/admin' component={Admin}/>
+            <Route path='/' component={Main} />
           </Switch>
         </div>
       </BrowserRouter>

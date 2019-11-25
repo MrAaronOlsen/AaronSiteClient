@@ -6,7 +6,10 @@
   @include center($horz: flex-start)
 
   width: 100%;
-  max-width: 800px;
-
   height: 100%;
+
+  .page {
+    @include flex($dir: row);
+    @include center($horz: flex-start)
+  }
 }

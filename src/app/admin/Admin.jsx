@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 
-import AdminNavBar from './adminnavbar/AdminNavBar.jsx'
+import NavBar from './navbar/NavBar.jsx'
 import EditPages from './editpages/EditPages.jsx'
 
 import styles from './admin.mod.scss';
@@ -26,7 +26,7 @@ class Admin extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <AdminNavBar handleState={this.handleState.bind(this)}/>
+        <NavBar handleState={this.handleState.bind(this)}/>
 
         <div className={styles.viewWrapper}>
           { this.getPage() }
