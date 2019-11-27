@@ -10,17 +10,18 @@ export default class TextInput extends Component{
     this.props.onChange(content, this.props.name)
   }
 
-  getClassNames() {
-    return [styles.textAreaWrapper, this.props.classNames].join(" ")
-  }
-
   render() {
     return(
-      <input className={this.getClassNames()}
-        onChange={this.onChange.bind(this)}
-        name={this.props.name}
-        type='text'
-        defaultValue={this.props.text}/>
+      <div className={this.props.classNames}>
+        { this.props.children }
+        
+        <input className={styles.textAreaWrapper}
+          onChange={this.onChange.bind(this)}
+          name={this.props.name}
+          type='text'
+          defaultValue={this.props.text}/>
+      </div>
+
     )
   }
 }

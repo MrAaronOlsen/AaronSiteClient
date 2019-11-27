@@ -1,0 +1,15 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+
+.wrapper {
+  @include flex;
+  @include center;
+
+  width: 300px;
+  height: 300px;
+
+  margin-bottom: 10px;
+
+  @include border($color: $brand, $width: 2px, $radius: 5px)
+}

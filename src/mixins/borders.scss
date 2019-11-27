@@ -1,22 +1,22 @@
 @import "~colors";
 
-@mixin border($color: $main-border, $width: 0.5px, $radius: 0) {
+@mixin border($color: $foreground, $width: 1px, $radius: 0) {
   border: $width solid $color;
   border-radius: $radius;
 }
 
-@mixin borderRight($color: $main-border, $width: 0.5px) {
+@mixin borderRight($color: $foreground, $width: 1px) {
   border-right: $width solid $color;
 }
 
-@mixin borderLeft($color: $main-border, $width: 0.5px) {
+@mixin borderLeft($color: $foreground, $width: 1px) {
   border-left: $width solid $color;
 }
 
-@mixin borderTop($color: $main-border, $width: 0.5px) {
+@mixin borderTop($color: $foreground, $width: 1px) {
   border-top: $width solid $color;
 }
 
-@mixin borderBottom($color: $main-border, $width: 0.5px) {
+@mixin borderBottom($color: $foreground, $width: 1px) {
   border-bottom: $width solid $color;
 }

@@ -1,10 +1,14 @@
 @import '~colors';
 
 .textAreaWrapper {
+  position: relative;
+  
   height: 100%;
   width: 100%;
 
+  font-size: inherit;
   border-style: none;
+
   color: $foreground;
 }
 

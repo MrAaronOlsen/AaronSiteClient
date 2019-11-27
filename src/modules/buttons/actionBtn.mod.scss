@@ -34,7 +34,7 @@
   }
 
   background-color: $brand;
-  @include shadow()
+  @include shadow($spread: 2px)
 }
 
 .actionBtn:hover {

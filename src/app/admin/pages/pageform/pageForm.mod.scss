@@ -1,0 +1,108 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~mixins/textArea';
+
+.wrapper {
+  @include flex($dir: column);
+  @include center($horz: flex-start, $vert: flex-end);
+
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+
+  .headerWrapper {
+    @include flex($dir: row);
+    @include center($horz: flex-start);
+
+    width: 100%;
+    height: 50px;
+
+    padding: 5px;
+
+    font-size: 20px;
+
+    .headerText {
+      @include text;
+
+      width: 400px;
+      margin-right: 10px;
+
+      .headerLabel {
+        @include label;
+      }
+    }
+
+    .headerText:hover {
+      .headerLabel {
+        opacity: 1;
+      }
+    }
+
+    .sequenceText {
+      @include text;
+
+      width: 50px;
+      margin-right: 10px;
+
+      .sequenceLabel {
+        @include label;
+      }
+    }
+
+    .sequenceText:hover {
+      .sequenceLabel {
+        opacity: 1;
+      }
+    }
+
+    .captionText {
+      @include text;
+
+      margin-right: 10px;
+
+      .captionLabel {
+        @include label;
+      }
+    }
+
+    .captionText:hover {
+      .captionLabel {
+        opacity: 1;
+      }
+    }
+
+    .slugText {
+      @include text;
+      width: 100px;
+
+      .slugLabel {
+        @include label;
+      }
+    }
+
+    .slugText:hover {
+      .slugLabel {
+        opacity: 1;
+      }
+    }
+  }
+
+  .blocksWrapper {
+    @include flex;
+    @include center($horz: flex-start);
+
+    height: 100%;
+    width: 800px;
+
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 5px;
+
+    overflow: scroll;
+    @include border($color: $brand);
+    @include shadow;
+  }
+}

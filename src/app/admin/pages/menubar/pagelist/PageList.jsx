@@ -40,12 +40,14 @@ export default class PageList extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        {this.state.pages.map((page, i) => {
-          return <Page key={i}
-            page={page}
-            onChange={this.props.onChange}
-            focus={this.props.focus}/>
-        })}
+        <div className={styles.title}>Pages</div>
+        <div className={styles.list}>
+          {this.state.pages.map((page, i) => {
+            return <Page key={i}
+              page={page}
+              focus={this.props.focus}/>
+          })}
+        </div>
       </div>
     )
   }

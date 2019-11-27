@@ -3,6 +3,8 @@
 @import '~mixins/borders';
 
 .wrapper {
+  position: relative;
+
   @include flex($dir: row)
   @include center($horz: flex-start)
 
@@ -10,8 +12,6 @@
   height: 50px;
 
   padding-left: 20px;
-
-  @include borderBottom;
 
   .button {
     margin-right: 20px;

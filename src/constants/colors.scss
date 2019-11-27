@@ -7,12 +7,9 @@ $main-background: hsla(40%, 5%, 7%, 1);
   @return rgba($color, $alpha);
 }
 
-$main-border: hsl(0, 0%, 25%);
+// $brand: hsla(200, 39%, 54%, 1);
+$brand: hsla(30, 39%, 54%, 1);
 
-$brand-light: hsla(200, 39%, 54%, 1);
-$brand-dark: hsla(200, 39%, 24%, 1);
-
-$brand: hsla(200, 39%, 54%, 1);
 $background: hsla(0, 0%, 100%, 1);
 $foreground: hsla(0, 0%, 16%, 1);
 

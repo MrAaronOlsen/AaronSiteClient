@@ -1,7 +1,7 @@
 import React, { Component} from "react";
 
 import NavBar from './navbar/NavBar.jsx'
-import EditPages from './editpages/EditPages.jsx'
+import Pages from './pages/Pages.jsx'
 
 import styles from './admin.mod.scss';
 
@@ -17,7 +17,7 @@ class Admin extends Component {
 
   getPage() {
     if (this.state.page == "EDIT_PAGES") {
-      return <EditPages />
+      return <Pages />
     } else {
       return
     }

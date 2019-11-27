@@ -6,25 +6,10 @@ import styles from './transition.mod.scss'
 
 export default class Transition extends Component {
   id = 'transition' + '-' + shortid.generate();
-
-  property = this.props.transProperty;
-  durationIn = this.props.transInDuration;
-  durationOut = this.props.transOutDuration;
-
-  type = this.props.transType;
-  delay = this.props.transDelay;
-
-  outDelay = this.props.outDelay;
-
-  inValue = this.props.inValue;
-  outValue = this.props.outValue;
-
-  width = this.props.width;
-
-  setId = this.props.setId;
+  config = {...this.props, ...this.props.config || {}}
 
   state = {
-    transValue: this.props.startValue
+    transValue: this.config.startValue
   }
 
   componentDidUpdate(prevProps) {
@@ -33,7 +18,7 @@ export default class Transition extends Component {
 
       // If we're being passed a targetId we only trigger the outTrans if it equals the setId
       if (this.props.targetId) {
-        if (this.props.targetId == this.setId) {
+        if (this.props.targetId == this.config.setId) {
           this.executeOutTransition();
         }
       } else {
@@ -53,10 +38,10 @@ export default class Transition extends Component {
     var element = document.getElementById(this.id)
 
     if (element) {
-      element.style.setProperty('--duration', this.durationIn);
-      element.style.setProperty('--property', this.property);
-      element.style.setProperty('--type', this.type);
-      element.style.setProperty('--width', this.width);
+      element.style.setProperty('--duration', this.config.transDurationIn);
+      element.style.setProperty('--property', this.config.transProperty);
+      element.style.setProperty('--type', this.config.transType);
+      element.style.setProperty('--width', this.config.width || '100%');
     }
   }
 
@@ -64,9 +49,11 @@ export default class Transition extends Component {
   //
   executeInTransition() {
     this.startTransition(() => {
-      this.setState({
-        transValue: this.props.inValue
-      })
+      setTimeout(() => {
+        this.setState({
+          transValue: this.config.inValue
+        })
+      }, this.config.transDelayIn)
     })
   }
 
@@ -84,27 +71,27 @@ export default class Transition extends Component {
   executeOutTransition() {
     var element = document.getElementById(this.id)
     if (element) {
-      element.style.setProperty('--duration', this.durationOut);
+      element.style.setProperty('--duration', this.config.transDurationOut);
     }
 
     setTimeout(function() {
 
       this.setState({
-        transValue: this.outValue
+        transValue: this.config.outValue
       })
 
       // If we've been given an outCallback callback run it with the outDelay.
-      if (this.props.outCallback) {
+      if (this.config.outCall) {
         setTimeout(function() {
-          this.props.outCallback();
-        }.bind(this), this.delay)
+          this.config.outCall();
+        }.bind(this), this.config.transDelayOut)
       }
-    }.bind(this), this.outDelay)
+    }.bind(this), this.config.outCallDelay)
   }
 
   render() {
     return(
-      <div id={this.id} className={styles.wrapper} style={{[this.property]: this.state.transValue}}>
+      <div id={this.id} className={styles.wrapper} style={{[this.config.transProperty]: this.state.transValue}}>
         {this.props.children}
       </div>
     )
@@ -113,18 +100,22 @@ export default class Transition extends Component {
 
 Transition.propTypes = {
   transProperty: PropTypes.string,
-  transInDuration: PropTypes.string,
-  transOutDuration: PropTypes.string,
-
   transType: PropTypes.string,
-  transDelay: PropTypes.number,
-
-  outDelay: PropTypes.number,
-  outTrigger: PropTypes.bool,
 
   startValue: PropTypes.string,
   inValue: PropTypes.string,
   outValue: PropTypes.string,
+
+  transDelayIn: PropTypes.number,
+  transDelayOut: PropTypes.number,
+
+  transInDuration: PropTypes.string,
+  transOutDuration: PropTypes.string,
+
+  outCall: PropTypes.func,
+  outCallDelay: PropTypes.number,
+
+  outTrigger: PropTypes.bool,
 
   setId: PropTypes.string,
   targetId: PropTypes.string,
@@ -134,17 +125,17 @@ Transition.propTypes = {
 
 Transition.defaultProps = {
   transProperty: 'left',
-  transInDuration: '500ms',
-  transOutDuration: '500ms',
   transType: 'ease',
-  transDelay: 500,
-
-  outDelay: 0,
-  outTrigger: false,
 
   startValue: '100vw',
   inValue: '0',
   outValue: '100vw',
 
-  width: '100%'
+  transDelayIn: 500,
+  transDelayOut: 500,
+  transDurationIn: '500ms',
+  transDurationOut: '500ms',
+
+  outDelay: 0,
+  outTrigger: false,
 }

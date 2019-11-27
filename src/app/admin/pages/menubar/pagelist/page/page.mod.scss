@@ -12,12 +12,8 @@
   width: 100%;
   padding: 10px;
 
-  font-size: 20px;
-
-  @include borderBottom;
-
   .headerWrapper {
-    font-size: 14px;
+    font-size: 20px;
     height: 100%;
     width: 100%;
   }
@@ -26,7 +22,7 @@
     height: 100%;
     width: 30px;
 
-    font-size: 14px;
+    font-size: 20px;
     text-align: center;
 
     padding-left: 10px;
@@ -35,5 +31,5 @@
 }
 
 .wrapper:hover {
-  @include borderBottom($color: $brand)
+  @include shadow;
 }

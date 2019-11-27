@@ -4,7 +4,7 @@
   "description": "Client code for Aaron Site",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode=development --config webpack.dev.js --watch --progress",
+    "dev": "webpack-dev-server --mode=development --config webpack.dev.js",
     "start": "node server.js",
     "heroku-postbuild": "webpack -p --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"

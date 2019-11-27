@@ -23,7 +23,10 @@
     background-color: white-overlay($alpha: 0.25);
   }
 
+  background-color: $background;
   @include shadow();
+
+  z-index: 999;
 
   .logo {
     color: $foreground;

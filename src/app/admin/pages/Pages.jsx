@@ -1,7 +1,6 @@
 import React, { Component} from "react";
 
 import MenuBar from './menubar/MenuBar.jsx';
-import PageList from './pagelist/PageList.jsx';
 import PageForm from './pageform/PageForm.jsx'
 
 import Logger from 'logger';
@@ -10,7 +9,7 @@ import { DELETE } from 'http/delete.js';
 
 import { API_V1 } from 'http/url.js';
 
-import styles from './editPages.mod.scss';
+import styles from './pages.mod.scss';
 
 export default class EditPages extends Component {
   state = {
@@ -54,13 +53,9 @@ export default class EditPages extends Component {
     return (
 
       <div className={styles.wrapper}>
-        <MenuBar save={this.state.save} new={this.state.new}/>
+        <MenuBar save={this.state.save} new={this.state.new} reload={this.state.reload} focus={this.focus.bind(this)}/>
 
         <div className={styles.editWrapper}>
-          <PageList reload={this.state.reload}
-            focus={this.focus.bind(this)}
-            onChange={this.state.watchContent}/>
-
           <PageForm pageId={this.state.pageId}
             reloadList={this.reloadList.bind(this)}
             stateHandler={this.stateHandler.bind(this)}/>

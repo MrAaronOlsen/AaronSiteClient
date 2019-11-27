@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 
-import ContentEditor from 'modules/contenteditor/ContentEditor.jsx';
+import Blocks from 'blocks/Blocks.jsx'
 import TextInput from 'modules/textinput/TextInput.jsx'
 
 import Logger from 'logger';
@@ -26,9 +26,10 @@ export default class PageForm extends Component {
     this.setState({
       id: page.id,
       header: page.header,
-      preview: page.preview,
-      body: page.body,
-      sequence: page.sequence
+      caption: page.caption,
+      blocks: JSON.parse(page.blocks),
+      sequence: page.sequence,
+      slug: page.slug
     })
   }
 
@@ -36,9 +37,10 @@ export default class PageForm extends Component {
     return {
       id: this.state.id,
       header: this.state.header,
-      preview: this.state.preview,
-      body: this.state.body,
-      sequence: this.state.sequence
+      caption: this.state.caption,
+      blocks: JSON.stringify(this.state.blocks),
+      sequence: this.state.sequence,
+      slug: this.state.slug
     }
   }
 
@@ -75,7 +77,6 @@ export default class PageForm extends Component {
           let page = payload.getFirst();
 
           this.setStateFromObject(page)
-          this.state.updateEditorContent(page.id, page.body)
         }
       })
     }
@@ -109,18 +110,40 @@ export default class PageForm extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <div className={styles.previewWrapper}>
-          <TextInput classNames={styles.textWrapper}
-            text={this.state.preview}
-            name="preview"
-            onChange={this.watchContent.bind(this)}/>
+        <div className={styles.headerWrapper}>
+          <TextInput classNames={styles.headerText}
+            text={this.state.header}
+            name="header"
+            onChange={this.watchContent.bind(this)}>
 
+            <span className={styles.headerLabel}>Header</span>
+          </TextInput>
+
+          <TextInput classNames={styles.sequenceText}
+            text={this.state.sequence}
+            name="sequence"
+            onChange={this.watchContent.bind(this)}>
+
+            <span className={styles.sequenceLabel}>Sequence</span>
+          </TextInput>
+
+          <TextInput classNames={styles.captionText}
+            text={this.state.caption}
+            name="caption"
+            onChange={this.watchContent.bind(this)}>
+
+            <span className={styles.captionLabel}>Caption</span>
+          </TextInput>
+          <TextInput classNames={styles.slugText}
+            text={this.state.slug}
+            name="slug"
+            onChange={this.watchContent.bind(this)}>
+
+            <span className={styles.slugLabel}>Slug</span>
+          </TextInput>
         </div>
-        <div className={styles.contentWrapper}>
-          <ContentEditor
-            name="body"
-            stateHandler={this.stateHandler.bind(this)}
-            onChange={this.watchContent.bind(this)} />
+        <div className={styles.blocksWrapper}>
+          <Blocks blocks={this.state.blocks}/>
         </div>
       </div>
     )

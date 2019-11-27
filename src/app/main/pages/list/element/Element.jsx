@@ -6,7 +6,8 @@ import styles from './element.mod.scss'
 
 class Page extends Component {
   header = this.props.element.header
-  caption = this.props.element.preview
+  caption = this.props.element.caption
+  slug = this.props.element.slug
 
   state = {
     triggerOut: false
@@ -19,24 +20,24 @@ class Page extends Component {
   }
 
   redirect() {
-    this.props.history.push('/pages/' +  this.header)
+    this.props.history.push('/pages/' +  this.slug)
   }
 
   render() {
     let timing = 500 + (this.props.index * 200);
     return(
       <Transition
-        transInDuration={timing + 'ms'}
+        transDurationIn={timing + 'ms'}
         outTrigger={this.state.triggerOut}
-        outDelay={500}
-        outCallback={this.redirect.bind(this)}>
+        outCallDelay={500}
+        outCall={this.redirect.bind(this)}>
 
         <div className={styles.wrapper}>
           <div className={styles.header}>
             <h4>{this.header}</h4>
 
             <Transition
-              transInDuration={timing * 1.5 + 'ms'}
+              transDurationIn={timing * 1.5 + 'ms'}
               outTrigger={this.state.triggerOut}
               width='auto'>
 

@@ -3,9 +3,7 @@
 
 .wrapper {
   @include flex;
-  @include center($horz: flex-start);
+  @include center;
 
-  height: 100%;
-
-  margin-top: 20px;
+  padding-top: 20px;
 }
