@@ -12,20 +12,4 @@
 
   height: 100%;
   width: 100%;
-
-  .blocksWrapper {
-    @include flex;
-    @include center($horz: flex-start);
-
-    height: 100%;
-    width: 800px;
-
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: 5px;
-
-    overflow: scroll;
-    @include border($color: $brand);
-    @include shadow;
-  }
 }

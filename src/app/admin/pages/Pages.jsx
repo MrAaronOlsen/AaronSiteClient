@@ -58,11 +58,9 @@ export default class EditPages extends Component {
           reload={this.state.reload}
           focus={this.focus.bind(this)}/>
 
-        <div className={styles.editWrapper}>
-          <PageForm pageId={this.state.pageId}
-            reloadList={this.reloadList.bind(this)}
-            stateHandler={this.stateHandler.bind(this)}/>
-        </div>
+        <PageForm pageId={this.state.pageId}
+          reloadList={this.reloadList.bind(this)}
+          stateHandler={this.stateHandler.bind(this)}/>
       </div>
     )
   }

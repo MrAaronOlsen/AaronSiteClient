@@ -1,10 +1,11 @@
 import React, { Component} from "react"
 
 import Header from './header/Header.jsx'
-import Blocks from 'blocks/Blocks.jsx'
-import TextInput from 'modules/textinput/TextInput.jsx'
+import Preview from './preview/Preview.jsx'
 
+import TextInput from 'modules/textinput/TextInput.jsx'
 import Logger from 'logger';
+
 import { GET } from 'http/get.js';
 import { PUT } from 'http/put.js';
 import { POST } from 'http/post.js';
@@ -117,9 +118,7 @@ export default class PageForm extends Component {
           slug={this.state.slug}
           watchContent={this.watchContent.bind(this)}/>
 
-        <div className={styles.blocksWrapper}>
-          <Blocks blocks={this.state.blocks}/>
-        </div>
+        <Preview blocks={this.state.blocks} />
       </div>
     )
   }

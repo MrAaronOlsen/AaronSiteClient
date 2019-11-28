@@ -1,0 +1,50 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+
+.wrapper {
+  position: relative;
+
+  height: 100%;
+  width: 800px;
+
+  margin-right: 5px;
+
+  .preview {
+    @include flex;
+    @include center($horz: flex-start);
+
+    height: 100%;
+    width: 100%;
+
+    padding: 10px;
+
+    overflow: scroll;
+    @include border($color: $brand);
+    @include shadow;
+  }
+
+  .reset {
+    position: absolute;
+
+    @include flex;
+    @include center;
+
+    align-self: flex-start;
+
+    height: 50px;
+    width: 50px;
+
+    background-color: $brand;
+
+    img {
+      position: absolute;
+      height: 31px;
+    }
+  }
+
+  .reset:hover {
+    @include shadow($spread: 3px)
+  }
+}
