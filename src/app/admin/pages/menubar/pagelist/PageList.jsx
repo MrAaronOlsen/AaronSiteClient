@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 
-import Page from './page/Page.jsx'
+import Element from './element/Element.jsx'
 
 import Logger from 'logger';
 import { GET } from 'http/get.js';
@@ -43,8 +43,10 @@ export default class PageList extends Component {
         <div className={styles.title}>Pages</div>
         <div className={styles.list}>
           {this.state.pages.map((page, i) => {
-            return <Page key={i}
-              page={page}
+            return <Element key={i}
+              pageId={page.id}
+              header={page.header}
+              sequence={page.sequence}
               focus={this.props.focus}/>
           })}
         </div>

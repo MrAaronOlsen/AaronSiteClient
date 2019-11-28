@@ -1,5 +1,6 @@
-import React, { Component} from "react";
+import React, { Component} from "react"
 
+import Header from './header/Header.jsx'
 import Blocks from 'blocks/Blocks.jsx'
 import TextInput from 'modules/textinput/TextInput.jsx'
 
@@ -110,38 +111,12 @@ export default class PageForm extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <div className={styles.headerWrapper}>
-          <TextInput classNames={styles.headerText}
-            text={this.state.header}
-            name="header"
-            onChange={this.watchContent.bind(this)}>
+        <Header header={this.state.header}
+          sequence={this.state.sequence}
+          caption={this.state.caption}
+          slug={this.state.slug}
+          watchContent={this.watchContent.bind(this)}/>
 
-            <span className={styles.headerLabel}>Header</span>
-          </TextInput>
-
-          <TextInput classNames={styles.sequenceText}
-            text={this.state.sequence}
-            name="sequence"
-            onChange={this.watchContent.bind(this)}>
-
-            <span className={styles.sequenceLabel}>Sequence</span>
-          </TextInput>
-
-          <TextInput classNames={styles.captionText}
-            text={this.state.caption}
-            name="caption"
-            onChange={this.watchContent.bind(this)}>
-
-            <span className={styles.captionLabel}>Caption</span>
-          </TextInput>
-          <TextInput classNames={styles.slugText}
-            text={this.state.slug}
-            name="slug"
-            onChange={this.watchContent.bind(this)}>
-
-            <span className={styles.slugLabel}>Slug</span>
-          </TextInput>
-        </div>
         <div className={styles.blocksWrapper}>
           <Blocks blocks={this.state.blocks}/>
         </div>

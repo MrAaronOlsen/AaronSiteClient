@@ -53,7 +53,10 @@ export default class EditPages extends Component {
     return (
 
       <div className={styles.wrapper}>
-        <MenuBar save={this.state.save} new={this.state.new} reload={this.state.reload} focus={this.focus.bind(this)}/>
+        <MenuBar save={this.state.save}
+          new={this.state.new}
+          reload={this.state.reload}
+          focus={this.focus.bind(this)}/>
 
         <div className={styles.editWrapper}>
           <PageForm pageId={this.state.pageId}
