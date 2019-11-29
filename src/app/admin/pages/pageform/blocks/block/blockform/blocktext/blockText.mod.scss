@@ -1,0 +1,22 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  @include flex($dir: row);
+  @include center($horz: flex-start)
+  height: 30px;
+
+  span {
+    padding-right: 5px;
+  }
+
+  .text {
+    width: 100%;
+    padding-bottom: 2px;
+    
+    @include borderBottom($color: $brand);
+  }
+}

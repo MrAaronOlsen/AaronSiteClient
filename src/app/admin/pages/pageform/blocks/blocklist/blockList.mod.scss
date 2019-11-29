@@ -1,0 +1,11 @@
+@import '~mixins/flex';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+
+.wrapper {
+  @include flex($dir: column)
+  width: 200px;
+  height: 100%;
+
+  padding: 10px;
+}

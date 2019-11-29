@@ -1,6 +1,7 @@
 import React, { Component} from "react"
 
 import Header from './header/Header.jsx'
+import Blocks from './blocks/Blocks.jsx'
 import Preview from './preview/Preview.jsx'
 
 import TextInput from 'modules/textinput/TextInput.jsx'
@@ -19,10 +20,11 @@ export default class PageForm extends Component {
 
     this.props.stateHandler({save: this.save.bind(this)})
     this.props.stateHandler({new: this.new.bind(this)})
-    this.props.stateHandler({watchContent: this.watchContent.bind(this)})
   }
 
-  state = {};
+  state = {
+    blocks: {}
+  };
 
   setStateFromObject(page) {
     this.setState({
@@ -56,7 +58,7 @@ export default class PageForm extends Component {
     }
   }
 
-  watchContent(content, name) {
+  onChange(content, name) {
     this.setState({
       [name]: content
     })
@@ -116,9 +118,13 @@ export default class PageForm extends Component {
           sequence={this.state.sequence}
           caption={this.state.caption}
           slug={this.state.slug}
-          watchContent={this.watchContent.bind(this)}/>
+          onChange={this.onChange.bind(this)}/>
 
-        <Preview blocks={this.state.blocks} />
+        <div className={styles.blockWrapper}>
+          <Blocks blocks={this.state.blocks} onChange={this.onChange.bind(this)}/>
+          <Preview blocks={this.state.blocks}/>
+        </div>
+
       </div>
     )
   }

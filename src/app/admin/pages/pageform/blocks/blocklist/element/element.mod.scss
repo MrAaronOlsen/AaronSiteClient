@@ -1,0 +1,15 @@
+@import '~mixins/flex';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+
+.wrapper {
+  @include flex($dir: column)
+  width: 100%;
+  height: 30px;
+
+  // @include border($color: $brand);
+  // @include shadow;
+  //
+  // margin-left: 5px;
+  // margin-right: 10px;
+}

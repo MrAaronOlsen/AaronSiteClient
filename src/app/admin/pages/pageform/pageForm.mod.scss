@@ -12,4 +12,12 @@
 
   height: 100%;
   width: 100%;
+
+  .blockWrapper {
+    @include flex($dir: row);
+    @include center($horz: flex-start, $vert: flex-end);
+
+    height: 100%;
+    width: 100%;
+  }
 }
