@@ -5,6 +5,8 @@
 @import '~colors';
 
 .wrapper {
+  position: relative;
+
   @include flex($dir: row);
   @include center($horz: flex-start)
   height: 30px;
@@ -16,7 +18,21 @@
   .text {
     width: 100%;
     padding-bottom: 2px;
-    
+
     @include borderBottom($color: $brand);
+  }
+
+  img {
+    position: absolute;
+
+    height: 18px;
+    width: 18px;
+
+    left: calc(100% - 20px);
+  }
+
+  img:hover {
+    background-color: $brand;
+    @include border($radius: 9px, $width: 0)
   }
 }

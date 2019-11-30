@@ -1,0 +1,42 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  @include flex($dir: column);
+
+  .header {
+    position: relative;
+    @include flex($dir: row);
+
+    span {
+      @include flex($dir: row);
+      @include center($horz: flex-start)
+
+      width: auto;
+      height: 50px;
+
+      padding-right: 5px;
+    }
+
+    .list {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  .transitionWrapper {
+    padding-left: 20px;
+
+    .transition {
+      @include flex($dir: column);
+
+      width: 100%;
+      padding-left: 10px;
+
+      @include borderLeft($color: $brand)
+    }
+  }
+}

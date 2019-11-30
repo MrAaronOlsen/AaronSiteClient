@@ -5,7 +5,7 @@ import shortid from 'shortid';
 import styles from './transition.mod.scss'
 
 export default class Transition extends Component {
-  id = 'transition' + '-' + shortid.generate();
+  id = shortid.generate();
   config = {...this.props, ...this.props.config || {}}
 
   state = {
@@ -98,6 +98,25 @@ export default class Transition extends Component {
   }
 }
 
+export const properties = {
+  transProperty: 'left',
+  transType: 'ease',
+
+  startValue: '100vw',
+  inValue: '0',
+  outValue: '100vw',
+
+  transDelayIn: 500,
+  transDelayOut: 500,
+
+  transDurationIn: '500ms',
+  transDurationOut: '500ms',
+
+  outCallDelay: 0,
+
+  width: '100%'
+}
+
 Transition.propTypes = {
   transProperty: PropTypes.string,
   transType: PropTypes.string,
@@ -109,8 +128,8 @@ Transition.propTypes = {
   transDelayIn: PropTypes.number,
   transDelayOut: PropTypes.number,
 
-  transInDuration: PropTypes.string,
-  transOutDuration: PropTypes.string,
+  transDurationIn: PropTypes.string,
+  transDurationOut: PropTypes.string,
 
   outCall: PropTypes.func,
   outCallDelay: PropTypes.number,
@@ -124,18 +143,19 @@ Transition.propTypes = {
 };
 
 Transition.defaultProps = {
-  transProperty: 'left',
-  transType: 'ease',
+  transProperty: properties.transProperty,
+  transType: properties.transType,
 
-  startValue: '100vw',
-  inValue: '0',
-  outValue: '100vw',
+  startValue: properties.startValue,
+  inValue: properties.inValue,
+  outValue: properties.outValue,
 
-  transDelayIn: 500,
-  transDelayOut: 500,
-  transDurationIn: '500ms',
-  transDurationOut: '500ms',
+  transDelayIn: properties.transDelayIn,
+  transDelayOut: properties.transDelayOut,
+  transDurationIn: properties.transDurationIn,
+  transDurationOut: properties.transDurationOut,
 
-  outDelay: 0,
-  outTrigger: false,
+  outDelay: properties.outDelay,
+
+  width: properties.width
 }

@@ -1,0 +1,75 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  @include flex($dir: column);
+
+  height: 50px;
+  width: max-content;
+
+  overflow: scroll;
+
+  .header {
+    @include flex($dir: row)
+    @include center($horz: flex-start)
+
+    height: 50px;
+    width: 100%;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    img {
+      height: 22px;
+      width: 22px;
+    }
+  }
+
+  .list {
+    position: absolute;
+
+    left: 50px;
+    top: 20px;
+
+    width: 200px;
+    height: 0;
+
+    visibility: hidden;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    overflow: scroll;
+    background-color: $background;
+
+    transition: height 300ms ease;
+
+    @include border($color: $brand, $radius: 5px)
+    @include shadow;
+
+    .line {
+      @include flex($dir: row)
+      @include center($horz: flex-start)
+
+      width: 100%;
+      height: auto;
+
+      padding: 5px;
+    }
+
+    .line:hover {
+      @include shadow;
+    }
+  }
+}
+
+.wrapper:hover {
+  .list {
+    visibility: visible;
+    height: 200px;
+    overflow: scroll;
+  }
+}
