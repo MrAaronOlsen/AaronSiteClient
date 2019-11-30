@@ -15,7 +15,7 @@ export default class Block extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <BlockForm block={this.props.block} onChange={this.onChange.bind(this)}/>
+        <BlockForm block={this.props.block} name={this.props.name} onChange={this.onChange.bind(this)}/>
       </div>
     )
   }

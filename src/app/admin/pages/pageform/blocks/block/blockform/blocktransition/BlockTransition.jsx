@@ -7,6 +7,7 @@ import { properties } from 'modules/transition/Transition.jsx'
 import styles from './blockTransition.mod.scss'
 
 export default class BlockTransition extends Component {
+  id = shortid.generate();
 
   transition() {
     return this.props.transition || {}
@@ -45,8 +46,8 @@ export default class BlockTransition extends Component {
         </div>
         <div className={styles.transitionWrapper}>
           <div className={styles.transition}>
-            {Object.keys(this.transition()).map((key) => {
-                return <BlockText key={shortid.generate()}
+            {Object.keys(this.transition()).map((key, i) => {
+                return <BlockText key={this.props.blockKey + i}
                   name={key}
                   text={this.transition()[key]}
                   onChange={this.onChange.bind(this)}

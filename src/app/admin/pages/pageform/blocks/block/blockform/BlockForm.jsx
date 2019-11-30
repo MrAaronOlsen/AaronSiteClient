@@ -17,7 +17,9 @@ export default class BlockForm extends Component {
         <BlockText name={'type'} text={this.block().type} onChange={this.props.onChange} />
         <BlockText name={'content'} text={this.block().content} onChange={this.props.onChange} />
         <BlockText name={'next'} text={this.block().next} onChange={this.props.onChange} />
-        <BlockTransition transition={this.block().transition} onChange={this.props.onChange} />
+        <BlockTransition transition={this.block().transition}
+          blockKey={this.props.name}
+          onChange={this.props.onChange} />
       </div>
     )
   }
