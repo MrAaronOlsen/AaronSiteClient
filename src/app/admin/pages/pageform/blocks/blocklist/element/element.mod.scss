@@ -1,15 +1,55 @@
 @import '~mixins/flex';
+@import '~mixins/center';
 @import '~mixins/borders';
 @import '~mixins/shadow';
+@import '~colors';
 
 .wrapper {
-  @include flex($dir: column)
+  @include flex($dir: row)
+  @include center;
+
   width: 100%;
   height: 30px;
 
-  // @include border($color: $brand);
-  // @include shadow;
-  //
-  // margin-left: 5px;
-  // margin-right: 10px;
+  padding: 3px;
+
+  .textWrapper {
+    position: relative;
+
+    @include flex($dir: row)
+    @include center;
+
+    height: 30px;
+    background-color: $brand;
+
+    img {
+      position: absolute;
+      visibility: hidden;
+
+      right: 0;
+
+      width: 18px;
+      height: 18px;
+
+      @include border($radius: 9px, $width: 0);
+    }
+
+    img:hover {
+      background-color: white-overlay($alpha: 0.5);
+    }
+  }
+}
+
+.wrapper:hover {
+  .textWrapper {
+    img {
+      visibility: visible;
+    }
+  }
+}
+
+.focused {
+  input {
+    background-color: white-overlay($alpha: 0.5);
+  }
 }

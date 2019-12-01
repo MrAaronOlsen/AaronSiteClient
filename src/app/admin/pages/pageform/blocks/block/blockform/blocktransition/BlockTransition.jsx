@@ -14,14 +14,14 @@ export default class BlockTransition extends Component {
   }
 
   onChange(content, name) {
-    let transition = this.props.transition;
+    let transition = this.props.transition || {};
     transition[name] = content;
 
     this.props.onChange(transition, 'transition')
   }
 
   addProperty(name) {
-    let transition = this.props.transition;
+    let transition = this.props.transition || {};
 
     if (!transition[name]) {
       this.onChange(properties[name], name)

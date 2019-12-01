@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+import TextInput from 'modules/textinput/TextInput.jsx'
+
+import DeleteBtn from 'public/images/delete-button.png'
 import styles from './element.mod.scss'
 
 export default class BlockList extends Component {
@@ -8,9 +11,26 @@ export default class BlockList extends Component {
     this.props.onClick(this.props.name)
   }
 
+  onChange(newName) {
+    console.log(`Old Name: ${this.props.name}, New Name: ${newName}`)
+
+    this.props.moveBlock(this.props.name, newName)
+  }
+
+  deleteBlock() {
+    this.props.deleteBlock(this.props.name)
+  }
+
   render() {
     return(
-      <div className={styles.wrapper} onClick={this.onClick.bind(this)}>{this.props.name}</div>
+      <div className={styles.wrapper} onClick={this.onClick.bind(this)}>
+        <TextInput text={this.props.name}
+          onChange={this.onChange.bind(this)}
+          classNames={[this.props.focused ? styles.focused : "", styles.textWrapper].join(", ")}>
+
+          <img src={DeleteBtn} onClick={this.deleteBlock.bind(this)}/>
+        </TextInput>
+      </div>
     )
   }
 }

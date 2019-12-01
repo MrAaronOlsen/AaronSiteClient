@@ -29,11 +29,30 @@ export default class Blocks extends Component {
     this.props.onChange(blocks, "blocks")
   }
 
+  moveBlock(oldName, newName) {
+    let block = this.props.blocks[oldName]
+
+    console.log(`Block: ${JSON.stringify(block)}`)
+    delete this.props.blocks[oldName]
+
+    this.onChange(block, newName)
+  }
+
+  deleteBlock(name) {
+    let blocks = this.props.blocks;
+    delete blocks[name]
+
+    this.props.onChange(blocks, "blocks")
+  }
+
   render() {
     return(
       <div className={styles.wrapper}>
         <BlockList blocks={this.props.blocks}
-          onClick={this.focusBlock.bind(this)}/>
+          addBlock={this.onChange.bind(this)}
+          moveBlock={this.moveBlock.bind(this)}
+          deleteBlock={this.deleteBlock.bind(this)}
+          focusBlock={this.focusBlock.bind(this)}/>
 
         <Block block={this.state.block}
           blockKey={this.state.blockKey}

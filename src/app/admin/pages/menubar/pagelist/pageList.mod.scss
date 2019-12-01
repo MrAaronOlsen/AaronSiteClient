@@ -15,7 +15,6 @@
 
   .title {
     position: absolute;
-
     @include flex;
     @include center($vert: flex-start);
 
@@ -24,6 +23,7 @@
 
   .list {
     position: absolute;
+    visibility: hidden;
 
     top: 20px;
 
@@ -43,6 +43,7 @@
 
 .wrapper:hover, .wrapper.list:hover {
   .list {
+    visibility: visible;
     height: max-content;
 
     width: 300px;
