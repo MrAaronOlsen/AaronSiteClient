@@ -1,0 +1,49 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  @include flex($dir: row);
+  @include center($horz: flex-start)
+
+  height: 40px;
+  width: 100%;
+
+  span {
+    padding-right: 5px;
+  }
+
+  .contentWrapper {
+    position: relative;
+
+    height: 30px;
+    width: 100%;
+
+    .content {
+      position: absolute;
+
+      height: 30px;
+      width: 100%;
+
+      padding-top: 5px;
+
+      z-index: 999;
+      background-color: $background;
+
+      @include borderBottom($color: $brand)
+    }
+
+    .content:hover {
+      min-height: 200px;
+      height: auto;
+      width: 100%;
+
+      padding: 10px;
+
+      @include border($color: $brand);
+      @include shadow;
+    }
+  }
+}

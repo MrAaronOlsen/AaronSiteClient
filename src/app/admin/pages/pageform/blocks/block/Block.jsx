@@ -9,13 +9,13 @@ export default class Block extends Component {
     let block = this.props.block;
     block[name] = line;
 
-    this.props.onChange(block, this.props.name)
+    this.props.onChange(block, this.props.blockKey)
   }
 
   render() {
     return(
       <div className={styles.wrapper}>
-        <BlockForm block={this.props.block} name={this.props.name} onChange={this.onChange.bind(this)}/>
+        <BlockForm block={this.props.block} blockKey={this.props.blockKey} onChange={this.onChange.bind(this)}/>
       </div>
     )
   }

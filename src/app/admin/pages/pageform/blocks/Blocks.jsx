@@ -7,14 +7,14 @@ import styles from './blocks.mod.scss'
 
 export default class Blocks extends Component {
   state ={
-    name: '',
+    blockKey: '',
     block: {}
   }
 
-  focusBlock(name) {
+  focusBlock(blockKey) {
     this.setState({
-      name: name,
-      block: this.props.blocks[name]
+      blockKey: blockKey,
+      block: this.props.blocks[blockKey]
     })
   }
 
@@ -36,7 +36,7 @@ export default class Blocks extends Component {
           onClick={this.focusBlock.bind(this)}/>
 
         <Block block={this.state.block}
-          name={this.state.name}
+          blockKey={this.state.blockKey}
           onChange={this.onChange.bind(this)}/>
       </div>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Interweave from 'interweave'
 
 import Transition from 'modules/transition/Transition.jsx'
 import BlockContext from 'blocks/BlockContext.jsx'
@@ -17,7 +18,7 @@ function Block(props) {
             config={block.transition}>
 
             <div className={styles.wrapper}>
-              { block.content }
+              { getContent() }
             </div>
           </Transition >
 
@@ -26,6 +27,14 @@ function Block(props) {
       )
     } else {
       return null
+    }
+  }
+
+  function getContent() {
+    if (block.type == 'text') {
+      return block.content
+    } else if (block.type == 'rich') {
+      return <Interweave content={block.content} />
     }
   }
 

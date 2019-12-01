@@ -36,19 +36,23 @@ class ContentEditor extends Component {
   constructor(props) {
     super(props)
 
-    this.props.stateHandler({getEditorContent: this.getEditorContent.bind(this)})
-    this.props.stateHandler({updateEditorContent: this.updateEditorContent.bind(this)})
-  }
+    var content = this.props.text ? this.props.text : "";
 
-  state = {
-    editorState: EditorState.createEmpty()
-  };
+    this.state = {
+      editorState: EditorState.createWithContent(stateFromHTML(content))
+    };
+
+    if (this.props.stateHandler) {
+      this.props.stateHandler({getEditorContent: this.getEditorContent.bind(this)})
+      this.props.stateHandler({updateEditorContent: this.updateEditorContent.bind(this)})
+    }
+  }
 
   getEditorContent() {
     return stateToHTML(this.state.editorState.getCurrentContent(), htmlOptions)
   }
 
-  updateEditorContent(id, content) {
+  updateEditorContent(content) {
     const editorContent = stateFromHTML(content)
 
     this.setState({
