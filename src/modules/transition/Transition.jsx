@@ -5,7 +5,10 @@ import shortid from 'shortid';
 import styles from './transition.mod.scss'
 
 export default class Transition extends Component {
+  // Used to identify itself when multiple transitions exist on the dom.
   id = shortid.generate();
+
+  // Props hold defaults. If a config is passed in merge that into props.
   config = {...this.props, ...this.props.config || {}}
 
   state = {
@@ -32,7 +35,7 @@ export default class Transition extends Component {
     this.executeInTransition();
   }
 
-  // Sets initial css vaiables.
+  // Sets css variables.
   //
   setTransitionVariables() {
     var element = document.getElementById(this.id)
@@ -98,6 +101,7 @@ export default class Transition extends Component {
   }
 }
 
+// Properties is used as a list of editable properties and defaults.
 export const properties = {
   transProperty: 'left',
   transType: 'ease',
