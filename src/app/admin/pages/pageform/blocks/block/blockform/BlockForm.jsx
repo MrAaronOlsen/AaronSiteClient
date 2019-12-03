@@ -1,44 +1,73 @@
 import React, { Component } from 'react'
 
-import BlockText from './blockText/BlockText.jsx'
-import BlockRich from './blockRich/BlockRich.jsx'
-import BlockTransition from './blockTransition/BlockTransition.jsx'
+import BlockText from 'blockform/blocktext/BlockText.jsx'
+import BlockRich from 'blockform/blockrich/BlockRich.jsx'
+import BlockObject from 'blockform/blockobject/BlockObject.jsx'
+
+import { properties as transitionProps } from 'modules/transition/Transition.jsx'
 
 import styles from './blockForm.mod.scss'
 
-export default class BlockForm extends Component {
+const stylesProps = {
+  'width': '100%',
+  'height': '300px',
+  'padding': '10px',
+  'border': 'none'
+}
 
-  block() {
-    return this.props.block || {}
-  }
+const objectAttributes = {
+  'transition': transitionProps,
+  'styles': stylesProps
+}
 
-  getContentField() {
-    if (this.block().type == 'text') {
-      return <BlockText name='content'
-        text={this.block().content}
-        onChange={this.props.onChange} />
-    } else if (this.block().type == 'rich') {
-      return <BlockRich
-        blockKey={this.props.blockKey}
-        name={'content'}
-        text={this.block().content}
-        onChange={this.props.onChange} />
-    } else {
-      return null;
+const block = function(props) {
+  return props.block || {}
+}
+
+const blockText = function(name, props) {
+  return <BlockText
+    name={name}
+    text={block(props)[name]}
+    onChange={props.onChange} />
+}
+
+const blockRich = function(name, props) {
+  return <BlockRich
+    name={name}
+    text={block(props)[name]}
+    blockKey={props.blockKey}
+    onChange={props.onChange} />
+}
+
+const blockObject = function(name, props) {
+  return <BlockObject
+    name={name}
+    object={block(props)[name]}
+    blockKey={props.blockKey}
+    onChange={props.onChange}
+    attributes={objectAttributes[name]} />
+}
+
+const blockTypes = {
+  'text': blockText,
+  'rich': blockRich
+}
+
+export default function BlockForm(props) {
+
+  function getContentField() {
+    if (block(props).type) {
+      return blockTypes[block(props).type]('content', props)
     }
   }
 
-  render() {
-    return(
-      <div className={styles.wrapper}>
-        <BlockText name={'type'} text={this.block().type} onChange={this.props.onChange} />
-        {this.getContentField()}
-        <BlockText name={'next'} text={this.block().next} onChange={this.props.onChange} />
-        <BlockTransition
-          blockKey={this.props.blockKey}
-          transition={this.block().transition}
-          onChange={this.props.onChange} />
-      </div>
-    )
-  }
+  return(
+    <div className={styles.wrapper}>
+      { blockText('type', props) }
+      { getContentField() }
+      { blockText('next', props) }
+      { blockObject('transition', props) }
+      { blockObject('styles', props) }
+    </div>
+  )
 }

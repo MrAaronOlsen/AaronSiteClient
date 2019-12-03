@@ -40,6 +40,7 @@
     "react-dom": "^16.12.0",
     "react-proptypes": "^1.0.0",
     "react-router-dom": "^5.1.2",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "styled-components": "^4.4.1"
   }
 }

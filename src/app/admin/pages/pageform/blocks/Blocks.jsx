@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import BlockList from './blockList/BlockList.jsx'
+import BlockList from './blocklist/BlockList.jsx'
 import Block from './block/Block.jsx'
 
 import styles from './blocks.mod.scss'

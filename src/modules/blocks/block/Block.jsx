@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import Interweave from 'interweave'
 
 import Transition from 'modules/transition/Transition.jsx'
 import BlockContext from 'blocks/BlockContext.jsx'
 
 import styles from './block.mod.scss'
+
+const Wrapper = styled.div(props => props.block.styles);
 
 function Block(props) {
   const blocks = React.useContext(BlockContext)
@@ -14,14 +17,9 @@ function Block(props) {
     if (blocks[props.blockName]) {
       return (
         <div>
-          <Transition
-            config={block.transition}>
-
-            <div className={styles.wrapper}>
-              { getContent() }
-            </div>
+          <Transition config={block.transition}>
+            <Wrapper block={block} className={styles.wrapper}>{ getContent() }</Wrapper>
           </Transition >
-
           { getNext() }
         </div>
       )

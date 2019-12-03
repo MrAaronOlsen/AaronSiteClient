@@ -71,6 +71,7 @@ module.exports = {
       media: path.resolve(__dirname, 'src/constants/media.scss'),
       logger$: path.resolve(__dirname, 'src/utils/Logger.js'),
       blocks: path.resolve(__dirname, 'src/modules/blocks'),
+      blockform: path.resolve(__dirname, 'src/app/admin/pages/pageform/blocks/block/blockform'),
     }
   },
   plugins: [

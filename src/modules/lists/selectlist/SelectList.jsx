@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 
 import Element from './element/Element.jsx'
 import AddButton from 'public/images/add-button.png'
-import { properties } from 'modules/transition/Transition.jsx'
-import styles from './transitionList.mod.scss'
+import styles from './selectList.mod.scss'
 
-export default class BlockTransition extends Component {
+export default class SelectList extends Component {
 
   onClick(name) {
-    this.props.addProperty(name)
+    this.props.onClick(name)
   }
 
   render() {
@@ -16,8 +15,8 @@ export default class BlockTransition extends Component {
       <div className={styles.wrapper}>
         <div className={styles.header}><img src={AddButton} /></div>
         <div className={styles.list}>
-          {Object.keys(properties).map((key, i) => {
-            return <Element key={i} name={key} onClick={this.onClick.bind(this)}/>
+          {this.props.items.map((name, i) => {
+            return <Element key={i} name={name} onClick={this.onClick.bind(this)}/>
           })}
         </div>
       </div>
