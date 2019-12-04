@@ -8,6 +8,10 @@ const theme = {
 export const themosize = function(styles) {
   var scrubbed = {}
 
+  if (!styles) {
+    return scrubbed;
+  }
+
   Object.keys(styles).forEach(key => {
     let value = styles[key];
 
