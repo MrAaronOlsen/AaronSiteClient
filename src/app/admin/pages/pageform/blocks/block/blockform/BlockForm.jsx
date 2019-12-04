@@ -13,7 +13,7 @@ const stylesProps = {
   'height': '300px',
   'padding': '10px',
   'border': 'none',
-  'background-color': 'var(--brand-main-color)'
+  'background-color': '$background'
 }
 
 const objectAttributes = {
