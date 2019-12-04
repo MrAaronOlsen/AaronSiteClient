@@ -20,7 +20,6 @@
     @include center;
 
     height: 30px;
-    background-color: $brand;
 
     img {
       position: absolute;
@@ -35,7 +34,7 @@
     }
 
     img:hover {
-      background-color: white-overlay($alpha: 0.5);
+      background-color: $background;
     }
   }
 }

@@ -29,10 +29,15 @@ export default class Blocks extends Component {
     this.props.onChange(blocks, "blocks")
   }
 
+  addBlock() {
+    let blocks = this.props.blocks;
+    blocks['new_block'] = {};
+
+    this.props.onChange(blocks, "blocks");
+  }
+
   moveBlock(oldName, newName) {
     let block = this.props.blocks[oldName]
-
-    console.log(`Block: ${JSON.stringify(block)}`)
     delete this.props.blocks[oldName]
 
     this.onChange(block, newName)
@@ -49,7 +54,7 @@ export default class Blocks extends Component {
     return(
       <div className={styles.wrapper}>
         <BlockList blocks={this.props.blocks}
-          addBlock={this.onChange.bind(this)}
+          addBlock={this.addBlock.bind(this)}
           moveBlock={this.moveBlock.bind(this)}
           deleteBlock={this.deleteBlock.bind(this)}
           focusBlock={this.focusBlock.bind(this)}/>

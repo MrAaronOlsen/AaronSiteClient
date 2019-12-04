@@ -12,8 +12,6 @@ export default class BlockList extends Component {
   }
 
   onChange(newName) {
-    console.log(`Old Name: ${this.props.name}, New Name: ${newName}`)
-
     this.props.moveBlock(this.props.name, newName)
   }
 
@@ -26,7 +24,7 @@ export default class BlockList extends Component {
       <div className={styles.wrapper} onClick={this.onClick.bind(this)}>
         <TextInput text={this.props.name}
           onChange={this.onChange.bind(this)}
-          classNames={[this.props.focused ? styles.focused : "", styles.textWrapper].join(", ")}>
+          classNames={[this.props.focused ? styles.focused : "", styles.textWrapper].join(" ")}>
 
           <img src={DeleteBtn} onClick={this.deleteBlock.bind(this)}/>
         </TextInput>

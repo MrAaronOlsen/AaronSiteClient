@@ -34,15 +34,21 @@ export default class Blocks extends Component {
   }
 
   getFirstBlock() {
+
     if (this.props.query) {
-      return <Block blockName={this.state.blocks.start}/>
-    } else {
-      if (this.props.blocks) {
-        return <Block blockName={this.props.blocks.start}/>
-      } else {
-        return null
-      }
+      return <Block blockName={this.getNextBlockFrom(this.state)}/>
+    } else if (this.props.blocks) {
+      return <Block blockName={this.getNextBlockFrom(this.props)}/>
     }
+  }
+
+  getNextBlockFrom(state) {
+    if (!state.blocks || !state.blocks.start) {
+      return null;
+    }
+
+    var startBlock = state.blocks.start;
+    return startBlock.next;
   }
 
   render() {

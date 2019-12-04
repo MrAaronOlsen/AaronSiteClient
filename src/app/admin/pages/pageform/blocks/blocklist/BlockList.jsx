@@ -8,12 +8,6 @@ import styles from './blockList.mod.scss'
 export default class BlockList extends Component {
   state = {}
 
-  addBlock() {
-    if (!this.props.blocks["new_block"]) {
-      this.props.addBlock({}, "new_block")
-    }
-  }
-
   focusBlock(name) {
     this.setState({
       focused: name
@@ -22,21 +16,35 @@ export default class BlockList extends Component {
     this.props.focusBlock(name)
   }
 
+  unwindList() {
+    var blocks = this.props.blocks;
+    if (!blocks) {
+      return null;
+    }
+
+    var blockKeys = Object.keys(blocks);
+
+    return (
+      blockKeys.map((name, i) => {
+        return <Element key={i + "_" + blockKeys.length}
+          name={name}
+          focused={this.state.focused == name}
+          moveBlock={this.props.moveBlock}
+          deleteBlock={this.props.deleteBlock}
+          onClick={this.focusBlock.bind(this)}/>
+      })
+    )
+  }
+
+
   render() {
     return(
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <img src={AddButton} onClick={this.addBlock.bind(this)}/>
+          <img src={AddButton} onClick={this.props.addBlock}/>
         </div>
 
-        { Object.keys(this.props.blocks).map((name, i) => {
-          return <Element key={i}
-            name={name}
-            focused={this.state.focused == name}
-            moveBlock={this.props.moveBlock}
-            deleteBlock={this.props.deleteBlock}
-            onClick={this.focusBlock.bind(this)}/>
-        })}
+        { this.unwindList() }
       </div>
     )
   }

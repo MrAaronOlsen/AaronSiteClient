@@ -12,7 +12,7 @@ export default class Header extends Component {
         <TextInput classNames={styles.headerText}
           text={this.props.header}
           name="header"
-          onChange={this.props.watchContent}>
+          onChange={this.props.onChange}>
 
           <span className={styles.headerLabel}>Header</span>
         </TextInput>
@@ -20,7 +20,7 @@ export default class Header extends Component {
         <TextInput classNames={styles.sequenceText}
           text={this.props.sequence}
           name="sequence"
-          onChange={this.props.watchContent}>
+          onChange={this.props.onChange}>
 
           <span className={styles.sequenceLabel}>Sequence</span>
         </TextInput>
@@ -28,14 +28,14 @@ export default class Header extends Component {
         <TextInput classNames={styles.captionText}
           text={this.props.caption}
           name="caption"
-          onChange={this.props.watchContent}>
+          onChange={this.props.onChange}>
 
           <span className={styles.captionLabel}>Caption</span>
         </TextInput>
         <TextInput classNames={styles.slugText}
           text={this.props.slug}
           name="slug"
-          onChange={this.props.watchContent}>
+          onChange={this.props.onChange}>
 
           <span className={styles.slugLabel}>Slug</span>
         </TextInput>

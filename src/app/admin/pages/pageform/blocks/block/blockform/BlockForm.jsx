@@ -55,7 +55,7 @@ const blockTypes = {
 }
 
 const blockContent = function(props) {
-  if (block(props).type) {
+  if (block(props).type && blockTypes[block(props).type]) {
     return blockTypes[block(props).type]('content', props)
   }
 }
@@ -63,12 +63,13 @@ const blockContent = function(props) {
 export default function BlockForm(props) {
 
   return(
-    <div className={styles.wrapper}>
-      { blockText('type', props) }
-      { blockContent(props) }
-      { blockText('next', props) }
-      { blockObject('transition', props) }
-      { blockObject('styles', props) }
-    </div>
+    props.blockKey &&
+      <div className={styles.wrapper} key={props.blockKey}>
+        { blockText('type', props) }
+        { blockContent(props) }
+        { blockText('next', props) }
+        { blockObject('transition', props) }
+        { blockObject('styles', props) }
+      </div> || null
   )
 }
