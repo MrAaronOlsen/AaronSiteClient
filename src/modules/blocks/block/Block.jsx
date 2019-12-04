@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import Interweave from 'interweave'
 
 import Transition from 'modules/transition/Transition.jsx'
 import BlockContext from 'blocks/BlockContext.jsx'
 
 import styles from './block.mod.scss'
+import theme, { themosize } from 'mixins/theme.js'
 
-const Wrapper = styled.div(props => props.block.styles);
+const StylesWrapper = styled.div(props => themosize(props.block.styles));
 
 function Block(props) {
   const blocks = React.useContext(BlockContext)
@@ -18,7 +19,7 @@ function Block(props) {
       return (
         <div>
           <Transition config={block.transition}>
-            <Wrapper block={block} className={styles.wrapper}>{ getContent() }</Wrapper>
+            <StylesWrapper block={block} className={styles.wrapper}>{ getContent() }</StylesWrapper>
           </Transition >
           { getNext() }
         </div>
@@ -41,7 +42,9 @@ function Block(props) {
   }
 
   return (
-    getBlock()
+    <ThemeProvider theme={theme}>
+      { getBlock() }
+    </ThemeProvider>
   )
 }
 

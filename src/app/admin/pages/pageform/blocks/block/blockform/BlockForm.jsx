@@ -12,7 +12,8 @@ const stylesProps = {
   'width': '100%',
   'height': '300px',
   'padding': '10px',
-  'border': 'none'
+  'border': 'none',
+  'background-color': 'var(--brand-main-color)'
 }
 
 const objectAttributes = {
@@ -53,18 +54,18 @@ const blockTypes = {
   'rich': blockRich
 }
 
-export default function BlockForm(props) {
-
-  function getContentField() {
-    if (block(props).type) {
-      return blockTypes[block(props).type]('content', props)
-    }
+const blockContent = function(props) {
+  if (block(props).type) {
+    return blockTypes[block(props).type]('content', props)
   }
+}
+
+export default function BlockForm(props) {
 
   return(
     <div className={styles.wrapper}>
       { blockText('type', props) }
-      { getContentField() }
+      { blockContent(props) }
       { blockText('next', props) }
       { blockObject('transition', props) }
       { blockObject('styles', props) }

@@ -14,3 +14,10 @@ $background: hsla(0, 0%, 100%, 1);
 $foreground: hsla(0, 0%, 16%, 1);
 
 $transparent: hsla(0, 0%, 100%, 0);
+
+:export {
+  brand: $brand;
+  background: $background;
+  foreground: $foreground;
+  transparent: $transparent;
+}
