@@ -5,12 +5,12 @@ const theme = {
   brand: styles.brand
 };
 
-export const themosize = function(styles) {
-  var scrubbed = {}
-
+const Themogrify = function(styles) {
   if (!styles) {
-    return scrubbed;
+    return {};
   }
+
+  var scrubbed = {}
 
   Object.keys(styles).forEach(key => {
     let value = styles[key];
@@ -89,4 +89,4 @@ const makeParamObject = function(param) {
   return object;
 }
 
-export default theme;
+export default Themogrify;

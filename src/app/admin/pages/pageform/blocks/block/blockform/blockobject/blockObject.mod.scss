@@ -27,10 +27,10 @@
     }
   }
 
-  .transitionWrapper {
+  .properties {
     padding-left: 20px;
 
-    .transition {
+    .property {
       @include flex($dir: column);
 
       width: 100%;

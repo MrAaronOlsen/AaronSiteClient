@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import Block from './block/Block.jsx'
 import BlockContext from './BlockContext.jsx'
+import NextBlock from './NextBlock.jsx'
 
 import Logger from 'logger';
 
@@ -34,11 +34,10 @@ export default class Blocks extends Component {
   }
 
   getFirstBlock() {
-
     if (this.props.query) {
-      return <Block blockName={this.getNextBlockFrom(this.state)}/>
+      return this.getNextBlockFrom(this.state)
     } else if (this.props.blocks) {
-      return <Block blockName={this.getNextBlockFrom(this.props)}/>
+      return this.getNextBlockFrom(this.props)
     }
   }
 
@@ -55,7 +54,7 @@ export default class Blocks extends Component {
     return(
         <div className={styles.wrapper}>
           <BlockContext.Provider value={this.props.blocks || this.state.blocks}>
-            { this.getFirstBlock() }
+            <NextBlock name={this.getFirstBlock()} />
           </BlockContext.Provider>
         </div>
     )

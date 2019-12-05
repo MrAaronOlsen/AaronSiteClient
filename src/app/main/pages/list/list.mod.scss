@@ -11,5 +11,7 @@
   .page {
     @include flex($dir: row);
     @include center($horz: flex-start)
+
+    width: 100%;
   }
 }

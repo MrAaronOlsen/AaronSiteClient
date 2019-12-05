@@ -18,11 +18,12 @@ export default class Blocks extends Component {
     })
   }
 
-  onChange(block, name) {
+  changeBlock(block, name) {
     let blocks = this.props.blocks;
     blocks[name] = block;
 
     this.setState({
+      blockKey: name,
       block: block
     })
 
@@ -61,7 +62,7 @@ export default class Blocks extends Component {
 
         <Block block={this.state.block}
           blockKey={this.state.blockKey}
-          onChange={this.onChange.bind(this)}/>
+          onChange={this.changeBlock.bind(this)}/>
       </div>
     )
   }

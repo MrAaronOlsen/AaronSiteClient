@@ -6,6 +6,17 @@ import SelectList from 'modules/lists/selectlist/SelectList.jsx'
 
 import styles from './blockObject.mod.scss'
 
+const stylesProps = {
+  'width': '100%',
+  'height': '300px',
+  'padding': '10px',
+  'border': 'none',
+  'background-color': '$background',
+  'top': '0',
+  'left': '0',
+  'position': 'relative'
+}
+
 export default class BlockObject extends Component {
   id = shortid.generate();
 
@@ -17,7 +28,7 @@ export default class BlockObject extends Component {
     let object = this.props.object || {};
     object[name] = content;
 
-    this.props.onChange(object, 'object')
+    this.props.onChange(object, this.props.name)
   }
 
   addProperty(name) {
@@ -32,7 +43,32 @@ export default class BlockObject extends Component {
     let object = this.props.object;
     delete object[name]
 
-    this.props.onChange(object, 'object')
+    this.props.onChange(object, this.props.name)
+  }
+
+  hasStyles(index) {
+    if (this.props.name === 'transition') {
+      return <BlockObject key={this.props.blockKey + index}
+        name={'styles'}
+        object={this.object().styles || {}}
+        blockKey={this.props.blockKey}
+        onChange={this.onChange.bind(this)}
+        attributes={stylesProps} />
+    } else {
+      return null;
+    }
+  }
+
+  getField(key, index) {
+    if (key === 'styles') {
+      return this.hasStyles(index)
+    } else {
+      return <BlockText key={this.props.blockKey + index}
+        name={key}
+        text={this.object()[key]}
+        onChange={this.onChange.bind(this)}
+        delete={this.deleteProperty.bind(this)} />
+    }
   }
 
   render() {
@@ -44,14 +80,10 @@ export default class BlockObject extends Component {
             <SelectList items={Object.keys(this.props.attributes)} onClick={this.addProperty.bind(this)}/>
           </div>
         </div>
-        <div className={styles.transitionWrapper}>
-          <div className={styles.transition}>
+        <div className={styles.properties}>
+          <div className={styles.property}>
             {Object.keys(this.object()).map((key, i) => {
-                return <BlockText key={this.props.blockKey + i}
-                  name={key}
-                  text={this.object()[key]}
-                  onChange={this.onChange.bind(this)}
-                  delete={this.deleteProperty.bind(this)} />
+                return this.getField(key, i)
             })}
           </div>
         </div>

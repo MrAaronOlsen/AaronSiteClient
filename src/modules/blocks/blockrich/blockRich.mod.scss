@@ -1,0 +1,8 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+
+.wrapper {
+  @include flex;
+  @include center;
+}

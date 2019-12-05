@@ -13,7 +13,10 @@ const stylesProps = {
   'height': '300px',
   'padding': '10px',
   'border': 'none',
-  'background-color': '$background'
+  'background-color': '$background',
+  'top': '0',
+  'left': '0',
+  'position': 'relative'
 }
 
 const objectAttributes = {
@@ -46,17 +49,27 @@ const blockObject = function(name, props) {
     object={block(props)[name]}
     blockKey={props.blockKey}
     onChange={props.onChange}
-    attributes={objectAttributes[name]} />
+    attributes={objectAttributes[name]}
+    hasStyles />
 }
 
 const blockTypes = {
   'text': blockText,
-  'rich': blockRich
+  'rich': blockRich,
+  'img': blockText
+}
+
+const blockTypesKey = {
+  'text': 'content',
+  'rich': 'content',
+  'img': 'img_url'
 }
 
 const blockContent = function(props) {
-  if (block(props).type && blockTypes[block(props).type]) {
-    return blockTypes[block(props).type]('content', props)
+  var type = block(props).type;
+
+  if (type && blockTypes[type]) {
+    return blockTypes[type](blockTypesKey[type], props)
   }
 }
 

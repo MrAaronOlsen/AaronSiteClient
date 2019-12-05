@@ -30,6 +30,7 @@ class Page extends Component {
         transDurationIn={timing + 'ms'}
         outTrigger={this.state.triggerOut}
         outCallDelay={500}
+        styles={{width: '100%'}}
         outCall={this.redirect.bind(this)}>
 
         <div className={styles.wrapper}>

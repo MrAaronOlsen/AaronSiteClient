@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
+import styled from 'styled-components'
 import styles from './transition.mod.scss'
+import Themogrify from 'mixins/theme.js'
+
+const StylesWrapper = styled.div(props => Themogrify(props.styles));
 
 export default class Transition extends Component {
   // Used to identify itself when multiple transitions exist on the dom.
@@ -94,9 +98,11 @@ export default class Transition extends Component {
 
   render() {
     return(
-      <div id={this.id} className={styles.wrapper} style={{[this.config.transProperty]: this.state.transValue}}>
-        {this.props.children}
-      </div>
+      <StylesWrapper styles={this.config.styles} >
+        <div id={this.id} className={styles.wrapper} style={{[this.config.transProperty]: this.state.transValue}}>
+          {this.props.children}
+        </div>
+      </StylesWrapper>
     )
   }
 }
@@ -118,7 +124,8 @@ export const properties = {
 
   outCallDelay: 0,
 
-  width: '100%'
+  width: '100%',
+  styles: {}
 }
 
 Transition.propTypes = {
