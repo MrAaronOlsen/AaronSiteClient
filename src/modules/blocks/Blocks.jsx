@@ -34,7 +34,10 @@ export default class Blocks extends Component {
   render() {
     return(
         <div className={styles.wrapper}>
-          <NextBlock blocks={this.props.blocks || this.state.blocks} />
+          <NextBlock
+            triggerOut={this.props.triggerOut}
+            triggerAction={this.props.actionOut}
+            blocks={this.props.blocks || this.state.blocks} />
         </div>
     )
   }

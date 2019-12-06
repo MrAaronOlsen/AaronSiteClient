@@ -25,7 +25,7 @@
     @include shadow;
   }
 
-  .reset {
+  .reset, .triggerOut {
     position: absolute;
 
     @include flex;
@@ -42,6 +42,10 @@
       position: absolute;
       height: 31px;
     }
+  }
+
+  .triggerOut {
+    left: 60px;
   }
 
   .reset:hover {

@@ -5,7 +5,7 @@ import BlockRich from './blockrich/BlockRich.jsx';
 import BlockImg from './blockimg/BlockImg.jsx';
 
 const types = new Set([
-  'text',
+  "text",
   'rich',
   'img'
 ])
@@ -34,9 +34,9 @@ export default function NextBlock(props) {
     }
 
     switch(type) {
-      case 'text': return <BlockText block={block} key={blockName} />
-      case 'rich': return <BlockRich block={block} key={blockName} />
-      case 'img': return <BlockImg block={block} key={blockName} />
+      case 'text': return <BlockText {...props} block={block} key={blockName} />
+      case 'rich': return <BlockRich {...props} block={block} key={blockName} />
+      case 'img': return <BlockImg {...props} block={block} key={blockName} />
     }
   }
 

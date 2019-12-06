@@ -9,8 +9,8 @@ import styles from './preview.mod.scss'
 
 export default class Header extends Component {
   state = {
-    render: false,
-    key: shortid.generate()
+    key: shortid.generate(),
+    triggerOut: false
   }
 
   reset() {
@@ -19,15 +19,24 @@ export default class Header extends Component {
     })
   }
 
+  triggerOut() {
+    this.setState({
+      triggerOut: !this.state.triggerOut
+    })
+  }
+
   render() {
     return(
       <div className={styles.wrapper}>
-        <div className={styles.reset} onClick={this.reset.bind(this)}>
+        <div className={styles.reset} onClick={this.triggerOut.bind(this)}>
           <img src={Reset} />
         </div>
 
         <div className={styles.preview}>
-          <Blocks key={this.state.key} blocks={this.props.blocks} />
+          <Blocks key={this.state.key}
+            triggerOut={this.state.triggerOut}
+            actionOut={this.reset.bind(this)}
+            blocks={this.props.blocks} />
         </div>
       </div>
     )

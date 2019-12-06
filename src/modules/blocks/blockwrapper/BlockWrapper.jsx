@@ -16,7 +16,11 @@ function styledBlock(Block) {
       var block = this.props.block;
 
       return(
-        <Transition config={block.transition}>
+        <Transition
+          outTrigger={this.props.triggerOut}
+          outCall={this.props.triggerAction}
+          config={block.transition}>
+
           <StylesWrapper styles={block.styles} className={styles.wrapper}>
             <Block {...this.props} />
           </StylesWrapper>

@@ -13,6 +13,7 @@ const TransitionProperties = {
   transDurationOut: '500ms',
 
   outCallDelay: 0,
+  controlsOutCall: false,
 
   styles: {}
 }

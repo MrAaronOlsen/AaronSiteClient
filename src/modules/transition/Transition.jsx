@@ -89,7 +89,7 @@ export default class Transition extends Component {
       })
 
       // If we've been given an outCallback callback run it with the outDelay.
-      if (this.config.outCall) {
+      if (this.config.controlsOutCall && this.config.outCall) {
         setTimeout(function() {
           this.config.outCall();
         }.bind(this), this.config.transDelayOut)
@@ -124,6 +124,7 @@ Transition.propTypes = {
 
   outCall: PropTypes.func,
   outCallDelay: PropTypes.number,
+  controlsOutCall: PropTypes.bool,
 
   outTrigger: PropTypes.bool,
 
@@ -146,7 +147,8 @@ Transition.defaultProps = {
   transDurationIn: TransitionProperties.transDurationIn,
   transDurationOut: TransitionProperties.transDurationOut,
 
-  outDelay: TransitionProperties.outDelay,
+  outCallDelay: TransitionProperties.outCallDelay,
+  controlsOutCall: TransitionProperties.controlsOutCall,
 
   width: TransitionProperties.width
 }
