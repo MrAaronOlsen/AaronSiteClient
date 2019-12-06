@@ -10,18 +10,18 @@ console.log("[SERVER] Running in " + env + " server environment.")
 
 // Force all http requests to server to be secured https.
 // This is needed because cors policy on the API only accepts https:<site> as origin.
-function forceHTTPS(req, res, next) {
+function forceHTTP(req, res, next) {
   // Heroku ovewrites x-forwarded-proto with the originating protocol of the HTTP request.
-  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && env !== "development") {
-    console.log("[SERVER] Forcing https...")
-    return res.redirect('https://' + req.get('host') + req.url);
+  if (!req.secure && req.get('x-forwarded-proto') !== 'http' && env !== "development") {
+    console.log("[SERVER] Forcing http...")
+    return res.redirect('http://' + req.get('host') + req.url);
   }
 
   next();
 }
 
 // Inject the force https function as middleware.
-app.use(forceHTTPS);
+app.use(forceHTTP);
 
 // Let's express serve up static files from our root. Needed to make React Routes work.
 app.use(express.static(path.join(__dirname)));
