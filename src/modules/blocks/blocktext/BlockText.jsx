@@ -1,31 +1,18 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import Transition from 'modules/transition/Transition.jsx'
-import BlockContext from 'blocks/BlockContext.jsx'
-import NextBlock from 'blocks/NextBlock.jsx'
-
+import styledBlock from '../blockwrapper/BlockWrapper.jsx'
 import styles from './blockText.mod.scss'
-import Themogrify from 'mixins/theme.js'
 
-const StylesWrapper = styled.div(props => Themogrify(props.block.styles));
-
-export default function BlockText(props) {
-  const blocks = React.useContext(BlockContext);
-  const block = blocks[props.name];
+function BlockText(props) {
+  const block = props.block;
 
   function getBlock() {
-    return (
-      <div>
-        <Transition config={block.transition}>
-          <StylesWrapper block={block} className={styles.wrapper}>
-            { block.content }
-          </StylesWrapper>
-        </Transition >
-        <NextBlock name={block.next}/>
-      </div>
-    )
+    return <div className={styles.wrapper}>{ block.content }</div>
   }
 
   return ( getBlock() )
 }
+
+const WrappedComponent = styledBlock(BlockText)
+export default WrappedComponent

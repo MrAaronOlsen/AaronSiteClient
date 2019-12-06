@@ -3,11 +3,5 @@
 @import '~mixins/borders';
 
 .wrapper {
-  @include flex;
-  @include center;
-
-  img {
-    width: inherit;
-    height: inherit;
-  }
+  all: inherit;
 }

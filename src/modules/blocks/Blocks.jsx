@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
-import BlockContext from './BlockContext.jsx'
 import NextBlock from './NextBlock.jsx'
-
 import Logger from 'logger';
 
 import { API_V1 } from 'http/url.js';
@@ -33,29 +31,10 @@ export default class Blocks extends Component {
     })
   }
 
-  getFirstBlock() {
-    if (this.props.query) {
-      return this.getNextBlockFrom(this.state)
-    } else if (this.props.blocks) {
-      return this.getNextBlockFrom(this.props)
-    }
-  }
-
-  getNextBlockFrom(state) {
-    if (!state.blocks || !state.blocks.start) {
-      return null;
-    }
-
-    var startBlock = state.blocks.start;
-    return startBlock.next;
-  }
-
   render() {
     return(
         <div className={styles.wrapper}>
-          <BlockContext.Provider value={this.props.blocks || this.state.blocks}>
-            <NextBlock name={this.getFirstBlock()} />
-          </BlockContext.Provider>
+          <NextBlock blocks={this.props.blocks || this.state.blocks} />
         </div>
     )
   }

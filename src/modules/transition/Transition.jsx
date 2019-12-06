@@ -4,6 +4,7 @@ import shortid from 'shortid';
 
 import styled from 'styled-components'
 import styles from './transition.mod.scss'
+import TransitionProperties from './TransitionProperties.jsx'
 import Themogrify from 'mixins/theme.js'
 
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
@@ -107,27 +108,6 @@ export default class Transition extends Component {
   }
 }
 
-// Properties is used as a list of editable properties and defaults.
-export const properties = {
-  transProperty: 'left',
-  transType: 'ease',
-
-  startValue: '100vw',
-  inValue: '0',
-  outValue: '100vw',
-
-  transDelayIn: 500,
-  transDelayOut: 500,
-
-  transDurationIn: '500ms',
-  transDurationOut: '500ms',
-
-  outCallDelay: 0,
-
-  width: '100%',
-  styles: {}
-}
-
 Transition.propTypes = {
   transProperty: PropTypes.string,
   transType: PropTypes.string,
@@ -154,19 +134,19 @@ Transition.propTypes = {
 };
 
 Transition.defaultProps = {
-  transProperty: properties.transProperty,
-  transType: properties.transType,
+  transProperty: TransitionProperties.transProperty,
+  transType: TransitionProperties.transType,
 
-  startValue: properties.startValue,
-  inValue: properties.inValue,
-  outValue: properties.outValue,
+  startValue: TransitionProperties.startValue,
+  inValue: TransitionProperties.inValue,
+  outValue: TransitionProperties.outValue,
 
-  transDelayIn: properties.transDelayIn,
-  transDelayOut: properties.transDelayOut,
-  transDurationIn: properties.transDurationIn,
-  transDurationOut: properties.transDurationOut,
+  transDelayIn: TransitionProperties.transDelayIn,
+  transDelayOut: TransitionProperties.transDelayOut,
+  transDurationIn: TransitionProperties.transDurationIn,
+  transDurationOut: TransitionProperties.transDurationOut,
 
-  outDelay: properties.outDelay,
+  outDelay: TransitionProperties.outDelay,
 
-  width: properties.width
+  width: TransitionProperties.width
 }

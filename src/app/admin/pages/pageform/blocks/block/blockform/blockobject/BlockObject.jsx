@@ -3,19 +3,9 @@ import shortid from 'shortid'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import SelectList from 'modules/lists/selectlist/SelectList.jsx'
+import StyleProperties from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
-
-const stylesProps = {
-  'width': '100%',
-  'height': '300px',
-  'padding': '10px',
-  'border': 'none',
-  'background-color': '$background',
-  'top': '0',
-  'left': '0',
-  'position': 'relative'
-}
 
 export default class BlockObject extends Component {
   id = shortid.generate();
@@ -53,7 +43,7 @@ export default class BlockObject extends Component {
         object={this.object().styles || {}}
         blockKey={this.props.blockKey}
         onChange={this.onChange.bind(this)}
-        attributes={stylesProps} />
+        attributes={StyleProperties} />
     } else {
       return null;
     }

@@ -4,24 +4,14 @@ import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
 
-import { properties as transitionProps } from 'modules/transition/Transition.jsx'
+import TransitionProperties from 'modules/transition/TransitionProperties.jsx'
+import StyleProperties from './StyleProperties.jsx'
 
 import styles from './blockForm.mod.scss'
 
-const stylesProps = {
-  'width': '100%',
-  'height': '300px',
-  'padding': '10px',
-  'border': 'none',
-  'background-color': '$background',
-  'top': '0',
-  'left': '0',
-  'position': 'relative'
-}
-
 const objectAttributes = {
-  'transition': transitionProps,
-  'styles': stylesProps
+  'transition': TransitionProperties,
+  'styles': StyleProperties
 }
 
 const block = function(props) {
