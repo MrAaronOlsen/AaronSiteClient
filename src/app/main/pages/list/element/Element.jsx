@@ -31,7 +31,8 @@ class Page extends Component {
         outTrigger={this.state.triggerOut}
         outCallDelay={500}
         styles={{width: '100%'}}
-        outCall={this.redirect.bind(this)}>
+        outCall={this.redirect.bind(this)}
+        controlsOutCall={true}>
 
         <div className={styles.wrapper}>
           <div className={styles.header}>
