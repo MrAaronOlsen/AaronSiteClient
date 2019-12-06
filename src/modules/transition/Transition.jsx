@@ -92,9 +92,9 @@ export default class Transition extends Component {
       if (this.config.controlsOutCall && this.config.outCall) {
         setTimeout(function() {
           this.config.outCall();
-        }.bind(this), this.config.transDelayOut)
+        }.bind(this), this.config.outCallDelay)
       }
-    }.bind(this), this.config.outCallDelay)
+    }.bind(this), this.config.transDelayOut)
   }
 
   render() {
