@@ -13,3 +13,5 @@ const StyleProperties = {
 }
 
 export default StyleProperties;
+
+export const StylePropertiesList = Object.keys(StyleProperties);

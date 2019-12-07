@@ -4,14 +4,19 @@ import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
 
-import TransitionProperties from 'modules/transition/TransitionProperties.jsx'
-import StyleProperties from './StyleProperties.jsx'
+import TransitionProperties, { TransitionPropertiesList } from 'modules/transition/TransitionProperties.jsx'
+import StyleProperties, { StylePropertiesList } from './StyleProperties.jsx'
 
 import styles from './blockForm.mod.scss'
 
 const objectAttributes = {
   'transition': TransitionProperties,
   'styles': StyleProperties
+}
+
+const objectAttributesOrder = {
+  'transition': TransitionPropertiesList,
+  'styles': StylePropertiesList
 }
 
 const block = function(props) {
@@ -37,6 +42,7 @@ const blockObject = function(name, props) {
   return <BlockObject
     name={name}
     object={block(props)[name]}
+    objectOrder={objectAttributesOrder[name]}
     blockKey={props.blockKey}
     onChange={props.onChange}
     attributes={objectAttributes[name]}

@@ -19,3 +19,5 @@ const TransitionProperties = {
 }
 
 export default TransitionProperties;
+
+export const TransitionPropertiesList = Object.keys(TransitionProperties);

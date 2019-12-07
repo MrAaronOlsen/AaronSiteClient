@@ -4,7 +4,6 @@
 
 .wrapper {
   position: relative;
-  width: var(--width);
 
   @include transition($property: var(--property), $duration: var(--duration), $type: var(--type))
 }

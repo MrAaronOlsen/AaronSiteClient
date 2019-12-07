@@ -3,7 +3,7 @@ import shortid from 'shortid'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import SelectList from 'modules/lists/selectlist/SelectList.jsx'
-import StyleProperties from '../StyleProperties.jsx'
+import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
 
@@ -41,9 +41,10 @@ export default class BlockObject extends Component {
       return <BlockObject key={this.props.blockKey + index}
         name={'styles'}
         object={this.object().styles || {}}
+        objectOrder={StylePropertiesList}
         blockKey={this.props.blockKey}
         onChange={this.onChange.bind(this)}
-        attributes={StyleProperties} />
+        attributes={ StyleProperties } />
     } else {
       return null;
     }
@@ -53,11 +54,24 @@ export default class BlockObject extends Component {
     if (key === 'styles') {
       return this.hasStyles(index)
     } else {
-      return <BlockText key={this.props.blockKey + index}
+      return <BlockText key={this.props.blockKey + key}
         name={key}
         text={this.object()[key]}
         onChange={this.onChange.bind(this)}
         delete={this.deleteProperty.bind(this)} />
+    }
+  }
+
+  sortedListByDefinedOrder() {
+    var list = Object.keys(this.object());
+    var order = this.props.objectOrder;
+
+    if (order) {
+      return list.sort(function(a, b) {
+        return order.indexOf(a) - order.indexOf(b);
+      });
+    } else {
+      return list;
     }
   }
 
@@ -72,9 +86,11 @@ export default class BlockObject extends Component {
         </div>
         <div className={styles.properties}>
           <div className={styles.property}>
-            {Object.keys(this.object()).map((key, i) => {
+            {
+              this.sortedListByDefinedOrder().map((key, i) => {
                 return this.getField(key, i)
-            })}
+              })
+            }
           </div>
         </div>
       </div>
