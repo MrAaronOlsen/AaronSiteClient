@@ -22,20 +22,21 @@ export default class BlockList extends Component {
       return null;
     }
 
-    var blockKeys = Object.keys(blocks);
+    var blockKeys = Object.keys(blocks).sort(function(a, b) {
+      return blocks[a].sequence - blocks[b].sequence
+    });
 
     return (
       blockKeys.map((name, i) => {
-        return <Element key={i + "_" + blockKeys.length}
+        return <Element key={i + "_" + blockKeys.length + "_" + blocks[name].sequence}
           name={name}
           focused={this.state.focused == name}
           moveBlock={this.props.moveBlock}
           deleteBlock={this.props.deleteBlock}
-          onClick={this.focusBlock.bind(this)}/>
+          onClick={this.focusBlock.bind(this)} />
       })
     )
   }
-
 
   render() {
     return(

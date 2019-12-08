@@ -58,11 +58,11 @@ export default class Blocks extends Component {
           addBlock={this.addBlock.bind(this)}
           moveBlock={this.moveBlock.bind(this)}
           deleteBlock={this.deleteBlock.bind(this)}
-          focusBlock={this.focusBlock.bind(this)}/>
+          focusBlock={this.focusBlock.bind(this)} />
 
         <Block block={this.state.block}
           blockKey={this.state.blockKey}
-          onChange={this.changeBlock.bind(this)}/>
+          onChange={this.changeBlock.bind(this)} />
       </div>
     )
   }

@@ -26,7 +26,7 @@ export default class BlockList extends Component {
           onChange={this.onChange.bind(this)}
           classNames={[this.props.focused ? styles.focused : "", styles.textWrapper].join(" ")}>
 
-          <img src={DeleteBtn} onClick={this.deleteBlock.bind(this)}/>
+          <img className={styles.deleteBtn} src={DeleteBtn} onClick={this.deleteBlock.bind(this)}/>
         </TextInput>
       </div>
     )

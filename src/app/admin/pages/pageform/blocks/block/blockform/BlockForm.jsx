@@ -79,6 +79,7 @@ export default function BlockForm(props) {
         { blockText('next', props) }
         { blockObject('transition', props) }
         { blockObject('styles', props) }
+        { blockText('sequence', props) }
       </div> || null
   )
 }

@@ -62,7 +62,7 @@ export default class BlockObject extends Component {
     }
   }
 
-  sortedListByDefinedOrder() {
+  sorted() {
     var list = Object.keys(this.object());
     var order = this.props.objectOrder;
 
@@ -87,7 +87,7 @@ export default class BlockObject extends Component {
         <div className={styles.properties}>
           <div className={styles.property}>
             {
-              this.sortedListByDefinedOrder().map((key, i) => {
+              this.sorted().map((key, i) => {
                 return this.getField(key, i)
               })
             }

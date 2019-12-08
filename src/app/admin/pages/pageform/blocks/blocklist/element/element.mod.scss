@@ -25,16 +25,28 @@
       position: absolute;
       visibility: hidden;
 
-      right: 0;
-
       width: 18px;
       height: 18px;
 
       @include border($radius: 9px, $width: 0);
+      z-index: 999;
     }
 
     img:hover {
-      background-color: $background;
+      background-color: white-overlay($alpha: 0.5);
+    }
+
+    .deleteBtn {
+      right: 0;
+    }
+
+    .arrowUp {
+      right: 40px;
+    }
+
+    .arrowDown {
+      right: 20px;
+      transform: rotate(180deg);
     }
   }
 }
