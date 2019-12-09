@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import styledBlock from '../blockwrapper/BlockWrapper.jsx'
+import styledBlock from '../styledBlock/StyledBlock.jsx'
 import styles from './blockText.mod.scss'
 
 function BlockText(props) {

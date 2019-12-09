@@ -4,7 +4,7 @@ import Transition from 'modules/transition/Transition.jsx'
 
 import styled from 'styled-components'
 import Themogrify from 'mixins/theme.js'
-import styles from './blockWrapper.mod.scss'
+import styles from './styledBlock.mod.scss'
 
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
 

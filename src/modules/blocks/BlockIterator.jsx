@@ -10,15 +10,15 @@ const types = new Set([
   'img'
 ])
 
-export default function NextBlock(props) {
+export default function BlockIterator(props) {
   const blocks = props.blocks;
-  var blockName = 'start';
+  var name = 'start';
   var block;
 
   function hasNext() {
-    if (blockName && blocks[blockName]) {
-      block = blocks[blockName];
-      blockName = block.next;
+    if (name && blocks[name]) {
+      block = blocks[name];
+      name = block.next;
 
       return true;
     } else {
@@ -34,20 +34,20 @@ export default function NextBlock(props) {
     }
 
     switch(type) {
-      case 'text': return <BlockText {...props} block={block} key={blockName} />
-      case 'rich': return <BlockRich {...props} block={block} key={blockName} />
-      case 'img': return <BlockImg {...props} block={block} key={blockName} />
+      case 'text': return <BlockText {...props} block={block} key={name} />
+      case 'rich': return <BlockRich {...props} block={block} key={name} />
+      case 'img': return <BlockImg {...props} block={block} key={name} />
     }
   }
 
   function getBlocks() {
-    var blockList = [];
+    var blocks = [];
 
     while ( hasNext() ) {
-      blockList.push(getNext())
+      blocks.push(getNext())
     }
 
-    return blockList;
+    return blocks;
   }
 
   return( getBlocks() );

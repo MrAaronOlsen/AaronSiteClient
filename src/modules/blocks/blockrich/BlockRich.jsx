@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Interweave from 'interweave'
 
-import styledBlock from '../blockwrapper/BlockWrapper.jsx'
+import styledBlock from '../styledBlock/StyledBlock.jsx'
 import styles from './blockRich.mod.scss'
 
 const StylesWrapper = styled.div(props => Themogrify(props.block.styles));
