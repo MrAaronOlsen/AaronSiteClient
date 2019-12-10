@@ -4,7 +4,6 @@ import Transition from 'modules/transition/Transition.jsx'
 
 import styled from 'styled-components'
 import Themogrify from 'mixins/theme.js'
-import styles from './styledBlock.mod.scss'
 
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
 
@@ -21,7 +20,7 @@ function styledBlock(Block) {
           outCall={this.props.triggerAction}
           config={block.transition}>
 
-          <StylesWrapper styles={block.styles} className={styles.wrapper}>
+          <StylesWrapper name="style-wrapper" styles={block.styles}>
             <Block {...this.props} />
           </StylesWrapper>
         </Transition>

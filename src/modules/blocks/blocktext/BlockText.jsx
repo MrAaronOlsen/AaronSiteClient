@@ -8,7 +8,7 @@ function BlockText(props) {
   const block = props.block;
 
   function getBlock() {
-    return <div className={styles.wrapper}>{ block.content }</div>
+    return <div name={"block-text"} className={styles.wrapper}>{ block.content }</div>
   }
 
   return ( getBlock() )

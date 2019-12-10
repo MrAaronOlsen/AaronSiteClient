@@ -32,6 +32,7 @@ export default class Header extends Component {
 
           <span className={styles.captionLabel}>Caption</span>
         </TextInput>
+        
         <TextInput classNames={styles.slugText}
           text={this.props.slug}
           name="slug"
