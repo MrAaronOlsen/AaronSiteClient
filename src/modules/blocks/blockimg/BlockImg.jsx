@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import styledBlock from '../styledBlock/StyledBlock.jsx'
+import styledBlock from '../styledblock/StyledBlock.jsx'
 import styles from './blockImg.mod.scss'
 
 function BlockImg(props) {
