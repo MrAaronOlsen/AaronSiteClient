@@ -9,7 +9,7 @@
   @include flex($dir: row);
   @include center($horz: space-between)
 
-  position: sticky;
+  position: absolute;
   left: 0;
   top: 0;
 

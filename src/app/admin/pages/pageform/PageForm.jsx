@@ -52,8 +52,12 @@ export default class PageForm extends Component {
     this.setState(stateChange)
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.pageId != prevProps.pageId) {
+      this.setState({
+        blocks: {}
+      })
+
       this.loadPage();
     }
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import NextBlock from './NextBlock.jsx'
+import BlockIterator from './BlockIterator.jsx'
 import Logger from 'logger';
 
 import { API_V1 } from 'http/url.js';
@@ -33,8 +33,8 @@ export default class Blocks extends Component {
 
   render() {
     return(
-        <div className={styles.wrapper}>
-          <NextBlock
+        <div name="blocks" className={styles.wrapper}>
+          <BlockIterator
             triggerOut={this.props.triggerOut}
             triggerAction={this.props.actionOut}
             blocks={this.props.blocks || this.state.blocks} />

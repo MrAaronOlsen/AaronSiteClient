@@ -4,25 +4,25 @@
 @import '~mixins/shadow';
 
 .wrapper {
-  position: relative;
+  @include flex;
+  @include center($horz: flex-start);
 
   height: 100%;
-  width: 800px;
+  min-width: 1000px;
+  width: 1000px;
 
   margin-right: 5px;
+
+  @include border($color: $brand);
+  @include shadow;
+
+  overflow: scroll;
 
   .preview {
     @include flex;
     @include center($horz: flex-start);
 
-    height: 100%;
     width: 800px;
-
-    padding: 10px;
-
-    overflow: scroll;
-    @include border($color: $brand);
-    @include shadow;
   }
 
   .reset, .triggerOut {
@@ -38,8 +38,9 @@
 
     background-color: $brand;
 
+    z-index: 999;
+
     img {
-      position: absolute;
       height: 31px;
     }
   }

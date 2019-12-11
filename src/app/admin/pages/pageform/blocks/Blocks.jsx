@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import BlockList from './blocklist/BlockList.jsx'
 import Block from './block/Block.jsx'
 
+import deep_diff from 'deep-diff'
+
 import styles from './blocks.mod.scss'
 
 export default class Blocks extends Component {
@@ -41,7 +43,7 @@ export default class Blocks extends Component {
     let block = this.props.blocks[oldName]
     delete this.props.blocks[oldName]
 
-    this.onChange(block, newName)
+    this.changeBlock(block, newName)
   }
 
   deleteBlock(name) {
@@ -54,7 +56,8 @@ export default class Blocks extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <BlockList blocks={this.props.blocks}
+        <BlockList
+          blocks={this.props.blocks}
           addBlock={this.addBlock.bind(this)}
           moveBlock={this.moveBlock.bind(this)}
           deleteBlock={this.deleteBlock.bind(this)}

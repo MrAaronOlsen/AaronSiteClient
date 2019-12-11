@@ -1,35 +1,24 @@
-import React, { Component } from 'react'
-
-import Transition from 'modules/transition/Transition.jsx'
-
+import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import styled from 'styled-components'
-import Themogrify from 'mixins/theme.js'
-import styles from './blockWrapper.mod.scss'
 
-const StylesWrapper = styled.div(props => Themogrify(props.styles));
+import BlockIterator from '../BlockIterator.jsx'
+import styledBlock from '../styledBlock/StyledBlock.jsx'
 
-function styledBlock(Block) {
+function BlockWrapper(props) {
+  const blocks = props.blocks;
+  const block = props.block;
 
-  class Wrapper extends Component {
-
-    render() {
-      var block = this.props.block;
-
-      return(
-        <Transition
-          outTrigger={this.props.triggerOut}
-          outCall={this.props.triggerAction}
-          config={block.transition}>
-
-          <StylesWrapper styles={block.styles} className={styles.wrapper}>
-            <Block {...this.props} />
-          </StylesWrapper>
-        </Transition>
-      )
-    }
-  }
-
-  return Wrapper;
+  return (
+    <React.Fragment>
+      <BlockIterator
+        triggerOut={props.triggerOut}
+        triggerAction={props.actionOut}
+        blocks={blocks}
+        start={block.first_child} />
+    </React.Fragment>
+  )
 }
 
-export default styledBlock;
+const WrappedComponent = styledBlock(BlockWrapper)
+export default WrappedComponent

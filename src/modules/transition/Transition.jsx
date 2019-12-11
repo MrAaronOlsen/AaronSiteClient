@@ -99,10 +99,13 @@ export default class Transition extends Component {
 
   render() {
     return(
-      <StylesWrapper styles={this.config.styles} >
-        <div id={this.id} className={styles.wrapper} style={{[this.config.transProperty]: this.state.transValue}}>
-          {this.props.children}
-        </div>
+      <StylesWrapper id={this.id}
+        name="transition-style"
+        styles={this.config.styles}
+        style={{[this.config.transProperty]: this.state.transValue}}
+        className={styles.wrapper}>
+
+        {this.props.children}
       </StylesWrapper>
     )
   }

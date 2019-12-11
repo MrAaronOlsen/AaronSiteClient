@@ -5,7 +5,16 @@ const theme = {
   brand: styles.brand
 };
 
+const defaults = {
+  'display': 'flex',
+  'flex-direction': 'column',
+  'align-items': 'center',
+  'justify-content': 'center'
+}
+
 const Themogrify = function(styles) {
+  styles = {...defaults, ...styles};
+  
   if (!styles) {
     return {};
   }

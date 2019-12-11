@@ -52,13 +52,15 @@ const blockObject = function(name, props) {
 const blockTypes = {
   'text': blockText,
   'rich': blockRich,
-  'img': blockText
+  'img': blockText,
+  'wrapper': blockText
 }
 
 const blockTypesKey = {
   'text': 'content',
   'rich': 'content',
-  'img': 'img_url'
+  'img': 'img_url',
+  'wrapper': 'first_child'
 }
 
 const blockContent = function(props) {

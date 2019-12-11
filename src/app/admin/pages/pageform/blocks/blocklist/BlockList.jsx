@@ -28,7 +28,8 @@ export default class BlockList extends Component {
 
     return (
       blockKeys.map((name, i) => {
-        return <Element key={i + "_" + blockKeys.length + "_" + blocks[name].sequence}
+
+        return <Element key={blockKeys.length + blocks[name].sequence}
           name={name}
           focused={this.state.focused == name}
           moveBlock={this.props.moveBlock}
