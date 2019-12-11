@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import styled from 'styled-components'
 
 import BlockIterator from '../BlockIterator.jsx'
-import styledBlock from '../styledBlock/StyledBlock.jsx'
+import styledBlock from '../styledblock/StyledBlock.jsx'
 
 function BlockWrapper(props) {
   const blocks = props.blocks;
