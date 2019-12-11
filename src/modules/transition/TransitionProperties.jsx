@@ -6,8 +6,8 @@ const TransitionProperties = {
   inValue: '0',
   outValue: '100vw',
 
-  transDelayIn: 500,
-  transDelayOut: 500,
+  transDelayIn: 0,
+  transDelayOut: 0,
 
   transDurationIn: '500ms',
   transDurationOut: '500ms',
