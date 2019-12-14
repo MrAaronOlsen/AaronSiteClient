@@ -31,7 +31,7 @@ export default class PageForm extends Component {
       id: page.id,
       header: page.header,
       caption: page.caption,
-      blocks: JSON.parse(page.blocks),
+      blocks: page.blocks,
       sequence: page.sequence,
       slug: page.slug
     })
@@ -80,7 +80,7 @@ export default class PageForm extends Component {
 
       GET(API_V1 + 'pages/' + id, (payload) => {
         if (payload.hasErrors()) {
-          Logger.error("Failed to fetch page. Cause: " + payload.getErrors())
+          Logger.error("Failed to fetch page. Cause: " + JSON.stringify(payload))
         } else {
           let page = payload.getFirst();
 
@@ -94,7 +94,7 @@ export default class PageForm extends Component {
 
     POST(API_V1 + 'pages/', page, (payload) => {
       if (payload.hasErrors()) {
-        Logger.error("Insert failed for Page. Cause: " + payload.getErrors());
+        Logger.error("Insert failed for Page. Cause: " + JSON.stringify(payload));
       } else {
         Logger.info("Inserted Page. Id: " + payload.getFirst().id);
 
@@ -108,7 +108,7 @@ export default class PageForm extends Component {
 
     PUT(API_V1 + 'pages/' + page.id, page, (payload) => {
       if (payload.hasErrors()) {
-        Logger.error("Save failed for Page. ID: " + page.id + ". Cause: " + payload.getErrors());
+        Logger.error("Save failed for Page. ID: " + page.id + ". Cause: " + JSON.stringify(payload));
       } else {
         Logger.info("Saved Page. Id: " + page.id);
       }

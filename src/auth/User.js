@@ -8,9 +8,9 @@ export default class User {
     } else {
       let user = payload.data;
 
-      this.name = user.name;
       this.id = user.id;
-      this.role = user.role;
+      this.username = user.userName;
+      this.roles = user.roles;
 
       this.valid = true;
     }

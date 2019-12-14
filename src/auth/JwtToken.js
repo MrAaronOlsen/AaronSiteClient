@@ -4,7 +4,7 @@ export default class JwtToken {
     window.sessionStorage.setItem("jwt", token);
   }
 
-  static getToken(token) {
+  static getToken() {
     return window.sessionStorage.getItem("jwt");
   }
 

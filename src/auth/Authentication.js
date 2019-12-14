@@ -1,34 +1,41 @@
-import get from '../http/get.js'
-import post from '../http/post.js'
-
-import JwtToken from './JwtToken.js'
-import User from './User.js'
+import { API_V1, BASE_URL } from 'http/url.js';
+import executeRequest from 'http/executeRequest.js';
+import Logger from 'logger';
+import JwtToken from './JwtToken.js';
+import User from './User.js';
 
 export default class Authentication {
 
-  static getCurrentUser(callback) {
-
-    get('api/v1/user', (payload) => {
-      callback(new User(payload));
-    })
+  static getCurrentSessionToken(callback) {
+    if (JwtToken.hasToken()) {
+      callback(JwtToken.getToken())
+    } else {
+      Authentication.logIn(process.env.GUEST_USER, process.env.GUEST_PW, function(token) {
+        callback(token)
+      })
+    }
   }
 
-  static getTokenFromBasicAuth(name, password, callback) {
-    var body = {
-      name: name,
-      password: password
-    };
+  static logIn(name, password, callback) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Basic ' + btoa(name + ":" + password));
 
-    post('api/v1/authentication', body, (result) => {
-      var token = result.data.token;
+    var request = new Request(BASE_URL + API_V1 + 'gettoken', {
+      method: 'POST',
+      mode: 'cors',
+      headers: headers
+    });
 
-      if (token) {
+    executeRequest(request, function(payload) {
+      if (!payload.hasErrors() && payload.data && payload.data.token) {
+        let token = payload.data.token;
         JwtToken.storeToken(token);
 
-        callback('success');
+        callback(token)
       } else {
-        callback('failure');
+        callback(JSON.stringify(payload))
       }
-    })
+    });
   }
 }

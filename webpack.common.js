@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -8,6 +9,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     // publicPath: Set in environment config.
     filename: "bundle.js"
+  },
+  node: {
+    fs: "empty"
   },
   module: {
     rules: [
@@ -76,5 +80,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new Dotenv()
   ]
 };
