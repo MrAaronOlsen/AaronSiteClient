@@ -25,7 +25,7 @@ export default class Blocks extends Component {
         Logger.error("Failed to load page. Cause: " + payload.getErrors());
       } else {
         this.setState({
-          blocks: JSON.parse(payload.getFirst().blocks)
+          blocks: payload.getFirst().blocks
         })
       }
     })

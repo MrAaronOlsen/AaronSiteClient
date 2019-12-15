@@ -1,10 +1,11 @@
 import Payload from './Payload.js';
+import Logger from 'logger';
 
 const executeRequest = (request, callback) => {
   fetch(request)
     .then(response => {
       if (!response.ok) {
-        throw Error('Request not ok: ' + response.statusText)
+        throw response;
       }
 
       return response.json();
@@ -13,12 +14,14 @@ const executeRequest = (request, callback) => {
       if (data && data.data) {
         callback(new Payload(data.data));
       } else {
-        callback(new Payload());
+        callback(new Payload(data));
       }
 
     })
     .catch(err => {
-      callback(new Payload("").withErrors([err, request.url]))
+      err.json().then(data => {
+        callback(new Payload("").withErrors([data]))
+      })
     })
 };
 

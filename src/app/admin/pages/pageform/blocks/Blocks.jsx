@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import BlockList from './blocklist/BlockList.jsx'
 import Block from './block/Block.jsx'
 
-import deep_diff from 'deep-diff'
-
 import styles from './blocks.mod.scss'
 
 export default class Blocks extends Component {
