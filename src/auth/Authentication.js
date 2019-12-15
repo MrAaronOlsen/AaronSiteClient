@@ -1,8 +1,8 @@
 import { API_V1, BASE_URL } from 'http/url.js';
 import executeRequest from 'http/executeRequest.js';
+
 import Logger from 'logger';
 import JwtToken from './JwtToken.js';
-import User from './User.js';
 
 export default class Authentication {
 
@@ -28,10 +28,11 @@ export default class Authentication {
     });
 
     executeRequest(request, function(payload) {
-      if (!payload.hasErrors() && payload.data && payload.data.token) {
-        let token = payload.data.token;
-        JwtToken.storeToken(token);
+      if (!payload.hasErrors() && payload.getFirst()) {
+        let token = payload.getFirst().token;
+        let id = payload.getFirst().id;
 
+        JwtToken.storeToken(token, id);
         callback(token)
       } else {
         callback(JSON.stringify(payload))
