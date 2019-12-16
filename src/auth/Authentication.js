@@ -10,7 +10,6 @@ export default class Authentication {
     if (JwtToken.hasToken()) {
       callback(JwtToken.getToken())
     } else {
-      Logger.info("Logging in as Guest: " + process.env.GUEST_USER + " " + process.env.GUEST_PW)
       Authentication.logIn(process.env.GUEST_USER, process.env.GUEST_PW, function(token) {
         callback(token)
       })
