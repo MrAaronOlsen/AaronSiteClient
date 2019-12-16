@@ -19,6 +19,6 @@ module.exports = merge(common, {
   devtool : '#eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv(),
+    new Dotenv()
   ]
 })

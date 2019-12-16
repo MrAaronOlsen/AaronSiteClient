@@ -12,8 +12,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      GUEST_USER: JSON.stringify(process.env.GUEST_USER),
-      GUEST_PW: JSON.stringify(process.env.GUEST_PW)
+      'process.env.GUEST_USER': JSON.stringify(process.env.GUEST_USER),
+      'process.env.GUEST_PW': JSON.stringify(process.env.GUEST_PW)
     })
   ]
 })
