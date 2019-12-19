@@ -8,8 +8,6 @@
   @include flex($dir: column);
   @include center($horz: flex-start, $vert: flex-end);
 
-  position: relative;
-
   height: 100%;
   width: 100%;
 

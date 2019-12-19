@@ -37,6 +37,7 @@ export default class Blocks extends Component {
           <BlockIterator
             triggerOut={this.props.triggerOut}
             triggerAction={this.props.actionOut}
+            start={'start'}
             blocks={this.props.blocks || this.state.blocks} />
         </div>
     )

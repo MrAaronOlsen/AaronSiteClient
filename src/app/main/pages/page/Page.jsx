@@ -40,7 +40,10 @@ export default class Page extends Component {
           </Transition>
         </div>
         <div className={styles.blocks}>
-          <Blocks triggerOut={this.state.triggerOut} actionOut={this.onClick.bind(this)} query={this.props.query}/>
+          <Blocks
+            triggerOut={this.state.triggerOut}
+            actionOut={this.onClick.bind(this)}
+            query={this.props.query}/>
         </div>
       </div>
     )
