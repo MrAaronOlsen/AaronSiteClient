@@ -1,6 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
-const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -64,7 +62,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["scss", ".js", ".jsx"],
+    extensions: [".scss", ".js", ".jsx"],
     alias: {
       public: path.resolve(__dirname, 'public'),
       mixins: path.resolve(__dirname, 'src/mixins'),
@@ -77,9 +75,5 @@ module.exports = {
       blocks: path.resolve(__dirname, 'src/modules/blocks'),
       blockform: path.resolve(__dirname, 'src/app/admin/pages/pageform/blocks/block/blockform'),
     }
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new Dotenv()
-  ]
+  }
 };

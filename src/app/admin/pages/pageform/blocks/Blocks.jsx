@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import shortid from 'shortid';
 
-import BlockList from './blocklist/BlockList.jsx'
-import Block from './block/Block.jsx'
+import BlockList from './blocklist/BlockList.jsx';
+import Block from './block/Block.jsx';
 
-import styles from './blocks.mod.scss'
+import styles from './blocks.mod.scss';
 
 export default class Blocks extends Component {
   state ={
@@ -32,7 +33,9 @@ export default class Blocks extends Component {
 
   addBlock() {
     let blocks = this.props.blocks;
-    blocks['new_block'] = {};
+    blocks['new_block'] = {
+      id: shortid.generate()
+    };
 
     this.props.onChange(blocks, "blocks");
   }
@@ -56,6 +59,7 @@ export default class Blocks extends Component {
       <div className={styles.wrapper}>
         <BlockList
           blocks={this.props.blocks}
+          focused={this.state.blockKey}
           addBlock={this.addBlock.bind(this)}
           moveBlock={this.moveBlock.bind(this)}
           deleteBlock={this.deleteBlock.bind(this)}

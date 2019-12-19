@@ -12,18 +12,10 @@ import { API_V1 } from 'http/url.js';
 import styles from './pages.mod.scss';
 
 export default class EditPages extends Component {
-  state = {
-    pageId: ""
-  }
+  state = {}
 
   stateHandler(stateChange) {
     this.setState(stateChange)
-  }
-
-  focus(id) {
-    this.setState({
-      pageId: id
-    })
   }
 
   reloadList() {
@@ -55,7 +47,7 @@ export default class EditPages extends Component {
         <MenuBar save={this.state.save}
           new={this.state.new}
           reload={this.state.reload}
-          focus={this.focus.bind(this)}/>
+          focus={this.state.focus} />
 
         <PageForm
           pageId={this.state.pageId}

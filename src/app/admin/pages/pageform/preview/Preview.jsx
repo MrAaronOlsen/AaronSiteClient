@@ -7,7 +7,7 @@ import shortid from 'shortid';
 import Reset from 'public/images/reset.jpg';
 import styles from './preview.mod.scss'
 
-export default class Header extends Component {
+export default class Preview extends Component {
   state = {
     key: shortid.generate(),
     triggerOut: false
@@ -17,6 +17,14 @@ export default class Header extends Component {
     this.setState({
       key: shortid.generate()
     })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.key != this.state.key || nextState.triggerOut != this.state.triggerOut) {
+      return true;
+    }
+
+    return false
   }
 
   triggerOut() {

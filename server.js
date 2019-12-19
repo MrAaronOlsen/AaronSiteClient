@@ -43,24 +43,3 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
   console.log('[INFO] Listening on port ', server.address().port);
 });
-
-// Function to keep our servers from sleeping. Calls both the client and api servers. Calls every 5 mins.
-const fetch = require('isomorphic-fetch')
-
-setInterval(function() {
-  fetch("https://aaron-site.herokuapp.com/keepawake")
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      console.log("[Keep Awake] Client: " + data);
-    })
-
-  fetch("https://aaron-site-api.herokuapp.com/aaron_site/api/v1/keepawake")
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      console.log("[Keep Awake] API: " + data);
-    })
-}, 300000);

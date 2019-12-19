@@ -69,6 +69,8 @@ const blockContent = function(props) {
   if (type && blockTypes[type]) {
     return blockTypes[type](blockTypesKey[type], props)
   }
+
+  return null;
 }
 
 export default function BlockForm(props) {

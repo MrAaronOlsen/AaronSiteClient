@@ -14,8 +14,7 @@ const types = new Set([
 
 export default function BlockIterator(props) {
   const blocks = props.blocks;
-
-  var nextBlock = props.start || 'start';
+  var nextBlock = props.start;
 
   var thisBlock;
   var block;

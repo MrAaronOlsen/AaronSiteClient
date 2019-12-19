@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import shortid from 'shortid'
 
 import Element from './element/Element.jsx'
 
@@ -6,15 +7,6 @@ import AddButton from 'public/images/add-button.png'
 import styles from './blockList.mod.scss'
 
 export default class BlockList extends Component {
-  state = {}
-
-  focusBlock(name) {
-    this.setState({
-      focused: name
-    })
-
-    this.props.focusBlock(name)
-  }
 
   unwindList() {
     var blocks = this.props.blocks;
@@ -28,13 +20,14 @@ export default class BlockList extends Component {
 
     return (
       blockKeys.map((name, i) => {
+        var block = blocks[name];
 
-        return <Element key={blockKeys.length + blocks[name].sequence}
+        return <Element key={blockKeys.length + block.id}
           name={name}
-          focused={this.state.focused == name}
+          focused={this.props.focused == name}
           moveBlock={this.props.moveBlock}
           deleteBlock={this.props.deleteBlock}
-          onClick={this.focusBlock.bind(this)} />
+          onClick={this.props.focusBlock} />
       })
     )
   }
