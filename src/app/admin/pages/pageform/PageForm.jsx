@@ -1,23 +1,17 @@
 import React, { Component} from "react"
 
+import MenuBar from '../menubar/MenuBar.jsx'
 import Header from './header/Header.jsx'
 import Blocks from './blocks/Blocks.jsx'
 import Preview from './preview/Preview.jsx'
 
-import { fetchPage, insertPage, savePage } from './PageFormOperations.js';
+import { fetchPages, fetchPage, insertPage, savePage } from './PageFormOperations.js';
 
 import styles from './pageForm.mod.scss'
 
 export default class PageForm extends Component {
-  constructor(props) {
-    super(props)
-
-    this.props.stateHandler({save: this.save.bind(this)})
-    this.props.stateHandler({new: this.new.bind(this)})
-    this.props.stateHandler({focus: this.focus.bind(this)})
-  }
-
   state = {
+    pages: [],
     pageId: "",
     blocks: {}
   };
@@ -54,6 +48,14 @@ export default class PageForm extends Component {
     }
   }
 
+  componentDidMount() {
+    fetchPages((pages) => {
+      this.setState({
+        pages: pages
+      })
+    })
+  }
+
   onChange(content, name) {
     this.setState({
       [name]: content
@@ -67,9 +69,7 @@ export default class PageForm extends Component {
   }
 
   new() {
-    insertPage({header: "New Page"}, (id) => {
-      this.props.reloadList()
-    })
+    insertPage({header: "New Page"}, (id) => {})
   }
 
   fetch() {
@@ -85,7 +85,14 @@ export default class PageForm extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <Header header={this.state.header}
+        <MenuBar
+          pages={this.state.pages}
+          save={this.save.bind(this)}
+          new={this.new.bind(this)}
+          focus={this.focus.bind(this)} />
+
+        <Header
+          header={this.state.header}
           sequence={this.state.sequence}
           caption={this.state.caption}
           slug={this.state.slug}

@@ -3,20 +3,18 @@ import React, { Component } from 'react'
 import BlockForm from './blockform/BlockForm.jsx'
 import styles from './block.mod.scss'
 
-export default class Block extends Component {
+export default function Block(props) {
 
-  onChange(line, name) {
-    let block = this.props.block;
+  function onChange(line, name) {
+    let block = props.block;
     block[name] = line;
 
-    this.props.onChange(block, this.props.blockKey)
+    props.onChange(block, props.blockKey)
   }
 
-  render() {
-    return(
-      <div className={styles.wrapper}>
-        <BlockForm block={this.props.block} blockKey={this.props.blockKey} onChange={this.onChange.bind(this)}/>
-      </div>
-    )
-  }
+  return(
+    <div className={styles.wrapper}>
+      <BlockForm block={props.block} blockKey={props.blockKey} onChange={onChange}/>
+    </div>
+  )
 }

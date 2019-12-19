@@ -1,46 +1,44 @@
-import React, { Component} from "react";
+import React from "react";
 
 import TextInput from 'modules/textinput/TextInput.jsx'
 
 import styles from './header.mod.scss'
 
-export default class Header extends Component {
+export default function Header(props) {
 
-  render() {
-    return(
-      <div className={styles.headerWrapper}>
-        <TextInput classNames={styles.headerText}
-          text={this.props.header}
-          name="header"
-          onChange={this.props.onChange}>
+  return(
+    <div className={styles.headerWrapper}>
+      <TextInput classNames={styles.headerText}
+        text={props.header}
+        name="header"
+        onChange={props.onChange}>
 
-          <span className={styles.headerLabel}>Header</span>
-        </TextInput>
+        <span className={styles.headerLabel}>Header</span>
+      </TextInput>
 
-        <TextInput classNames={styles.sequenceText}
-          text={this.props.sequence}
-          name="sequence"
-          onChange={this.props.onChange}>
+      <TextInput classNames={styles.sequenceText}
+        text={props.sequence}
+        name="sequence"
+        onChange={props.onChange}>
 
-          <span className={styles.sequenceLabel}>Sequence</span>
-        </TextInput>
+        <span className={styles.sequenceLabel}>Sequence</span>
+      </TextInput>
 
-        <TextInput classNames={styles.captionText}
-          text={this.props.caption}
-          name="caption"
-          onChange={this.props.onChange}>
+      <TextInput classNames={styles.captionText}
+        text={props.caption}
+        name="caption"
+        onChange={props.onChange}>
 
-          <span className={styles.captionLabel}>Caption</span>
-        </TextInput>
-        
-        <TextInput classNames={styles.slugText}
-          text={this.props.slug}
-          name="slug"
-          onChange={this.props.onChange}>
+        <span className={styles.captionLabel}>Caption</span>
+      </TextInput>
 
-          <span className={styles.slugLabel}>Slug</span>
-        </TextInput>
-      </div>
-    )
-  }
+      <TextInput classNames={styles.slugText}
+        text={props.slug}
+        name="slug"
+        onChange={props.onChange}>
+
+        <span className={styles.slugLabel}>Slug</span>
+      </TextInput>
+    </div>
+  )
 }

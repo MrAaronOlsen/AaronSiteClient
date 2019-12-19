@@ -5,6 +5,17 @@ import { PUT } from 'http/put.js';
 import { POST } from 'http/post.js';
 import { API_V1 } from 'http/url.js';
 
+export const fetchPages = function(callback) {
+
+  GET(API_V1 + 'pages?fields=id,header,sequence&sort=sequence', (payload) => {
+    if (payload.hasErrors()) {
+      Logger.error("Fetch failed for all Pages. Cause: " + payload.getErrors())
+    } else {
+      callback(payload.getData())
+    }
+  })
+}
+
 export const fetchPage = function(id, callback) {
   if (!id) {
     return;

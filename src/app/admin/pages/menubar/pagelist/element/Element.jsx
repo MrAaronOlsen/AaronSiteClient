@@ -1,25 +1,22 @@
-import React, { Component} from "react";
+import React from "react";
 
-import TextInput from 'modules/textinput/TextInput.jsx'
 import styles from './element.mod.scss'
 
-export default class Element extends Component {
+export default function Element(props) {
 
-  focus() {
-    this.props.focus(this.props.pageId)
+  function focus() {
+    props.focus(props.pageId)
   }
 
-  render() {
-    return(
-      <div className={styles.wrapper} onClick={this.focus.bind(this)}>
-        <div className={styles.header}>
-          { this.props.header }
-        </div>
-
-        <div className={styles.sequence}>
-          { this.props.sequence }
-        </div>
+  return(
+    <div className={styles.wrapper} onClick={focus}>
+      <div className={styles.header}>
+        { props.header }
       </div>
-    )
-  }
+
+      <div className={styles.sequence}>
+        { props.sequence }
+      </div>
+    </div>
+  )
 }

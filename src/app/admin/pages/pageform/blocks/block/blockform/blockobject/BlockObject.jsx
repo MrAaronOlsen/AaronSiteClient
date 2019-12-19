@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import shortid from 'shortid'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
@@ -7,64 +7,64 @@ import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
 
-export default class BlockObject extends Component {
-  id = shortid.generate();
+export default function BlockObject(props) {
+  var id = shortid.generate();
 
-  object() {
-    return this.props.object || {}
+  function object() {
+    return props.object || {}
   }
 
-  onChange(content, name) {
-    let object = this.props.object || {};
+  function onChange(content, name) {
+    let object = props.object || {};
     object[name] = content;
 
-    this.props.onChange(object, this.props.name)
+    props.onChange(object, props.name)
   }
 
-  addProperty(name) {
-    let object = this.props.object || {};
+  function addProperty(name) {
+    let object = props.object || {};
 
     if (!object[name]) {
-      this.onChange(this.props.attributes[name], name)
+      onChange(props.attributes[name], name)
     }
   }
 
-  deleteProperty(name) {
-    let object = this.props.object;
+  function deleteProperty(name) {
+    let object = props.object;
     delete object[name]
 
-    this.props.onChange(object, this.props.name)
+    props.onChange(object, props.name)
   }
 
-  hasStyles(index) {
-    if (this.props.name === 'transition') {
-      return <BlockObject key={this.props.blockKey + index}
+  function hasStyles(index) {
+    if (props.name === 'transition') {
+      return <BlockObject key={props.blockKey + index}
         name={'styles'}
-        object={this.object().styles || {}}
+        object={object().styles || {}}
         objectOrder={StylePropertiesList}
-        blockKey={this.props.blockKey}
-        onChange={this.onChange.bind(this)}
+        blockKey={props.blockKey}
+        onChange={onChange.bind(this)}
         attributes={ StyleProperties } />
     } else {
       return null;
     }
   }
 
-  getField(key, index) {
+  function getField(key, index) {
     if (key === 'styles') {
-      return this.hasStyles(index)
+      return hasStyles(index)
     } else {
-      return <BlockText key={this.props.blockKey + key}
+      return <BlockText key={props.blockKey + key}
         name={key}
-        text={this.object()[key]}
-        onChange={this.onChange.bind(this)}
-        delete={this.deleteProperty.bind(this)} />
+        text={object()[key]}
+        onChange={onChange.bind(this)}
+        delete={deleteProperty.bind(this)} />
     }
   }
 
-  sorted() {
-    var list = Object.keys(this.object());
-    var order = this.props.objectOrder;
+  function sorted() {
+    var list = Object.keys(object());
+    var order = props.objectOrder;
 
     if (order) {
       return list.sort(function(a, b) {
@@ -75,25 +75,23 @@ export default class BlockObject extends Component {
     }
   }
 
-  render() {
-    return(
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <span>{this.props.name}: </span>
-          <div className={styles.list}>
-            <SelectList items={Object.keys(this.props.attributes)} onClick={this.addProperty.bind(this)}/>
-          </div>
-        </div>
-        <div className={styles.properties}>
-          <div className={styles.property}>
-            {
-              this.sorted().map((key, i) => {
-                return this.getField(key, i)
-              })
-            }
-          </div>
+  return(
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        <span>{props.name}: </span>
+        <div className={styles.list}>
+          <SelectList items={Object.keys(props.attributes)} onClick={addProperty.bind(this)}/>
         </div>
       </div>
-    )
-  }
+      <div className={styles.properties}>
+        <div className={styles.property}>
+          {
+            sorted().map((key, i) => {
+              return getField(key, i)
+            })
+          }
+        </div>
+      </div>
+    </div>
+  )
 }

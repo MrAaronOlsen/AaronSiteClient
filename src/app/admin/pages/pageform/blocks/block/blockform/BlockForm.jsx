@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
