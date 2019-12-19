@@ -39,7 +39,6 @@ export default function BlockIterator(props) {
       return null;
     }
 
-    console.log("Getting Next Block: " + type)
     return getByType(type);
   }
 

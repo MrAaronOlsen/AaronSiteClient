@@ -4,13 +4,7 @@ import Header from './header/Header.jsx'
 import Blocks from './blocks/Blocks.jsx'
 import Preview from './preview/Preview.jsx'
 
-import TextInput from 'modules/textinput/TextInput.jsx'
-import Logger from 'logger';
-
-import { GET } from 'http/get.js';
-import { PUT } from 'http/put.js';
-import { POST } from 'http/post.js';
-import { API_V1 } from 'http/url.js';
+import { fetchPage, insertPage, savePage } from './PageFormOperations.js';
 
 import styles from './pageForm.mod.scss'
 
@@ -20,9 +14,11 @@ export default class PageForm extends Component {
 
     this.props.stateHandler({save: this.save.bind(this)})
     this.props.stateHandler({new: this.new.bind(this)})
+    this.props.stateHandler({focus: this.focus.bind(this)})
   }
 
   state = {
+    pageId: "",
     blocks: {}
   };
 
@@ -48,17 +44,13 @@ export default class PageForm extends Component {
     }
   }
 
-  stateHandler(stateChange) {
-    this.setState(stateChange)
-  }
-
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.pageId != prevProps.pageId) {
+    if (this.state.pageId != prevState.pageId) {
       this.setState({
         blocks: {}
       })
 
-      this.loadPage();
+      this.fetch();
     }
   }
 
@@ -68,51 +60,26 @@ export default class PageForm extends Component {
     })
   }
 
-  new() {
-    this.insert({
-      header: "New Page"
+  focus(id) {
+    this.setState({
+      pageId: id
     })
   }
 
-  loadPage() {
-    if (this.props.pageId) {
-      var id = this.props.pageId
-
-      GET(API_V1 + 'pages/' + id, (payload) => {
-        if (payload.hasErrors()) {
-          Logger.error("Failed to fetch page. Cause: " + JSON.stringify(payload))
-        } else {
-          let page = payload.getFirst();
-
-          this.setStateFromObject(page)
-        }
-      })
-    }
+  new() {
+    insertPage({header: "New Page"}, (id) => {
+      this.props.reloadList()
+    })
   }
 
-  insert(page) {
-
-    POST(API_V1 + 'pages/', page, (payload) => {
-      if (payload.hasErrors()) {
-        Logger.error("Insert failed for Page. Cause: " + JSON.stringify(payload));
-      } else {
-        Logger.info("Inserted Page. Id: " + payload.getFirst().id);
-
-        this.props.reloadList()
-      }
+  fetch() {
+    fetchPage(this.state.pageId, (page) => {
+      this.setStateFromObject(page);
     })
   }
 
   save() {
-    var page = this.getObjectFromState();
-
-    PUT(API_V1 + 'pages/' + page.id, page, (payload) => {
-      if (payload.hasErrors()) {
-        Logger.error("Save failed for Page. ID: " + page.id + ". Cause: " + JSON.stringify(payload));
-      } else {
-        Logger.info("Saved Page. Id: " + page.id);
-      }
-    })
+    savePage(this.getObjectFromState(), (page) => {})
   }
 
   render() {
