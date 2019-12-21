@@ -19,6 +19,10 @@ export default function MenuBar(props) {
       <PageList
         pages={props.pages}
         focus={props.focus} />
+
+      <ActionBtn text="delete"
+          classNames={styles.button}
+          onClick={props.delete} />
     </div>
   )
 }

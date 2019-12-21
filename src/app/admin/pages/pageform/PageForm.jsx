@@ -1,11 +1,11 @@
 import React, { Component} from "react"
 
-import MenuBar from '../menubar/MenuBar.jsx'
+import MenuBar from './menubar/MenuBar.jsx'
 import Header from './header/Header.jsx'
 import Blocks from './blocks/Blocks.jsx'
 import Preview from './preview/Preview.jsx'
 
-import { fetchPages, fetchPage, insertPage, savePage } from './PageFormOperations.js';
+import { fetchPages, fetchPage, insertPage, savePage, deletePage } from './PageFormOperations.js';
 
 import styles from './pageForm.mod.scss'
 
@@ -38,22 +38,18 @@ export default class PageForm extends Component {
     }
   }
 
+  componentDidMount() {
+    this.fetchAll()
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.pageId != prevState.pageId) {
+      this.fetch();
+
       this.setState({
         blocks: {}
       })
-
-      this.fetch();
     }
-  }
-
-  componentDidMount() {
-    fetchPages((pages) => {
-      this.setState({
-        pages: pages
-      })
-    })
   }
 
   onChange(content, name) {
@@ -69,7 +65,9 @@ export default class PageForm extends Component {
   }
 
   new() {
-    insertPage({header: "New Page"}, (id) => {})
+    insertPage({header: "New Page"}, (id) => {
+      this.fetchAll()
+    })
   }
 
   fetch() {
@@ -78,8 +76,22 @@ export default class PageForm extends Component {
     })
   }
 
+  fetchAll() {
+    fetchPages((pages) => {
+      this.setState({pages: pages})
+    })
+  }
+
   save() {
-    savePage(this.getObjectFromState(), (page) => {})
+    savePage(this.getObjectFromState(), (page) => {
+      this.fetchAll();
+    })
+  }
+
+  delete() {
+    deletePage(this.state.pageId, (id) => {
+      this.fetchAll();
+    })
   }
 
   render() {
@@ -89,6 +101,7 @@ export default class PageForm extends Component {
           pages={this.state.pages}
           save={this.save.bind(this)}
           new={this.new.bind(this)}
+          delete={this.delete.bind(this)}
           focus={this.focus.bind(this)} />
 
         <Header

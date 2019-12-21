@@ -25,6 +25,7 @@
     img {
       height: 18px;
       width: 18px;
+      opacity: 0.5;
     }
   }
 
@@ -39,8 +40,7 @@
 
     visibility: hidden;
 
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
 
     overflow: scroll;
     background-color: $background;
@@ -51,27 +51,13 @@
     @include shadow;
 
     z-index: 999;
-
-    .line {
-      @include flex($dir: row)
-      @include center($horz: flex-start)
-
-      width: 100%;
-      height: auto;
-
-      padding: 5px;
-    }
-
-    .line:hover {
-      @include shadow;
-    }
   }
 }
 
 .wrapper:hover {
   .list {
     visibility: visible;
-    height: 200px;
+    height: 300px;
     overflow: scroll;
   }
 }

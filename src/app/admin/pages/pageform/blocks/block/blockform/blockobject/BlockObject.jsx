@@ -57,8 +57,8 @@ export default function BlockObject(props) {
       return <BlockText key={props.blockKey + key}
         name={key}
         text={object()[key]}
-        onChange={onChange.bind(this)}
-        delete={deleteProperty.bind(this)} />
+        onChange={onChange}
+        delete={deleteProperty} />
     }
   }
 

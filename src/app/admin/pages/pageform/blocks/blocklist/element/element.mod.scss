@@ -23,7 +23,7 @@
 
     img {
       position: absolute;
-      visibility: hidden;
+      opacity: 0.5;
 
       width: 18px;
       height: 18px;
@@ -37,24 +37,7 @@
     }
 
     .deleteBtn {
-      right: 0;
-    }
-
-    .arrowUp {
-      right: 40px;
-    }
-
-    .arrowDown {
-      right: 20px;
-      transform: rotate(180deg);
-    }
-  }
-}
-
-.wrapper:hover {
-  .textWrapper {
-    img {
-      visibility: visible;
+      left: -35px;
     }
   }
 }

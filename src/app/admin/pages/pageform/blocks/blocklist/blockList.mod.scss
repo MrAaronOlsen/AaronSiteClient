@@ -19,6 +19,7 @@
 
     img {
       position: relative;
+      opacity: 0.5;
 
       width: 18px;
       height: 18px;
@@ -26,8 +27,6 @@
       @include border($radius: 9px, $width: 0);
     }
   }
-
-
 
   img:hover {
     background-color: white-overlay($alpha: 0.5);

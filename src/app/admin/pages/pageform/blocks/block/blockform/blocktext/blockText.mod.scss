@@ -31,11 +31,14 @@
 
   img {
     position: absolute;
+    visibility: hidden;
+
+    opacity: 0.5;
 
     height: 18px;
     width: 18px;
 
-    left: calc(100% - 20px);
+    left: -35px;
   }
 
   img:hover {

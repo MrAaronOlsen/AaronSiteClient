@@ -19,13 +19,24 @@ export default function BlockList(props) {
     props.deleteBlock(props.name)
   }
 
+  function deleteBtn() {
+    return <img className={styles.deleteBtn}
+      src={DeleteBtn}
+      onClick={deleteBlock.bind(this)}/>
+  }
+
+  function classNames() {
+    return [props.focused ? styles.focused : "", styles.textWrapper].join(" ")
+  }
+
+
   return(
     <div className={styles.wrapper} onClick={onClick.bind(this)}>
       <TextInput text={props.name}
         onChange={onChange.bind(this)}
-        classNames={[props.focused ? styles.focused : "", styles.textWrapper].join(" ")}>
+        classNames={classNames()}>
 
-        <img className={styles.deleteBtn} src={DeleteBtn} onClick={deleteBlock.bind(this)}/>
+        {props.focused && deleteBtn()}
       </TextInput>
     </div>
   )
