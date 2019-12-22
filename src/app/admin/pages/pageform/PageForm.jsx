@@ -99,6 +99,7 @@ export default class PageForm extends Component {
       <div className={styles.wrapper}>
         <MenuBar
           pages={this.state.pages}
+          pageId={this.state.pageId}
           save={this.save.bind(this)}
           new={this.new.bind(this)}
           delete={this.delete.bind(this)}
