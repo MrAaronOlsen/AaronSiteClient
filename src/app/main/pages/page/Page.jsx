@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import Blocks from 'blocks/Blocks.jsx'
 import Transition from 'modules/transition/Transition.jsx'
@@ -16,11 +17,14 @@ const arrowTransitionConfig = {
 
 export default class Page extends Component {
   state = {
+    redirect: false,
     triggerOut: false
   }
 
-  onClick() {
-    this.props.history.push('/pages')
+  redirect() {
+    this.setState({
+      redirect: true
+    })
   }
 
   triggerOut() {
@@ -30,6 +34,10 @@ export default class Page extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to='/pages' />
+    }
+
     return(
       <div className={styles.wrapper}>
         <div className={styles.header}>
@@ -42,8 +50,8 @@ export default class Page extends Component {
         <div className={styles.blocks}>
           <Blocks
             triggerOut={this.state.triggerOut}
-            actionOut={this.onClick.bind(this)}
-            query={this.props.query}/>
+            actionOut={this.redirect.bind(this)}
+            query={'pages/' + this.props.location.state.id}/>
         </div>
       </div>
     )

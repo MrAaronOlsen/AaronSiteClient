@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
 import Transition from 'modules/transition/Transition.jsx';
 
@@ -8,8 +10,10 @@ class Page extends Component {
   header = this.props.element.header
   caption = this.props.element.caption
   slug = this.props.element.slug
+  id = this.props.element.id
 
   state = {
+    redirect: false,
     triggerOut: false
   }
 
@@ -20,10 +24,19 @@ class Page extends Component {
   }
 
   redirect() {
-    this.props.history.push('/pages/' +  this.slug)
+    this.setState({
+      redirect: true
+    })
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={{
+          pathname: '/pages/' + this.slug,
+          state: {id: this.id}
+        }}/>
+    }
+
     let timing = 500 + (this.props.index * 200);
     return(
       <Transition
