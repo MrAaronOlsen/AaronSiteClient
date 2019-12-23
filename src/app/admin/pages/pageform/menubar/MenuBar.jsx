@@ -16,9 +16,17 @@ export default function MenuBar(props) {
         classNames={styles.button}
         onClick={props.save} />}
 
+      {props.pageId && <ActionBtn text="Publish"
+        classNames={styles.button}
+        onClick={props.publish} />}
+
       {props.pageId && <ActionBtn text="Check Out"
         classNames={styles.button}
-        onClick={{}} />}
+        onClick={props.checkOut} />}
+
+      {props.pageId && <ActionBtn text="Check In"
+        classNames={styles.button}
+        onClick={props.checkIn} />}
 
       {props.pageId && <ActionBtn text="Delete"
           classNames={styles.button}

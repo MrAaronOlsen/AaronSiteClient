@@ -5,7 +5,10 @@ import Header from './header/Header.jsx'
 import Blocks from './blocks/Blocks.jsx'
 import Preview from './preview/Preview.jsx'
 
-import { fetchPages, fetchPage, insertPage, savePage, deletePage } from './PageFormOperations.js';
+import {
+  fetchPages, fetchPage,
+  insertPage, savePage, deletePage,
+  executeAction } from './PageFormOperations.js';
 
 import styles from './pageForm.mod.scss'
 
@@ -94,6 +97,40 @@ export default class PageForm extends Component {
     })
   }
 
+  checkIn() {
+    const action = {
+      action: 'check_in',
+      id: this.state.pageId
+    }
+
+    executeAction(action, (id) => {
+      this.fetchAll();
+    })
+  }
+
+  checkOut() {
+    const action = {
+      action: 'check_out',
+      id: this.state.pageId
+    }
+
+    executeAction(action, (id) => {
+      this.fetchAll();
+    })
+  }
+
+  publish() {
+    const action = {
+      action: 'publish',
+      id: this.state.pageId,
+      slug: this.state.slug
+    }
+
+    executeAction(action, (id) => {
+      this.fetchAll();
+    })
+  }
+
   render() {
     return(
       <div className={styles.wrapper}>
@@ -101,6 +138,9 @@ export default class PageForm extends Component {
           pages={this.state.pages}
           pageId={this.state.pageId}
           save={this.save.bind(this)}
+          publish={this.publish.bind(this)}
+          checkOut={this.checkOut.bind(this)}
+          checkIn={this.checkIn.bind(this)}
           new={this.new.bind(this)}
           delete={this.delete.bind(this)}
           focus={this.focus.bind(this)} />

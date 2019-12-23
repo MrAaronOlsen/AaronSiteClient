@@ -7,7 +7,10 @@ $main-background: hsla(40%, 5%, 7%, 1);
   @return rgba($color, $alpha);
 }
 
-// $brand: hsla(200, 39%, 54%, 1);
+@function mix-brand($color: $transparent, $weight: 50%) {
+  @return mix($brand, $color, $weight);
+}
+
 $brand: hsla(30, 39%, 54%, 1);
 
 $background: hsla(0, 0%, 100%, 1);
