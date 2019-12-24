@@ -8,7 +8,7 @@ import { API_V1 } from 'http/url.js';
 
 export const fetchPages = function(callback) {
 
-  GET(API_V1 + 'pages?fields=id,header,sequence&sort=sequence', (payload) => {
+  GET(API_V1 + 'pages?fields=id,header,sequence, mode&sort=sequence', (payload) => {
     if (payload.hasErrors()) {
       Logger.error("Fetch failed for all Pages. Cause: " + payload.getErrors())
     } else {
@@ -84,3 +84,21 @@ export const deletePage = function(id, callback) {
     }
   })
 }
+
+export const executeAction = function(body, callback) {
+  if (!body) {
+    return;
+  }
+
+  POST(API_V1 + 'action', body, (payload) => {
+    if (payload.hasErrors()) {
+      Logger.error("Action failed. Cause: " + JSON.stringify(payload));
+    } else {
+      const id = payload.getFirst().id
+      Logger.info("Action Executed. " + id);
+
+      callback(id)
+    }
+  })
+}
+

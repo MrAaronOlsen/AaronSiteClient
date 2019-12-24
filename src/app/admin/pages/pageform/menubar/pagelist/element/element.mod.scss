@@ -20,6 +20,22 @@
     overflow: hidden;
   }
 
+  .mode {
+    @include flex($dir: row)
+    @include center($horz: flex-start);
+
+    font-size: 12px;
+    height: 100%;
+    width: 200px;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    padding-left: 10px;
+    @include borderLeft($color: $brand);
+  }
+
   .sequence {
     height: 100%;
     width: 30px;
@@ -28,8 +44,16 @@
     text-align: center;
 
     padding-left: 10px;
-    @include borderLeft;
+    @include borderLeft($color: $brand);
   }
+}
+
+.published {
+  background-color: rgba(mix-brand($color: red, $weight: 50%), 0.15)
+}
+
+.checked_out {
+  background-color: rgba(mix-brand($color: green, $weight: 50%), 0.15)
 }
 
 .wrapper:hover {

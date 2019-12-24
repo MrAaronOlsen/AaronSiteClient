@@ -14,6 +14,7 @@ export default function PageList(props) {
             pageId={page.id}
             header={page.header}
             sequence={page.sequence}
+            mode={page.mode}
             focus={props.focus}/>
         })}
       </div>
