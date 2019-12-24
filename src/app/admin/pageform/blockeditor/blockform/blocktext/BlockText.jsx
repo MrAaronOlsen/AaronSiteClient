@@ -50,6 +50,7 @@ export default function BlockText(props) {
         text={props.text}
         onChange={props.onChange}
         classNames={styles.text} />
+      
       {props.delete ? <img src={DeleteBtn} onClick={deleteLine}/> : null}
 
     </div>

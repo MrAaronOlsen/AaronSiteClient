@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import shortid from 'shortid';
 
 import BlockList from './blocklist/BlockList.jsx';
-import Block from './block/Block.jsx';
+import BlockForm from './blockform/BlockForm.jsx';
 
-import styles from './blocks.mod.scss';
+import styles from './blockEditor.mod.scss';
 
-export default class Blocks extends Component {
+export default class BlockEditor extends Component {
   state ={
     blockKey: '',
     block: {}
@@ -74,7 +74,8 @@ export default class Blocks extends Component {
           deleteBlock={this.deleteBlock.bind(this)}
           focusBlock={this.focusBlock.bind(this)} />
 
-        <Block block={this.state.block}
+        <BlockForm
+          block={this.state.block}
           blockKey={this.state.blockKey}
           onChange={this.updateBlock.bind(this)} />
       </div>

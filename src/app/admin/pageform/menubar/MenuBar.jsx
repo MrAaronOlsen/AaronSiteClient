@@ -12,7 +12,7 @@ export default function MenuBar(props) {
         pages={props.pages}
         focus={props.focus} />
 
-      {props.pageId && props.mode && props.mode != 'published' &&
+      {props.pageId && props.mode != 'published' &&
         <ActionBtn text="Save"
           classNames={styles.button}
           onClick={props.save} />}
