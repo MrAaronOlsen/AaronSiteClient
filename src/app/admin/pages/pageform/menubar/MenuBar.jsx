@@ -17,12 +17,12 @@ export default function MenuBar(props) {
           classNames={styles.button}
           onClick={props.save} />}
 
-      {props.pageId && props.mode && props.mode != 'published' && props.mode != 'checked_out' &&
+      {props.pageId && props.mode != 'published' && props.mode != 'checked_out' &&
         <ActionBtn text="Publish"
           classNames={styles.button}
           onClick={props.publish} />}
 
-      {props.pageId && props.mode && props.mode == 'published' &&
+      {props.pageId && props.mode == 'published' &&
         <ActionBtn text="Unpublish"
           classNames={styles.button}
           onClick={props.unpublish} />}
