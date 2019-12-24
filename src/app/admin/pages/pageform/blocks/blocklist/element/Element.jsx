@@ -12,7 +12,7 @@ export default function BlockList(props) {
   }
 
   function onChange(newName) {
-    props.moveBlock(props.name, newName)
+    props.renameBlock(props.name, newName)
   }
 
   function deleteBlock() {

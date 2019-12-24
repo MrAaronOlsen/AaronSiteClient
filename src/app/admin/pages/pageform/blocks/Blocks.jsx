@@ -12,13 +12,6 @@ export default class Blocks extends Component {
     block: {}
   }
 
-  focusBlock(blockKey) {
-    this.setState({
-      blockKey: blockKey,
-      block: this.props.blocks[blockKey]
-    })
-  }
-
   componentDidUpdate(prevProps) {
     if (this.props.pageId != prevProps.pageId) {
       this.setState({
@@ -28,16 +21,11 @@ export default class Blocks extends Component {
     }
   }
 
-  changeBlock(block, name) {
-    let blocks = this.props.blocks;
-    blocks[name] = block;
-
+  focusBlock(blockKey) {
     this.setState({
-      blockKey: name,
-      block: block
+      blockKey: blockKey,
+      block: this.props.blocks[blockKey]
     })
-
-    this.props.onChange(blocks, "blocks")
   }
 
   addBlock() {
@@ -49,11 +37,23 @@ export default class Blocks extends Component {
     this.props.onChange(blocks, "blocks");
   }
 
-  moveBlock(oldName, newName) {
+  updateBlock(block, name) {
+    let blocks = this.props.blocks;
+    blocks[name] = block;
+
+    this.setState({
+      blockKey: name,
+      block: block
+    })
+
+    this.props.onChange(blocks, "blocks")
+  }
+
+  renameBlock(oldName, newName) {
     let block = this.props.blocks[oldName]
     delete this.props.blocks[oldName]
 
-    this.changeBlock(block, newName)
+    this.updateBlock(block, newName)
   }
 
   deleteBlock(name) {
@@ -70,13 +70,13 @@ export default class Blocks extends Component {
           blocks={this.props.blocks}
           focused={this.state.blockKey}
           addBlock={this.addBlock.bind(this)}
-          moveBlock={this.moveBlock.bind(this)}
+          renameBlock={this.renameBlock.bind(this)}
           deleteBlock={this.deleteBlock.bind(this)}
           focusBlock={this.focusBlock.bind(this)} />
 
         <Block block={this.state.block}
           blockKey={this.state.blockKey}
-          onChange={this.changeBlock.bind(this)} />
+          onChange={this.updateBlock.bind(this)} />
       </div>
     )
   }
