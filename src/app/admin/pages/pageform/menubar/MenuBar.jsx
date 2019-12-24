@@ -12,23 +12,33 @@ export default function MenuBar(props) {
         pages={props.pages}
         focus={props.focus} />
 
-      {props.pageId && <ActionBtn text="Save"
-        classNames={styles.button}
-        onClick={props.save} />}
+      {props.pageId && props.mode && props.mode != 'published' &&
+        <ActionBtn text="Save"
+          classNames={styles.button}
+          onClick={props.save} />}
 
-      {props.pageId && <ActionBtn text="Publish"
-        classNames={styles.button}
-        onClick={props.publish} />}
+      {props.pageId && props.mode && props.mode != 'published' && props.mode != 'checked_out' &&
+        <ActionBtn text="Publish"
+          classNames={styles.button}
+          onClick={props.publish} />}
 
-      {props.pageId && <ActionBtn text="Check Out"
-        classNames={styles.button}
-        onClick={props.checkOut} />}
+      {props.pageId && props.mode && props.mode == 'published' &&
+        <ActionBtn text="Unpublish"
+          classNames={styles.button}
+          onClick={props.unpublish} />}
 
-      {props.pageId && <ActionBtn text="Check In"
-        classNames={styles.button}
-        onClick={props.checkIn} />}
+      {props.pageId && props.mode && props.mode == 'published' &&
+        <ActionBtn text="Check Out"
+          classNames={styles.button}
+          onClick={props.checkOut} />}
 
-      {props.pageId && <ActionBtn text="Delete"
+      {props.pageId && props.mode && props.mode == 'checked_out' &&
+        <ActionBtn text="Check In"
+          classNames={styles.button}
+          onClick={props.checkIn} />}
+
+      {props.pageId && props.mode && props.mode != 'published' &&
+        <ActionBtn text="Delete"
           classNames={styles.button}
           onClick={props.delete} />}
 
