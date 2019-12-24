@@ -1,7 +1,7 @@
 import React, { Component} from "react";
 
 import NavBar from './navbar/NavBar.jsx'
-import Pages from './pages/Pages.jsx'
+import Pages from './pageform/PageForm.jsx'
 
 import styles from './admin.mod.scss';
 
