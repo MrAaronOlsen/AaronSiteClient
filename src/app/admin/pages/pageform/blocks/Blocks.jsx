@@ -19,6 +19,15 @@ export default class Blocks extends Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.pageId != prevProps.pageId) {
+      this.setState({
+        blockKey: '',
+        block: {}
+      })
+    }
+  }
+
   changeBlock(block, name) {
     let blocks = this.props.blocks;
     blocks[name] = block;

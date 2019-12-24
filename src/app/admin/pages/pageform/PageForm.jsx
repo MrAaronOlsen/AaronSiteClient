@@ -90,6 +90,7 @@ export default class PageForm extends Component {
   save() {
     savePage(this.getObjectFromState(), (page) => {
       this.fetchAll();
+      this.fetch();
     })
   }
 
@@ -107,6 +108,11 @@ export default class PageForm extends Component {
 
     executeAction(action, (id) => {
       this.fetchAll();
+      this.setState({
+        pageId: "",
+      })
+
+      this.setStateFromObject({})
     })
   }
 
@@ -118,6 +124,7 @@ export default class PageForm extends Component {
 
     executeAction(action, (id) => {
       this.fetchAll();
+      this.fetch();
     })
   }
 
@@ -130,6 +137,7 @@ export default class PageForm extends Component {
 
     executeAction(action, (id) => {
       this.fetchAll();
+      this.fetch();
     })
   }
 
@@ -141,6 +149,7 @@ export default class PageForm extends Component {
 
     executeAction(action, (id) => {
       this.fetchAll();
+      this.fetch();
     })
   }
 
@@ -168,7 +177,7 @@ export default class PageForm extends Component {
           onChange={this.onChange.bind(this)}/>
 
         <div className={styles.blockWrapper}>
-          <Blocks blocks={this.state.blocks} onChange={this.onChange.bind(this)}/>
+          <Blocks blocks={this.state.blocks} pageId={this.state.pageId} onChange={this.onChange.bind(this)}/>
           <Preview blocks={this.state.blocks}/>
         </div>
 
