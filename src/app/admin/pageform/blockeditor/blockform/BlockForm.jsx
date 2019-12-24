@@ -74,7 +74,7 @@ const blockContent = function(props, onChange) {
 }
 
 export default function BlockForm(props) {
-  
+
   function onChange(line, name) {
     let block = props.block;
     block[name] = line;
