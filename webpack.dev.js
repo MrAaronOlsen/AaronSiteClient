@@ -2,6 +2,7 @@ const path = require("path");
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const webpack = require("webpack");
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 console.log("[INFO] Running Developement Config.")
@@ -19,6 +20,7 @@ module.exports = merge(common, {
   devtool : '#eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new CaseSensitivePathsPlugin(),
     new Dotenv()
   ]
 })
