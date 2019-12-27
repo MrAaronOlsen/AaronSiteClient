@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
-import styled from 'styled-components'
 
-import BlockIterator from '../BlockIterator.jsx'
-import styledBlock from '../styledblock/StyledBlock.jsx'
+import BlockIterator from '../BlockIterator.jsx';
 
-function BlockWrapper(props) {
+export default function BlockWrapper(props) {
   const blocks = props.blocks;
   const block = props.block;
 
@@ -19,6 +16,3 @@ function BlockWrapper(props) {
     </React.Fragment>
   )
 }
-
-const WrappedComponent = styledBlock(BlockWrapper)
-export default WrappedComponent

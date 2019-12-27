@@ -25,7 +25,7 @@ export default function BlockList(props) {
         return <Element key={blockKeys.length + block.id}
           name={name}
           focused={props.focused == name}
-          moveBlock={props.moveBlock}
+          renameBlock={props.renameBlock}
           deleteBlock={props.deleteBlock}
           onClick={props.focusBlock} />
       })

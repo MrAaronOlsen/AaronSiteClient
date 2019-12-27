@@ -2,7 +2,7 @@ import React, { Component} from "react"
 
 import MenuBar from './menubar/MenuBar.jsx'
 import Header from './header/Header.jsx'
-import Blocks from './blocks/Blocks.jsx'
+import BlockEditor from './blockeditor/BlockEditor.jsx'
 import Preview from './preview/Preview.jsx'
 
 import {
@@ -18,6 +18,20 @@ export default class PageForm extends Component {
     pageId: "",
     blocks: {}
   };
+
+  componentDidMount() {
+    this.fetchAll()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.pageId != prevState.pageId) {
+      this.fetch();
+
+      this.setState({
+        blocks: {}
+      })
+    }
+  }
 
   setStateFromObject(page) {
     this.setState({
@@ -43,35 +57,9 @@ export default class PageForm extends Component {
     }
   }
 
-  componentDidMount() {
-    this.fetchAll()
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.pageId != prevState.pageId) {
-      this.fetch();
-
-      this.setState({
-        blocks: {}
-      })
-    }
-  }
-
   onChange(content, name) {
     this.setState({
       [name]: content
-    })
-  }
-
-  focus(id) {
-    this.setState({
-      pageId: id
-    })
-  }
-
-  new() {
-    insertPage({header: "New Page"}, (id) => {
-      this.fetchAll()
     })
   }
 
@@ -84,6 +72,18 @@ export default class PageForm extends Component {
   fetchAll() {
     fetchPages((pages) => {
       this.setState({pages: pages})
+    })
+  }
+
+  focus(id) {
+    this.setState({
+      pageId: id
+    })
+  }
+
+  new() {
+    insertPage({header: "New Page"}, (id) => {
+      this.fetchAll()
     })
   }
 
@@ -160,14 +160,14 @@ export default class PageForm extends Component {
           pages={this.state.pages}
           pageId={this.state.pageId}
           mode={this.state.mode}
+          focus={this.focus.bind(this)}
+          new={this.new.bind(this)}
           save={this.save.bind(this)}
+          delete={this.delete.bind(this)}
           publish={this.publish.bind(this)}
           unpublish={this.unpublish.bind(this)}
           checkOut={this.checkOut.bind(this)}
-          checkIn={this.checkIn.bind(this)}
-          new={this.new.bind(this)}
-          delete={this.delete.bind(this)}
-          focus={this.focus.bind(this)} />
+          checkIn={this.checkIn.bind(this)} />
 
         <Header
           header={this.state.header}
@@ -177,7 +177,11 @@ export default class PageForm extends Component {
           onChange={this.onChange.bind(this)}/>
 
         <div className={styles.blockWrapper}>
-          <Blocks blocks={this.state.blocks} pageId={this.state.pageId} onChange={this.onChange.bind(this)}/>
+          <BlockEditor
+            blocks={this.state.blocks}
+            pageId={this.state.pageId}
+            onChange={this.onChange.bind(this)}/>
+
           <Preview blocks={this.state.blocks}/>
         </div>
 

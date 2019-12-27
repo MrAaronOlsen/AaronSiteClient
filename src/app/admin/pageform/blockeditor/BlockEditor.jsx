@@ -2,21 +2,14 @@ import React, { Component } from 'react';
 import shortid from 'shortid';
 
 import BlockList from './blocklist/BlockList.jsx';
-import Block from './block/Block.jsx';
+import BlockForm from './blockform/BlockForm.jsx';
 
-import styles from './blocks.mod.scss';
+import styles from './blockEditor.mod.scss';
 
-export default class Blocks extends Component {
+export default class BlockEditor extends Component {
   state ={
     blockKey: '',
     block: {}
-  }
-
-  focusBlock(blockKey) {
-    this.setState({
-      blockKey: blockKey,
-      block: this.props.blocks[blockKey]
-    })
   }
 
   componentDidUpdate(prevProps) {
@@ -28,16 +21,11 @@ export default class Blocks extends Component {
     }
   }
 
-  changeBlock(block, name) {
-    let blocks = this.props.blocks;
-    blocks[name] = block;
-
+  focusBlock(blockKey) {
     this.setState({
-      blockKey: name,
-      block: block
+      blockKey: blockKey,
+      block: this.props.blocks[blockKey]
     })
-
-    this.props.onChange(blocks, "blocks")
   }
 
   addBlock() {
@@ -49,11 +37,23 @@ export default class Blocks extends Component {
     this.props.onChange(blocks, "blocks");
   }
 
-  moveBlock(oldName, newName) {
+  updateBlock(block, name) {
+    let blocks = this.props.blocks;
+    blocks[name] = block;
+
+    this.setState({
+      blockKey: name,
+      block: block
+    })
+
+    this.props.onChange(blocks, "blocks")
+  }
+
+  renameBlock(oldName, newName) {
     let block = this.props.blocks[oldName]
     delete this.props.blocks[oldName]
 
-    this.changeBlock(block, newName)
+    this.updateBlock(block, newName)
   }
 
   deleteBlock(name) {
@@ -70,13 +70,14 @@ export default class Blocks extends Component {
           blocks={this.props.blocks}
           focused={this.state.blockKey}
           addBlock={this.addBlock.bind(this)}
-          moveBlock={this.moveBlock.bind(this)}
+          renameBlock={this.renameBlock.bind(this)}
           deleteBlock={this.deleteBlock.bind(this)}
           focusBlock={this.focusBlock.bind(this)} />
 
-        <Block block={this.state.block}
+        <BlockForm
+          block={this.state.block}
           blockKey={this.state.blockKey}
-          onChange={this.changeBlock.bind(this)} />
+          onChange={this.updateBlock.bind(this)} />
       </div>
     )
   }
