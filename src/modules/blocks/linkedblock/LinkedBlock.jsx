@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import styles from './LinkedBlock.mod.scss'
+import styles from './linkedBlock.mod.scss'
 
 export default function linkedBlock(Block) {
 
