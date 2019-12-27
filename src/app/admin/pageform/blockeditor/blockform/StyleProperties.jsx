@@ -14,6 +14,9 @@ const StyleProperties = {
   'border-radius': '1px',
   'background-color': '$background',
   'box-shadow': '0 0 4px 1px hsla(0, 0%, 0%, 0.1)',
+  'color': '',
+  'text-decoration': 'none',
+  'cursor': 'none',
   'top': '0',
   'left': '0',
   'z-index': ''

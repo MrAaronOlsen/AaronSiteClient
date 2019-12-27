@@ -87,6 +87,7 @@ export default function BlockForm(props) {
       <div className={styles.wrapper} key={props.blockKey}>
         { blockText('type', props, onChange) }
         { blockContent(props, onChange) }
+        { blockText('link', props, onChange) }
         { blockText('next', props, onChange) }
         { blockObject('transition', props, onChange) }
         { blockObject('styles', props, onChange) }

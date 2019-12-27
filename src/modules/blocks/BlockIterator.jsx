@@ -5,12 +5,15 @@ import BlockRich from './blockrich/BlockRich.jsx';
 import BlockImg from './blockimg/BlockImg.jsx';
 import BlockWrapper from './blockwrapper/BlockWrapper.jsx';
 
-const types = new Set([
-  "text",
-  'rich',
-  'img',
-  'wrapper'
-])
+import styledBlock from './styledblock/StyledBlock.jsx'
+import linkedBlock from './linkedblock/LinkedBlock.jsx';
+
+const types = {
+  "text": BlockText,
+  'rich': BlockRich,
+  'img': BlockImg,
+  'wrapper': BlockWrapper
+}
 
 export default function BlockIterator(props) {
   const blocks = props.blocks;
@@ -33,22 +36,19 @@ export default function BlockIterator(props) {
   }
 
   function getNext() {
-    let type = block.type;
+    var Block = types[block.type]
 
-    if (!types.has(type)) {
+    if (!Block) {
       return null;
     }
 
-    return getByType(type);
-  }
-
-  function getByType(type) {
-    switch(type) {
-      case 'text': return <BlockText {...props} block={block} key={thisBlock} />
-      case 'rich': return <BlockRich {...props} block={block} key={thisBlock} />
-      case 'img': return <BlockImg {...props} block={block} key={thisBlock} />
-      case 'wrapper': return <BlockWrapper {...props} blocks={blocks} block={block} key={thisBlock} />
+    if (block.link) {
+      Block = linkedBlock(Block)
     }
+
+    Block = styledBlock(Block)
+
+    return <Block {...props} blocks={blocks} block={block} key={thisBlock} />
   }
 
   function getBlocks() {

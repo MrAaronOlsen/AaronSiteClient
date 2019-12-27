@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 
-import styledBlock from '../styledblock/StyledBlock.jsx'
 import styles from './blockImg.mod.scss'
 
-function BlockImg(props) {
+export default function BlockImg(props) {
   const block = props.block;
 
   function getBlock() {
@@ -13,6 +11,3 @@ function BlockImg(props) {
 
   return (getBlock())
 }
-
-const WrappedComponent = styledBlock(BlockImg)
-export default WrappedComponent

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 
-import styledBlock from '../styledblock/StyledBlock.jsx'
 import styles from './blockText.mod.scss'
 
-function BlockText(props) {
+export default function BlockText(props) {
   const block = props.block;
 
   function getBlock() {
@@ -13,6 +11,3 @@ function BlockText(props) {
 
   return ( getBlock() )
 }
-
-const WrappedComponent = styledBlock(BlockText)
-export default WrappedComponent
