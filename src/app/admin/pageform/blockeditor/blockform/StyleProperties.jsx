@@ -19,7 +19,9 @@ const StyleProperties = {
   'cursor': 'none',
   'top': '0',
   'left': '0',
-  'z-index': ''
+  'z-index': '',
+  ':hover': '',
+  ':active': ''
 }
 
 export default StyleProperties;

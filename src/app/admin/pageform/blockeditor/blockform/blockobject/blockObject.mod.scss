@@ -5,6 +5,7 @@
 @import '~colors';
 
 .wrapper {
+  position: relative;
   @include flex($dir: column);
 
   .header {
@@ -16,7 +17,7 @@
       @include center($horz: flex-start)
 
       width: auto;
-      height: 50px;
+      height: 30px;
 
       padding-right: 5px;
     }
@@ -24,6 +25,24 @@
     .list {
       position: relative;
       width: 100%;
+    }
+
+    .deleteBtn {
+      position: absolute;
+
+      opacity: 0.5;
+
+      height: 18px;
+      width: 18px;
+
+      left: -35px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    .deleteBtn:hover {
+      background-color: $brand;
+      @include border($radius: 9px, $width: 0)
     }
   }
 
