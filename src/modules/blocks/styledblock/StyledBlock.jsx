@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Transition from 'modules/transition/Transition.jsx'
 
 import styled from 'styled-components'
-import Themogrify from 'mixins/theme.js'
+import Themogrify from 'modules/theme/Themogrify.js'
 
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
 

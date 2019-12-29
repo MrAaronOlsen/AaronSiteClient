@@ -15,13 +15,13 @@ class AdminNavBar extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <ActionBtn text='Edit Pages'
-          width='100px'
+        <ActionBtn text='Pages'
+          width='75px'
           dataId="EDIT_PAGES"
           onClick= { this.handleAction.bind(this) }/>
 
-        <ActionBtn text='Clear Screen'
-          width='100px'
+        <ActionBtn text='Clear'
+          width='75px'
           classNames={ styles.buttonWrapper }
           dataId="CLEAR_SCREEN"
           onClick= { this.handleAction.bind(this) }/>

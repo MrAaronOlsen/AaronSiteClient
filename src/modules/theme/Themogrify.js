@@ -14,7 +14,7 @@ const defaults = {
 
 const Themogrify = function(styles) {
   styles = {...defaults, ...styles};
-  
+
   if (!styles) {
     return {};
   }
@@ -24,16 +24,20 @@ const Themogrify = function(styles) {
   Object.keys(styles).forEach(key => {
     let value = styles[key];
 
-    let params = getParams(value);
-    value = prepareParams(value, params);
+    if (typeof value === 'object') {
+      scrubbed[key] = Themogrify(value)
+    } else {
+      let params = getParams(value);
+      value = prepareParams(value, params);
 
-    let parts = value.split(' ');
+      let parts = value.split(' ');
 
-    parts.forEach((part, i) => {
-      parts[i] = getThemeColor(part, params)
-    })
+      parts.forEach((part, i) => {
+        parts[i] = getThemeColor(part, params)
+      })
 
-    scrubbed[key] = parts.join(' ');
+      scrubbed[key] = parts.join(' ');
+    }
   })
 
   return scrubbed;

@@ -5,7 +5,7 @@ import shortid from 'shortid';
 import styled from 'styled-components'
 import styles from './transition.mod.scss'
 import TransitionProperties from './TransitionProperties.jsx'
-import Themogrify from 'mixins/theme.js'
+import Themogrify from 'modules/theme/Themogrify.js'
 
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
 

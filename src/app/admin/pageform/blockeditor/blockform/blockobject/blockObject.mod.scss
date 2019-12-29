@@ -5,18 +5,22 @@
 @import '~colors';
 
 .wrapper {
+  position: relative;
   @include flex($dir: column);
 
   .header {
     position: relative;
     @include flex($dir: row);
 
+    height: 30px;
+    width: 100%;
+
     span {
       @include flex($dir: row);
       @include center($horz: flex-start)
 
       width: auto;
-      height: 50px;
+      height: 30px;
 
       padding-right: 5px;
     }
@@ -24,6 +28,31 @@
     .list {
       position: relative;
       width: 100%;
+    }
+
+    .deleteBtn {
+      position: absolute;
+
+      height: 18px;
+      width: 18px;
+
+      left: -27px;
+      top: 50%;
+      transform: translate(0, -50%);
+
+      opacity: 0.0;
+      transition: opacity 500ms ease;
+    }
+
+    .deleteBtn:hover {
+      background-color: $brand;
+      @include border($radius: 9px, $width: 0)
+    }
+  }
+
+  .header:hover {
+    .deleteBtn {
+      opacity: 0.5;
     }
   }
 
@@ -34,7 +63,7 @@
       @include flex($dir: column);
 
       width: 100%;
-      padding-left: 10px;
+      padding-left: 5px;
 
       @include borderLeft($color: $brand)
     }

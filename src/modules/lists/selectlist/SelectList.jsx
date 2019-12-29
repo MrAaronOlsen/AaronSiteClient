@@ -13,7 +13,9 @@ export default class SelectList extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <div className={styles.header}><img src={AddButton} /></div>
+        <div className={styles.header}>
+          <img className={styles.addBtn} src={AddButton} />
+        </div>
         <div className={styles.list}>
           {this.props.items.map((name, i) => {
             return <Element key={i} name={name} onClick={this.onClick.bind(this)}/>
