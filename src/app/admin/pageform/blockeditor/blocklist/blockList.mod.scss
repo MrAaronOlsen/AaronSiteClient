@@ -3,7 +3,6 @@
 @import '~mixins/shadow';
 
 .wrapper {
-  @include flex($dir: column)
   width: 200px;
   height: 100%;
 

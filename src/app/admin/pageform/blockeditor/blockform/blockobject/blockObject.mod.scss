@@ -12,6 +12,9 @@
     position: relative;
     @include flex($dir: row);
 
+    height: 30px;
+    width: 100%;
+
     span {
       @include flex($dir: row);
       @include center($horz: flex-start)
@@ -30,19 +33,26 @@
     .deleteBtn {
       position: absolute;
 
-      opacity: 0.5;
-
       height: 18px;
       width: 18px;
 
-      left: -35px;
+      left: -27px;
       top: 50%;
       transform: translate(0, -50%);
+
+      opacity: 0.0;
+      transition: opacity 500ms ease;
     }
 
     .deleteBtn:hover {
       background-color: $brand;
       @include border($radius: 9px, $width: 0)
+    }
+  }
+
+  .header:hover {
+    .deleteBtn {
+      opacity: 0.5;
     }
   }
 
@@ -53,7 +63,7 @@
       @include flex($dir: column);
 
       width: 100%;
-      padding-left: 10px;
+      padding-left: 5px;
 
       @include borderLeft($color: $brand)
     }

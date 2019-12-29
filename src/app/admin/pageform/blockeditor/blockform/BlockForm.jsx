@@ -83,8 +83,8 @@ export default function BlockForm(props) {
   }
 
   return(
-    props.blockKey &&
-      <div className={styles.wrapper} key={props.blockKey}>
+    <div className={styles.wrapper} key={props.blockKey}>
+      {props.blockKey && <React.Fragment>
         { blockText('type', props, onChange) }
         { blockContent(props, onChange) }
         { blockText('link', props, onChange) }
@@ -92,6 +92,7 @@ export default function BlockForm(props) {
         { blockObject('transition', props, onChange) }
         { blockObject('styles', props, onChange) }
         { blockText('sequence', props, onChange) }
-      </div> || null
+      </React.Fragment>}
+    </div>
   )
 }
