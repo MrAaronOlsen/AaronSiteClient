@@ -1,0 +1,21 @@
+@import '~colors';
+@import '~mixins/borders';
+
+.wrapper {
+  position: absolute;
+
+  height: 15px;
+  width: 15px;
+
+  left: -27px;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  opacity: 0.0;
+  transition: opacity 500ms ease;
+}
+
+.wrapper:hover {
+  background-color: $brand;
+  @include border($radius: 9px, $width: 0)
+}

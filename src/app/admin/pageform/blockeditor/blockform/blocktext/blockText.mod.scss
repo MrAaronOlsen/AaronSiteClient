@@ -28,21 +28,4 @@
 
     @include borderBottom($color: $brand);
   }
-
-  img {
-    position: absolute;
-    visibility: hidden;
-
-    opacity: 0.5;
-
-    height: 18px;
-    width: 18px;
-
-    left: -35px;
-  }
-
-  img:hover {
-    background-color: $brand;
-    @include border($radius: 9px, $width: 0)
-  }
 }

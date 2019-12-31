@@ -8,7 +8,7 @@
   @include flex($dir: column);
 
   height: 30px;
-  width: 100%;
+  width: 20px;
 
   overflow: scroll;
 
@@ -23,12 +23,12 @@
     padding-right: 20px;
 
     .addBtn {
-      height: 18px;
-      width: 18px;
+      height: 15px;
+      width: 15px;
 
       border-radius: 19px;
 
-      opacity: 0;
+      opacity: 0.1;
       transition: opacity 500ms ease;
     }
   }
@@ -36,7 +36,7 @@
   .list {
     position: absolute;
 
-    left: 25px;
+    left: 20px;
     top: 20px;
 
     width: 0;
@@ -60,6 +60,8 @@
 }
 
 .wrapper:hover {
+  width: 50px;
+
   .list {
     visibility: visible;
 
@@ -71,6 +73,7 @@
     .addBtn {
       opacity: 0.5;
       background-color: $brand;
+      @include shadow;
     }
   }
 }

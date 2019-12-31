@@ -23,23 +23,29 @@ const block = function(props) {
   return props.block || {}
 }
 
-const blockText = function(name, props, onChange) {
+const blockText = function(name, props, focused, onChange) {
   return <BlockText
+    locator={"form_line"}
+    focused={focused}
     name={name}
     text={block(props)[name]}
     onChange={onChange} />
 }
 
-const blockRich = function(name, props, onChange) {
+const blockRich = function(name, props, focused, onChange) {
   return <BlockRich
+    locator={"form_line"}
+    focused={focused}
     name={name}
     text={block(props)[name]}
     blockKey={props.blockKey}
     onChange={onChange} />
 }
 
-const blockObject = function(name, props, onChange) {
+const blockObject = function(name, props, focused, onChange) {
   return <BlockObject
+    locator={"form_line"}
+    focused={focused}
     name={name}
     object={block(props)[name]}
     objectOrder={objectAttributesOrder[name]}
@@ -63,17 +69,61 @@ const blockTypesKey = {
   'wrapper': 'first_child'
 }
 
-const blockContent = function(props, onChange) {
+const blockContent = function(props, focused, onChange) {
   var type = block(props).type;
 
   if (type && blockTypes[type]) {
-    return blockTypes[type](blockTypesKey[type], props, onChange)
+    return blockTypes[type](blockTypesKey[type], props, focused, onChange)
   }
 
   return null;
 }
 
+function setUpClickListeners(clickedIn, clickedOut) {
+
+  React.useEffect(() => {
+    document.addEventListener("mousedown", clickedOut);
+    document.addEventListener("mousedown", clickedIn);
+
+    return () => {
+      document.removeEventListener("mousedown", clickedOut);
+      document.removeEventListener("mousedown", clickedIn);
+    };
+  }, []);
+}
+
 export default function BlockForm(props) {
+  const ref = React.useRef(null);
+  const [focused, setFocused] = React.useState("");
+
+  setUpClickListeners(clickedIn, clickedOut)
+
+  function clickedIn(event) {
+    const target = event.target;
+
+    if (ref.current && ref.current.contains(target)) {
+      var node = target
+
+      while (node.parentNode) {
+        if (node.dataset && node.dataset.locator === "form_line") {
+          break;
+        }
+
+        node = node.parentNode;
+      }
+
+      if (node && node.id) {
+        console.log("Focusing Id: " + node.id)
+        setFocused(node.id)
+      }
+    }
+  }
+
+  function clickedOut(event) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setFocused("")
+    }
+  }
 
   function onChange(line, name) {
     let block = props.block;
@@ -83,15 +133,15 @@ export default function BlockForm(props) {
   }
 
   return(
-    <div className={styles.wrapper} key={props.blockKey}>
+    <div className={styles.wrapper} key={props.blockKey} ref={ref}>
       {props.blockKey && <React.Fragment>
-        { blockText('type', props, onChange) }
-        { blockContent(props, onChange) }
-        { blockText('link', props, onChange) }
-        { blockText('next', props, onChange) }
-        { blockObject('transition', props, onChange) }
-        { blockObject('styles', props, onChange) }
-        { blockText('sequence', props, onChange) }
+        { blockText('type', props, focused, onChange) }
+        { blockContent(props, focused, onChange) }
+        { blockText('link', props, focused, onChange) }
+        { blockText('next', props, focused, onChange) }
+        { blockObject('transition', props, focused, onChange) }
+        { blockObject('styles', props, focused, onChange) }
+        { blockText('sequence', props, focused, onChange) }
       </React.Fragment>}
     </div>
   )

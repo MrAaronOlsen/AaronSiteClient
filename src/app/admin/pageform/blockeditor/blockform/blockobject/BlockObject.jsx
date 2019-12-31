@@ -2,10 +2,10 @@ import React from 'react'
 import shortid from 'shortid'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
-import SelectList from 'modules/lists/selectlist/SelectList.jsx'
+import DeleteBtn from 'blockform/common/deletebtn/DeleteBtn.jsx'
+import SelectList from 'blockform/common/selectlist/SelectList.jsx'
 import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
-import DeleteBtn from 'public/images/delete-button.png'
 import styles from './blockObject.mod.scss'
 
 const nestedStyles = new Set([
@@ -15,7 +15,7 @@ const nestedStyles = new Set([
 ])
 
 export default function BlockObject(props) {
-  var id = shortid.generate();
+  const [id] = React.useState(shortid.generate())
 
   function object() {
     return props.object || {}
@@ -23,6 +23,8 @@ export default function BlockObject(props) {
 
   function newBlockObject(key, index) {
     return <BlockObject key={props.blockKey + index}
+      locator={"form_line"}
+      focused={props.focused}
       name={key}
       object={object()[key] || {}}
       objectOrder={StylePropertiesList}
@@ -34,6 +36,8 @@ export default function BlockObject(props) {
 
   function newTextBlock(key, index) {
     return <BlockText key={props.blockKey + key}
+      locator={"form_line"}
+      focused={props.focused}
       name={key}
       text={object()[key]}
       onChange={onChange}
@@ -74,25 +78,31 @@ export default function BlockObject(props) {
     }
   }
 
-  function sorted() {
+  function sortedFields() {
     var list = Object.keys(object());
+    var ordered;
+
     var order = props.objectOrder;
 
     if (order) {
-      return list.sort(function(a, b) {
+      ordered = list.sort(function(a, b) {
         return order.indexOf(a) - order.indexOf(b);
       });
     } else {
       return list;
     }
+
+    return ordered.map((key, i) => {
+      return getField(key, i)
+    })
   }
 
   return(
-    <div className={styles.wrapper}>
+    <div id={id} className={styles.wrapper} data-locator={props.locator}>
 
       <div className={styles.header}>
-        {props.delete ? <img src={DeleteBtn} className={styles.deleteBtn} onClick={deleteLine}/> : null}
-        
+        { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }
+
         <span>{props.name}: </span>
         <div className={styles.list}>
           <SelectList items={Object.keys(props.attributes)} onClick={addProperty}/>
@@ -101,11 +111,7 @@ export default function BlockObject(props) {
 
       <div className={styles.properties}>
         <div className={styles.property}>
-          {
-            sorted().map((key, i) => {
-              return getField(key, i)
-            })
-          }
+          { sortedFields() }
         </div>
       </div>
     </div>

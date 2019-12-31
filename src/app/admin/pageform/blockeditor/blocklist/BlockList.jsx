@@ -35,7 +35,7 @@ export default function BlockList(props) {
   return(
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <img src={AddButton} onClick={props.addBlock}/>
+        <img src={AddButton} className={styles.addBtn} onClick={props.addBlock}/>
       </div>
 
       { unwindList() }

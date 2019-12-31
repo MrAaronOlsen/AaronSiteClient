@@ -6,7 +6,7 @@
   width: 200px;
   height: 100%;
 
-  padding: 10px 0 10px 10px;
+  padding: 10px 5px 10px 5px;
 
   .header {
     @include flex($dir: row)
@@ -16,18 +16,20 @@
 
     @include borderBottom($color: $brand)
 
-    img {
+    .addBtn {
       position: relative;
-      opacity: 0.5;
+      opacity: 0.1;
 
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
 
       @include border($radius: 9px, $width: 0);
+      transition: opacity 500ms ease;
     }
   }
 
-  img:hover {
+  .addBtn:hover {
+    opacity: 0.5;
     background-color: white-overlay($alpha: 0.5);
   }
 }
