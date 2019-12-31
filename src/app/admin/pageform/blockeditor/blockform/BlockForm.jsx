@@ -19,13 +19,15 @@ const objectAttributesOrder = {
   'styles': StylePropertiesList
 }
 
+const locator = "form_line"
+
 const block = function(props) {
   return props.block || {}
 }
 
 const blockText = function(name, props, focused, onChange) {
   return <BlockText
-    locator={"form_line"}
+    locator={locator}
     focused={focused}
     name={name}
     text={block(props)[name]}
@@ -34,7 +36,7 @@ const blockText = function(name, props, focused, onChange) {
 
 const blockRich = function(name, props, focused, onChange) {
   return <BlockRich
-    locator={"form_line"}
+    locator={locator}
     focused={focused}
     name={name}
     text={block(props)[name]}
@@ -44,7 +46,7 @@ const blockRich = function(name, props, focused, onChange) {
 
 const blockObject = function(name, props, focused, onChange) {
   return <BlockObject
-    locator={"form_line"}
+    locator={locator}
     focused={focused}
     name={name}
     object={block(props)[name]}
@@ -105,7 +107,7 @@ export default function BlockForm(props) {
       var node = target
 
       while (node.parentNode) {
-        if (node.dataset && node.dataset.locator === "form_line") {
+        if (node.dataset && node.dataset.locator === locator) {
           break;
         }
 
@@ -113,7 +115,6 @@ export default function BlockForm(props) {
       }
 
       if (node && node.id) {
-        console.log("Focusing Id: " + node.id)
         setFocused(node.id)
       }
     }
