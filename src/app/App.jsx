@@ -10,16 +10,13 @@ import styles from "./app.mod.scss";
 const App = function() {
   return(
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div id='app' className={styles.wrapper}>
-          <Switch>
-            <Route exact path='/admin' component={Admin}/>
-            <Route path='/' component={Main} />
-          </Switch>
-        </div>
-      </Suspense>
+      <div id='app' className={styles.wrapper}>
+        <Switch>
+          <Route exact path='/admin' component={Admin}/>
+          <Route path='/' component={Main} />
+        </Switch>
+      </div>
     </BrowserRouter>
-
   )
 }
 
