@@ -8,7 +8,7 @@ import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
 
-const nestedStyles = new Set([
+const nestedKeys = new Set([
   'styles',
   ':hover',
   ':active'
@@ -23,8 +23,8 @@ export default function BlockObject(props) {
 
   function newBlockObject(key, index) {
     return <BlockObject key={props.blockKey + index}
-      locator={"form_line"}
       focused={props.focused}
+      focus={props.focus}
       name={key}
       object={object()[key] || {}}
       objectOrder={StylePropertiesList}
@@ -36,8 +36,8 @@ export default function BlockObject(props) {
 
   function newTextBlock(key, index) {
     return <BlockText key={props.blockKey + key}
-      locator={"form_line"}
       focused={props.focused}
+      focus={props.focus}
       name={key}
       text={object()[key]}
       onChange={onChange}
@@ -71,7 +71,7 @@ export default function BlockObject(props) {
   }
 
   function getField(key, index) {
-    if (nestedStyles.has(key)) {
+    if (nestedKeys.has(key)) {
       return newBlockObject(key, index)
     } else {
       return newTextBlock(key, index)
