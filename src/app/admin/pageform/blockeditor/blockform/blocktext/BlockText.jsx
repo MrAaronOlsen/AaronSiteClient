@@ -12,8 +12,12 @@ export default function BlockText(props) {
     props.delete(props.name)
   }
 
+  function focus() {
+    props.focus(id)
+  }
+
   return(
-    <div id={id} className={styles.wrapper} data-locator={props.locator} >
+    <div className={styles.wrapper} onClick={focus}>
       <span>{props.name}: </span>
       <TextInput
         name={props.name}

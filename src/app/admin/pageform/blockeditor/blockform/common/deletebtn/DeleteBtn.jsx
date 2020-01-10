@@ -22,6 +22,6 @@ export default function BlockText(props) {
   }
 
   return(
-    <img src={DeleteBtn} className={styles.wrapper} onClick={props.deleteLine} ref={ref}/>
+    <img src={DeleteBtn} className={styles.wrapper} onClick={props.onClick} ref={ref}/>
   )
 }

@@ -8,14 +8,19 @@
   @include flex($dir: row)
   @include center($vert: flex-start);
 
-  height: 50px;
+  height: 35px;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
 
   .header {
-    font-size: 20px;
+    @include flex($dir: row)
+    @include center($horz: flex-start);
+
+    font-size: 12px;
     height: 100%;
     width: 100%;
+
+    padding-left: 10px;
 
     overflow: hidden;
   }
@@ -40,7 +45,7 @@
     height: 100%;
     width: 30px;
 
-    font-size: 20px;
+    font-size: 12px;
     text-align: center;
 
     padding-left: 10px;
@@ -48,12 +53,16 @@
   }
 }
 
+.focused {
+  background-color: white-overlay($alpha: 0.5);
+}
+
 .published {
-  background-color: rgba(mix-brand($color: red, $weight: 50%), 0.15)
+  background-color: rgba(mix-brand($color: green, $weight: 50%), 0.15)
 }
 
 .checked_out {
-  background-color: rgba(mix-brand($color: green, $weight: 50%), 0.15)
+  background-color: rgba(mix-brand($color: red, $weight: 50%), 0.15)
 }
 
 .wrapper:hover {

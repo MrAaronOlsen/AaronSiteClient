@@ -16,6 +16,8 @@ export default class BlockRich extends Component {
     }
   }
 
+
+
   render() {
     return(
       <div className={styles.wrapper}>

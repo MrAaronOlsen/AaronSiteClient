@@ -7,12 +7,10 @@ export default function BlockWrapper(props) {
   const block = props.block;
 
   return (
-    <React.Fragment>
-      <BlockIterator
-        triggerOut={props.triggerOut}
-        triggerAction={props.actionOut}
-        blocks={blocks}
-        start={block.first_child} />
-    </React.Fragment>
+    <BlockIterator
+      triggerOut={props.triggerOut}
+      triggerAction={props.actionOut}
+      blocks={blocks}
+      start={block.first_child} />
   )
 }

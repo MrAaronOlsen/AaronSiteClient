@@ -4,6 +4,10 @@ import styles from './element.mod.scss'
 
 export default function Element(props) {
 
+  function getHeaderClases() {
+    return props.focused ? [styles.header, styles.focused].join(" ") : styles.header
+  }
+
   function focus() {
     props.focus(props.pageId)
   }
@@ -11,7 +15,7 @@ export default function Element(props) {
   return(
     <div className={styles.wrapper} onClick={focus}>
 
-      <div className={styles.header}>
+      <div className={getHeaderClases()}>
         { props.header }
       </div>
 
