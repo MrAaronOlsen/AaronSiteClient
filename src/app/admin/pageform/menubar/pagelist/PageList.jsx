@@ -12,6 +12,7 @@ export default function PageList(props) {
         {props.pages.map((page, i) => {
           return <Element key={i}
             pageId={page.id}
+            focused={props.pageId === page.id}
             header={page.header}
             sequence={page.sequence}
             mode={page.mode}

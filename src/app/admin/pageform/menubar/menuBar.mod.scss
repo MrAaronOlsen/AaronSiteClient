@@ -13,6 +13,8 @@
 
   padding-left: 20px;
 
+  background-color: white-overlay($color: $brand, $alpha: 0.5);
+
   .button {
     margin-right: 20px;
   }

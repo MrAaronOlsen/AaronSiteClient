@@ -5,7 +5,7 @@ import BlockRich from './blockrich/BlockRich.jsx';
 import BlockImg from './blockimg/BlockImg.jsx';
 import BlockWrapper from './blockwrapper/BlockWrapper.jsx';
 
-import styledBlock from './styledblock/StyledBlock.jsx';
+import StyledBlock from './styledblock/StyledBlock.jsx';
 import linkedBlock from './linkedblock/LinkedBlock.jsx';
 import modalBlock from './modalblock/ModalBlock.jsx';
 
@@ -49,9 +49,11 @@ export default function BlockIterator(props) {
       Block = modalBlock(Block)
     }
 
-    Block = styledBlock(Block)
-
-    return <Block {...props} blocks={blocks} block={block} key={thisBlock} />
+    return(
+      <StyledBlock {...props} block={block} key={thisBlock}>
+        <Block {...props} blocks={blocks} block={block} />
+      </StyledBlock>
+    )
   }
 
   function getBlocks() {

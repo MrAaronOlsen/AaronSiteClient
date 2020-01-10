@@ -23,32 +23,24 @@ export default function modalBlock(Block) {
     }
 
     triggerOut() {
-      console.log("Triggering Out...")
-
       this.setState({
-        trigger: true
+        trigger: !this.state.trigger
       })
     }
 
     open() {
-      console.log("Opening...")
-
       this.setState({
         open: true
       })
     }
 
     close() {
-      console.log("Closing...")
-
       this.setState({
-        open: false,
-        trigger: false
+        open: false
       })
     }
 
     render() {
-      console.log(this.state)
 
       return (
         <React.Fragment>

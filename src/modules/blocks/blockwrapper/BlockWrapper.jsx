@@ -8,7 +8,7 @@ export default function BlockWrapper(props) {
 
   return (
     <BlockIterator
-      outTrigger={props.triggerOut}
+      triggerOut={props.triggerOut}
       triggerAction={props.actionOut}
       blocks={blocks}
       start={block.first_child} />

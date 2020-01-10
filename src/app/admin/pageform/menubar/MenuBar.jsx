@@ -10,6 +10,7 @@ export default function MenuBar(props) {
     <div className={ styles.wrapper }>
       <PageList
         pages={props.pages}
+        pageId={props.pageId}
         focus={props.focus} />
 
       {props.pageId && props.mode != 'published' &&
