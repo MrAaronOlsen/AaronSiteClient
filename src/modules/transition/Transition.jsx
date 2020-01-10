@@ -10,6 +10,12 @@ import Themogrify from 'modules/theme/Themogrify.js'
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
 
 export default class Transition extends Component {
+  constructor(props) {
+    super(props)
+
+    console.log("Transition Created... :" + props.outTrigger)
+  }
+
   // Used to identify itself when multiple transitions exist on the dom.
   id = shortid.generate();
 
@@ -21,6 +27,7 @@ export default class Transition extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log("Transition Updating... :" + this.props.outTrigger + " | Prev " + prevProps.outTrigger)
     // Checks to see if we have a state change to trigger an Out Transition.
     if (this.props.outTrigger !== prevProps.outTrigger) {
 
@@ -98,6 +105,8 @@ export default class Transition extends Component {
   }
 
   render() {
+    console.log("Transition Rendering... :" + this.props.outTrigger);
+
     return(
       <StylesWrapper id={this.id}
         name="transition-style"

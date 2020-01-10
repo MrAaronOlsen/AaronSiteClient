@@ -114,6 +114,7 @@ export default function BlockForm(props) {
         { blockText('type') }
         { blockContent() }
         { blockText('link') }
+        { blockText('modal') }
         { blockText('next') }
         { blockObject('transition') }
         { blockObject('styles') }

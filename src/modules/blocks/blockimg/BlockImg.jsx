@@ -6,7 +6,11 @@ export default function BlockImg(props) {
   const block = props.block;
 
   function getBlock() {
-    return <img name={"block-img"} className={styles.wrapper} src={block.img_url} />
+    return <img
+      name={"block-img"}
+      className={styles.wrapper}
+      src={block.img_url}
+      onClick={props.onClick} />
   }
 
   return (getBlock())

@@ -5,8 +5,9 @@ import BlockRich from './blockrich/BlockRich.jsx';
 import BlockImg from './blockimg/BlockImg.jsx';
 import BlockWrapper from './blockwrapper/BlockWrapper.jsx';
 
-import styledBlock from './styledblock/StyledBlock.jsx'
+import styledBlock from './styledblock/StyledBlock.jsx';
 import linkedBlock from './linkedblock/LinkedBlock.jsx';
+import modalBlock from './modalblock/ModalBlock.jsx';
 
 const types = {
   "text": BlockText,
@@ -44,6 +45,8 @@ export default function BlockIterator(props) {
 
     if (block.link) {
       Block = linkedBlock(Block)
+    } else if(block.modal) {
+      Block = modalBlock(Block)
     }
 
     Block = styledBlock(Block)
