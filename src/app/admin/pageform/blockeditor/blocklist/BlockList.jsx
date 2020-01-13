@@ -15,26 +15,24 @@ export default function BlockList(props) {
       return null;
     }
 
-    if (!blocks[props.start]) {
-      return buildList(Object.keys(blocks));
-    }
-
-    const list = new Set();
-    nextBlock = props.start;
-
-    while (hasNext(list)) {
-      // Does nothing
-    }
-
     const allKeys = Object.keys(blocks);
 
+    if (!blocks[props.start]) {
+      return buildList(allKeys);
+    }
+
+    const ordered = new Set();
+    nextBlock = props.start;
+
+    while (hasNext(ordered));
+
     allKeys.forEach(key => {
-      if (!list.has(key)) {
-        list.add(key)
+      if (!ordered.has(key)) {
+        ordered.add(key)
       }
     })
 
-    return buildList(list)
+    return buildList(ordered)
   }
 
   function buildList(keys) {
@@ -55,7 +53,6 @@ export default function BlockList(props) {
 
   function hasNext(list) {
     list.add(nextBlock)
-
     const block = props.blocks[nextBlock]
 
     // To prevent infinite loops we check if the next block is calling itself or has already been called.
