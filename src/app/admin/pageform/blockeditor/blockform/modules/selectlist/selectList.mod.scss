@@ -5,75 +5,72 @@
 @import '~colors';
 
 .wrapper {
+  position: relative;
+
   @include flex($dir: column);
 
   height: 30px;
-  width: 20px;
-
-  overflow: scroll;
+  width: 100%;
 
   .header {
+    position: relative;
+
     @include flex($dir: row)
     @include center($horz: flex-start)
 
     height: 30px;
     width: 100%;
 
-    padding-left: 0;
-    padding-right: 20px;
+    .name {
+      position: relative;
 
-    .addBtn {
-      height: 15px;
-      width: 15px;
+      overflow: visible;
 
-      border-radius: 19px;
+      .list {
+        position: absolute;
 
-      opacity: 0.1;
-      transition: opacity 500ms ease;
+        left: 100%;
+        top: 20px;
+
+        width: 0;
+        height: 0;
+
+        visibility: hidden;
+
+        padding: 10px;
+
+        overflow: scroll;
+        background-color: $background;
+
+        @include border($color: $brand, $radius: 5px)
+        @include shadow;
+
+        overflow: scroll;
+        z-index: 999;
+
+        transition: width 150ms cubic-bezier(0.635, 0.160, 0.345, 0.985) 0ms;
+      }
+    }
+
+    .selected {
+      width: 100%;
+
+      padding-left: 10px;
     }
   }
 
-  .list {
-    position: absolute;
 
-    left: 20px;
-    top: 20px;
-
-    width: 0;
-    height: 0;
-
-    visibility: hidden;
-
-    padding: 10px;
-
-    overflow: scroll;
-    background-color: $background;
-
-    @include border($color: $brand, $radius: 5px)
-    @include shadow;
-
-    overflow: scroll;
-    z-index: 999;
-
-    transition: height 300ms cubic-bezier(0.635, 0.160, 0.345, 0.985) 125ms, width 150ms cubic-bezier(0.635, 0.160, 0.345, 0.985) 0ms;
-  }
 }
 
 .wrapper:hover {
-  width: 50px;
-
-  .list {
-    visibility: visible;
-
-    height: 300px;
-    width: 200px;
-  }
-
   .header {
-    .addBtn {
-      opacity: 0.5;
-      background-color: $brand;
-      @include shadow;
+    .name{
+      .list {
+        visibility: visible;
+
+        width: 200px;
+        height: auto;
+      }
     }
   }
 }

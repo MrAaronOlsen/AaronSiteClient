@@ -6,7 +6,7 @@ import SelectList from 'blockform/modules/selectlist/SelectList.jsx'
 import styles from './blockList.mod.scss'
 
 export default function BlockList(props) {
-  const [id] = React.useState(shortid.generate())
+  const [id] = React.useState(shortid.generate());
 
   function deleteLine() {
     props.delete(props.name)
@@ -22,7 +22,12 @@ export default function BlockList(props) {
 
   return (
     <div className={styles.wrapper} onClick={focus}>
-      <SelectList items={props.attributes} onClick={onSelect}/>
+      <SelectList
+        name={props.name}
+        items={props.attributes}
+        selected={props.text}
+        onClick={onSelect} />
+
     </div>
   )
 }

@@ -1,27 +1,40 @@
 import React, { Component } from 'react'
 
-import Element from './element/Element.jsx'
-import AddButton from 'public/images/add-button.png'
+import Line from './line/Line.jsx'
 import styles from './selectList.mod.scss'
 
-export default class SelectList extends Component {
+export default function SelectList(props) {
 
-  onClick(name) {
-    this.props.onClick(name)
+  function onClick(name) {
+    props.onClick(name)
   }
 
-  render() {
-    return(
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <img className={styles.addBtn} src={AddButton} />
+  function buildList() {
+    if (props.items) {
+      return props.items.map((name, i) => {
+        return <Line key={i}
+          name={name}
+          selected={name === props.selected}
+          onClick={onClick.bind(this)}/>
+      })
+    } else {
+      return null;
+    }
+  }
+
+  return(
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        <div className={styles.name}>
+          { props.name + ":"}
+          <div className={styles.list}>
+            { buildList() }
+          </div>
         </div>
-        <div className={styles.list}>
-          {this.props.items.map((name, i) => {
-            return <Element key={i} name={name} onClick={this.onClick.bind(this)}/>
-          })}
+        <div className={styles.selected}>
+          { props.selected }
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
