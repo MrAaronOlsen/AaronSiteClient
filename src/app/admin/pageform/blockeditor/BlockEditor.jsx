@@ -67,6 +67,7 @@ export default class BlockEditor extends Component {
     return(
       <div className={styles.wrapper}>
         <BlockList
+          start={"start"}
           blocks={this.props.blocks}
           focused={this.state.blockKey}
           addBlock={this.addBlock.bind(this)}
