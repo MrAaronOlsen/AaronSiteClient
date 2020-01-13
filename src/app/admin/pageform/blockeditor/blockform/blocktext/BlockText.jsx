@@ -1,7 +1,7 @@
 import React from 'react'
 import shortid from 'shortid'
 
-import DeleteBtn from 'blockform/common/deletebtn/DeleteBtn.jsx'
+import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
 import TextInput from 'modules/textinput/TextInput.jsx'
 import styles from './blockText.mod.scss'
 

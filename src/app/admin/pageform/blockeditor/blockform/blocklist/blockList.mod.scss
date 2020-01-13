@@ -1,0 +1,46 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  position: relative;
+  @include flex($dir: column);
+
+  .header {
+    position: relative;
+    @include flex($dir: row);
+
+    height: 30px;
+    width: 100%;
+
+    span {
+      @include flex($dir: row);
+      @include center($horz: flex-start)
+
+      width: auto;
+      height: 30px;
+
+      padding-right: 5px;
+    }
+
+    .list {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  .properties {
+    padding-left: 20px;
+
+    .property {
+      @include flex($dir: column);
+
+      width: 100%;
+      padding-left: 5px;
+
+      @include borderLeft($color: $brand)
+    }
+  }
+}

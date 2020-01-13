@@ -2,6 +2,7 @@ import React from 'react'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
+import BlockList from 'blockform/blocklist/BlockList.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
 
 import TransitionProperties, { TransitionPropertiesList } from 'modules/transition/TransitionProperties.jsx'
@@ -78,6 +79,16 @@ export default function BlockForm(props) {
       onChange={onChange} />
   }
 
+  const blockList = function(name) {
+    return <BlockList
+      focused={focused}
+      focus={setFocused}
+      name={name}
+      text={block()[name]}
+      attributes={blockLists[name]}
+      onChange={onChange} />
+  }
+
   const blockObject = function(name) {
     return <BlockObject
       focused={focused}
@@ -98,6 +109,10 @@ export default function BlockForm(props) {
     'wrapper': blockText
   }
 
+  const blockLists = {
+    'type': Object.keys(blockTypes)
+  }
+
   const blockContent = function() {
     var type = block().type;
 
@@ -111,7 +126,7 @@ export default function BlockForm(props) {
   return(
     <div className={styles.wrapper} key={props.blockKey} ref={ref}>
       {props.blockKey && <React.Fragment>
-        { blockText('type') }
+        { blockList('type') }
         { blockContent() }
         { blockText('link') }
         { blockText('modal') }

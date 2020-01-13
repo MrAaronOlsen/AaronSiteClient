@@ -2,8 +2,8 @@ import React from 'react'
 import shortid from 'shortid'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
-import DeleteBtn from 'blockform/common/deletebtn/DeleteBtn.jsx'
-import SelectList from 'blockform/common/selectlist/SelectList.jsx'
+import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
+import SelectList from 'blockform/modules/selectlist/SelectList.jsx'
 import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
