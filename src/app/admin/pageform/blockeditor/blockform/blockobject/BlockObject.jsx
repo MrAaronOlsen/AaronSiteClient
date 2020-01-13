@@ -9,7 +9,6 @@ import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 import styles from './blockObject.mod.scss'
 
 const nestedKeys = new Set([
-  'styles',
   ':hover',
   ':active'
 ])

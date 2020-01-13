@@ -118,7 +118,6 @@ export default function BlockForm(props) {
         { blockText('next') }
         { blockObject('transition') }
         { blockObject('styles') }
-        { blockText('sequence') }
       </React.Fragment>}
     </div>
   )
