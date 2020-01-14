@@ -21,27 +21,29 @@ export default function BlockList(props) {
       return buildList(allKeys);
     }
 
-    const ordered = new Set();
+    const ordered = {};
     nextBlock = props.start;
 
     while (hasNext(ordered));
 
     allKeys.forEach(key => {
-      if (!ordered.has(key)) {
-        ordered.add(key)
+      if (!ordered[key]) {
+        ordered[key] = 0
       }
     })
 
     return buildList(ordered)
   }
 
-  function buildList(keys) {
+  function buildList(ordered) {
+    const names = Object.keys(ordered);
     return (
-      [...keys].map((name, i) => {
+      names.map((name, i) => {
 
         if (blocks[name]) {
-          return <Element key={keys.length + blocks[name].id}
+          return <Element key={names.size + blocks[name].id}
             name={name}
+            depth={ordered[name]}
             focused={props.focused == name}
             renameBlock={props.renameBlock}
             deleteBlock={props.deleteBlock}
@@ -51,12 +53,23 @@ export default function BlockList(props) {
     )
   }
 
-  function hasNext(list) {
-    list.add(nextBlock)
+  function hasNext(list, depth = 0) {
+    list[nextBlock] = depth;
     const block = props.blocks[nextBlock]
 
+    if (!block) {
+      return false;
+    }
+
+    if (block.first_child) {
+      depth += 1
+      nextBlock = block.first_child;
+      while (hasNext(list, depth));
+      nextBlock = block.first_child;
+    }
+
     // To prevent infinite loops we check if the next block is calling itself or has already been called.
-    if (!block || !block.next || block.next === nextBlock || list.has(block.next)) {
+    if (!block.next || block.next === nextBlock || list[block.next]) {
       return false
     } else {
       nextBlock = block.next;

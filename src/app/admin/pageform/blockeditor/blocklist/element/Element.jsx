@@ -29,9 +29,8 @@ export default function BlockList(props) {
     return [props.focused ? styles.focused : "", styles.textWrapper].join(" ")
   }
 
-
   return(
-    <div className={styles.wrapper} onClick={onClick.bind(this)}>
+    <div className={styles.wrapper} style={{paddingLeft: props.depth * 10}} onClick={onClick.bind(this)}>
       <TextInput text={props.name}
         onChange={onChange.bind(this)}
         classNames={classNames()}>
