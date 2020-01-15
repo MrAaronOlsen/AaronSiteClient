@@ -20,7 +20,7 @@ const objectAttributesOrder = {
   'styles': StylePropertiesList
 }
 
-const blockTypesKey = {
+const blockContentTypesKeys = {
   'text': 'content',
   'rich': 'content',
   'img': 'img_url',
@@ -58,6 +58,10 @@ export default function BlockForm(props) {
 
   const block = function() {
     return props.block || {}
+  }
+
+  const blocks = function() {
+    return props.blocks || {}
   }
 
   const blockText = function(name) {
@@ -102,22 +106,24 @@ export default function BlockForm(props) {
       hasStyles />
   }
 
-  const blockTypes = {
+  const blockContentTypes = {
     'text': blockText,
     'rich': blockRich,
     'img': blockText,
-    'wrapper': blockText
+    'wrapper': blockList
   }
 
   const blockLists = {
-    'type': Object.keys(blockTypes)
+    'type': Object.keys(blockContentTypes),
+    'next': Object.keys(blocks()),
+    'first_child': Object.keys(blocks())
   }
 
   const blockContent = function() {
     var type = block().type;
 
-    if (type && blockTypes[type]) {
-      return blockTypes[type](blockTypesKey[type])
+    if (type && blockContentTypes[type]) {
+      return blockContentTypes[type](blockContentTypesKeys[type])
     }
 
     return null;
@@ -130,7 +136,7 @@ export default function BlockForm(props) {
         { blockContent() }
         { blockText('link') }
         { blockText('modal') }
-        { blockText('next') }
+        { blockList('next') }
         { blockObject('transition') }
         { blockObject('styles') }
       </React.Fragment>}

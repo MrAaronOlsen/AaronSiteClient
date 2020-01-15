@@ -78,6 +78,7 @@ export default class BlockEditor extends Component {
         <BlockForm
           block={this.state.block}
           blockKey={this.state.blockKey}
+          blocks={this.props.blocks}
           onChange={this.updateBlock.bind(this)} />
       </div>
     )
