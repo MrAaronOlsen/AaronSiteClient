@@ -8,6 +8,9 @@ import styles from './blockList.mod.scss'
 
 export default function BlockList(props) {
   const blocks = props.blocks;
+  const allKeys = Object.keys(blocks);
+  const size = allKeys.size;
+
   var nextBlock;
 
   function unwindList() {
@@ -15,10 +18,12 @@ export default function BlockList(props) {
       return null;
     }
 
-    const allKeys = Object.keys(blocks);
-
     if (!blocks[props.start]) {
-      return buildList(allKeys);
+      return allKeys.map(key => {
+        if (blocks[key]) {
+          return makeElement(key, blocks[key], -1)
+        }
+      })
     }
 
     const ordered = {};
@@ -27,44 +32,31 @@ export default function BlockList(props) {
     while (hasNext(ordered));
 
     allKeys.forEach(key => {
-      if (!ordered[key]) {
-        ordered[key] = 0
+      if (!ordered[key] && blocks[key]) {
+        ordered[key] = makeElement(key, blocks[key], -1)
       }
     })
 
-    return buildList(ordered)
-  }
-
-  function buildList(ordered) {
-    const names = Object.keys(ordered);
-    return (
-      names.map((name, i) => {
-
-        if (blocks[name]) {
-          return <Element key={names.size + blocks[name].id}
-            name={name}
-            depth={ordered[name]}
-            focused={props.focused == name}
-            renameBlock={props.renameBlock}
-            deleteBlock={props.deleteBlock}
-            onClick={props.focusBlock} />
-        }
-      })
-    )
+    return Object.values(ordered)
   }
 
   function hasNext(list, depth = 0) {
-    list[nextBlock] = depth;
-    const block = props.blocks[nextBlock]
+    const block = blocks[nextBlock];
 
     if (!block) {
       return false;
     }
 
+    list[nextBlock] = makeElement(nextBlock, block, depth);
+
     if (block.first_child) {
       depth += 1
       nextBlock = block.first_child;
+
+      // Recursively call hasNext to expand child blocks.
       while (hasNext(list, depth));
+
+      // Reassign nextBlock to parent block to continue chain.
       nextBlock = block.first_child;
     }
 
@@ -75,6 +67,18 @@ export default function BlockList(props) {
       nextBlock = block.next;
       return true;
     }
+  }
+
+  function makeElement(name, block, depth) {
+
+    return <Element key={size + block.id}
+      name={name}
+      block={block}
+      depth={depth}
+      focused={props.focused == name}
+      renameBlock={props.renameBlock}
+      deleteBlock={props.deleteBlock}
+      onClick={props.focusBlock} />
   }
 
   return(

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import Transition from 'modules/transition/Transition.jsx'
 
-
 export default function StyledBlock(props) {
   const block = props.block;
 
