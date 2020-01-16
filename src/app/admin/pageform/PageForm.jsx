@@ -99,6 +99,7 @@ export default class PageForm extends Component {
 
   new() {
     insertPage(newPage, (id) => {
+      this.setState(emptyPage)
       this.fetchAll()
       this.setState({
         pageId: id

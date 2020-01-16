@@ -29,7 +29,7 @@ export default class BlockEditor extends Component {
   }
 
   addBlock() {
-    let blocks = this.props.blocks;
+    const blocks = this.props.blocks;
     blocks['new_block'] = {
       id: shortid.generate()
     };
@@ -38,7 +38,7 @@ export default class BlockEditor extends Component {
   }
 
   updateBlock(block, name) {
-    let blocks = this.props.blocks;
+    const blocks = this.props.blocks;
     blocks[name] = block;
 
     this.setState({
@@ -50,14 +50,20 @@ export default class BlockEditor extends Component {
   }
 
   renameBlock(oldName, newName) {
-    let block = this.props.blocks[oldName]
-    delete this.props.blocks[oldName]
+    const blocks = this.props.blocks;
+
+    if (blocks[newName]) {
+      return
+    }
+
+    delete blocks[oldName]
+    const block = blocks[oldName]
 
     this.updateBlock(block, newName)
   }
 
   deleteBlock(name) {
-    let blocks = this.props.blocks;
+    const blocks = this.props.blocks;
     delete blocks[name]
 
     this.props.onChange(blocks, "blocks")
