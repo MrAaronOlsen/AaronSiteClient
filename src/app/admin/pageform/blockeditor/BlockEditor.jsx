@@ -56,8 +56,8 @@ export default class BlockEditor extends Component {
       return
     }
 
-    delete blocks[oldName]
     const block = blocks[oldName]
+    delete blocks[oldName]
 
     this.updateBlock(block, newName)
   }

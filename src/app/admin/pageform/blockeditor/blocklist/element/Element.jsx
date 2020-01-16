@@ -56,7 +56,7 @@ export default function BlockList(props) {
     }
 
     s['borderLeft'] = `solid ${borderColor} 5px`;
-    s[`padding-left`] = `${(props.depth * 10) + 20}px !important`;
+    s[`padding-left`] = `${(depth * 10) + 20}px !important`;
 
     return s;
   }
