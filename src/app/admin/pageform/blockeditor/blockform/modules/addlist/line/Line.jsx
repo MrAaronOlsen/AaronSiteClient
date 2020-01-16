@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import styles from './element.mod.scss'
+import styles from './line.mod.scss'
 
 export default class Element extends Component {
 

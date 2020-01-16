@@ -12,6 +12,22 @@ import {
 
 import styles from './pageForm.mod.scss'
 
+const newPage = {
+  header: "New Page",
+  blocks: JSON.stringify({"start": {}})
+}
+
+const emptyPage = {
+  pageId: "",
+  id: "",
+  header: "",
+  caption: "",
+  blocks: {},
+  sequence: "",
+  slug: "",
+  mode: ""
+}
+
 export default class PageForm extends Component {
   state = {
     pages: [],
@@ -82,8 +98,11 @@ export default class PageForm extends Component {
   }
 
   new() {
-    insertPage({header: "New Page"}, (id) => {
+    insertPage(newPage, (id) => {
       this.fetchAll()
+      this.setState({
+        pageId: id
+      })
     })
   }
 
@@ -97,6 +116,7 @@ export default class PageForm extends Component {
   delete() {
     deletePage(this.state.pageId, (id) => {
       this.fetchAll();
+      this.setState(emptyPage)
     })
   }
 

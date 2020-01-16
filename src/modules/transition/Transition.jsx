@@ -10,12 +10,6 @@ import Themogrify from 'modules/theme/Themogrify.js'
 const StylesWrapper = styled.div(props => Themogrify(props.styles));
 
 export default class Transition extends Component {
-  constructor(props) {
-    super(props)
-
-    console.log("Transition Created... :" + props.outTrigger)
-  }
-
   // Used to identify itself when multiple transitions exist on the dom.
   id = shortid.generate();
 
@@ -27,7 +21,6 @@ export default class Transition extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("Transition Updating... :" + this.props.outTrigger + " | Prev " + prevProps.outTrigger)
     // Checks to see if we have a state change to trigger an Out Transition.
     if (this.props.outTrigger !== prevProps.outTrigger) {
 
@@ -48,7 +41,6 @@ export default class Transition extends Component {
   }
 
   // Sets css variables.
-  //
   setTransitionVariables() {
     var element = document.getElementById(this.id)
 
@@ -61,7 +53,6 @@ export default class Transition extends Component {
   }
 
   // Executes the inTrans by changing the state of the transValue to the inValue
-  //
   executeInTransition() {
     this.startTransition(() => {
       setTimeout(() => {
@@ -105,13 +96,11 @@ export default class Transition extends Component {
   }
 
   render() {
-    console.log("Transition Rendering... :" + this.props.outTrigger);
 
     return(
       <StylesWrapper id={this.id}
-        name="transition-style"
-        styles={this.config.styles}
         style={{[this.config.transProperty]: this.state.transValue}}
+        styles={this.config.styles}
         className={styles.wrapper}>
 
         {this.props.children}
@@ -141,9 +130,7 @@ Transition.propTypes = {
   outTrigger: PropTypes.bool,
 
   setId: PropTypes.string,
-  targetId: PropTypes.string,
-
-  width: PropTypes.string
+  targetId: PropTypes.string
 };
 
 Transition.defaultProps = {
@@ -160,7 +147,5 @@ Transition.defaultProps = {
   transDurationOut: TransitionProperties.transDurationOut,
 
   outCallDelay: TransitionProperties.outCallDelay,
-  controlsOutCall: TransitionProperties.controlsOutCall,
-
-  width: TransitionProperties.width
+  controlsOutCall: TransitionProperties.controlsOutCall
 }

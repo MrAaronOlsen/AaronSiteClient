@@ -2,14 +2,13 @@ import React from 'react'
 import shortid from 'shortid'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
-import DeleteBtn from 'blockform/common/deletebtn/DeleteBtn.jsx'
-import SelectList from 'blockform/common/selectlist/SelectList.jsx'
+import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
+import AddList from 'blockform/modules/addlist/AddList.jsx'
 import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
 
 const nestedKeys = new Set([
-  'styles',
   ':hover',
   ':active'
 ])
@@ -105,7 +104,7 @@ export default function BlockObject(props) {
 
         <span>{props.name}: </span>
         <div className={styles.list}>
-          <SelectList items={Object.keys(props.attributes)} onClick={addProperty}/>
+          <AddList items={Object.keys(props.attributes)} onClick={addProperty}/>
         </div>
       </div>
 

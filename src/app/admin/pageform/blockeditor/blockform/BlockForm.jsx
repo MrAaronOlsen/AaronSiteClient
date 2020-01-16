@@ -2,6 +2,7 @@ import React from 'react'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
+import BlockList from 'blockform/blocklist/BlockList.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
 
 import TransitionProperties, { TransitionPropertiesList } from 'modules/transition/TransitionProperties.jsx'
@@ -19,7 +20,7 @@ const objectAttributesOrder = {
   'styles': StylePropertiesList
 }
 
-const blockTypesKey = {
+const blockContentDisplay = {
   'text': 'content',
   'rich': 'content',
   'img': 'img_url',
@@ -59,6 +60,10 @@ export default function BlockForm(props) {
     return props.block || {}
   }
 
+  const blocks = function() {
+    return props.blocks || {}
+  }
+
   const blockText = function(name) {
     return <BlockText
       focused={focused}
@@ -78,6 +83,16 @@ export default function BlockForm(props) {
       onChange={onChange} />
   }
 
+  const blockList = function(name) {
+    return <BlockList
+      focused={focused}
+      focus={setFocused}
+      name={name}
+      text={block()[name]}
+      attributes={blockLists[name]}
+      onChange={onChange} />
+  }
+
   const blockObject = function(name) {
     return <BlockObject
       focused={focused}
@@ -91,18 +106,25 @@ export default function BlockForm(props) {
       hasStyles />
   }
 
-  const blockTypes = {
+  const blockContentTypes = {
     'text': blockText,
     'rich': blockRich,
     'img': blockText,
-    'wrapper': blockText
+    'wrapper': blockList
+  }
+
+  const blockLists = {
+    'type': Object.keys(blockContentTypes),
+    'next': Object.keys(blocks()),
+    'first_child': Object.keys(blocks()),
+    'modal': Object.keys(blocks())
   }
 
   const blockContent = function() {
     var type = block().type;
 
-    if (type && blockTypes[type]) {
-      return blockTypes[type](blockTypesKey[type])
+    if (type && blockContentTypes[type]) {
+      return blockContentTypes[type](blockContentDisplay[type])
     }
 
     return null;
@@ -111,14 +133,13 @@ export default function BlockForm(props) {
   return(
     <div className={styles.wrapper} key={props.blockKey} ref={ref}>
       {props.blockKey && <React.Fragment>
-        { blockText('type') }
+        { blockList('type') }
         { blockContent() }
         { blockText('link') }
-        { blockText('modal') }
-        { blockText('next') }
+        { blockList('modal') }
+        { blockList('next') }
         { blockObject('transition') }
         { blockObject('styles') }
-        { blockText('sequence') }
       </React.Fragment>}
     </div>
   )

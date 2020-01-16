@@ -14,8 +14,6 @@ const TransitionProperties = {
 
   outCallDelay: 0,
   controlsOutCall: false,
-
-  styles: {}
 }
 
 export default TransitionProperties;
