@@ -20,7 +20,7 @@ const objectAttributesOrder = {
   'styles': StylePropertiesList
 }
 
-const blockContentTypesKeys = {
+const blockContentDisplay = {
   'text': 'content',
   'rich': 'content',
   'img': 'img_url',
@@ -116,14 +116,15 @@ export default function BlockForm(props) {
   const blockLists = {
     'type': Object.keys(blockContentTypes),
     'next': Object.keys(blocks()),
-    'first_child': Object.keys(blocks())
+    'first_child': Object.keys(blocks()),
+    'modal': Object.keys(blocks())
   }
 
   const blockContent = function() {
     var type = block().type;
 
     if (type && blockContentTypes[type]) {
-      return blockContentTypes[type](blockContentTypesKeys[type])
+      return blockContentTypes[type](blockContentDisplay[type])
     }
 
     return null;
@@ -135,7 +136,7 @@ export default function BlockForm(props) {
         { blockList('type') }
         { blockContent() }
         { blockText('link') }
-        { blockText('modal') }
+        { blockList('modal') }
         { blockList('next') }
         { blockObject('transition') }
         { blockObject('styles') }

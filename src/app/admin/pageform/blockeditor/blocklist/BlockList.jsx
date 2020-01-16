@@ -60,6 +60,10 @@ export default function BlockList(props) {
       nextBlock = block.first_child;
     }
 
+    if (block.modal && blocks[block.modal]) {
+      list[block.modal] = makeElement(block.modal, blocks[block.modal], depth + 1);
+    }
+
     // To prevent infinite loops we check if the next block is calling itself or has already been called.
     if (!block.next || block.next === nextBlock || list[block.next]) {
       return false
