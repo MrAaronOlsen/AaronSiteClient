@@ -17,7 +17,11 @@ export default function BlockList(props) {
   }
 
   function onSelect(value) {
-    props.onChange(value, props.name)
+    if (value === props.text) {
+      props.onChange("", props.name)
+    } else {
+      props.onChange(value, props.name)
+    }
   }
 
   return (
