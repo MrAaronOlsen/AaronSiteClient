@@ -1,0 +1,59 @@
+@import 'mixins/flex';
+@import 'mixins/center';
+@import '~mixins/shadow';
+@import '~mixins/borders';
+@import '~colors';
+
+.menu {
+  @include flex($dir: column);
+  @include center($horz: flex-start);
+
+  width: 100%;
+  height: 100%;
+
+  padding-right: 20px;
+
+  .menu-box {
+    @include border($color: $brand, $radius: 10px)
+    @include shadow();
+
+    padding: 10px;
+  }
+
+  .menu-row {
+    @include flex($dir: row);
+    @include center($horz: flex-start);
+
+    width: 200px;
+    min-height: 40px;
+
+    padding: 5px;
+
+    .menu-title {
+      text-align: left;
+
+      width: 100px;
+    }
+
+    .input {
+      width: 50px;
+      text-align: center;
+    }
+
+    .input:focus {
+      outline: none;
+    }
+  }
+}
+
+.options {
+  @include borderTop($color: $brand);
+}
+
+.menu-button {
+  width: 100%;
+}
+
+.menu-button:hover {
+  @include shadow();
+}

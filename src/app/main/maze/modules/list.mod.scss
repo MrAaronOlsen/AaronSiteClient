@@ -1,0 +1,29 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+
+.list {
+  @include flex;
+  @include center;
+
+  width: 100%;
+
+  .list-row {
+    @include flex($dir: row);
+    @include center($horz: flex-start);
+
+    width: 100%;
+    padding: 5px;
+
+    @include border($color: $transparent);
+  }
+
+  .selected {
+    @include border($color: $brand);
+  }
+
+  .list-row:hover {
+    background-color: white-overlay($color: $brand, $alpha: 0.5)
+  }
+}
