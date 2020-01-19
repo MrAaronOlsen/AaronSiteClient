@@ -65,6 +65,7 @@ module.exports = {
     extensions: [".scss", ".js", ".jsx"],
     alias: {
       public: path.resolve(__dirname, 'public'),
+      maze: path.resolve(__dirname, 'src/app/main/maze'),
       mixins: path.resolve(__dirname, 'src/mixins'),
       colors: path.resolve(__dirname, 'src/constants/colors.scss'),
       modules: path.resolve(__dirname, 'src/modules'),

@@ -44,25 +44,36 @@
   }
 
   .links {
+    @include flex($dir: row);
+    @include center;
+
     height: 100%;
 
-    a {
-      @include flex($dir: row);
-      @include center($horz: flex-start)
-      height: 20px;
+    .link {
+      height: 24px;
+      padding-right: 10px;
 
-      color: $brand;
-      font-size: 17px;
-      text-decoration: none;
+      a {
+        @include flex($dir: row);
+        @include center($horz: flex-start);
+        height: 100%;
 
-      img {
-        height: 16px;
-        padding-right: 7px;
+        color: $brand;
+        font-size: 17px;
+        text-decoration: none;
+
+        img {
+          height: 24px;
+        }
+
+        img:hover {
+          @include shadow($spread: 2px)
+        }
       }
     }
+  }
 
-    a:hover {
-      @include borderBottom($color: $brand);
-    }
+  .circle {
+    border-radius: 12px;
   }
 }
