@@ -80,19 +80,21 @@ export default class Transition extends Component {
       element.style.setProperty('--duration', this.config.transDurationOut);
     }
 
-    setTimeout(function() {
+    this.startTransition(() => {
+      setTimeout(function() {
 
-      this.setState({
-        transValue: this.config.outValue
-      })
+        this.setState({
+          transValue: this.config.outValue
+        })
 
-      // If we've been given an outCallback callback run it with the outDelay.
-      if (this.config.controlsOutCall && this.config.outCall) {
-        setTimeout(function() {
-          this.config.outCall();
-        }.bind(this), this.config.outCallDelay)
-      }
-    }.bind(this), this.config.transDelayOut)
+        // If we've been given an out callback run it with the outDelay.
+        if (this.config.controlsOutCall && this.config.outCall) {
+          setTimeout(function() {
+            this.config.outCall();
+          }.bind(this), this.config.outCallDelay)
+        }
+      }.bind(this), this.config.transDelayOut)
+    })
   }
 
   render() {

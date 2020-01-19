@@ -15,7 +15,12 @@
   height: 30px;
 
   margin-right: 20px;
-  @include border($color: $brand, $radius: 5px)
+
+  background-color: $brand;
+  @include shadow($spread: 2px)
+  @include border($color: $transparent, $radius: 3px);
+
+  cursor: pointer;
 
   .title {
     position: absolute;
@@ -30,7 +35,7 @@
       font-size: 12px;
     }
 
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: bold;
   }
 
@@ -57,6 +62,8 @@
 }
 
 .wrapper:hover, .wrapper.list:hover {
+  background-color: white-overlay();
+
   .list {
     visibility: visible;
     height: max-content;

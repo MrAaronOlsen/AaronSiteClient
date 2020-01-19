@@ -47,6 +47,10 @@
   }
 }
 
+.wrapper:hover {
+  background-color: white-overlay($alpha: 0.25);
+}
+
 .focused {
   input {
     background-color: white-overlay($alpha: 0.5);
