@@ -1,0 +1,10 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+
+.wrapper {
+  @include flex($dir: row);
+  @include center($horz: flex-start)
+
+  margin-top: 100px;
+  padding: 20px;
+}

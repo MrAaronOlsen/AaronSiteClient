@@ -1,0 +1,15 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  @include flex;
+  @include center;
+}
+
+.canvas {
+  @include shadow();
+  @include border($color: $transparent, $radius: 10px)
+}
