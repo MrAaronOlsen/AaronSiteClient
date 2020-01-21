@@ -8,6 +8,7 @@
   @include center;
 
   width: 100%;
+  padding: 5px;
 
   .list-row {
     @include flex($dir: row);
@@ -16,14 +17,14 @@
     width: 100%;
     padding: 5px;
 
-    @include border($color: $transparent);
+    @include border($color: $transparent, $radius: 3px);
   }
 
   .selected {
-    @include border($color: $brand);
+    background-color: white-overlay($color: $brand, $alpha: 0.5);
   }
 
   .list-row:hover {
-    background-color: white-overlay($color: $brand, $alpha: 0.5)
+    @include border($color: $brand, $radius: 3px);
   }
 }

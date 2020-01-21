@@ -10,8 +10,13 @@ export default function Menu(props) {
 
   return (
     <div className={styles.wrapper}>
-      <MazeList mazes={props.mazeList} handleClick={props.handleClick}/>
-      <Options {...props}/>
+      <MazeList handleClick={props.handleClick}/>
+
+      <Options
+        handleInput={props.handleInput}
+        handleCall={props.handleCall}
+        mazeSize={props.mazeSize}
+        timeout={props.timeout} />
     </div>
   )
 }
@@ -20,7 +25,6 @@ Menu.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleInput: PropTypes.func.isRequired,
   handleCall: PropTypes.func.isRequired,
-  mazeList: PropTypes.array,
   mazeSize: PropTypes.number,
   timeout: PropTypes.number,
 };

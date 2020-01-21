@@ -2,9 +2,15 @@
 @import '~mixins/center';
 
 .wrapper {
-  @include flex($dir: row);
-  @include center($horz: flex-start)
+  @include flex($dir: column);
+  @include center();
 
   margin-top: 100px;
   padding: 20px;
+
+  .maze {
+    @include flex($dir: row);
+    @include center($vert: flex-start)
+  }
+
 }

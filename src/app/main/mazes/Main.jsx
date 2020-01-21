@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import Screen from 'mazes/screen/Screen.jsx'
+import Header from 'mazes/header/Header.jsx'
 import Menu from 'mazes/menu/Menu.jsx'
+import Screen from 'mazes/screen/Screen.jsx'
 
-import Mazes from 'mazes/lib/mazes/Mazes.js'
 import Random from 'mazes/lib/core/Random.js'
 
 import styles from './main.mod.scss'
@@ -60,16 +60,18 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div id="main-window" className={styles.wrapper}>
-        <Menu
-          handleInput={this.handleInput}
-          handleClick={this.handleClick}
-          handleCall={this.handleCall}
-          mazeList={Mazes.getMenuList()}
-          mazeSize={this.state.mazeSize}
-          timeout={this.state.timeout} />
+      <div className={styles.wrapper}>
+        <Header />
+        <div className={styles.maze}>
+          <Menu
+            handleInput={this.handleInput}
+            handleClick={this.handleClick}
+            handleCall={this.handleCall}
+            mazeSize={this.state.mazeSize}
+            timeout={this.state.timeout} />
 
-        <Screen handleState={this.handleState} />
+          <Screen handleState={this.handleState} />
+        </div>
       </div>
     )
   }
