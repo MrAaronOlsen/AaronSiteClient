@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import Run from 'maze/run/Run.jsx'
-import Menu from 'maze/menu/Menu.jsx'
-import Mazes from 'maze/lib/mazes/Mazes.js'
+import Screen from 'mazes/screen/Screen.jsx'
+import Menu from 'mazes/menu/Menu.jsx'
 
-import Random from 'maze/lib/core/Random.js'
+import Mazes from 'mazes/lib/mazes/Mazes.js'
+import Random from 'mazes/lib/core/Random.js'
 
-import styles from './maze.mod.scss'
+import styles from './main.mod.scss'
 
-export default class Maze extends Component {
+export default class Main extends Component {
   constructor(props) {
     super(props);
 
@@ -69,7 +69,7 @@ export default class Maze extends Component {
           mazeSize={this.state.mazeSize}
           timeout={this.state.timeout} />
 
-        <Run handleState={this.handleState} />
+        <Screen handleState={this.handleState} />
       </div>
     )
   }

@@ -1,0 +1,42 @@
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~mixins/flex';
+@import '~mixins/center';
+
+.wrapper {
+
+  @include borderTop($color: $brand);
+
+  .row {
+    @include flex($dir: row);
+    @include center($horz: flex-start);
+
+    width: 200px;
+    min-height: 40px;
+
+    padding: 5px;
+
+    .title {
+      text-align: left;
+
+      width: 100px;
+    }
+
+    .input {
+      width: 50px;
+      text-align: center;
+    }
+
+    .input:focus {
+      outline: none;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .button:hover {
+      @include shadow();
+    }
+  }
+}

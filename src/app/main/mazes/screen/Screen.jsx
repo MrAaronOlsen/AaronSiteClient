@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import Canvas from "maze/modules/Canvas.jsx";
+import Canvas from "mazes/modules/Canvas.jsx";
 
-import SizeCalculator from "maze/lib/core/SizeCalculator.js";
-import Mazes from "maze/lib/mazes/Mazes.js"
+import SizeCalculator from "mazes/lib/core/SizeCalculator.js";
+import Mazes from "mazes/lib/mazes/Mazes.js"
 
-import styles from './run.mod.scss'
+import styles from './screen.mod.scss'
 
-class Run extends Component {
+export default class Maze extends Component {
   constructor(props) {
     super(props);
 
@@ -54,5 +54,3 @@ class Run extends Component {
     );
   }
 }
-
-export default Run;

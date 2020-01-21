@@ -1,0 +1,15 @@
+@import 'mixins/flex';
+@import 'mixins/center';
+@import '~mixins/shadow';
+@import '~mixins/borders';
+@import '~colors';
+
+.wrapper {
+  @include flex($dir: column);
+  @include center($horz: flex-start);
+
+  width: 100%;
+  height: 100%;
+
+  padding-right: 20px;
+}
