@@ -7,7 +7,10 @@ export default function BlockRich(props) {
   const block = props.block;
 
   function getBlock() {
-    return <Interweave name={"block-rich"} className={styles.wrapper} content={block.content} />
+    return <Interweave name={"block-rich"}
+      onClick={props.onClick}
+      className={styles.wrapper}
+      content={block.content} />
   }
 
   return (getBlock())
