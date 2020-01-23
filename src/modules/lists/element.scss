@@ -1,0 +1,16 @@
+@import '~colors';
+@import '~mixins/borders';
+
+.list-element-wrapper {
+  padding: 5px;
+
+  @include border($color: $transparent, $radius: 5px)
+}
+
+.list-element-wrapper:hover {
+  background-color: white-overlay($color: $brand, $alpha: 0.5)
+}
+
+.selected {
+  @include border($radius: 5px)
+}

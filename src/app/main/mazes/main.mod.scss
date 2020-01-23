@@ -9,7 +9,7 @@
   padding: 20px;
 
   .maze {
-    @include flex($dir: row);
+    @include flex($dir: column);
     @include center($vert: flex-start)
   }
 

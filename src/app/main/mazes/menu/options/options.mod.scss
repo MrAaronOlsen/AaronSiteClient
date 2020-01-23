@@ -5,13 +5,11 @@
 
 .wrapper {
 
-  @include borderTop($color: $brand);
-
   .row {
     @include flex($dir: row);
     @include center($horz: flex-start);
 
-    width: 200px;
+    width: 150px;
     min-height: 40px;
 
     padding: 5px;

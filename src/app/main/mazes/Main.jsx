@@ -25,7 +25,7 @@ export default class Main extends Component {
 
     this.handleState = this.handleState.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.selectMaze = this.selectMaze.bind(this);
     this.handleCall = this.handleCall.bind(this);
   }
 
@@ -46,11 +46,8 @@ export default class Main extends Component {
     this.handleState(key, value)
   }
 
-  handleClick(event) {
-    var value = event.target.dataset.value;
-    var key = event.target.dataset.key;
-
-    this.handleState(key, value)
+  selectMaze(maze) {
+    this.handleState('maze', maze)
   }
 
   handleCall(event) {
@@ -65,7 +62,8 @@ export default class Main extends Component {
         <div className={styles.maze}>
           <Menu
             handleInput={this.handleInput}
-            handleClick={this.handleClick}
+            selectMaze={this.selectMaze}
+            selected={this.state.maze}
             handleCall={this.handleCall}
             mazeSize={this.state.mazeSize}
             timeout={this.state.timeout} />

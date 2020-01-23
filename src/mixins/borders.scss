@@ -1,6 +1,6 @@
 @import "~colors";
 
-@mixin border($color: $foreground, $width: 1px, $radius: 0) {
+@mixin border($color: $brand, $width: 1px, $radius: 0) {
   border: $width solid $color;
   border-radius: $radius;
 }
@@ -19,4 +19,8 @@
 
 @mixin borderBottom($color: $foreground, $width: 1px) {
   border-bottom: $width solid $color;
+}
+
+@mixin borderRadius($tl: 0, $tr: 0, $br: 0, $bl: 0) {
+  border-radius: $tl $tr $br $bl;
 }

@@ -1,0 +1,49 @@
+@import '~colors';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+
+.dropdownlist-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .dropdownlist-header {
+    position: relative;
+
+    padding: 5px;
+  }
+
+  .dropdownlist-list {
+    position: absolute;
+
+    height: 0;
+    opacity: 0;
+
+    transition: height 300ms ease, opacity 0ms ease 300ms, padding 100ms ease 200ms;
+
+    width: 100%;
+    padding: 0;
+
+    top: 100%;
+
+    overflow: scroll;
+
+    background-color: $background;
+    @include border();
+    @include borderRadius($bl: 10px, $br: 10px);
+    @include shadow();
+
+    z-index: 999;
+  }
+}
+
+.dropdownlist-wrapper:hover {
+  .dropdownlist-list {
+    height: 150px;
+    opacity: 1;
+    padding: 5px;
+
+    transition: height 300ms, opacity 0ms, padding 0ms;
+    transition-delay: 300ms;
+  }
+}

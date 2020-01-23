@@ -5,43 +5,51 @@ import Prims from "./Prims.js";
 import Kruskals from "./Kruskals.js";
 import NoOpMaze from "./NoOpMaze.js";
 
-const MAZES = {
-  BINARY_TREE: "BinaryTree",
-  SIDEWINDER: "Sidewinder",
-  RECURSIVE_BACKTRACK: "RecursiveBacktrack",
-  PRIMS: "Prims",
-  KRUSKALS: "Kruskals"
+
+const BINARY_TREE = "BinaryTree";
+const SIDEWINDER = "Sidewinder";
+const RECURSIVE_BACKTRACK = "RecursiveBacktrack";
+const PRIMS = "Prims";
+const KRUSKALS = "Kruskals";
+
+const MAZE_TEXT = {
+  [BINARY_TREE]: "Binary Tree",
+  [SIDEWINDER]: "Sidewinder",
+  [RECURSIVE_BACKTRACK]: "Recursive Backtrack",
+  [PRIMS]: "Prims",
+  [KRUSKALS]: "Kruskals"
 }
 
-class Mazes {
+export default class Mazes {
 
   static get(maze) {
     switch (maze) {
-      case MAZES.BINARY_TREE:
+      case BINARY_TREE:
         return new BinaryTree();
-      case MAZES.SIDEWINDER:
+      case SIDEWINDER:
         return new Sidewinder();
-      case MAZES.RECURSIVE_BACKTRACK:
+      case RECURSIVE_BACKTRACK:
         return new RecursiveBacktrack();
-      case MAZES.PRIMS:
+      case PRIMS:
         return new Prims();
-      case MAZES.KRUSKALS:
+      case KRUSKALS:
         return new Kruskals();
       default:
         return new NoOpMaze();
     }
   }
 
-  static getMenuList() {
+  static getValues() {
     return [
-      {text: "Binary Tree", key: "maze", value: MAZES.BINARY_TREE},
-      {text: "Sidewinder", key: "maze", value: MAZES.SIDEWINDER},
-      {text: "Recursive Backtrack", key: "maze", value: MAZES.RECURSIVE_BACKTRACK},
-      {text: "Prims", key: "maze", value: MAZES.PRIMS},
-      {text: "Kruskals", key: "maze", value: MAZES.KRUSKALS}
-
+      {text: MAZE_TEXT[BINARY_TREE], id: BINARY_TREE},
+      {text: MAZE_TEXT[SIDEWINDER], id: SIDEWINDER},
+      {text: MAZE_TEXT[RECURSIVE_BACKTRACK], id: RECURSIVE_BACKTRACK},
+      {text: MAZE_TEXT[PRIMS], id: PRIMS},
+      {text: MAZE_TEXT[KRUSKALS], id: KRUSKALS}
     ];
   }
-}
 
-export default Mazes;
+  static getText(menuId) {
+    return MAZE_TEXT[menuId]
+  }
+}
