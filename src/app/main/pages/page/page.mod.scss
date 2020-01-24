@@ -1,23 +1,33 @@
+@import '~media';
 @import '~mixins/flex';
-@import '~mixins/center';
+@import '~colors';
 
 .wrapper {
-  height: 100%;
+  position: relative;
+
+  // height: 100%;
   width: 100%;
 
-  margin-top: 100px;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
 
   .header {
-    @include flex;
-    @include center($horz: flex-start)
+    position: fixed;
 
-    height: 50px;
-    float: left;
+    width: 100%;
+
+    padding: 10px 0 10px 0;
+    background-color: $background;
+
+    z-index: 900;
   }
 
   .blocks {
+    position: relative;
+
+    margin-top: 50px;
     height: 100%;
     width: 100%;
+
+    overflow: scroll;
   }
 }

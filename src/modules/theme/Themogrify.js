@@ -13,7 +13,6 @@ const defaults = {
 }
 
 const Themogrify = function(styles) {
-  styles = {...defaults, ...styles};
 
   if (!styles) {
     return {};

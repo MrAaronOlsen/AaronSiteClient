@@ -11,6 +11,10 @@ $main-background: hsla(40%, 5%, 7%, 1);
   @return mix($brand, $color, $weight);
 }
 
+@function lighten-brand($amount: 20%) {
+  @return lighten($brand, $amount)
+}
+
 $brand: hsla(30, 39%, 54%, 1);
 
 $background: hsla(0, 0%, 100%, 1);

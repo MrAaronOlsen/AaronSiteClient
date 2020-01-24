@@ -2,8 +2,6 @@
 @import '~mixins/center';
 
 .wrapper {
-  position: relative;
-  
   @include flex($dir: column);
   @include center($horz: flex-start)
 
@@ -11,4 +9,5 @@
   max-width: 800px;
 
   height: 100%;
+  margin-top: 100px;
 }
