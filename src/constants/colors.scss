@@ -1,5 +1,5 @@
-$text-main: hsl(0, 0%, 75%);
-$text-dark: hsl(0, 0%, 20%);
+$textmain: hsl(0, 0%, 75%);
+$textdark: hsl(0, 0%, 20%);
 
 $main-background: hsla(40%, 5%, 7%, 1);
 
@@ -23,6 +23,8 @@ $foreground: hsla(0, 0%, 16%, 1);
 $transparent: hsla(0, 0%, 100%, 0);
 
 :export {
+  textmain: $textmain;
+  textdark: $textdark;
   brand: $brand;
   background: $background;
   foreground: $foreground;

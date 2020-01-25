@@ -1,7 +1,7 @@
 class SizeCalculator {
 
   // Tries to find a whole number render size of the Maze to prevent funny rendering anomalies
-  static get(size, timeout) {
+  static get(size, timeout, targetWidth) {
     size = Number.parseInt(size);
 
     // Maze sizes must be even numbers and cannot be less than 5 or greater than 501
@@ -10,7 +10,7 @@ class SizeCalculator {
     }
 
     // Aim for 600px
-    var pixWidth = 600;
+    var pixWidth = targetWidth || 600;
 
     // Set the grid size which includes walls
     var gridSize = (size * 2) + 1;
@@ -20,18 +20,18 @@ class SizeCalculator {
       pixWidth++;
 
       // If width gets too big reverse
-      if (pixWidth > 620) {
-        pixWidth = 599;
+      if (pixWidth > targetWidth + 20) {
+        pixWidth = targetWidth - 1;
 
         // Decrease size until we get no remainder
         while (pixWidth % gridSize != 0) {
           pixWidth--;
 
           // If we still haven't found something fall back to gaurenteed result
-          if (pixWidth < 580) {
+          if (pixWidth < targetWidth - 20) {
 
             // Will find something that fits, but could be undesirable size (aka, really small)
-            pixWidth = 600 - (600 % gridSize);
+            pixWidth = targetWidth - (targetWidth % gridSize);
             break;
           }
         }

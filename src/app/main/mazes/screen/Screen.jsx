@@ -12,10 +12,7 @@ export default class Maze extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      pixWidth: 600,
-      pixHeight: 600
-    }
+    this.state = this.getSize();
 
     this.canvasRef = React.createRef();
     this.props.handleState("buildMaze", this.build.bind(this));
@@ -29,7 +26,7 @@ export default class Maze extends Component {
   build(maze, size, timeout) {
     if (!!this.maze) { this.maze.stop() }
 
-    var state = SizeCalculator.get(size, timeout);
+    var state = SizeCalculator.get(size, timeout, this.state.pixWidth);
 
     this.maze = Mazes.get(maze);
     this.maze.set(state.mazeSize, state.gridSize, state.cellWidth, state.timeout);
@@ -39,6 +36,19 @@ export default class Maze extends Component {
     this.ctx.clearRect(0, 0, state.pixWidth, state.pixHeight);
     this.maze.build()
     this.maze.draw(this.ctx);
+  }
+
+  getSize() {
+    var width = window.innerWidth;
+
+    if (width > 600) {
+      width = 600
+    }
+
+    return {
+      pixWidth: width,
+      pixHeight: width
+    }
   }
 
   render() {
