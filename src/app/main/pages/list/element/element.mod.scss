@@ -48,6 +48,10 @@
   }
 
   .button {
+    position: relative;
+    margin-left: 10px;
+    top: 50px;
+
     transform: translateY(-15px) rotate(90deg);
   }
 }
