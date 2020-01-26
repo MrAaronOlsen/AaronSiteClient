@@ -13,7 +13,7 @@
   left: 0;
   top: 0;
 
-  width: 100%;
+  width: 100vw;
   height: 100px;
 
   padding: 20px 20px 20px 20px;
@@ -44,17 +44,14 @@
 
   .links {
     @include flex($dir: row);
-    @include center;
-
-    height: 100%;
 
     .link {
+      @include flex($dir: column);
+      @include center($horz: center);
+
       height: 24px;
-      padding-right: 10px;
 
       a {
-        @include flex($dir: row);
-        @include center($horz: flex-start);
         height: 100%;
 
         color: $brand;
@@ -69,6 +66,10 @@
           @include shadow($spread: 2px)
         }
       }
+    }
+
+    .link:first-child {
+      padding-right: 10px;
     }
   }
 

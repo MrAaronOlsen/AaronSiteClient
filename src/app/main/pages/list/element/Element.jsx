@@ -39,31 +39,33 @@ class Page extends Component {
 
     let timing = 500 + (this.props.index * 200);
     return(
-      <Transition
-        transDurationIn={timing + 'ms'}
-        outTrigger={this.state.triggerOut}
-        outCallDelay={500}
-        styles={{width: '100%'}}
-        outCall={this.redirect.bind(this)}
-        controlsOutCall={true}>
+
 
         <div className={styles.wrapper}>
-          <div className={styles.header}>
-            <h4>{this.header}</h4>
+          <Transition
+            transDurationIn={timing + 'ms'}
+            outTrigger={this.state.triggerOut}
+            outCallDelay={500}
+            styles={{width: '100%'}}
+            outCall={this.redirect.bind(this)}
+            controlsOutCall={true}>
+            <div className={styles.inner}>
+              <div className={styles.header}>
+                <h4 className={styles.headerText}>{this.header}</h4>
+              </div>
+              <div className={styles.caption}>
+                {this.caption}
+              </div>
+            </div>
+          </Transition>
+          <Transition
+            transDurationIn={timing * 1.5 + 'ms'}
+            outTrigger={this.state.triggerOut}
+            width='auto'>
 
-            <Transition
-              transDurationIn={timing * 1.5 + 'ms'}
-              outTrigger={this.state.triggerOut}
-              width='auto'>
-
-              <ArrowBtn classNames={styles.button} onClick={this.onClick.bind(this)} />
-            </Transition>
-          </div>
-          <div className={styles.caption}>
-            {this.caption}
-          </div>
+            <ArrowBtn classNames={styles.button} onClick={this.onClick.bind(this)} />
+          </Transition>
         </div>
-      </Transition>
 
     )
   }
