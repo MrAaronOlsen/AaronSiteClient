@@ -40,15 +40,17 @@ class Page extends Component {
     let timing = 500 + (this.props.index * 200);
     return(
 
-
         <div className={styles.wrapper}>
           <Transition
             transDurationIn={timing + 'ms'}
+            transDurationOut={'300ms'}
+            transDelayOut={200}
             outTrigger={this.state.triggerOut}
             outCallDelay={500}
             styles={{width: '100%'}}
             outCall={this.redirect.bind(this)}
             controlsOutCall={true}>
+
             <div className={styles.inner}>
               <div className={styles.header}>
                 <h4 className={styles.headerText}>{this.header}</h4>
@@ -60,13 +62,14 @@ class Page extends Component {
           </Transition>
           <Transition
             transDurationIn={timing * 1.5 + 'ms'}
+            transDurationOut={'500ms'}
             outTrigger={this.state.triggerOut}
             width='auto'>
 
             <ArrowBtn classNames={styles.button} onClick={this.onClick.bind(this)} />
           </Transition>
         </div>
-
+        
     )
   }
 }

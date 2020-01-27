@@ -9,7 +9,7 @@ class SizeCalculator {
       throw "Map size must be greater than 0 and no greater than 200."
     }
 
-    // Aim for 600px
+    // Aim for targetWidth or fallback to 600px
     var pixWidth = targetWidth || 600;
 
     // Set the grid size which includes walls

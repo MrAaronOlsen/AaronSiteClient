@@ -1,6 +1,8 @@
 @import '~colors';
 @import '~mixins/borders';
 @import '~mixins/shadow';
+@import '~mixins/flex';
+@import '~mixins/center';
 
 .dropdownlist-wrapper {
   position: relative;
@@ -9,8 +11,22 @@
 
   .dropdownlist-header {
     position: relative;
+    @include flex($dir: row);
+    @include center($horz: space-between);
 
     padding: 5px;
+
+    @include borderBottom($color: $brand)
+
+    img {
+      position: relative;
+      top: 3px;
+
+      opacity: 0.5;
+
+      width: 10px;
+      height: 7px;
+    }
   }
 
   .dropdownlist-list {
@@ -42,6 +58,5 @@
     padding: 5px;
 
     transition: height 300ms, opacity 0ms, padding 0ms;
-    transition-delay: 300ms;
   }
 }

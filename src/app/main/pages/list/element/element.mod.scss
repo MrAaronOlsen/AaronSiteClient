@@ -1,44 +1,39 @@
 @import '~colors';
 @import '~media';
-@import '~mixins/shadow';
 @import '~mixins/borders';
 @import '~mixins/flex';
-@import '~mixins/center';
 
 .wrapper {
-  position: relative;
   @include flex($dir: row);
-
-  width: 100%;
+  width: inherit;
 
   .inner {
-    position: relative;
     @include flex($dir: column);
-
     width: 100%;
 
     .header {
       @include flex($dir: row)
-      width: 100%;
+      width: inherit;
 
       .headerText {
-        width: 100%;
-
+        width: inherit;
         height: 50px;
+
         padding: 5px;
         margin: 0;
 
         font-size: 1.5em;
         font-weight: 400;
-
-        color: $foreground;
+        color: $textdark;
 
         @include borderBottom($color: $brand);
       }
     }
 
     .caption {
+      width: inherit;
       min-height: 50px;
+      
       padding: 10px;
 
       @include media($media-max-small) {
@@ -49,6 +44,7 @@
 
   .button {
     position: relative;
+
     margin-left: 10px;
     top: 50px;
 

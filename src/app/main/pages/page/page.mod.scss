@@ -1,17 +1,16 @@
-@import '~media';
-@import '~mixins/flex';
 @import '~colors';
 
 .wrapper {
   position: relative;
-  width: 100%;
-
   padding: 0 10px 10px 10px;
 
-  .header {
-    position: fixed;
+  width: inherit;
 
-    width: 100%;
+  .header {
+    position: sticky;
+    top: 100px;
+
+    width: inherit;
 
     padding: 10px 0 10px 0;
     background-color: $background;
@@ -20,12 +19,8 @@
   }
 
   .blocks {
-    position: relative;
-
-    margin-top: 50px;
-    height: 100%;
-    width: 100%;
-
+    width: inherit;
+    
     overflow: scroll;
   }
 }

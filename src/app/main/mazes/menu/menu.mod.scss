@@ -8,7 +8,7 @@
   @include flex($dir: row);
   @include center($vert: flex-start);
 
-  width: 100%;
+  width: inherit;
   height: 100%;
 
   margin-bottom: 20px;

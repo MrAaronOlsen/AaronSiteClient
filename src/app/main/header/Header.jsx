@@ -7,7 +7,7 @@ export default function Header(props) {
 
   return(
     <div className={styles.header}>
-      <div className={styles.logo}>Aaron Olsen</div>
+      <a href='http://www.aaron-olsen.com' className={styles.logo}>Aaron Olsen</a>
       <div className={styles.links}>
         <div className={styles.link}>
           <a href='https://github.com/mraaronolsen' target='_blank'>

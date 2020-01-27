@@ -46,7 +46,7 @@ export default class Maze extends Component {
     }
 
     return {
-      pixWidth: width,
+      pixWidth: width - 40,
       pixHeight: width
     }
   }

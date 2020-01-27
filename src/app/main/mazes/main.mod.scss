@@ -5,11 +5,10 @@
   @include flex($dir: column);
   @include center();
 
+  width: inherit;
+
   padding: 20px;
 
   .maze {
-    @include flex($dir: column);
-    @include center($vert: flex-start)
   }
-
 }

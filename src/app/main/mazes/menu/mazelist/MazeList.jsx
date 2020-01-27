@@ -7,7 +7,8 @@ import Element from 'modules/lists/Element.jsx';
 
 const listStyles = {
   '&&': {
-    'width': '200px'
+    'width': '100%',
+    'margin-right': '10px'
   }
 }
 
