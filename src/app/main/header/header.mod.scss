@@ -22,7 +22,7 @@
     background-color: lighten-brand();
   }
 
-  background-color: $background;
+  background-color: lighten-brand();
   @include shadow();
 
   z-index: 999;

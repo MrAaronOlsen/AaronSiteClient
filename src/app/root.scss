@@ -28,5 +28,6 @@ body {
 }
 
 #root {
+  --aaron-site-brand: #{brand()};
   background-color: $background;
 }

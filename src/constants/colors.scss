@@ -3,16 +3,23 @@ $textdark: hsl(0, 0%, 20%);
 
 $main-background: hsla(40%, 5%, 7%, 1);
 
+@function brand() {
+  @return var(--aaron-site-brand, $brand);
+}
+
 @function white-overlay($color: $brand, $alpha: 0.75) {
   @return rgba($color, $alpha);
 }
 
 @function mix-brand($color: $transparent, $weight: 50%) {
+  $br: #{call(get_function("brand"))};
+  @debug $br;
+
   @return mix($brand, $color, $weight);
 }
 
 @function lighten-brand($amount: 20%) {
-  @return lighten($brand, $amount)
+  @return lighten($brand, $amount);
 }
 
 $brand: hsla(30, 39%, 54%, 1);
@@ -25,7 +32,7 @@ $transparent: hsla(0, 0%, 100%, 0);
 :export {
   textmain: $textmain;
   textdark: $textdark;
-  brand: $brand;
+  brand: brand();
   background: $background;
   foreground: $foreground;
   transparent: $transparent;
