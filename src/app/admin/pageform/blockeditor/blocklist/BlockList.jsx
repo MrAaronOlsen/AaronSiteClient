@@ -7,7 +7,7 @@ import AddButton from 'public/images/add-button.png'
 import styles from './blockList.mod.scss'
 
 export default function BlockList(props) {
-  const blocks = props.blocks;
+  const blocks = props.blocks || {};
   const allKeys = Object.keys(blocks);
   const size = allKeys.size;
 

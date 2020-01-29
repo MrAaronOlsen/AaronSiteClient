@@ -12,7 +12,7 @@
   padding: 10px;
   overflow: scroll;
 
-  @include borderLeft($color: $brand)
+  @include borderLeft($color: $brand, $width: 3px)
 
   .lines {
     @include flex($dir: column);

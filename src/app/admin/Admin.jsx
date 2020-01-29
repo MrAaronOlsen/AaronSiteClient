@@ -9,6 +9,8 @@ export default function Admin(props) {
 
 
   return (
-    <PageForm />
+    <div className={styles.wrapper}>
+      <PageForm />
+    </div>
   )
 }
