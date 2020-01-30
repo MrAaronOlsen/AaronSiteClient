@@ -12,9 +12,6 @@ $main-background: hsla(40%, 5%, 7%, 1);
 }
 
 @function mix-brand($color: $transparent, $weight: 50%) {
-  $br: #{call(get_function("brand"))};
-  @debug $br;
-
   @return mix($brand, $color, $weight);
 }
 
@@ -32,7 +29,7 @@ $transparent: hsla(0, 0%, 100%, 0);
 :export {
   textmain: $textmain;
   textdark: $textdark;
-  brand: brand();
+  brand: $brand;
   background: $background;
   foreground: $foreground;
   transparent: $transparent;
