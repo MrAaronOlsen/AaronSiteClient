@@ -30,27 +30,32 @@
 
   .expand {
     img {
+      position: fixed;
+      top: 20px;
+      left: calc(((100vw - 90vw) / 2) + 10px);
+
       transform: rotate(0);
       transition: transform 300ms ease;
+
+      z-index: 999;
     }
   }
 
   .editorWrapper {
     position: fixed;
 
-    width: 800px;
-    min-height: 200px;
-    max-height: 600px;
+    top: 10px;
+    bottom: 10px;
 
-    overflow: scroll;
+    left: calc((100vw - 90vw) / 2);
+    width: 90vw;
 
-    padding: 10px;
+    padding: 50px 150px 10px 150px;
 
     background-color: $background;
-
-    @include border($color: $brand, $radius: 5px);
     @include shadow();
 
+    overflow: scroll;
     z-index: 900
   }
 }

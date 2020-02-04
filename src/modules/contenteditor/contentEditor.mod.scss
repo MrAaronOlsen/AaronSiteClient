@@ -9,4 +9,9 @@
 
   overflow: scroll;
   cursor: text;
+
+  padding: 10px;
+
+  @include border($color: $textmain)
+  background-color: $background;
 }
