@@ -1,4 +1,6 @@
 @import '~colors';
+@import '~mixins/flex';
+@import '~mixins/center';
 
 .wrapper {
   position: relative;
@@ -8,6 +10,8 @@
 
   .header {
     position: sticky;
+    @include flex($dir: row)
+
     top: 100px;
 
     width: inherit;
@@ -20,7 +24,7 @@
 
   .blocks {
     width: inherit;
-    
+
     overflow: scroll;
   }
 }
