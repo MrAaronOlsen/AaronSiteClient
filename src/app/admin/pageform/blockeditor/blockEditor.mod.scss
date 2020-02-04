@@ -4,13 +4,19 @@
 @import '~mixins/shadow';
 
 .wrapper {
-  @include flex($dir: row)
-
-  width: 100%;
-  height: 100%;
-  
-  margin-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   @include border($color: $brand);
   @include shadow;
+
+  .editorWrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+  }
+
+  .previewWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }

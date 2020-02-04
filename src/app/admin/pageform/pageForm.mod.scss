@@ -5,19 +5,16 @@
 @import '~mixins/textArea';
 
 .wrapper {
-  @include flex($dir: column);
-  @include center($horz: flex-start, $vert: flex-end);
+  display: grid;
+  grid-template-rows: 50px 50px 1fr;
 
-  height: 100%;
   width: 100%;
+  height: 100%;
 
   padding: 5px;
 
   .blockWrapper {
-    @include flex($dir: row);
-    @include center($horz: flex-start, $vert: flex-end);
-
-    height: 100%;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }

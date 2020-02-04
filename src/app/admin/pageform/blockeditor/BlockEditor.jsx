@@ -3,6 +3,7 @@ import shortid from 'shortid';
 
 import BlockList from './blocklist/BlockList.jsx';
 import BlockForm from './blockform/BlockForm.jsx';
+import Preview from './preview/Preview.jsx'
 
 import styles from './blockEditor.mod.scss';
 
@@ -72,20 +73,25 @@ export default class BlockEditor extends Component {
   render() {
     return(
       <div className={styles.wrapper}>
-        <BlockList
-          start={"start"}
-          blocks={this.props.blocks}
-          focused={this.state.blockKey}
-          addBlock={this.addBlock.bind(this)}
-          renameBlock={this.renameBlock.bind(this)}
-          deleteBlock={this.deleteBlock.bind(this)}
-          focusBlock={this.focusBlock.bind(this)} />
+        <div className={styles.editorWrapper}>
+          <BlockList
+            start={"start"}
+            blocks={this.props.blocks}
+            focused={this.state.blockKey}
+            addBlock={this.addBlock.bind(this)}
+            renameBlock={this.renameBlock.bind(this)}
+            deleteBlock={this.deleteBlock.bind(this)}
+            focusBlock={this.focusBlock.bind(this)} />
 
-        <BlockForm
-          block={this.state.block}
-          blockKey={this.state.blockKey}
-          blocks={this.props.blocks}
-          onChange={this.updateBlock.bind(this)} />
+          <BlockForm
+            block={this.state.block}
+            blockKey={this.state.blockKey}
+            blocks={this.props.blocks}
+            onChange={this.updateBlock.bind(this)} />
+        </div>
+        <div className={styles.previewWrapper}>
+          <Preview blocks={this.state.blocks}/>
+        </div>
       </div>
     )
   }

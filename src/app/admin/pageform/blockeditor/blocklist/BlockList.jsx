@@ -90,8 +90,9 @@ export default function BlockList(props) {
       <div className={styles.header}>
         <img src={AddButton} className={styles.addBtn} onClick={props.addBlock}/>
       </div>
-
-      { unwindList() }
+      <div className={styles.list}>
+        { unwindList() }
+      </div>
     </div>
   )
 }

@@ -13,6 +13,7 @@
 
 html, body, #root {
   width: 100vw;
+  height: 100vh;
 }
 
 body {
@@ -28,6 +29,6 @@ body {
 }
 
 #root {
-  --aaron-site-brand: #{brand()};
+  --aaron-site-brand: #{$brand};
   background-color: $background;
 }

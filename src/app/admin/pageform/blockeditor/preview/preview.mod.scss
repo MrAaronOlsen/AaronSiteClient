@@ -11,16 +11,14 @@
   min-width: 600px;
   width: 100%;
 
-  @include border($color: $brand);
-  @include shadow;
-
-  overflow: scroll;
+  @include borderLeft($color: $brand);
 
   .preview {
     @include flex;
     @include center($horz: flex-start);
 
     width: 800px;
+    overflow: scroll;
   }
 
   .reset, .triggerOut {

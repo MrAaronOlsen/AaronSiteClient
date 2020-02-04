@@ -3,7 +3,6 @@ import React, { Component} from "react"
 import MenuBar from './menubar/MenuBar.jsx'
 import Header from './header/Header.jsx'
 import BlockEditor from './blockeditor/BlockEditor.jsx'
-import Preview from './preview/Preview.jsx'
 
 import {
   fetchPages, fetchPage,
@@ -197,15 +196,10 @@ export default class PageForm extends Component {
           slug={this.state.slug}
           onChange={this.onChange.bind(this)}/>
 
-        <div className={styles.blockWrapper}>
-          <BlockEditor
-            blocks={this.state.blocks}
-            pageId={this.state.pageId}
-            onChange={this.onChange.bind(this)}/>
-
-          <Preview blocks={this.state.blocks}/>
-        </div>
-
+        <BlockEditor
+          blocks={this.state.blocks}
+          pageId={this.state.pageId}
+          onChange={this.onChange.bind(this)}/>
       </div>
     )
   }
