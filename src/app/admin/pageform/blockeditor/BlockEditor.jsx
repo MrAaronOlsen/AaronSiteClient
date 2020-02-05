@@ -90,7 +90,7 @@ export default class BlockEditor extends Component {
             onChange={this.updateBlock.bind(this)} />
         </div>
         <div className={styles.previewWrapper}>
-          <Preview blocks={this.state.blocks}/>
+          <Preview blocks={this.props.blocks}/>
         </div>
       </div>
     )
