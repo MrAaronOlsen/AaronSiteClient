@@ -8,11 +8,12 @@
   @include flex($dir: column);
 
   height: 30px;
-  width: 20px;
+  width: 100%;
 
   overflow: scroll;
 
   .header {
+    position: relative;
     @include flex($dir: row)
     @include center($horz: flex-start)
 
@@ -20,16 +21,41 @@
     width: 100%;
 
     padding-left: 0;
-    padding-right: 20px;
 
-    .addBtn {
-      height: 15px;
+    .arrow {
+      height: 12px;
+      width: 12px;
+
+      opacity: 0.3;
+    }
+
+    .custom {
+      width: 100%;
+      margin-left: 20px;
+
+      padding-bottom: 2px;
+
+      @include borderBottom($color: $brand);
+    }
+
+    .add {
       width: 15px;
+      height: 15px;
 
-      border-radius: 19px;
+      margin-left: 10px;
 
       opacity: 0.1;
-      transition: opacity 500ms ease;
+
+      transition: opacity 500ms
+    }
+
+    .add:hover {
+      opacity: 0.5;
+
+      background-color: $brand;
+      @include border($radius: 9px, $width: 0)
+
+      transition: opacity 500ms
     }
   }
 
@@ -37,11 +63,10 @@
     position: absolute;
 
     left: 15px;
+    top: 20px;
 
-    width: 0;
-    height: 0;
-
-    visibility: hidden;
+    width: 200px;
+    max-height: 300px;
 
     padding: 10px;
 
@@ -51,28 +76,6 @@
     @include border($color: $brand, $radius: 5px)
     @include shadow;
 
-    overflow: scroll;
     z-index: 999;
-
-    transition: height 300ms cubic-bezier(0.635, 0.160, 0.345, 0.985) 125ms, width 150ms cubic-bezier(0.635, 0.160, 0.345, 0.985) 0ms;
-  }
-}
-
-.wrapper:hover {
-  width: 50px;
-
-  .list {
-    visibility: visible;
-
-    height: 300px;
-    width: 200px;
-  }
-
-  .header {
-    .addBtn {
-      opacity: 0.5;
-      background-color: $brand;
-      @include shadow;
-    }
   }
 }

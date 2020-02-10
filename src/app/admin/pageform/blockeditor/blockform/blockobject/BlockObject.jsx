@@ -8,13 +8,9 @@ import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
 
-const nestedKeys = new Set([
-  ':hover',
-  ':active'
-])
-
 export default function BlockObject(props) {
   const [id] = React.useState(shortid.generate())
+  const nestedKeys = new Set(props.nestedKeys || [])
 
   function object() {
     return props.object || {}
@@ -96,6 +92,16 @@ export default function BlockObject(props) {
     })
   }
 
+  function getInput() {
+    if (props.isCustom) {
+
+    } else {
+      return (<div className={styles.list}>
+        <AddList items={Object.keys(props.attributes)} onClick={addProperty}/>
+      </div>)
+    }
+  }
+
   return(
     <div id={id} className={styles.wrapper} data-locator={props.locator}>
 
@@ -103,9 +109,7 @@ export default function BlockObject(props) {
         { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }
 
         <span>{props.name}: </span>
-        <div className={styles.list}>
-          <AddList items={Object.keys(props.attributes)} onClick={addProperty}/>
-        </div>
+        {getInput()}
       </div>
 
       <div className={styles.properties}>

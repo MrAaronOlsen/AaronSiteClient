@@ -8,7 +8,12 @@ export default class TextInput extends Component{
   onChange(element) {
     var content = element.currentTarget.value;
 
-    this.props.onChange(content, this.props.name)
+    if (this.props.name) {
+      this.props.onChange(content, this.props.name)
+    } else {
+      this.props.onChange(content)
+    }
+
   }
 
   render() {

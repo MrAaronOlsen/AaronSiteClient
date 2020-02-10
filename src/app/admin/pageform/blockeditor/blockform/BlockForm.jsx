@@ -12,12 +12,14 @@ import styles from './blockForm.mod.scss'
 
 const objectAttributes = {
   'transition': TransitionProperties,
-  'styles': StyleProperties
+  'styles': StyleProperties,
+  'motion': {'initial': '', 'animate': '', 'variants': ''}
 }
 
 const objectAttributesOrder = {
   'transition': TransitionPropertiesList,
-  'styles': StylePropertiesList
+  'styles': StylePropertiesList,
+  'motion': ['initial', 'animate', 'variants']
 }
 
 const blockContentDisplay = {
@@ -99,11 +101,17 @@ export default function BlockForm(props) {
       focus={setFocused}
       name={name}
       object={block()[name]}
-      objectOrder={objectAttributesOrder[name]}
+      objectOrder={objectAttributesOrder[name] || []}
       blockKey={props.blockKey}
       onChange={onChange}
-      attributes={objectAttributes[name]}
+      nestedKeys={nestedKeys[name] || []}
+      attributes={objectAttributes[name] || []}
       hasStyles />
+  }
+
+  const nestedKeys = {
+    'styles': [":hover", ":active"],
+    'motion': ["variants"]
   }
 
   const blockContentTypes = {
@@ -138,7 +146,7 @@ export default function BlockForm(props) {
         { blockText('link') }
         { blockList('modal') }
         { blockList('next') }
-        { blockObject('transition') }
+        { blockObject('motion') }
         { blockObject('styles') }
       </React.Fragment>}
     </div>

@@ -1,37 +1,35 @@
 import React, { Component } from 'react'
 
+import TextInput from 'modules/textinput/TextInput.jsx'
 import Line from './line/Line.jsx'
+
+import ArrowImg from 'public/images/arrow-down.png';
 import AddButton from 'public/images/add-button.png'
 import styles from './addList.mod.scss'
 
+import setListPosition from './setListPosition.js'
+
 export default function AddList(props) {
-  const [checkPos, setCheckPos] = React.useState(false)
-  const ref = React.useRef(null);
+  const [custom, setCustom] = React.useState("")
+  const listRef = React.useRef(null);
 
-  React.useEffect(setPosition, [checkPos]);
+  const [expandList, setExpandList] = React.useState(false)
 
-  function setPosition() {
-    const element = ref.current;
-
-    if (!element) {
-      return;
-    }
-
-    const topPos = element.getBoundingClientRect().top;
-    const botPos = element.getBoundingClientRect().bottom;
-    const height = window.innerHeight;
-
-    if (topPos + 300 > height || botPos + 300 > height) {
-      ref.current.style.removeProperty("top")
-      ref.current.style.bottom = "20px"
-    } else {
-      ref.current.style.removeProperty("bottom")
-      ref.current.style.top = "20px"
-    }
+  function onClick(value) {
+    props.onClick(value)
   }
 
-  function onClick(name) {
-    props.onClick(name)
+  function mountList() {
+    setExpandList(true)
+    setListPosition(listRef)
+  }
+
+  function unmountList() {
+    setExpandList(false)
+  }
+
+  function onCustomChange(value, name) {
+    props.onClick(value)
   }
 
   function buildList() {
@@ -47,11 +45,19 @@ export default function AddList(props) {
   return(
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <img className={styles.addBtn} src={AddButton} onMouseOver={() => setCheckPos(!checkPos)}/>
+        <img className={styles.arrow} src={ArrowImg} onMouseOver={mountList}/>
+        <TextInput
+          text={custom}
+          onChange={setCustom}
+          classNames={styles.custom} />
+        <img className={styles.add} src={AddButton} onClick={() => props.onClick(custom)}/>
+
       </div>
-      <div className={styles.list} ref={ref}>
-        { buildList() }
-      </div>
+      {expandList &&
+        <div className={styles.list} ref={listRef} onMouseLeave={unmountList}>
+          { buildList() }
+        </div>
+      }
     </div>
   )
 }
