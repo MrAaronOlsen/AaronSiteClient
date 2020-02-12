@@ -27,7 +27,6 @@ export default class TextInput extends Component{
           type={this.props.type}
           defaultValue={this.props.text}/>
       </div>
-
     )
   }
 }

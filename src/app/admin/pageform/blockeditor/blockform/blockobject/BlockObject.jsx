@@ -1,42 +1,53 @@
 import React from 'react'
 import shortid from 'shortid'
 
+import ToggleType from './ToggleType.jsx'
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
 import AddList from 'blockform/modules/addlist/AddList.jsx'
-import StyleProperties, { StylePropertiesList } from '../StyleProperties.jsx'
 
 import styles from './blockObject.mod.scss'
 
 export default function BlockObject(props) {
   const [id] = React.useState(shortid.generate())
-  const nestedKeys = new Set(props.nestedKeys || [])
+
+  const parent = props.parent;
+  const properties = props.properties[props.name] || [];
 
   function object() {
     return props.object || {}
   }
 
-  function newBlockObject(key, index) {
-    return <BlockObject key={props.blockKey + index}
-      focused={props.focused}
-      focus={props.focus}
-      name={key}
-      object={object()[key] || {}}
-      objectOrder={StylePropertiesList}
-      blockKey={props.blockKey}
-      onChange={onChange}
-      attributes={ StyleProperties }
-      delete={deleteProperty} />
+  function newBlockObject(key, value, index) {
+    const id = parent + index;
+
+    return wrapToggle(
+      <BlockObject {...props}
+        name={key}
+        object={value}
+        onChange={onChange}
+        delete={deleteProperty} />, id, key, "object"
+    )
   }
 
-  function newTextBlock(key, index) {
-    return <BlockText key={props.blockKey + key}
-      focused={props.focused}
-      focus={props.focus}
-      name={key}
-      text={object()[key]}
-      onChange={onChange}
-      delete={deleteProperty} />
+  function newTextBlock(key, value, index) {
+    const id = parent + index;
+
+    return wrapToggle(
+      <BlockText {...props}
+        name={key}
+        text={value}
+        onChange={onChange}
+        delete={deleteProperty} />, id, key, "text"
+    )
+  }
+
+  function wrapToggle(field, id, name, type) {
+    return (
+      <ToggleType key={id} name={name} type={type} onChange={onChange}>
+        { field }
+      </ToggleType>
+    )
   }
 
   function onChange(content, name) {
@@ -50,7 +61,7 @@ export default function BlockObject(props) {
     let object = props.object || {};
 
     if (!object[name]) {
-      onChange(props.attributes[name], name)
+      onChange(properties[name], name)
     }
   }
 
@@ -66,10 +77,12 @@ export default function BlockObject(props) {
   }
 
   function getField(key, index) {
-    if (nestedKeys.has(key)) {
-      return newBlockObject(key, index)
+    const value = object()[key];
+
+    if (typeof value === 'object') {
+      return newBlockObject(key, value, index)
     } else {
-      return newTextBlock(key, index)
+      return newTextBlock(key, value, index)
     }
   }
 
@@ -77,7 +90,7 @@ export default function BlockObject(props) {
     var list = Object.keys(object());
     var ordered;
 
-    var order = props.objectOrder;
+    var order = Object.keys(properties);
 
     if (order) {
       ordered = list.sort(function(a, b) {
@@ -92,24 +105,16 @@ export default function BlockObject(props) {
     })
   }
 
-  function getInput() {
-    if (props.isCustom) {
-
-    } else {
-      return (<div className={styles.list}>
-        <AddList items={Object.keys(props.attributes)} onClick={addProperty}/>
-      </div>)
-    }
-  }
-
   return(
     <div id={id} className={styles.wrapper} data-locator={props.locator}>
 
-      <div className={styles.header}>
+      <div className={styles.header} onClick={() => props.focus(id)}>
         { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }
 
         <span>{props.name}: </span>
-        {getInput()}
+        <div className={styles.list}>
+          <AddList items={Object.keys(properties)} onClick={addProperty}/>
+        </div>
       </div>
 
       <div className={styles.properties}>

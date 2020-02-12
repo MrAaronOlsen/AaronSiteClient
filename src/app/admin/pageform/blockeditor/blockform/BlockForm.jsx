@@ -1,25 +1,23 @@
 import React from 'react'
 
 import BlockText from 'blockform/blocktext/BlockText.jsx'
+import BlockBool from 'blockform/blockbool/BlockBool.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
 import BlockList from 'blockform/blocklist/BlockList.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
 
-import TransitionProperties, { TransitionPropertiesList } from 'modules/transition/TransitionProperties.jsx'
-import StyleProperties, { StylePropertiesList } from './StyleProperties.jsx'
+import TransitionProperties from 'modules/transition/TransitionProperties.jsx'
+import StyleProperties from './StyleProperties.jsx'
+import MotionProperties from 'modules/motion/MotionProperties.jsx'
 
 import styles from './blockForm.mod.scss'
 
-const objectAttributes = {
+const properties = {
   'transition': TransitionProperties,
   'styles': StyleProperties,
-  'motion': {'initial': '', 'animate': '', 'variants': ''}
-}
-
-const objectAttributesOrder = {
-  'transition': TransitionPropertiesList,
-  'styles': StylePropertiesList,
-  'motion': ['initial', 'animate', 'variants']
+  ':hover': StyleProperties,
+  ':action': StyleProperties,
+  'motion': MotionProperties
 }
 
 const blockContentDisplay = {
@@ -51,9 +49,11 @@ export default function BlockForm(props) {
 
   setUnfocusEffect(unfocus)
 
-  function onChange(line, name) {
+  function onChange(value, name) {
     let block = props.block;
-    block[name] = line;
+    block[name] = value;
+
+    console.log(JSON.stringify(block))
 
     props.onChange(block, props.blockKey)
   }
@@ -75,6 +75,13 @@ export default function BlockForm(props) {
       onChange={onChange} />
   }
 
+  const blockBool = function(name) {
+    return <BlockBool
+      name={name}
+      checked={block()[name]}
+      onChange={onChange} />
+  }
+
   const blockRich = function(name) {
     return <BlockRich
       focused={focused}
@@ -91,7 +98,7 @@ export default function BlockForm(props) {
       focus={setFocused}
       name={name}
       text={block()[name]}
-      attributes={blockLists[name]}
+      properties={blockLists[name]}
       onChange={onChange} />
   }
 
@@ -101,17 +108,9 @@ export default function BlockForm(props) {
       focus={setFocused}
       name={name}
       object={block()[name]}
-      objectOrder={objectAttributesOrder[name] || []}
       blockKey={props.blockKey}
-      onChange={onChange}
-      nestedKeys={nestedKeys[name] || []}
-      attributes={objectAttributes[name] || []}
-      hasStyles />
-  }
-
-  const nestedKeys = {
-    'styles': [":hover", ":active"],
-    'motion': ["variants"]
+      properties={properties}
+      onChange={onChange} />
   }
 
   const blockContentTypes = {
@@ -141,13 +140,19 @@ export default function BlockForm(props) {
   return(
     <div className={styles.wrapper} key={props.blockKey} ref={ref}>
       {props.blockKey && <React.Fragment>
-        { blockList('type') }
-        { blockContent() }
-        { blockText('link') }
-        { blockList('modal') }
+        <div className={styles.flags}>
+          { blockBool('hasMotion') }
+          { blockBool('hasStyles') }
+          { blockBool('hasLink') }
+          { blockBool('hasModal') }
+        </div>
         { blockList('next') }
-        { blockObject('motion') }
-        { blockObject('styles') }
+        { props.blockKey !== 'start' && blockList('type') }
+        { blockContent() }
+        { block().hasLink && blockText('link') }
+        { block().hasModal && blockList('modal') }
+        { block().hasMotion && blockObject('motion') }
+        { block().hasStyles && blockObject('styles') }
       </React.Fragment>}
     </div>
   )

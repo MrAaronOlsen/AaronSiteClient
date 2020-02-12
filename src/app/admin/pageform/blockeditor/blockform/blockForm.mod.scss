@@ -14,6 +14,16 @@
 
   @include borderLeft($color: $brand, $width: 1px)
 
+  .flags {
+    @include flex($dir: row)
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid $brand;
+  }
+
   .lines {
     @include flex($dir: column);
     width: 100%;

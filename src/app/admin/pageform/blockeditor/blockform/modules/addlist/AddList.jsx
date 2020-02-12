@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
+import { outsideClick } from 'effects'
 import TextInput from 'modules/textinput/TextInput.jsx'
 import Line from './line/Line.jsx'
 
@@ -10,22 +11,20 @@ import styles from './addList.mod.scss'
 import setListPosition from './setListPosition.js'
 
 export default function AddList(props) {
-  const [custom, setCustom] = React.useState("")
   const listRef = React.useRef(null);
-
+  const imgRef = React.useRef(null);
+  const [custom, setCustom] = React.useState("")
   const [expandList, setExpandList] = React.useState(false)
+
+  outsideClick(listRef, () => setExpandList(false), [imgRef])
 
   function onClick(value) {
     props.onClick(value)
   }
 
-  function mountList() {
-    setExpandList(true)
+  function toggleList() {
+    setExpandList(!expandList)
     setListPosition(listRef)
-  }
-
-  function unmountList() {
-    setExpandList(false)
   }
 
   function onCustomChange(value, name) {
@@ -45,7 +44,7 @@ export default function AddList(props) {
   return(
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <img className={styles.arrow} src={ArrowImg} onMouseOver={mountList}/>
+        <img className={styles.arrow} src={ArrowImg} onClick={toggleList} ref={imgRef}/>
         <TextInput
           text={custom}
           onChange={setCustom}
@@ -54,7 +53,7 @@ export default function AddList(props) {
 
       </div>
       {expandList &&
-        <div className={styles.list} ref={listRef} onMouseLeave={unmountList}>
+        <div className={styles.list} ref={listRef} onMouseLeave={() => setExpandList(false)}>
           { buildList() }
         </div>
       }

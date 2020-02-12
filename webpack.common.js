@@ -77,6 +77,7 @@ module.exports = {
       blocks: path.resolve(__dirname, 'src/modules/blocks'),
       motion$: path.resolve(__dirname, 'src/modules/motion/Motion.jsx'),
       blockform: path.resolve(__dirname, 'src/app/admin/pageform/blockeditor/blockform'),
+      effects$: path.resolve(__dirname, 'src/js/effects.js'),
     }
   }
 };
