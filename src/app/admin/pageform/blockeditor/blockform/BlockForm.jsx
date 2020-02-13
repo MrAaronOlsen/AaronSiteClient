@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { eventListener } from 'effects';
+import BlockArray from 'blockform/blockarray/BlockArray.jsx'
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockBool from 'blockform/blockbool/BlockBool.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
@@ -80,6 +81,7 @@ export default function BlockForm(props) {
         { block().hasModal && field(BlockList, 'modal') }
         { block().hasMotion && field(BlockObject, 'motion') }
         { block().hasStyles && field(BlockObject, 'styles') }
+        { field(BlockArray, 'test') }
       </React.Fragment>}
     </div>
   )

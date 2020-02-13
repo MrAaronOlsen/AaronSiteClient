@@ -9,7 +9,9 @@ export default function BlockText(props) {
   const [id] = React.useState(shortid.generate())
 
   function onChange(event) {
-    props.onChange(event.target.checked, props.name)
+    if (event && event.target) {
+      props.onChange(event.target.checked, props.name)
+    }
   }
 
   return(
