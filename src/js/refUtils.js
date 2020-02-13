@@ -1,4 +1,4 @@
-export default function setListPosition(elementRef, anchorRef) {
+export function anchorRefTo(elementRef, anchorRef) {
   const element = elementRef.current;
   const anchor = anchorRef.current;
 

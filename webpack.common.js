@@ -78,6 +78,7 @@ module.exports = {
       motion$: path.resolve(__dirname, 'src/modules/motion/Motion.jsx'),
       blockform: path.resolve(__dirname, 'src/app/admin/pageform/blockeditor/blockform'),
       effects$: path.resolve(__dirname, 'src/js/effects.js'),
+      "ref-utils$": path.resolve(__dirname, 'src/js/refUtils.js'),
     }
   }
 };

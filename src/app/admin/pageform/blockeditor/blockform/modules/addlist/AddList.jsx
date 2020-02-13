@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { outsideClick } from 'effects'
+import { anchorRefTo } from 'ref-utils'
+
 import TextInput from 'modules/textinput/TextInput.jsx'
 import Line from './line/Line.jsx'
 
@@ -8,15 +10,13 @@ import ArrowImg from 'public/images/arrow-down.png';
 import AddButton from 'public/images/add-button.png'
 import styles from './addList.mod.scss'
 
-import setListPosition from './setListPosition.js'
-
 export default function AddList(props) {
   const listRef = React.useRef(null);
   const imgRef = React.useRef(null);
   const [custom, setCustom] = React.useState("")
   const [expandList, setExpandList] = React.useState(false)
 
-  React.useEffect(() => setListPosition(listRef, imgRef), [expandList])
+  React.useEffect(() => anchorRefTo(listRef, imgRef), [expandList])
   React.useEffect(() => outsideClick(listRef, () => setExpandList(false), [imgRef]))
 
   function onClick(value) {
