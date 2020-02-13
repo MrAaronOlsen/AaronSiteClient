@@ -19,6 +19,7 @@ export default function BlockText(props) {
       <span>{props.name}: </span>
       <input type="checkbox"
         onChange={onChange}
+        checked={props.content}
         className={styles.radio} />
 
     </div>
