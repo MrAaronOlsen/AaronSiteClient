@@ -1,19 +1,48 @@
-export default function setPosition(ref) {
-  const element = ref.current;
+export default function setListPosition(elementRef, anchorRef) {
+  const element = elementRef.current;
+  const anchor = anchorRef.current;
 
-  if (!element) {
+  if (!element || !anchor) {
     return;
   }
 
-  const topPos = element.getBoundingClientRect().top;
-  const botPos = element.getBoundingClientRect().bottom;
-  const height = window.innerHeight;
+  hide(element);
 
-  if (topPos + 300 > height || botPos + 300 > height) {
-    ref.current.style.removeProperty("top")
-    ref.current.style.bottom = "20px"
-  } else {
-    ref.current.style.removeProperty("bottom")
-    ref.current.style.top = "20px"
+  const anchorPos = pos(anchor)
+  element.style.left = px(anchorPos.right)
+  element.style.top = px(anchorPos.bottom)
+
+  const windowHeight = window.innerHeight;
+  const elementHeight = element.offsetHeight;
+
+  if (elementHeight + 20 > windowHeight) {
+    element.style.height = px(windowHeight - 20);
+    element.style.top = "10px";
+
+    show(element)
+    return
   }
+
+  if (pos(element).bottom > windowHeight) {
+    element.style.removeProperty("top");
+    element.style.bottom = "10px";
+  }
+
+  show(element)
+}
+
+function hide(element) {
+  element.style.opacity = 0;
+}
+
+function show(element) {
+  element.style.opacity = 1;
+}
+
+function pos(element) {
+  return element.getBoundingClientRect()
+}
+
+function px(dims) {
+  return dims + "px";
 }

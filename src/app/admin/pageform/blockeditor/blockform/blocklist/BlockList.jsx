@@ -28,8 +28,8 @@ export default function BlockList(props) {
     <div className={styles.wrapper} onClick={focus}>
       <SelectList
         name={props.name}
-        items={props.properties}
-        selected={props.text}
+        items={props.items}
+        selected={props.content}
         onClick={onSelect} />
 
     </div>

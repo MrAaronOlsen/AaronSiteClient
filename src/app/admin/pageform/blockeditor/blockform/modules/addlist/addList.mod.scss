@@ -10,10 +10,7 @@
   height: 30px;
   width: 100%;
 
-  overflow: scroll;
-
   .header {
-    position: relative;
     @include flex($dir: row)
     @include center($horz: flex-start)
 
@@ -23,12 +20,18 @@
     padding-left: 0;
 
     .arrow {
-      position: relative;
       height: 12px;
       width: 12px;
 
       opacity: 0.3;
+      transition: opacity 200ms ease;
+
       border-radius: 10px;
+    }
+
+    .arrow:hover {
+      opacity: 0.8;
+      transition: opacity 800ms ease;
     }
 
     .custom {
@@ -62,10 +65,7 @@
   }
 
   .list {
-    position: absolute;
-
-    left: 15px;
-    top: 20px;
+    position: fixed;
 
     width: 200px;
     max-height: 300px;
@@ -78,6 +78,7 @@
     @include border($color: $brand, $radius: 5px)
     @include shadow;
 
+    transition: opacity 400ms ease;
     z-index: 999;
   }
 }

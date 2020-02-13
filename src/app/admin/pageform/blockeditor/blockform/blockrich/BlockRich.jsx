@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import BlockRichEditor from './editor/BlockRichEditor.jsx'
 import styles from './blockRich.mod.scss'
 
-export default class BlockRich extends Component {
+export default function BlockRich(props) {
 
-  render() {
-    return(
-      <div className={styles.wrapper}>
-        <span>{this.props.name}: </span>
+  return(
+    <div className={styles.wrapper}>
+      <span>{props.name}: </span>
 
-        <div className={styles.contentWrapper}>
-          <BlockRichEditor
-            name={this.props.name}
-            text={this.props.text}
-            onChange={this.props.onChange} />
-        </div>
+      <div className={styles.contentWrapper}>
+        <BlockRichEditor
+          name={props.name}
+          text={props.content}
+          onChange={props.onChange} />
       </div>
-    )
-  }
+    </div>
+  )
 }

@@ -1,15 +1,13 @@
 import React from 'react';
 
 export function outsideClick(ref, callback, filterRefs) {
-  React.useEffect(() => {
-    document.addEventListener('click',
-      function handleClick(e) { outsideClickCheck(e, ref, callback, filterRefs) }, false)
+  document.addEventListener('click',
+    function handleClick(e) { outsideClickCheck(e, ref, callback, filterRefs) }, false)
 
-    return () => {
-      document.removeEventListener('click',
-        function handleClick(e) { outsideClickCheck(e, ref, callback, filterRefs) }, false)
-    }
-  }, [])
+  return () => {
+    document.removeEventListener('click',
+      function handleClick(e) { outsideClickCheck(e, ref, callback, filterRefs) }, false)
+  }
 }
 
 const outsideClickCheck = (event, ref, callback, filterRefs, type) => {
@@ -25,4 +23,12 @@ const outsideClickCheck = (event, ref, callback, filterRefs, type) => {
   if (ref.current && !ref.current.contains(event.target)) {
     callback()
   }
+}
+
+export function eventListener(type, callback) {
+  document.addEventListener(type, callback);
+
+  return () => {
+    document.removeEventListener(type, callback);
+  };
 }

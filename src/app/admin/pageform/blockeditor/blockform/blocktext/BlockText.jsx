@@ -21,7 +21,7 @@ export default function BlockText(props) {
       <span>{props.name}: </span>
       <TextInput
         name={props.name}
-        text={props.text}
+        text={props.content}
         onChange={props.onChange}
         classNames={styles.text} />
 

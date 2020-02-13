@@ -16,7 +16,8 @@ export default function AddList(props) {
   const [custom, setCustom] = React.useState("")
   const [expandList, setExpandList] = React.useState(false)
 
-  outsideClick(listRef, () => setExpandList(false), [imgRef])
+  React.useEffect(() => setListPosition(listRef, imgRef), [expandList])
+  React.useEffect(() => outsideClick(listRef, () => setExpandList(false), [imgRef]))
 
   function onClick(value) {
     props.onClick(value)
@@ -24,7 +25,6 @@ export default function AddList(props) {
 
   function toggleList() {
     setExpandList(!expandList)
-    setListPosition(listRef)
   }
 
   function onCustomChange(value, name) {

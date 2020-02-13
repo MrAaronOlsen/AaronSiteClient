@@ -11,32 +11,33 @@ import styles from './blockObject.mod.scss'
 export default function BlockObject(props) {
   const [id] = React.useState(shortid.generate())
 
-  const parent = props.parent;
-  const properties = props.properties[props.name] || [];
+  const parentName = props.parent;
+  const thisName = props.name;
+  const properties = props.properties[thisName] || [];
 
-  function object() {
-    return props.object || {}
+  function getObject() {
+    return props.content || {}
   }
 
   function newBlockObject(key, value, index) {
-    const id = parent + index;
+    const id = parentName + index;
 
     return wrapToggle(
       <BlockObject {...props}
         name={key}
-        object={value}
+        content={value}
         onChange={onChange}
         delete={deleteProperty} />, id, key, "object"
     )
   }
 
   function newTextBlock(key, value, index) {
-    const id = parent + index;
+    const id = parentName + index;
 
     return wrapToggle(
       <BlockText {...props}
         name={key}
-        text={value}
+        content={value}
         onChange={onChange}
         delete={deleteProperty} />, id, key, "text"
     )
@@ -51,14 +52,14 @@ export default function BlockObject(props) {
   }
 
   function onChange(content, name) {
-    let object = props.object || {};
+    let object = getObject();
     object[name] = content;
 
-    props.onChange(object, props.name)
+    props.onChange(object, thisName)
   }
 
   function addProperty(name) {
-    let object = props.object || {};
+    let object = getObject()
 
     if (!object[name]) {
       onChange(properties[name], name)
@@ -66,18 +67,18 @@ export default function BlockObject(props) {
   }
 
   function deleteProperty(name) {
-    let object = props.object;
+    let object = getObject()
     delete object[name]
 
-    props.onChange(object, props.name)
+    props.onChange(object, thisName)
   }
 
   function deleteLine() {
-    props.delete(props.name)
+    props.delete(thisName)
   }
 
   function getField(key, index) {
-    const value = object()[key];
+    const value = getObject()[key];
 
     if (typeof value === 'object') {
       return newBlockObject(key, value, index)
@@ -87,7 +88,7 @@ export default function BlockObject(props) {
   }
 
   function sortedFields() {
-    var list = Object.keys(object());
+    var list = Object.keys(getObject());
     var ordered;
 
     var order = Object.keys(properties);
@@ -109,9 +110,9 @@ export default function BlockObject(props) {
     <div id={id} className={styles.wrapper} data-locator={props.locator}>
 
       <div className={styles.header} onClick={() => props.focus(id)}>
-        { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }
+        { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentNameId={id} /> }
 
-        <span>{props.name}: </span>
+        <span>{thisName}: </span>
         <div className={styles.list}>
           <AddList items={Object.keys(properties)} onClick={addProperty}/>
         </div>
