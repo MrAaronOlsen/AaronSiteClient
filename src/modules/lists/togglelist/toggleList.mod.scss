@@ -1,0 +1,64 @@
+@import '~mixins/flex';
+@import '~mixins/center';
+@import '~mixins/borders';
+@import '~mixins/shadow';
+@import '~colors';
+
+.wrapper {
+  position: relative;
+
+  @include flex($dir: column);
+
+  height: 30px;
+  width: 100%;
+
+  .header {
+    @include flex($dir: row)
+    @include center($horz: flex-start)
+
+    height: 30px;
+    width: 100%;
+
+    @include borderBottom($color: $transparent);
+    transition: border-bottom 1000ms ease;
+
+    .name {
+      @include flex()
+      @include center()
+
+      height: 24px;
+    }
+
+    .selected {
+      width: 100%;
+
+      padding-left: 10px;
+    }
+  }
+
+  .header:hover {
+    @include borderBottom($color: $brand);
+    transition: border-bottom 500ms ease;  
+  }
+
+  .list {
+    position: fixed;
+
+    width: 200px;
+    max-height: 300px;
+
+    padding: 10px;
+
+    overflow: scroll;
+    background-color: $background;
+
+    @include border($color: $brand, $radius: 5px)
+    @include shadow;
+
+    opacity: 0;
+    transition: opacity 800ms ease;
+
+    z-index: 999;
+  }
+
+}

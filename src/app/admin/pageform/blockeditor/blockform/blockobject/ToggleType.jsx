@@ -1,7 +1,11 @@
 import React from 'react'
 
+import SelectList from 'blockform/modules/selectlist/SelectList.jsx'
 import styles from './toggleType.mod.scss'
 
+const elements = [
+  'T', '[ ]', '{ }',
+]
 export default function ToggleType(props) {
 
   function toggleType() {
@@ -22,7 +26,7 @@ export default function ToggleType(props) {
         {props.children}
       </div>
       <div className={styles.toggle} onClick={toggleType}>
-        {symbol()}
+        { symbol() }
       </div>
     </div>
   )
