@@ -24,4 +24,13 @@
     color: $brand;
     cursor: pointer;
   }
+
+  .list {
+    width: max-content;
+    height: max-content;
+
+    .line {
+      @include center()
+    }
+  }
 }

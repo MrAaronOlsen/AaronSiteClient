@@ -9,14 +9,18 @@ export default function Element(props) {
   }
 
   function getClasses() {
-    var classes = [styles.wrapper];
+    var classes = [styles.line];
 
     if (props.selected) {
       classes.push(styles.selected)
+
+      if (props.classNames && props.classNames.selected) {
+        classes.push(props.classNames.line)
+      }
     }
 
-    if (props.classNames) {
-      classes.push(props.classNames)
+    if (props.classNames && props.classNames.line) {
+      classes.push(props.classNames.line)
     }
 
     return classes.join(" ");

@@ -3,6 +3,7 @@ import shortid from 'shortid'
 
 import ToggleType from './ToggleType.jsx'
 import BlockText from 'blockform/blocktext/BlockText.jsx'
+import BlockArray from 'blockform/blockarray/BlockArray.jsx'
 import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
 import AddList from 'blockform/modules/addlist/AddList.jsx'
 
@@ -19,34 +20,16 @@ export default function BlockObject(props) {
     return props.content || {}
   }
 
-  function newBlockObject(key, value, index) {
+  function newObject(Block, type, key, value, index) {
     const id = parentName + index;
 
-    return wrapToggle(
-      <BlockObject {...props}
-        name={key}
-        content={value}
-        onChange={onChange}
-        delete={deleteProperty} />, id, key, "object"
-    )
-  }
-
-  function newTextBlock(key, value, index) {
-    const id = parentName + index;
-
-    return wrapToggle(
-      <BlockText {...props}
-        name={key}
-        content={value}
-        onChange={onChange}
-        delete={deleteProperty} />, id, key, "text"
-    )
-  }
-
-  function wrapToggle(field, id, name, type) {
     return (
-      <ToggleType key={id} name={name} type={type} onChange={onChange}>
-        { field }
+      <ToggleType key={id} name={key} type={type} onChange={onChange}>
+        <Block {...props}
+          name={key}
+          content={value}
+          onChange={onChange}
+          delete={deleteProperty} />
       </ToggleType>
     )
   }
@@ -81,9 +64,13 @@ export default function BlockObject(props) {
     const value = getObject()[key];
 
     if (typeof value === 'object') {
-      return newBlockObject(key, value, index)
+      if (Array.isArray(value)) {
+        return newObject(BlockArray, "array", key, value, index)
+      } else {
+        return newObject(BlockObject, "object", key, value, index)
+      }
     } else {
-      return newTextBlock(key, value, index)
+      return newObject(BlockText, "string", key, value, index)
     }
   }
 
@@ -107,7 +94,7 @@ export default function BlockObject(props) {
   }
 
   return(
-    <div id={id} className={styles.wrapper} data-locator={props.locator}>
+    <div name={"object"} id={id} className={styles.wrapper} data-locator={props.locator}>
 
       <div className={styles.header} onClick={() => props.focus(id)}>
         { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentNameId={id} /> }

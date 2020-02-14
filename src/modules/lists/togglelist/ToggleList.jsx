@@ -31,6 +31,7 @@ export default function SelectList(props) {
     if (props.items) {
       return props.items.map((name, i) => {
         return <Line key={i} {...props}
+          classNames={props.classNames}
           name={name}
           selected={name === props.selected}
           onClick={onClick}/>

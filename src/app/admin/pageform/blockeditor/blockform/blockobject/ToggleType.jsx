@@ -1,23 +1,28 @@
 import React from 'react'
 
-import SelectList from 'blockform/modules/selectlist/SelectList.jsx'
+import ToggleList from 'modules/lists/togglelist/ToggleList.jsx'
 import styles from './toggleType.mod.scss'
 
-const elements = [
-  'T', '[ ]', '{ }',
-]
-export default function ToggleType(props) {
+const items = {
+  'T': "", '[ ]': [], '{ }': {},
+}
 
-  function toggleType() {
-    if (props.type === 'text') {
-      props.onChange({}, props.name)
-    } else {
-      props.onChange("", props.name)
-    }
+const display = {
+  'string': `" "`,
+  'array': '[ ]',
+  'object': '{ }'
+}
+
+export default function ToggleType(props) {
+  const toggleRef = React.useRef(null);
+  const [expandList, setExpandList] = React.useState(false)
+
+  function onClick(value) {
+    props.onChange(items[value], props.name)
   }
 
-  function symbol() {
-    return props.type === 'text' ? "{ }" : "T"
+  function toggleList() {
+    setExpandList(!expandList)
   }
 
   return (
@@ -25,8 +30,17 @@ export default function ToggleType(props) {
       <div className={styles.children}>
         {props.children}
       </div>
-      <div className={styles.toggle} onClick={toggleType}>
-        { symbol() }
+      <div name="toggle" className={styles.toggle} >
+        <div className={styles.selected} ref={toggleRef} onClick={toggleList}>
+          { display[props.type] }
+        </div>
+        <ToggleList classNames={{'list': styles.list, 'line': styles.line}}
+          onClick={onClick}
+          items={Object.keys(items)}
+          selected={props.selected}
+          anchorRef={toggleRef}
+          expand={expandList}
+          ignoreRefs={[toggleRef]}/>
       </div>
     </div>
   )

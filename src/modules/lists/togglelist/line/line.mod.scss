@@ -4,7 +4,7 @@
 @import '~mixins/shadow';
 @import '~colors';
 
-.wrapper {
+.line {
   @include flex($dir: row)
   @include center($horz: flex-start)
 
@@ -19,6 +19,6 @@
   background-color: white-overlay($alpha: 0.5)
 }
 
-.wrapper:hover {
+.line:hover {
   @include shadow;
 }

@@ -4,61 +4,22 @@
 @import '~mixins/shadow';
 @import '~colors';
 
-.wrapper {
-  position: relative;
+.list {
+  position: fixed;
 
-  @include flex($dir: column);
+  width: 200px;
+  max-height: 300px;
 
-  height: 30px;
-  width: 100%;
+  padding: 10px;
 
-  .header {
-    @include flex($dir: row)
-    @include center($horz: flex-start)
+  overflow: scroll;
+  background-color: $background;
 
-    height: 30px;
-    width: 100%;
+  @include border($color: $brand, $radius: 5px)
+  @include shadow;
 
-    @include borderBottom($color: $transparent);
-    transition: border-bottom 1000ms ease;
+  opacity: 0;
+  transition: opacity 800ms ease;
 
-    .name {
-      @include flex()
-      @include center()
-
-      height: 24px;
-    }
-
-    .selected {
-      width: 100%;
-
-      padding-left: 10px;
-    }
-  }
-
-  .header:hover {
-    @include borderBottom($color: $brand);
-    transition: border-bottom 500ms ease;  
-  }
-
-  .list {
-    position: fixed;
-
-    width: 200px;
-    max-height: 300px;
-
-    padding: 10px;
-
-    overflow: scroll;
-    background-color: $background;
-
-    @include border($color: $brand, $radius: 5px)
-    @include shadow;
-
-    opacity: 0;
-    transition: opacity 800ms ease;
-
-    z-index: 999;
-  }
-
+  z-index: 999;
 }
