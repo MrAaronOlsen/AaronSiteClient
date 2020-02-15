@@ -9,18 +9,11 @@ import styles from './preview.mod.scss'
 
 export default class Preview extends Component {
   state = {
-    key: shortid.generate(),
-    triggerOut: false
-  }
-
-  reset() {
-    this.setState({
-      key: shortid.generate()
-    })
+    trigger: false
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.key != this.state.key || nextState.triggerOut != this.state.triggerOut) {
+    if (nextState.trigger != this.state.trigger) {
       return true;
     }
 
@@ -29,7 +22,7 @@ export default class Preview extends Component {
 
   triggerOut() {
     this.setState({
-      triggerOut: !this.state.triggerOut
+      trigger: !this.state.trigger
     })
   }
 
@@ -42,8 +35,7 @@ export default class Preview extends Component {
 
         <div className={styles.preview}>
           <Blocks key={this.state.key}
-            triggerOut={this.state.triggerOut}
-            actionOut={this.reset.bind(this)}
+            trigger={this.state.trigger}
             blocks={this.props.blocks} />
         </div>
       </div>

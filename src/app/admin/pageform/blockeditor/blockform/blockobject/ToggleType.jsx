@@ -4,11 +4,12 @@ import ToggleList from 'modules/lists/togglelist/ToggleList.jsx'
 import styles from './toggleType.mod.scss'
 
 const items = {
-  'T': "", '[ ]': [], '{ }': {},
+  'T': "", '0': 0, '[ ]': [], '{ }': {},
 }
 
 const display = {
   'string': `" "`,
+  'number': '0',
   'array': '[ ]',
   'object': '{ }'
 }

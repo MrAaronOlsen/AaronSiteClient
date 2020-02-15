@@ -1,6 +1,7 @@
 const MotionProperties = {
   initial: '',
-  animate: '',
+  animate: [],
+  exit: [],
   variants: {}
 }
 

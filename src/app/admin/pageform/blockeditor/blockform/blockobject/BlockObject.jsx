@@ -3,6 +3,7 @@ import shortid from 'shortid'
 
 import ToggleType from './ToggleType.jsx'
 import BlockText from 'blockform/blocktext/BlockText.jsx'
+import BlockNumber from 'blockform/blocknumber/BlockNumber.jsx'
 import BlockArray from 'blockform/blockarray/BlockArray.jsx'
 import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
 import AddList from 'blockform/modules/addlist/AddList.jsx'
@@ -70,7 +71,11 @@ export default function BlockObject(props) {
         return newObject(BlockObject, "object", key, value, index)
       }
     } else {
-      return newObject(BlockText, "string", key, value, index)
+      if (typeof value === 'number') {
+        return newObject(BlockNumber, "number", key, value, index)
+      } else {
+        return newObject(BlockText, "string", key, value, index)
+      }
     }
   }
 

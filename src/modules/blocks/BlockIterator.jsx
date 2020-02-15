@@ -50,11 +50,13 @@ export default function BlockIterator(props) {
     }
 
     return(
-      <StyledBlock {...props} block={block} key={thisBlock}>
-        <Block {...props} blocks={blocks} block={block} />
-      </StyledBlock>
+      <Block {...props} blocks={blocks} block={block} />
     )
   }
+
+  // <StyledBlock {...props} block={block} key={thisBlock}>
+  //
+  // </StyledBlock>
 
   function getBlocks() {
     let blocksToRender = [];

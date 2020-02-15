@@ -9,7 +9,7 @@ const ThemedMotion = styled(motion.div)(props => Theme(props.styles));
 export default function Motion(props) {
 
   return(
-    <ThemedMotion className={props.className}
+    <ThemedMotion name={"motion"} styles={props.styles}
       variants={props.variants}
       initial={props.initial}
       animate={props.animate}

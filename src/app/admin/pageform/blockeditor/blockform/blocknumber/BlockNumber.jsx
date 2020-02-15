@@ -3,13 +3,19 @@ import shortid from 'shortid'
 
 import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
 import TextInput from 'modules/textinput/TextInput.jsx'
-import styles from './blockText.mod.scss'
+import styles from './blockNumber.mod.scss'
 
 export default function BlockNumber(props) {
   const [id] = React.useState(shortid.generate())
 
   function deleteLine() {
     props.delete(props.name)
+  }
+
+  function onChange(value, name) {
+    if (value) {
+      props.onChange(parseFloat(value), props.name)
+    }
   }
 
   function focus() {
@@ -22,8 +28,8 @@ export default function BlockNumber(props) {
       <TextInput
         name={props.name}
         text={props.content}
-        onChange={props.onChange}
-        type={'text'}
+        onChange={onChange}
+        type={'number'}
         classNames={styles.text} />
 
       { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }

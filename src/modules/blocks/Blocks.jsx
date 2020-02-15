@@ -10,7 +10,7 @@ export default class Blocks extends Component {
     return(
         <div name="blocks" className={styles.wrapper}>
           <BlockIterator
-            triggerOut={this.props.triggerOut}
+            trigger={this.props.trigger}
             triggerAction={this.props.actionOut}
             start={'start'}
             blocks={this.props.blocks || {}} />
