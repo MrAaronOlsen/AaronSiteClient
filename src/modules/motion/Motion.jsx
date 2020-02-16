@@ -2,9 +2,8 @@ import React from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components'
 
-import Theme from 'theme'
-
-const ThemedMotion = styled(motion.div)(props => Theme(props.styles));
+import Themed from 'theme'
+const ThemedMotion = styled(motion.div)(props => Themed(props.styles));
 
 export default function Motion(props) {
 

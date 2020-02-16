@@ -1,12 +1,13 @@
 import React from 'react'
 import shortid from 'shortid'
 
-import ToggleType from './ToggleType.jsx'
+import ToggleType from 'blockform/modules/toggletype/ToggleType.jsx'
+import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
+import AddList from 'blockform/modules/addlist/AddList.jsx'
+
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockNumber from 'blockform/blocknumber/BlockNumber.jsx'
 import BlockArray from 'blockform/blockarray/BlockArray.jsx'
-import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
-import AddList from 'blockform/modules/addlist/AddList.jsx'
 
 import styles from './blockObject.mod.scss'
 
@@ -81,28 +82,26 @@ export default function BlockObject(props) {
 
   function sortedFields() {
     var list = Object.keys(getObject());
-    var ordered;
-
     var order = Object.keys(properties);
 
     if (order) {
-      ordered = list.sort(function(a, b) {
+      var ordered = list.sort(function(a, b) {
         return order.indexOf(a) - order.indexOf(b);
       });
+
+      return ordered.map((key, i) => {
+        return getField(key, i)
+      })
     } else {
       return list;
     }
-
-    return ordered.map((key, i) => {
-      return getField(key, i)
-    })
   }
 
   return(
     <div name={"object"} id={id} className={styles.wrapper} data-locator={props.locator}>
 
       <div className={styles.header} onClick={() => props.focus(id)}>
-        { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentNameId={id} /> }
+        { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }
 
         <span>{thisName}: </span>
         <div className={styles.list}>

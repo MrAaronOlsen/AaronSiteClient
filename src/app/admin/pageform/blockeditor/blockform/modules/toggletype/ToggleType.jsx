@@ -27,8 +27,8 @@ export default function ToggleType(props) {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.children}>
+    <div name="toggle-wrapper" className={styles.wrapper}>
+      <div name="toggle-children" className={styles.children}>
         {props.children}
       </div>
       <div name="toggle" className={styles.toggle} >

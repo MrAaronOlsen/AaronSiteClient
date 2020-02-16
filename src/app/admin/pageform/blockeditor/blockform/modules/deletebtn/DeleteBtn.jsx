@@ -15,6 +15,7 @@ export default function BlockText(props) {
     }
 
     if (props.focused === props.parentId) {
+      console.log("In focus")
       ref.current.style.opacity = "0.5"
     } else {
       ref.current.style.opacity = "0.0"

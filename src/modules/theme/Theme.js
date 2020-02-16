@@ -1,18 +1,11 @@
-import styles from 'colors';
 import Color from 'color';
+import styles from 'colors';
 
 const theme = {
   brand: styles.brand
 };
 
-const defaults = {
-  'display': 'flex',
-  'flex-direction': 'column',
-  'align-items': 'center',
-  'justify-content': 'center'
-}
-
-const Themogrify = function(styles) {
+const Themed = function(styles) {
 
   if (!styles) {
     return {};
@@ -41,6 +34,8 @@ const Themogrify = function(styles) {
 
   return scrubbed;
 }
+
+export default Themed;
 
 const getThemeColor = function(part, params) {
   if (part.startsWith('$')) {
@@ -100,5 +95,3 @@ const makeParamObject = function(param) {
 
   return object;
 }
-
-export default Themogrify;

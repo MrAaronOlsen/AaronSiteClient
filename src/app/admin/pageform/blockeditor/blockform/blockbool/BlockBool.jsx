@@ -17,10 +17,12 @@ export default function BlockText(props) {
   return(
     <div className={styles.wrapper} >
       <span>{props.name}: </span>
-      <input type="checkbox"
-        onChange={onChange}
-        checked={props.content}
-        className={styles.radio} />
+        <TextInput
+          name={props.name}
+          checked={props.content}
+          onChange={props.onChange}
+          type={'checkbox'}
+          classNames={styles.text} />
 
     </div>
   )

@@ -66,7 +66,7 @@ export default function BlockForm(props) {
   }
 
   return(
-    <div className={styles.wrapper} key={props.parent} ref={ref}>
+    <div name={"form"} className={styles.wrapper} key={props.parent} ref={ref}>
       {props.parent && <React.Fragment>
         <div className={styles.flags}>
           { field(BlockBool, 'hasMotion') }
@@ -81,7 +81,6 @@ export default function BlockForm(props) {
         { block().hasModal && field(BlockList, 'modal') }
         { block().hasMotion && field(BlockObject, 'motion') }
         { block().hasStyles && field(BlockObject, 'styles') }
-        { field(BlockArray, 'test') }
       </React.Fragment>}
     </div>
   )

@@ -1,24 +1,15 @@
-@import '~mixins/flex';
-@import '~mixins/center';
-@import '~mixins/borders';
-@import '~mixins/shadow';
-@import '~colors';
+@import '~blockform/mixins/formline';
+
+@include formline();
 
 .wrapper {
-  position: relative;
+  width: 110px;;
 
-  @include flex($dir: row);
-  @include center($horz: flex-start);
-
-  height: 30px;
-  padding-right: 10px;
-
-  input {
-    height: 20px;
+  span {
+    padding-right: 0;
   }
 
-  .radio {
-    height: 20px;
-    margin-left: 10px;
+  .text {
+    border: none
   }
 }

@@ -3,32 +3,31 @@ import PropTypes from 'prop-types';
 
 import styles from './textInput.mod.scss'
 
-export default class TextInput extends Component{
+export default function TextInput(props) {
 
-  onChange(element) {
+  function onChange(element) {
     var content = element.currentTarget.value;
 
-    if (this.props.name) {
-      this.props.onChange(content, this.props.name)
+    if (props.name) {
+      props.onChange(content, props.name)
     } else {
-      this.props.onChange(content)
+      props.onChange(content)
     }
 
   }
 
-  render() {
-    return(
-      <div className={this.props.classNames}>
-        { this.props.children }
+  return(
+    <div className={props.classNames}>
+      { props.children }
 
-        <input className={styles.textAreaWrapper}
-          onChange={this.onChange.bind(this)}
-          name={this.props.name}
-          type={this.props.type}
-          defaultValue={this.props.text}/>
-      </div>
-    )
-  }
+      <input className={styles.textAreaWrapper}
+        checked={props.checked}
+        onChange={onChange}
+        name={props.name}
+        type={props.type}
+        defaultValue={props.text}/>
+    </div>
+  )
 }
 
 TextInput.defaultProps = {

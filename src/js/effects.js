@@ -1,5 +1,7 @@
 import React from 'react';
 
+//
+
 export function outsideClick(ref, callback, filterRefs) {
   document.addEventListener('click',
     function handleClick(e) { outsideClickCheck(e, ref, callback, filterRefs) }, false)
@@ -24,6 +26,8 @@ const outsideClickCheck = (event, ref, callback, filterRefs, type) => {
     callback()
   }
 }
+
+//
 
 export function eventListener(type, callback) {
   document.addEventListener(type, callback);

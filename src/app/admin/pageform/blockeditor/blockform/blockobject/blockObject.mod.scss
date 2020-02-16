@@ -8,6 +8,8 @@
   position: relative;
   @include flex($dir: column);
 
+  width: 100%;
+
   .header {
     position: relative;
     @include flex($dir: row);

@@ -1,26 +1,3 @@
-@import '~mixins/flex';
-@import '~mixins/center';
-@import '~mixins/borders';
-@import '~mixins/shadow';
-@import '~colors';
+@import '~blockform/mixins/formline';
 
-.wrapper {
-  @include flex($dir: row);
-  @include center($horz: flex-start)
-
-  height: 30px;
-  width: 100%;
-
-  overflow-x: visible;
-
-  span {
-    padding-right: 5px;
-  }
-
-  .contentWrapper {
-    position: relative;
-
-    height: 30px;
-    width: 100%;
-  }
-}
+@include formline();
