@@ -21,7 +21,7 @@
     overflow: scroll;
   }
 
-  .reset, .triggerOut {
+  .reset {
     position: absolute;
 
     @include flex;
@@ -41,11 +41,31 @@
     }
   }
 
-  .triggerOut {
-    left: 60px;
+  .trigger {
+    position: absolute;
+
+    @include flex;
+    @include center;
+
+    align-self: flex-end;
+
+    height: 50px;
+    width: 50px;
+
+    background-color: $brand;
+
+    z-index: 800;
+
+    img {
+      height: 31px;
+    }
   }
 
   .reset:hover {
     @include shadow($spread: 3px)
+  }
+
+  .trigger:hover {
+    @include shadow($spread: 3px)    
   }
 }

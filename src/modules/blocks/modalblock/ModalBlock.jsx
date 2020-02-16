@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import BlockIterator from '../BlockIterator.jsx';
+import Blocks from '../Blocks.jsx';
 
 import styles from './modalBlock.mod.scss'
 
@@ -46,11 +46,10 @@ export default function modalBlock(Block) {
         <React.Fragment>
           <Block {...this.props} onClick={this.open.bind(this)}/>
           {this.state.open &&
-            <BlockIterator
-              triggerOut={this.state.trigger}
-              triggerAction={this.close.bind(this)}
-              blocks={this.blocks}
+            <Blocks
               start={this.modal}
+              trigger={this.state.trigger}
+              blocks={this.blocks}
               onClick={this.triggerOut.bind(this)} />}
         </React.Fragment>
       )

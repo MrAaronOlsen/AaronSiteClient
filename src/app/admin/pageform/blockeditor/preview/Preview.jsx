@@ -7,38 +7,26 @@ import shortid from 'shortid';
 import Reset from 'public/images/reset.jpg';
 import styles from './preview.mod.scss'
 
-export default class Preview extends Component {
-  state = {
-    trigger: false
-  }
+export default function Preview(props) {
+  const [trigger, setTrigger] = React.useState(false)
+  const [id, setId] = React.useState(shortid.generate())
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.trigger != this.state.trigger) {
-      return true;
-    }
-
-    return false
-  }
-
-  triggerOut() {
-    this.setState({
-      trigger: !this.state.trigger
-    })
-  }
-
-  render() {
-    return(
-      <div className={styles.wrapper}>
-        <div className={styles.reset} onClick={this.triggerOut.bind(this)}>
-          <img src={Reset} />
-        </div>
-
-        <div className={styles.preview}>
-          <Blocks key={this.state.key}
-            trigger={this.state.trigger}
-            blocks={this.props.blocks} />
-        </div>
+  return(
+    <div  className={styles.wrapper}>
+      <div className={styles.reset} onClick={() => setId(shortid.generate())}>
+        <img src={Reset} />
       </div>
-    )
-  }
+
+      <div className={styles.trigger} onClick={() => setTrigger(!trigger)}>
+        <img src={Reset} />
+      </div>
+
+      <div className={styles.preview}>
+        <Blocks key={id}
+          start={'start'}
+          blocks={props.blocks}
+          trigger={trigger} />
+      </div>
+    </div>
+  )
 }

@@ -22,13 +22,13 @@ export default function BlockObject(props) {
     return props.content || {}
   }
 
-  function newObject(Block, type, key, value, index) {
-    const id = parentName + index;
+  function newObject(Block, type, name, value, index) {
+    const key = `${parentName}-${thisName}-${name}`
 
     return (
-      <ToggleType key={id} name={key} type={type} onChange={onChange}>
+      <ToggleType key={key} display={key} name={name} type={type} onChange={onChange}>
         <Block {...props}
-          name={key}
+          name={name}
           content={value}
           onChange={onChange}
           delete={deleteProperty} />
@@ -98,7 +98,7 @@ export default function BlockObject(props) {
   }
 
   return(
-    <div name={"object"} id={id} className={styles.wrapper} data-locator={props.locator}>
+    <div name={thisName} id={id} className={styles.wrapper} data-locator={props.locator}>
 
       <div className={styles.header} onClick={() => props.focus(id)}>
         { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }

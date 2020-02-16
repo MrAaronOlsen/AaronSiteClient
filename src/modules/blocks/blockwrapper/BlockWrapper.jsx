@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
-import BlockIterator from '../BlockIterator.jsx';
+import Blocks from '../Blocks.jsx';
 
 export default function BlockWrapper(props) {
   const blocks = props.blocks;
   const block = props.block;
 
   return (
-    <BlockIterator
-      triggerOut={props.triggerOut}
-      triggerAction={props.actionOut}
-      blocks={blocks}
-      start={block.first_child} />
+    <Blocks
+      start={block.first_child}
+      trigger={props.trigger}
+      blocks={blocks} />
   )
 }

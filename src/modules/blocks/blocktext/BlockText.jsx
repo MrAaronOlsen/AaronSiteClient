@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import shortid from 'shortid'
 
-import Motion, { MotionExit } from 'motion';
+import MotionBlock from 'modules/blocks/motionblock/MotionBlock.jsx';
 import Theme from 'theme';
+
+import { AnimatePresence } from 'framer-motion';
+
 const StyledDiv = styled.div(props => Theme(props.styles));
 
 export default function BlockText(props) {
@@ -12,27 +16,14 @@ export default function BlockText(props) {
 
   function getBlock() {
     if (block.hasMotion) {
-      const motion = block.motion || {};
-      const variants = motion.variants;
-      const initial = motion.initial;
-      const animate = motion.animate;
-      const exit = motion.exit;
-
       return (
-        <MotionExit trigger={props.trigger}>
-          <Motion
-            styles={styles}
-            variants={variants}
-            initial={initial}
-            animate={animate}
-            exit={exit}/>
-
-        </MotionExit>
+        <MotionBlock trigger={props.trigger} block={block}>
+          { content }
+        </MotionBlock>
       )
-
     } else {
       return (
-        <StyledDiv name={"block-text"} styles={styles} onClick={props.onClick}>
+        <StyledDiv styles={styles}>
           { content }
         </StyledDiv>
       )
@@ -41,3 +32,4 @@ export default function BlockText(props) {
 
   return ( getBlock() )
 }
+
