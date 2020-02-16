@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import shortid from 'shortid'
 
 import MotionBlock from 'modules/blocks/motionblock/MotionBlock.jsx';
 import Theme from 'theme';
-
-import { AnimatePresence } from 'framer-motion';
 
 const StyledDiv = styled.div(props => Theme(props.styles));
 
@@ -32,4 +29,3 @@ export default function BlockText(props) {
 
   return ( getBlock() )
 }
-

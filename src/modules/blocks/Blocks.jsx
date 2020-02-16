@@ -5,11 +5,11 @@ import BlockRich from './blockrich/BlockRich.jsx';
 import BlockImg from './blockimg/BlockImg.jsx';
 import BlockWrapper from './blockwrapper/BlockWrapper.jsx';
 
-import linkedBlock from './linkedblock/LinkedBlock.jsx';
+import BlockLink from './blocklink/BlockLink.jsx';
 import modalBlock from './modalblock/ModalBlock.jsx';
 
 const types = {
-  "text": BlockText,
+  'text': BlockText,
   'rich': BlockRich,
   'img': BlockImg,
   'wrapper': BlockWrapper
@@ -40,12 +40,6 @@ export default function Blocks(props) {
 
     if (!Block) {
       return null;
-    }
-
-    if (block.link) {
-      Block = linkedBlock(Block)
-    } else if(block.modal) {
-      Block = modalBlock(Block)
     }
 
     return(

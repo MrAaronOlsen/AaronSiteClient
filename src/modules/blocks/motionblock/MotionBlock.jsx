@@ -1,9 +1,10 @@
 import React from 'react'
-import Motion, { MotionExit } from 'motion';
-import shortid from 'shortid';
+import MotionExit from 'motion/MotionExit.jsx';
+import MotionDiv from 'motion/MotionDiv.jsx';
+import MotionImg from 'motion/MotionImg.jsx';
+import MotionLink from 'motion/MotionLink.jsx';
 
 export default function MotionBlock(props) {
-  const id = shortid.generate()
   const block = props.block || {};
   const styles = block.styles;
 
@@ -13,18 +14,35 @@ export default function MotionBlock(props) {
   const animate = motion.animate;
   const exit = motion.exit;
 
-  return (
-    <MotionExit trigger={props.trigger}>
-      <Motion
-        styles={styles}
-        variants={variants}
-        initial={initial}
-        animate={animate}
-        exit={exit}>
+  function getMotionType() {
+    switch (props.type) {
+      case 'img': return MotionImg;
+      case 'link': return MotionLink;
+      default: return MotionDiv;
+    }
+  }
 
-        {props.children}
+  function getMotion() {
+    var Motion = getMotionType();
 
-      </Motion>
-    </MotionExit>
-  )
+    return (
+      <MotionExit trigger={props.trigger} exit={exit}>
+        <Motion
+          type={props.type}
+          src={props.src}
+          href={props.href}
+          styles={styles}
+          variants={variants}
+          initial={initial}
+          animate={animate}
+          exit={exit}>
+
+          {props.children}
+
+        </Motion>
+      </MotionExit>
+    )
+  }
+
+  return ( getMotion() )
 }

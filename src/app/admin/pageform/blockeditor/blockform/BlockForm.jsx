@@ -71,8 +71,7 @@ export default function BlockForm(props) {
         <div className={styles.flags}>
           { field(BlockBool, 'hasMotion') }
           { field(BlockBool, 'hasStyles') }
-          { field(BlockBool, 'hasLink') }
-          { field(BlockBool, 'hasModal') }
+          { block().type === 'wrapper' && field(BlockBool, 'hasLink') }
         </div>
         { field(BlockList, 'next') }
         { props.parent !== 'start' && field(BlockList, 'type') }
