@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import TextInput from 'modules/textinput/TextInput.jsx'
+import Input from 'modules/input/Input.jsx'
 import DeleteBtn from 'public/images/delete-button.png'
 import Themogrify from 'modules/theme/Themogrify.js'
 
@@ -63,12 +63,12 @@ export default function BlockList(props) {
 
   return(
     <StylesWrapper className={styles.wrapper} styles={getStyles()} onClick={onClick.bind(this)}>
-      <TextInput text={props.name}
+      <Input text={props.name}
         onChange={onChange.bind(this)}
         classNames={classNames()}>
 
         {props.focused && deleteBtn()}
-      </TextInput>
+      </Input>
     </StylesWrapper>
   )
 }
