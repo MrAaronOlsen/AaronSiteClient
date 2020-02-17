@@ -5,9 +5,6 @@ import BlockRich from './blockrich/BlockRich.jsx';
 import BlockImg from './blockimg/BlockImg.jsx';
 import BlockWrapper from './blockwrapper/BlockWrapper.jsx';
 
-import BlockLink from './blocklink/BlockLink.jsx';
-import modalBlock from './modalblock/ModalBlock.jsx';
-
 const types = {
   'text': BlockText,
   'rich': BlockRich,
