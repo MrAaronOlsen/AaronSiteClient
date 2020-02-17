@@ -14,7 +14,7 @@ export default function BlockText(props) {
   function getBlock() {
     if (block.hasMotion) {
       return (
-        <MotionBlock trigger={props.trigger} block={block}>
+        <MotionBlock {...props} >
           { content }
         </MotionBlock>
       )

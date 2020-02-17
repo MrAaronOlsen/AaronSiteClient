@@ -6,7 +6,7 @@ export default function MotionExit(props) {
   function getMotion() {
     if (props.exit) {
       return (
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={props.onExit}>
           {props.trigger && props.children}
         </AnimatePresence>
       )

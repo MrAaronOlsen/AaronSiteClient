@@ -26,11 +26,8 @@ export default function BlockWrapper(props) {
 
     if (block.hasMotion) {
       return (
-        <MotionBlock trigger={props.trigger} block={block} href={link} target="_blank" type={ getStyleType() }>
-          <Blocks
-            start={block.first_child}
-            trigger={props.trigger}
-            blocks={blocks} />
+        <MotionBlock {...props} href={link} target="_blank" type={ getStyleType() }>
+          <Blocks {...props} start={block.first_child} />
         </MotionBlock>
       )
     } else {
@@ -38,10 +35,7 @@ export default function BlockWrapper(props) {
 
       return (
         <Styled styles={styles} href={link} target="_blank">
-          <Blocks
-            start={block.first_child}
-            trigger={props.trigger}
-            blocks={blocks} />
+          <Blocks {...props} start={block.first_child} />
         </Styled>
       )
     }

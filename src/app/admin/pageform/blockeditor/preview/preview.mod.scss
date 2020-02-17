@@ -19,6 +19,8 @@
 
     width: 800px;
     overflow: scroll;
+
+    margin-top: 50px;
   }
 
   .reset {
@@ -39,6 +41,20 @@
     img {
       height: 31px;
     }
+  }
+
+  .message {
+    position: absolute;
+
+    @include flex;
+    @include center;
+
+    align-self: center;
+
+    height: 50px;
+    width: 400px;
+
+    z-index: 800;
   }
 
   .trigger {
@@ -66,6 +82,6 @@
   }
 
   .trigger:hover {
-    @include shadow($spread: 3px)    
+    @include shadow($spread: 3px)
   }
 }

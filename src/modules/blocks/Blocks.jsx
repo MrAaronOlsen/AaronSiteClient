@@ -42,7 +42,6 @@ export default function Blocks(props) {
     return(
       <Block {...props}
         key={thisBlock}
-        blocks={blocks}
         block={block} />
     )
   }

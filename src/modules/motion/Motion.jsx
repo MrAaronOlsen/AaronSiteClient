@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styled from 'styled-components'
 
 import Themed from 'theme'
@@ -20,26 +20,33 @@ export default function Motion(props) {
   const type = props.type;
   const StyledMotion = getStyledMotion(type)
 
+  const motion = props.motion;
+  const variants = motion.variants || props.variants;
+  const initial = motion.initial || props.initial;
+  const animate = motion.animate || props.animate;
+  const exit = motion.exit || props.exit;
+
   function closedElement() {
     return (
       <StyledMotion styles={props.styles}
         src={props.src}
-        variants={props.variants}
-        initial={props.initial}
-        animate={props.animate}
-        exit={props.exit || props.initial} />
+        variants={variants}
+        initial={initial}
+        animate={animate}
+        exit={exit || initial} />
     )
   }
 
   function openElement() {
+
     return (
       <StyledMotion styles={props.styles}
         href={props.href}
         target="_blank"
-        variants={props.variants}
-        initial={props.initial}
-        animate={props.animate}
-        exit={props.exit || props.initial}>
+        variants={variants}
+        initial={initial}
+        animate={animate}
+        exit={exit || initial} >
 
         {props.children}
       </StyledMotion>

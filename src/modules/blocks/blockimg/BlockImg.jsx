@@ -8,17 +8,15 @@ import Theme from 'theme';
 const StyledDiv = styled.img(props => Theme(props.styles));
 
 export default function BlockImg(props) {
-  const block = props.block;
+  const block = props.block || {};
   const url = block.img_url;
   const styles = block.styles;
 
   function getBlock() {
     if (block.hasMotion) {
-      return (
-        <MotionBlock trigger={props.trigger} block={block} type={"img"} src={url} />
-      )
+      return <MotionBlock {...props} type={"img"} src={url} />
     } else {
-      return ( <StyledDiv styles={styles} src={url} /> )
+      return <StyledDiv styles={styles} src={url} />
     }
   }
 

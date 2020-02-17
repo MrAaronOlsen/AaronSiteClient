@@ -5,27 +5,16 @@ import Motion from 'motion/Motion.jsx';
 
 export default function MotionBlock(props) {
   const block = props.block || {};
-  const styles = block.styles;
-
+  const styles = block.styles || {};
   const motion = block.motion || {};
-  const variants = motion.variants;
-  const initial = motion.initial;
-  const animate = motion.animate;
-  const exit = motion.exit;
 
   function getMotion() {
 
     return (
-      <MotionExit trigger={props.trigger} exit={exit}>
-        <Motion
-          type={props.type}
-          src={props.src}
-          href={props.href}
+      <MotionExit {...props} exit={motion.exit}>
+        <Motion {...props}
           styles={styles}
-          variants={variants}
-          initial={initial}
-          animate={animate}
-          exit={exit}>
+          motion={motion} >
 
           {props.children}
 

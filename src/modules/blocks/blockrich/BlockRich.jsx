@@ -15,14 +15,14 @@ export default function BlockRich(props) {
   function getBlock() {
     if (block.hasMotion) {
       return (
-        <MotionBlock trigger={props.trigger} block={block}>
-          <Interweave content={block.content} />
+        <MotionBlock {...props}>
+          <Interweave content={content} />
         </MotionBlock>
       )
     } else {
       return (
         <StyledDiv styles={styles}>
-          <Interweave content={block.content} />
+          <Interweave content={content} />
         </StyledDiv>
       )
     }

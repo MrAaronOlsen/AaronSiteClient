@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import shortid from 'shortid';
 
 import Logger from 'logger';
 import { API_V1 } from 'http/url.js';
@@ -44,7 +45,8 @@ const headerStyles = {
 export default class Page extends Component {
   state = {
     redirect: false,
-    triggerOut: false
+    trigger: true,
+    id: shortid.generate()
   }
 
   componentDidMount() {
@@ -57,9 +59,9 @@ export default class Page extends Component {
     })
   }
 
-  triggerOut() {
+  trigger() {
     this.setState({
-      triggerOut: true
+      trigger: !this.state.trigger
     })
   }
 
@@ -96,27 +98,27 @@ export default class Page extends Component {
           <Transition
             styles={arrowStyles}
             config={arrowTransitionConfig}
-            outTrigger={this.state.triggerOut}>
+            outTrigger={this.state.trigger}>
 
             <ArrowBtn classNames={styles.button}
               direction={'left'}
-              onClick={this.triggerOut.bind(this)} />
-            
+              onClick={this.trigger.bind(this)} />
+
           </Transition>
           <Transition
             styles={headerStyles}
             config={headerTransitionConfig}
-            outTrigger={this.state.triggerOut}>
+            outTrigger={this.state.trigger}>
 
             {this.page().header}
           </Transition>
         </div>
         <div className={styles.blocks}>
-          <Blocks
-            triggerOut={this.state.triggerOut}
-            actionOut={this.redirect.bind(this)}
+          <Blocks key={this.state.id} {...this.props}
             blocks={this.page().blocks}
-            setState={this.setState.bind(this)}/>
+            start={'start'}
+            onExit={this.redirect.bind(this)}
+            trigger={this.state.trigger} />
         </div>
       </div>
     )
