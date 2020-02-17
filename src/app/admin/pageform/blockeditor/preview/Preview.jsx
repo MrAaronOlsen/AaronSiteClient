@@ -1,5 +1,6 @@
 import React, { Component} from "react";
 
+import MotionExit from 'motion/MotionExit.jsx';
 import Blocks from 'blocks/Blocks.jsx'
 
 import shortid from 'shortid';
@@ -37,10 +38,9 @@ export default function Preview(props) {
       </div>
 
       <div className={styles.preview}>
-        <Blocks key={id} {...props}
-          start={'start'}
-          onExit={onExitCallback}
-          trigger={trigger} />
+        <MotionExit trigger={trigger} onExit={onExitCallback} >
+          <Blocks key={id} blocks={props.blocks} start={'start'} />  }
+        </MotionExit>
       </div>
     </div>
   )

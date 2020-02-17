@@ -17,14 +17,14 @@ const getStyledMotion = function(type) {
 }
 
 export default function Motion(props) {
-  const type = props.type;
-  const StyledMotion = getStyledMotion(type)
-
   const motion = props.motion;
   const variants = motion.variants || props.variants;
   const initial = motion.initial || props.initial;
   const animate = motion.animate || props.animate;
-  const exit = motion.exit || props.exit;
+  const exit = motion.exit || props.exit || {};
+
+  const type = props.type;
+  const StyledMotion = getStyledMotion(type)
 
   function closedElement() {
     return (
@@ -38,7 +38,6 @@ export default function Motion(props) {
   }
 
   function openElement() {
-
     return (
       <StyledMotion styles={props.styles}
         href={props.href}

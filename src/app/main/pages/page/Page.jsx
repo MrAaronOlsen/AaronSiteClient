@@ -6,6 +6,7 @@ import Logger from 'logger';
 import { API_V1 } from 'http/url.js';
 import { GET } from 'http/get.js';
 
+import MotionExit from 'motion/MotionExit.jsx';
 import Blocks from 'blocks/Blocks.jsx'
 import Transition from 'modules/transition/Transition.jsx'
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx'
@@ -114,11 +115,11 @@ export default class Page extends Component {
           </Transition>
         </div>
         <div className={styles.blocks}>
-          <Blocks key={this.state.id} {...this.props}
-            blocks={this.page().blocks}
-            start={'start'}
-            onExit={this.redirect.bind(this)}
-            trigger={this.state.trigger} />
+          <MotionExit trigger={this.state.trigger} onExit={this.redirect.bind(this)} >
+            <Blocks key={this.state.id} {...this.props}
+              blocks={this.page().blocks}
+              start={'start'} />
+          </MotionExit>
         </div>
       </div>
     )
