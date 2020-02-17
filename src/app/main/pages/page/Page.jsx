@@ -43,53 +43,40 @@ const headerStyles = {
   'font-size': '24px'
 }
 
-export default class Page extends Component {
-  state = {
-    redirect: false,
-    trigger: true,
-    id: shortid.generate()
+export default function Page(props) {
+  const [id] = React.useState(shortid.generate())
+  const [page, setPage] = React.useState({})
+  const [trigger, setTrigger] = React.useState(true)
+  const [redirect, setRedirect] = React.useState(false)
+
+  React.useEffect(() => load(), [])
+
+  function getPage() {
+    return page || {}
   }
 
-  componentDidMount() {
-    this.load()
+  function getBlocks() {
+    return getPage().blocks || {}
   }
 
-  redirect() {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  trigger() {
-    this.setState({
-      trigger: !this.state.trigger
-    })
-  }
-
-  page() {
-    return this.state.page || {}
-  }
-
-  load() {
-    const query = 'pages/' + this.props.location.state.id
+  function load() {
+    const query = 'pages/' + props.location.state.id
 
     GET(API_V1 + query, (payload) => {
       if (payload.hasErrors()) {
         Logger.error("Failed to load page. Cause: " + payload.getErrors());
       } else {
-        this.setState({
-          page: payload.getFirst()
-        })
+        setPage(payload.getFirst())
       }
     })
   }
 
-  render() {
-    if (this.state.redirect) {
+  function renderPage() {
+    if (redirect) {
       return <Redirect to='/pages' />
     }
 
-    if (!this.state.page) {
+    if (!page) {
       return null
     }
 
@@ -99,29 +86,31 @@ export default class Page extends Component {
           <Transition
             styles={arrowStyles}
             config={arrowTransitionConfig}
-            outTrigger={this.state.trigger}>
+            outTrigger={trigger}>
 
             <ArrowBtn classNames={styles.button}
               direction={'left'}
-              onClick={this.trigger.bind(this)} />
+              onClick={() => setTrigger(!trigger)} />
 
           </Transition>
           <Transition
             styles={headerStyles}
             config={headerTransitionConfig}
-            outTrigger={this.state.trigger}>
+            outTrigger={trigger}>
 
-            {this.page().header}
+            {getPage().header}
           </Transition>
         </div>
         <div className={styles.blocks}>
-          <MotionExit trigger={this.state.trigger} onExit={this.redirect.bind(this)} >
-            <Blocks key={this.state.id} {...this.props}
-              blocks={this.page().blocks}
+          <MotionExit trigger={trigger} onExit={() => setRedirect(true)} >
+            <Blocks key={id} {...props}
+              blocks={getBlocks()}
               start={'start'} />
           </MotionExit>
         </div>
       </div>
     )
   }
+
+  return renderPage();
 }
