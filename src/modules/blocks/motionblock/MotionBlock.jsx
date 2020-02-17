@@ -1,8 +1,7 @@
 import React from 'react'
+
 import MotionExit from 'motion/MotionExit.jsx';
-import MotionDiv from 'motion/MotionDiv.jsx';
-import MotionImg from 'motion/MotionImg.jsx';
-import MotionLink from 'motion/MotionLink.jsx';
+import Motion from 'motion/Motion.jsx';
 
 export default function MotionBlock(props) {
   const block = props.block || {};
@@ -14,16 +13,7 @@ export default function MotionBlock(props) {
   const animate = motion.animate;
   const exit = motion.exit;
 
-  function getMotionType() {
-    switch (props.type) {
-      case 'img': return MotionImg;
-      case 'link': return MotionLink;
-      default: return MotionDiv;
-    }
-  }
-
   function getMotion() {
-    var Motion = getMotionType();
 
     return (
       <MotionExit trigger={props.trigger} exit={exit}>
