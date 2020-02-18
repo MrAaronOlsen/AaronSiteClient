@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { eventListener } from 'effects';
+
 import BlockArray from 'blockform/blockarray/BlockArray.jsx'
 import BlockText from 'blockform/blocktext/BlockText.jsx'
 import BlockBool from 'blockform/blockbool/BlockBool.jsx'
@@ -8,7 +9,6 @@ import BlockRich from 'blockform/blockrich/BlockRich.jsx'
 import BlockList from 'blockform/blocklist/BlockList.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
 
-import TransitionProperties from 'modules/transition/TransitionProperties.jsx'
 import StyleProperties from './StyleProperties.jsx'
 import MotionProperties from 'modules/motion/MotionProperties.jsx'
 

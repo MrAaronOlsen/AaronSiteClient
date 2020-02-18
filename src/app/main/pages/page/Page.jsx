@@ -7,41 +7,13 @@ import { API_V1 } from 'http/url.js';
 import { GET } from 'http/get.js';
 
 import MotionExit from 'motion/MotionExit.jsx';
-import Blocks from 'blocks/Blocks.jsx'
-import Transition from 'modules/transition/Transition.jsx'
-import ArrowBtn from 'modules/buttons/ArrowBtn.jsx'
+import Motion from 'motion/Motion.jsx';
+import { arrowMotion, arrowStyles, headerMotion, headerStyles } from './PageMotionConfigs.js';
 
-import styles from './page.mod.scss'
+import Blocks from 'blocks/Blocks.jsx';
 
-const arrowTransitionConfig = {
-  transProperty: 'left',
-  startValue: '-100vw',
-  inValue: '0',
-  outValue: '-100vw',
-  transDurationIn: '1000ms'
-}
-
-const arrowStyles = {
-  'position': 'absolute',
-  'width': 'auto',
-  'z-index': '999'
-}
-
-const headerTransitionConfig = {
-  transProperty: 'opacity',
-  startValue: '0',
-  inValue: '1',
-  outValue: '0',
-  transDurationIn: '1000ms'
-}
-
-const headerStyles = {
-  display: 'flex',
-  'justify-content': 'center',
-  'align-items': 'center',
-  width: '100%',
-  'font-size': '24px'
-}
+import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
+import styles from './page.mod.scss';
 
 export default function Page(props) {
   const [id] = React.useState(shortid.generate())
@@ -83,23 +55,17 @@ export default function Page(props) {
     return(
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <Transition
-            styles={arrowStyles}
-            config={arrowTransitionConfig}
-            outTrigger={trigger}>
+          <MotionExit trigger={trigger}>
+            <Motion key={"arrow"} motion={arrowMotion} styles={arrowStyles}>
+              <ArrowBtn classNames={styles.button}
+                direction={'left'}
+                onClick={() => setTrigger(!trigger)} />
+            </Motion>
 
-            <ArrowBtn classNames={styles.button}
-              direction={'left'}
-              onClick={() => setTrigger(!trigger)} />
-
-          </Transition>
-          <Transition
-            styles={headerStyles}
-            config={headerTransitionConfig}
-            outTrigger={trigger}>
-
-            {getPage().header}
-          </Transition>
+            <Motion key={"header"} motion={headerMotion} styles={headerStyles}>
+              {getPage().header}
+            </Motion>
+          </MotionExit>
         </div>
         <div className={styles.blocks}>
           <MotionExit trigger={trigger} onExit={() => setRedirect(true)} >

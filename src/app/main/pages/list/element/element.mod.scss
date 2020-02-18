@@ -7,49 +7,59 @@
   @include flex($dir: row);
   width: inherit;
 
-  .inner {
-    @include flex($dir: column);
+  .headerMotion {
+    position: relative;
     width: 100%;
 
-    .header {
-      @include flex($dir: row)
-      width: inherit;
+    .inner {
+      @include flex($dir: column);
+      width: 100%;
 
-      .headerText {
+      .header {
+        @include flex($dir: row)
         width: inherit;
-        height: 50px;
 
-        padding: 5px;
-        margin: 0;
+        .headerText {
+          width: inherit;
+          height: 50px;
 
-        font-size: 1.5em;
-        font-weight: 400;
-        color: $textdark;
+          padding: 5px;
+          margin: 0;
 
-        @include borderBottom($color: $brand);
+          font-size: 1.5em;
+          font-weight: 400;
+          color: $textdark;
+
+          @include borderBottom($color: $brand);
+        }
       }
-    }
 
-    .caption {
-      width: inherit;
-      min-height: 50px;
-      
-      padding: 10px;
+      .caption {
+        width: inherit;
+        min-height: 50px;
 
-      @include media($media-max-small) {
-        font-size: 12px;
+        padding: 10px;
+
+        @include media($media-max-small) {
+          font-size: 12px;
+        }
       }
     }
   }
 
-  .button {
+
+  .arrowMotion {
     position: relative;
 
-    margin-left: 10px;
-    top: 50px;
+    .arrow {
+      position: relative;
+      margin-left: 10px;
+      top: 50px;
 
-    transform: translateY(-15px) rotate(90deg);
+      transform: translateY(-15px) rotate(90deg);
+    }
   }
+
 }
 
 .wrapper:first-child {
