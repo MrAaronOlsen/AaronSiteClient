@@ -3,19 +3,22 @@ export const arrowMotion = {
   animate: ['slideIn'],
   exit: ['slideOut'],
   variants: {
-    "slideIn": {
-      "x": 0
+    slideIn: {
+      x: 0,
+      transition: {
+        type: 'spring',
+        mass: 1,
+        damping: 15,
+        stiffness: 80
+      }
     },
-    "slideOut": {
-      "x": '-100vw'
+    slideOut: {
+      x: '-100vw',
+      transition: {
+        duration: 1
+      }
     }
   }
-}
-
-export const arrowStyles = {
-  'position': 'relative',
-  'width': 'auto',
-  'z-index': '999'
 }
 
 export const headerMotion = {
@@ -23,23 +26,15 @@ export const headerMotion = {
   animate: ['fadeIn'],
   exit: ['fadeOut'],
   variants: {
-    "fadeIn": {
-      "opacity": 1,
-      "transition": {
+    fadeIn: {
+      opacity: 1,
+      transition: {
         delay: 0.2,
         duration: 1.5
       }
     },
-    "fadeOut": {
-      "opacity": 0
+    fadeOut: {
+      opacity: 0
     }
   }
-}
-
-export const headerStyles = {
-  display: 'flex',
-  'justify-content': 'center',
-  'align-items': 'center',
-  width: '100%',
-  'font-size': '24px'
 }

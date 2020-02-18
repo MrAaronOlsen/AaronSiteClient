@@ -1,9 +1,9 @@
 @import '~colors';
 @import '~mixins/flex';
 @import '~mixins/center';
+@import '~mixins/shadow';
 
 .wrapper {
-  position: relative;
   padding: 0 10px 10px 10px;
 
   width: inherit;
@@ -20,10 +20,27 @@
     background-color: $background;
 
     z-index: 900;
+
+    .arrowMotion {
+
+    }
+
+    .headerMotion {
+      @include flex();
+      @include center();
+
+      width: 100%;
+
+      font-size: 24px;
+      font-weight: bold;
+
+      color: $textdark;
+    }
   }
 
   .blocks {
     width: inherit;
+    height: calc(100vh - 170px);
 
     overflow: scroll;
   }

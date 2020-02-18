@@ -45,7 +45,7 @@ class Page extends Component {
 
         <div className={styles.wrapper}>
           <MotionExit trigger={this.state.trigger} onExit={this.redirect.bind(this)}>
-            <Motion key={this.header + this.props.index} motion={headerMotion} classNames={styles.headerMotion}>
+            <Motion key={this.header + this.props.index} motion={headerMotion} custom={this.props.index} classNames={styles.headerMotion}>
               <div className={styles.inner}>
                 <div className={styles.header}>
                   <h4 className={styles.headerText}>{this.header}</h4>

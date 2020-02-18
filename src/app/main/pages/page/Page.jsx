@@ -56,13 +56,13 @@ export default function Page(props) {
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <MotionExit trigger={trigger}>
-            <Motion key={"arrow"} motion={arrowMotion} styles={arrowStyles}>
+            <Motion key={"arrow"} motion={arrowMotion} classNames={styles.arrowMotion}>
               <ArrowBtn classNames={styles.button}
                 direction={'left'}
                 onClick={() => setTrigger(!trigger)} />
             </Motion>
 
-            <Motion key={"header"} motion={headerMotion} styles={headerStyles}>
+            <Motion key={"header"} motion={headerMotion} classNames={styles.headerMotion}>
               {getPage().header}
             </Motion>
           </MotionExit>
