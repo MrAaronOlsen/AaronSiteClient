@@ -14,8 +14,10 @@ import styles from './blockObject.mod.scss'
 export default function BlockObject(props) {
   const [id] = React.useState(shortid.generate())
 
-  const parentName = props.parent;
+  const root = props.root;
   const thisName = props.name;
+  const parentName = props.parent || "";
+
   const properties = props.properties[thisName] || [];
 
   function getObject() {
@@ -23,12 +25,14 @@ export default function BlockObject(props) {
   }
 
   function newObject(Block, type, name, value, index) {
-    const key = `${parentName}-${thisName}-${name}`
+    const key = `${root}-${parentName}-${thisName}-${name}`
+    console.log(key)
 
     return (
       <ToggleType key={key} display={key} name={name} type={type} onChange={onChange}>
         <Block {...props}
           name={name}
+          parent={thisName}
           content={value}
           onChange={onChange}
           delete={deleteProperty} />

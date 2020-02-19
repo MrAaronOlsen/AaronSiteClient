@@ -16,14 +16,14 @@ export default function Blocks(props) {
   const blocks = props.blocks;
   var nextBlock = props.start;
 
-  var thisBlock;
+  var blockName;
   var block;
 
   function hasNext() {
     if (nextBlock && blocks[nextBlock]) {
-      thisBlock = nextBlock;
+      blockName = nextBlock;
 
-      block = blocks[thisBlock];
+      block = blocks[blockName];
       nextBlock = block.next;
 
       return true;
@@ -33,7 +33,7 @@ export default function Blocks(props) {
   }
 
   function getNext() {
-    var Block = types[block.type]
+    const Block = types[block.type]
 
     if (!Block) {
       return null;
@@ -41,7 +41,7 @@ export default function Blocks(props) {
 
     return(
       <Block {...props}
-        key={thisBlock}
+        key={blockName}
         block={block} />
     )
   }

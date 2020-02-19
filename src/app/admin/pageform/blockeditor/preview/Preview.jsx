@@ -38,8 +38,8 @@ export default function Preview(props) {
       </div>
 
       <div className={styles.preview}>
-        <MotionExit trigger={trigger} onExit={onExitCallback} >
-          <Blocks key={id} blocks={props.blocks} start={'start'} />  }
+        <MotionExit key={id} trigger={trigger} onExit={onExitCallback} >
+          <Blocks blocks={props.blocks} start={'start'} />
         </MotionExit>
       </div>
     </div>

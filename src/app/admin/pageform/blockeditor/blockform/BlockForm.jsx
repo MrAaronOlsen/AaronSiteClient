@@ -40,16 +40,15 @@ export default function BlockForm(props) {
     let block = props.block;
     block[name] = value;
 
-    props.onChange(block, props.parent)
+    props.onChange(block, props.root)
   }
 
   const field = function(Block, name) {
-    return <Block
+    return <Block {...props}
       focused={focused}
       focus={setFocused}
       name={name}
       content={block()[name]}
-      parent={props.parent}
       items={blockLists(blocks())[name]}
       properties={properties}
       onChange={onChange} />
@@ -66,20 +65,22 @@ export default function BlockForm(props) {
   }
 
   return(
-    <div name={"form"} className={styles.wrapper} key={props.parent} ref={ref}>
-      {props.parent && <React.Fragment>
+    <div name={"form"} className={styles.wrapper} key={props.root} ref={ref}>
+      {props.root && <React.Fragment>
         <div className={styles.flags}>
           { field(BlockBool, 'hasMotion') }
           { field(BlockBool, 'hasStyles') }
           { block().type === 'wrapper' && field(BlockBool, 'hasLink') }
+          { field(BlockBool, 'isTemplate') }
         </div>
         { field(BlockList, 'next') }
-        { props.parent !== 'start' && field(BlockList, 'type') }
+        { props.root !== 'start' && field(BlockList, 'type') }
         { blockContent() }
         { block().hasLink && field(BlockText, 'link') }
         { block().hasModal && field(BlockList, 'modal') }
         { block().hasMotion && field(BlockObject, 'motion') }
         { block().hasStyles && field(BlockObject, 'styles') }
+        { field(BlockList, 'template') }
       </React.Fragment>}
     </div>
   )

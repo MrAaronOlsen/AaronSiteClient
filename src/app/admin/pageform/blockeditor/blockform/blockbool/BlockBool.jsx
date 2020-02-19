@@ -9,7 +9,6 @@ export default function BlockText(props) {
   const [id] = React.useState(shortid.generate())
 
   function onChange(value) {
-    console.log(value)
     props.onChange(value, props.name)
   }
 

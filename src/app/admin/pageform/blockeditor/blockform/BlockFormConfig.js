@@ -31,6 +31,7 @@ export function blockLists(blocks) {
     'type': Object.keys(blockContentTypes),
     'next': Object.keys(blocks),
     'first_child': Object.keys(blocks),
-    'modal': Object.keys(blocks)
+    'modal': Object.keys(blocks),
+    'template': Object.keys(blocks)
   }
 }

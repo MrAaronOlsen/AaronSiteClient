@@ -9,7 +9,7 @@ import styles from './blockList.mod.scss'
 export default function BlockList(props) {
   const blocks = props.blocks || {};
   const allKeys = Object.keys(blocks);
-  const size = allKeys.size;
+  const size = allKeys.length;
 
   var nextBlock;
 
@@ -75,7 +75,7 @@ export default function BlockList(props) {
 
   function makeElement(name, block, depth) {
 
-    return <Element key={size + name + block.id}
+    return <Element key={`${size}_${block.id}`}
       name={name}
       block={block}
       depth={depth}
