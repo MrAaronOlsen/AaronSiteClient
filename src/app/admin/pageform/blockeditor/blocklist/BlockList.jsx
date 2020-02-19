@@ -75,7 +75,7 @@ export default function BlockList(props) {
 
   function makeElement(name, block, depth) {
 
-    return <Element key={size + block.id}
+    return <Element key={size + name + block.id}
       name={name}
       block={block}
       depth={depth}
