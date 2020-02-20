@@ -43,8 +43,8 @@ export default function BlockForm(props) {
     props.onChange(block, props.root)
   }
 
-  const field = function(Block, name) {
-    return <Block {...props}
+  const field = function(Field, name) {
+    return <Field {...props}
       focused={focused}
       focus={setFocused}
       name={name}
@@ -62,6 +62,20 @@ export default function BlockForm(props) {
     }
 
     return null;
+  }
+
+  const applyTemplate = function() {
+    const block = block();
+
+    if (block.template && blocks[block.template]) {
+      const template = blocks()[block.template]
+
+      const templateStyles = template.styles;
+      const templateMotion = template.motion;
+
+      block.styles = templateStyles;
+      block.motion = templateMotion;
+    }
   }
 
   return(
@@ -84,4 +98,10 @@ export default function BlockForm(props) {
       </React.Fragment>}
     </div>
   )
+}
+
+function clickable(Field) {
+  return function(props) {
+    return <Field {...props} onMouseOver={() => console.log("Click!!!")}/>
+  }
 }
