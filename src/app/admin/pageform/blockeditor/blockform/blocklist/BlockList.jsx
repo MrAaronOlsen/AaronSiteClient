@@ -25,7 +25,7 @@ export default function BlockList(props) {
   }
 
   return (
-    <div className={styles.wrapper} onClick={focus}>
+    <div className={styles.wrapper} onClick={focus} onMouseOver={props.onMouseOver}>
       <SelectList
         name={props.name}
         items={props.items}

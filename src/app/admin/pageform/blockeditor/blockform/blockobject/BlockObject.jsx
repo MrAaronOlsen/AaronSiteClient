@@ -26,7 +26,6 @@ export default function BlockObject(props) {
 
   function newObject(Block, type, name, value, index) {
     const key = `${root}-${parentName}-${thisName}-${name}`
-    console.log(key)
 
     return (
       <ToggleType key={key} display={key} name={name} type={type} onChange={onChange}>

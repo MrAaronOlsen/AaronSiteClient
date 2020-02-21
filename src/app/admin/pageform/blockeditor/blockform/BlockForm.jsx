@@ -8,6 +8,7 @@ import BlockBool from 'blockform/blockbool/BlockBool.jsx'
 import BlockRich from 'blockform/blockrich/BlockRich.jsx'
 import BlockList from 'blockform/blocklist/BlockList.jsx'
 import BlockObject from 'blockform/blockobject/BlockObject.jsx'
+import ActionField from 'blockform/modules/action/ActionField.jsx'
 
 import StyleProperties from './StyleProperties.jsx'
 import MotionProperties from 'modules/motion/MotionProperties.jsx'
@@ -28,16 +29,16 @@ export default function BlockForm(props) {
     }
   }
 
-  const block = function() {
+  const getBlock = function() {
     return props.block || {}
   }
 
-  const blocks = function() {
+  const getBlocks = function() {
     return props.blocks || {}
   }
 
   function onChange(value, name) {
-    let block = props.block;
+    const block = getBlock();
     block[name] = value;
 
     props.onChange(block, props.root)
@@ -48,14 +49,14 @@ export default function BlockForm(props) {
       focused={focused}
       focus={setFocused}
       name={name}
-      content={block()[name]}
-      items={blockLists(blocks())[name]}
+      content={getBlock()[name]}
+      items={blockLists(getBlocks())[name]}
       properties={properties}
       onChange={onChange} />
   }
 
   const blockContent = function() {
-    var type = block().type;
+    var type = getBlock().type;
 
     if (type && blockContentTypes[type]) {
       return field(blockContentTypes[type], blockContentDisplay[type])
@@ -65,16 +66,16 @@ export default function BlockForm(props) {
   }
 
   const applyTemplate = function() {
-    const block = block();
+    const block = getBlock();
+    const blocks = getBlocks();
 
     if (block.template && blocks[block.template]) {
-      const template = blocks()[block.template]
+      const template = blocks[block.template]
 
-      const templateStyles = template.styles;
-      const templateMotion = template.motion;
+      block.styles = JSON.parse(JSON.stringify(template.styles));
+      block.motion = JSON.parse(JSON.stringify(template.motion));
 
-      block.styles = templateStyles;
-      block.motion = templateMotion;
+      props.onChange(block, props.root)
     }
   }
 
@@ -84,24 +85,26 @@ export default function BlockForm(props) {
         <div className={styles.flags}>
           { field(BlockBool, 'hasMotion') }
           { field(BlockBool, 'hasStyles') }
-          { block().type === 'wrapper' && field(BlockBool, 'hasLink') }
+          { getBlock().type === 'wrapper' && field(BlockBool, 'hasLink') }
           { field(BlockBool, 'isTemplate') }
         </div>
-        { field(BlockList, 'next') }
-        { props.root !== 'start' && field(BlockList, 'type') }
+        { !getBlock().isTemplate && field(BlockList, 'next') }
+        { !getBlock().isTemplate && props.root !== 'start' && field(BlockList, 'type') }
         { blockContent() }
-        { block().hasLink && field(BlockText, 'link') }
-        { block().hasModal && field(BlockList, 'modal') }
-        { block().hasMotion && field(BlockObject, 'motion') }
-        { block().hasStyles && field(BlockObject, 'styles') }
-        { field(BlockList, 'template') }
+        { getBlock().hasLink && field(BlockText, 'link') }
+        { getBlock().hasModal && field(BlockList, 'modal') }
+        { getBlock().hasMotion && field(BlockObject, 'motion') }
+        { getBlock().hasStyles && field(BlockObject, 'styles') }
+        { !getBlock().isTemplate && action(field(BlockList, 'template'), applyTemplate) }
       </React.Fragment>}
     </div>
   )
 }
 
-function clickable(Field) {
-  return function(props) {
-    return <Field {...props} onMouseOver={() => console.log("Click!!!")}/>
-  }
+function action(field, callback) {
+  return (
+    <ActionField action={callback}>
+      {field}
+    </ActionField>
+  )
 }
