@@ -1,57 +1,47 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import Line from './line/Line.jsx'
+import ToggleList from 'modules/lists/togglelist/ToggleList.jsx'
+import Input from 'modules/input/Input.jsx'
+
+import ArrowImg from 'public/images/arrow-down.png';
 import AddButton from 'public/images/add-button.png'
+
 import styles from './addList.mod.scss'
 
 export default function AddList(props) {
-  const [checkPos, setCheckPos] = React.useState(false)
-  const ref = React.useRef(null);
+  const imgRef = React.useRef(null);
+  const [custom, setCustom] = React.useState("")
+  const [expandList, setExpandList] = React.useState(false)
 
-  React.useEffect(setPosition, [checkPos]);
-
-  function setPosition() {
-    const element = ref.current;
-
-    if (!element) {
-      return;
-    }
-
-    const topPos = element.getBoundingClientRect().top;
-    const botPos = element.getBoundingClientRect().bottom;
-    const height = window.innerHeight;
-
-    if (topPos + 300 > height || botPos + 300 > height) {
-      ref.current.style.removeProperty("top")
-      ref.current.style.bottom = "20px"
-    } else {
-      ref.current.style.removeProperty("bottom")
-      ref.current.style.top = "20px"
-    }
+  function onClick(value) {
+    props.onClick(value)
   }
 
-  function onClick(name) {
-    props.onClick(name)
+  function toggleList() {
+    setExpandList(!expandList)
   }
 
-  function buildList() {
-    if (props.items) {
-      return props.items.map((name, i) => {
-        return <Line key={i} name={name} onClick={onClick.bind(this)}/>
-      })
-    } else {
-      return null;
-    }
+  function onCustomChange(value, name) {
+    props.onClick(value)
   }
 
   return(
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <img className={styles.addBtn} src={AddButton} onMouseOver={() => setCheckPos(!checkPos)}/>
+        <img className={styles.arrow} src={ArrowImg} onClick={toggleList} ref={imgRef}/>
+        <Input
+          text={custom}
+          onChange={setCustom}
+          classNames={styles.custom} />
+        <img className={styles.add} src={AddButton} onClick={() => props.onClick(custom)}/>
+
       </div>
-      <div className={styles.list} ref={ref}>
-        { buildList() }
-      </div>
+      <ToggleList classNames={{'list': styles.list}}
+        onClick={onClick}
+        items={props.items}
+        anchorRef={imgRef}
+        expand={expandList}
+        ignoreRefs={[imgRef]}/>
     </div>
   )
 }

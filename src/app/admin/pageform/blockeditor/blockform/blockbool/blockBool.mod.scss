@@ -1,0 +1,16 @@
+@import '~blockform/mixins/formline';
+
+@include formline();
+
+.wrapper {
+  width: 110px;;
+
+  span {
+    padding-right: 0;
+  }
+
+  .text {
+    height: 100%;
+    border: none
+  }
+}

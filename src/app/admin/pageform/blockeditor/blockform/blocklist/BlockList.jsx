@@ -17,7 +17,7 @@ export default function BlockList(props) {
   }
 
   function onSelect(value) {
-    if (value === props.text) {
+    if (value === props.content) {
       props.onChange("", props.name)
     } else {
       props.onChange(value, props.name)
@@ -25,11 +25,11 @@ export default function BlockList(props) {
   }
 
   return (
-    <div className={styles.wrapper} onClick={focus}>
+    <div className={styles.wrapper} onClick={focus} onMouseOver={props.onMouseOver}>
       <SelectList
         name={props.name}
-        items={props.attributes}
-        selected={props.text}
+        items={props.items}
+        selected={props.content}
         onClick={onSelect} />
 
     </div>

@@ -13,43 +13,20 @@
   width: 100%;
 
   .header {
-    position: relative;
-
     @include flex($dir: row)
     @include center($horz: flex-start)
 
     height: 30px;
     width: 100%;
 
+    @include borderBottom($color: $transparent);
+    transition: border-bottom 1000ms ease;
+
     .name {
-      position: relative;
+      @include flex()
+      @include center()
 
-      overflow: visible;
-
-      .list {
-        position: absolute;
-
-        left: 100%;
-        top: 20px;
-
-        width: 0;
-        height: 0;
-
-        visibility: hidden;
-
-        padding: 10px;
-
-        overflow: scroll;
-        background-color: $background;
-
-        @include border($color: $brand, $radius: 5px)
-        @include shadow;
-
-        overflow: scroll;
-        z-index: 999;
-
-        transition: width 150ms cubic-bezier(0.635, 0.160, 0.345, 0.985) 0ms;
-      }
+      height: 24px;
     }
 
     .selected {
@@ -59,18 +36,29 @@
     }
   }
 
-
-}
-
-.wrapper:hover {
-  .header {
-    .name{
-      .list {
-        visibility: visible;
-
-        width: 200px;
-        height: auto;
-      }
-    }
+  .header:hover {
+    @include borderBottom($color: $brand);
+    transition: border-bottom 500ms ease;  
   }
+
+  .list {
+    position: fixed;
+
+    width: 200px;
+    max-height: 300px;
+
+    padding: 10px;
+
+    overflow: scroll;
+    background-color: $background;
+
+    @include border($color: $brand, $radius: 5px)
+    @include shadow;
+
+    opacity: 0;
+    transition: opacity 800ms ease;
+
+    z-index: 999;
+  }
+
 }

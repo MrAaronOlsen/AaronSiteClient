@@ -9,23 +9,23 @@ import styles from './blockEditor.mod.scss';
 
 export default class BlockEditor extends Component {
   state ={
-    blockKey: '',
+    root: '',
     block: {}
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.pageId != prevProps.pageId) {
       this.setState({
-        blockKey: '',
+        root: '',
         block: {}
       })
     }
   }
 
-  focusBlock(blockKey) {
+  focusBlock(root) {
     this.setState({
-      blockKey: blockKey,
-      block: this.props.blocks[blockKey]
+      root: root,
+      block: this.props.blocks[root]
     })
   }
 
@@ -43,7 +43,7 @@ export default class BlockEditor extends Component {
     blocks[name] = block;
 
     this.setState({
-      blockKey: name,
+      root: name,
       block: block
     })
 
@@ -77,7 +77,7 @@ export default class BlockEditor extends Component {
           <BlockList
             start={"start"}
             blocks={this.props.blocks}
-            focused={this.state.blockKey}
+            focused={this.state.root}
             addBlock={this.addBlock.bind(this)}
             renameBlock={this.renameBlock.bind(this)}
             deleteBlock={this.deleteBlock.bind(this)}
@@ -85,7 +85,7 @@ export default class BlockEditor extends Component {
 
           <BlockForm
             block={this.state.block}
-            blockKey={this.state.blockKey}
+            root={this.state.root}
             blocks={this.props.blocks}
             onChange={this.updateBlock.bind(this)} />
         </div>

@@ -1,16 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
+import styled from 'styled-components'
 
-import styles from './blockText.mod.scss'
+import MotionBlock from 'modules/blocks/motionblock/MotionBlock.jsx';
+import Theme from 'theme';
+
+const StyledDiv = styled.div(props => Theme(props.styles));
 
 export default function BlockText(props) {
-  const block = props.block;
+  const block = props.block || {};
+  const content = block.content
+  const styles = block.styles
 
   function getBlock() {
-    return (
-      <div name={"block-text"} className={styles.wrapper} onClick={props.onClick}>
-        { block.content }
-      </div>
-    )
+    if (block.hasMotion) {
+      return (
+        <MotionBlock {...props} >
+          { content }
+        </MotionBlock>
+      )
+    } else {
+      return (
+        <StyledDiv styles={styles}>
+          { content }
+        </StyledDiv>
+      )
+    }
   }
 
   return ( getBlock() )

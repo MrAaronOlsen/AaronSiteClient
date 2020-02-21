@@ -2,10 +2,10 @@ import React from 'react'
 import shortid from 'shortid'
 
 import DeleteBtn from 'blockform/modules/deletebtn/DeleteBtn.jsx'
-import TextInput from 'modules/textinput/TextInput.jsx'
+import Input from 'modules/input/Input.jsx'
 import styles from './blockText.mod.scss'
 
-export default function BlockText(props) {
+export default function BlockNumber(props) {
   const [id] = React.useState(shortid.generate())
 
   function deleteLine() {
@@ -19,10 +19,11 @@ export default function BlockText(props) {
   return(
     <div className={styles.wrapper} onClick={focus}>
       <span>{props.name}: </span>
-      <TextInput
+      <Input
         name={props.name}
-        text={props.text}
+        text={props.content}
         onChange={props.onChange}
+        type={'text'}
         classNames={styles.text} />
 
       { props.delete && <DeleteBtn onClick={deleteLine} focused={props.focused} parentId={id} /> }

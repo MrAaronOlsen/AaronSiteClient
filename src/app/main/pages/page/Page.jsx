@@ -1,124 +1,82 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import shortid from 'shortid';
 
 import Logger from 'logger';
 import { API_V1 } from 'http/url.js';
 import { GET } from 'http/get.js';
 
-import Blocks from 'blocks/Blocks.jsx'
-import Transition from 'modules/transition/Transition.jsx'
-import ArrowBtn from 'modules/buttons/ArrowBtn.jsx'
+import MotionExit from 'motion/MotionExit.jsx';
+import Motion from 'motion/Motion.jsx';
+import { arrowMotion, arrowStyles, headerMotion, headerStyles } from './PageMotionConfigs.js';
 
-import styles from './page.mod.scss'
+import Blocks from 'blocks/Blocks.jsx';
 
-const arrowTransitionConfig = {
-  transProperty: 'left',
-  startValue: '-100vw',
-  inValue: '0',
-  outValue: '-100vw',
-  transDurationIn: '1000ms'
-}
+import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
+import styles from './page.mod.scss';
 
-const arrowStyles = {
-  'position': 'absolute',
-  'width': 'auto',
-  'z-index': '999'
-}
+export default function Page(props) {
+  const [id] = React.useState(shortid.generate())
+  const [page, setPage] = React.useState({})
+  const [trigger, setTrigger] = React.useState(true)
+  const [redirect, setRedirect] = React.useState(false)
 
-const headerTransitionConfig = {
-  transProperty: 'opacity',
-  startValue: '0',
-  inValue: '1',
-  outValue: '0',
-  transDurationIn: '1000ms'
-}
+  React.useEffect(() => load(), [])
 
-const headerStyles = {
-  display: 'flex',
-  'justify-content': 'center',
-  'align-items': 'center',
-  width: '100%',
-  'font-size': '24px'
-}
-
-export default class Page extends Component {
-  state = {
-    redirect: false,
-    triggerOut: false
+  function getPage() {
+    return page || {}
   }
 
-  componentDidMount() {
-    this.load()
+  function getBlocks() {
+    return getPage().blocks || {}
   }
 
-  redirect() {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  triggerOut() {
-    this.setState({
-      triggerOut: true
-    })
-  }
-
-  page() {
-    return this.state.page || {}
-  }
-
-  load() {
-    const query = 'pages/' + this.props.location.state.id
+  function load() {
+    const query = 'pages/' + props.location.state.id
 
     GET(API_V1 + query, (payload) => {
       if (payload.hasErrors()) {
         Logger.error("Failed to load page. Cause: " + payload.getErrors());
       } else {
-        this.setState({
-          page: payload.getFirst()
-        })
+        setPage(payload.getFirst())
       }
     })
   }
 
-  render() {
-    if (this.state.redirect) {
+  function renderPage() {
+    if (redirect) {
       return <Redirect to='/pages' />
     }
 
-    if (!this.state.page) {
+    if (!page) {
       return null
     }
 
     return(
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <Transition
-            styles={arrowStyles}
-            config={arrowTransitionConfig}
-            outTrigger={this.state.triggerOut}>
+          <MotionExit trigger={trigger}>
+            <Motion key={"arrow"} motion={arrowMotion} classNames={styles.arrowMotion}>
+              <ArrowBtn classNames={styles.button}
+                direction={'left'}
+                onClick={() => setTrigger(!trigger)} />
+            </Motion>
 
-            <ArrowBtn classNames={styles.button}
-              direction={'left'}
-              onClick={this.triggerOut.bind(this)} />
-            
-          </Transition>
-          <Transition
-            styles={headerStyles}
-            config={headerTransitionConfig}
-            outTrigger={this.state.triggerOut}>
-
-            {this.page().header}
-          </Transition>
+            <Motion key={"header"} motion={headerMotion} classNames={styles.headerMotion}>
+              {getPage().header}
+            </Motion>
+          </MotionExit>
         </div>
         <div className={styles.blocks}>
-          <Blocks
-            triggerOut={this.state.triggerOut}
-            actionOut={this.redirect.bind(this)}
-            blocks={this.page().blocks}
-            setState={this.setState.bind(this)}/>
+          <MotionExit trigger={trigger} onExit={() => setRedirect(true)} >
+            <Blocks key={id} {...props}
+              blocks={getBlocks()}
+              start={'start'} />
+          </MotionExit>
         </div>
       </div>
     )
   }
+
+  return renderPage();
 }

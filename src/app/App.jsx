@@ -7,7 +7,7 @@ import Admin from './admin/Admin.jsx';
 import "./root.scss";
 import styles from "./app.mod.scss";
 
-const App = function() {
+export default function App() {
   return(
     <BrowserRouter>
       <div id='app' className={styles.wrapper}>
@@ -19,5 +19,3 @@ const App = function() {
     </BrowserRouter>
   )
 }
-
-export default App;

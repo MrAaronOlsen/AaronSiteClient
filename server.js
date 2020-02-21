@@ -12,7 +12,8 @@ console.log("[SERVER] Running in " + env + " server environment.")
 // This is needed because cors policy on the API only accepts https:<site> as origin.
 function forceHTTP(req, res, next) {
   // Heroku ovewrites x-forwarded-proto with the originating protocol of the HTTP request.
-  if (!req.secure && req.get('x-forwarded-proto') !== 'http' && env !== "development") {
+
+  if (req.secure && req.get('x-forwarded-proto') === 'https' && env === "production") {
     console.log("[SERVER] Forcing http...")
     return res.redirect('http://' + req.get('host') + req.url);
   }

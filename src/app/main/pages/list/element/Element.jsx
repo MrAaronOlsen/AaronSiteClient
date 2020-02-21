@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 
+import MotionExit from 'motion/MotionExit.jsx';
+import Motion from 'motion/Motion.jsx';
+import { headerMotion, arrowMotion } from './ElementMotionConfigs.js'
+
 import ArrowBtn from 'modules/buttons/ArrowBtn.jsx';
-import Transition from 'modules/transition/Transition.jsx';
 
 import styles from './element.mod.scss'
 
@@ -14,12 +17,12 @@ class Page extends Component {
 
   state = {
     redirect: false,
-    triggerOut: false
+    trigger: true
   }
 
   onClick(action) {
     this.setState({
-      triggerOut: true
+      trigger: false
     })
   }
 
@@ -41,35 +44,24 @@ class Page extends Component {
     return(
 
         <div className={styles.wrapper}>
-          <Transition
-            transDurationIn={timing + 'ms'}
-            transDurationOut={'300ms'}
-            transDelayOut={200}
-            outTrigger={this.state.triggerOut}
-            outCallDelay={500}
-            styles={{width: '100%'}}
-            outCall={this.redirect.bind(this)}
-            controlsOutCall={true}>
-
-            <div className={styles.inner}>
-              <div className={styles.header}>
-                <h4 className={styles.headerText}>{this.header}</h4>
+          <MotionExit trigger={this.state.trigger} onExit={this.redirect.bind(this)}>
+            <Motion key={this.header + this.props.index} motion={headerMotion} custom={this.props.index} classNames={styles.headerMotion}>
+              <div className={styles.inner}>
+                <div className={styles.header}>
+                  <h4 className={styles.headerText}>{this.header}</h4>
+                </div>
+                <div className={styles.caption}>
+                  {this.caption}
+                </div>
               </div>
-              <div className={styles.caption}>
-                {this.caption}
-              </div>
-            </div>
-          </Transition>
-          <Transition
-            transDurationIn={timing * 1.5 + 'ms'}
-            transDurationOut={'500ms'}
-            outTrigger={this.state.triggerOut}
-            width='auto'>
+            </Motion>
 
-            <ArrowBtn classNames={styles.button} onClick={this.onClick.bind(this)} />
-          </Transition>
+            <Motion key={this.header + this.props.index + "_arrow"} motion={arrowMotion} custom={this.props.index} classNames={styles.arrowMotion}>
+              <ArrowBtn classNames={styles.arrow} onClick={this.onClick.bind(this)} />
+            </Motion>
+          </MotionExit>
         </div>
-        
+
     )
   }
 }

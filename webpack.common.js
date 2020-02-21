@@ -69,12 +69,16 @@ module.exports = {
       mixins: path.resolve(__dirname, 'src/mixins'),
       colors: path.resolve(__dirname, 'src/constants/colors.scss'),
       modules: path.resolve(__dirname, 'src/modules'),
+      theme$: path.resolve(__dirname, 'src/modules/theme/Theme.js'),
       http: path.resolve(__dirname, 'src/http'),
       auth: path.resolve(__dirname, 'src/auth'),
       media: path.resolve(__dirname, 'src/constants/media.scss'),
       logger$: path.resolve(__dirname, 'src/utils/Logger.js'),
       blocks: path.resolve(__dirname, 'src/modules/blocks'),
+      motion: path.resolve(__dirname, 'src/modules/motion/'),
       blockform: path.resolve(__dirname, 'src/app/admin/pageform/blockeditor/blockform'),
+      effects$: path.resolve(__dirname, 'src/js/effects.js'),
+      "ref-utils$": path.resolve(__dirname, 'src/js/refUtils.js'),
     }
   }
 };
