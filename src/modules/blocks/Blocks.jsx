@@ -13,7 +13,7 @@ const types = {
 }
 
 export default function Blocks(props) {
-  const blocks = props.blocks;
+  const blocks = props.blocks || {};
   var nextBlock = props.start;
 
   var blockName;
