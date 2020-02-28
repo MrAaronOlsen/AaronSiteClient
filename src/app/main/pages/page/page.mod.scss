@@ -12,7 +12,7 @@
     position: sticky;
     @include flex($dir: row)
 
-    top: 100px;
+    top: 0px;
 
     width: inherit;
 
@@ -41,7 +41,5 @@
   .blocks {
     width: inherit;
     height: calc(100vh - 170px);
-
-    overflow: scroll;
   }
 }

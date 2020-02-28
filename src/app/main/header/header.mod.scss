@@ -9,9 +9,9 @@
   @include flex($dir: row);
   @include center($horz: space-between)
 
-  position: fixed;
+  position: sticky;
   left: 0;
-  top: 0;
+  top: 100;
 
   width: 100vw;
   height: 100px;

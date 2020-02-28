@@ -1,4 +1,6 @@
 import Color from 'color';
+import Themogrify from './Themogrify.js'
+
 import styles from 'colors';
 
 const theme = {
