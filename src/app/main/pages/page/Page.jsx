@@ -58,6 +58,7 @@ export default function Page(props) {
           <MotionExit trigger={trigger}>
             <Motion key={"arrow"} motion={arrowMotion} classNames={styles.arrowMotion}>
               <ArrowBtn classNames={styles.button}
+                size={"32px"}
                 direction={'left'}
                 onClick={() => setTrigger(!trigger)} />
             </Motion>
