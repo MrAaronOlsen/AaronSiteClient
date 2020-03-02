@@ -67,6 +67,7 @@ module.exports = {
       public: path.resolve(__dirname, 'public'),
       mazes: path.resolve(__dirname, 'src/app/main/mazes'),
       mixins: path.resolve(__dirname, 'src/mixins'),
+      shadow$: path.resolve(__dirname, 'src/mixins/shadow.scss'),
       colors: path.resolve(__dirname, 'src/constants/colors.scss'),
       modules: path.resolve(__dirname, 'src/modules'),
       theme$: path.resolve(__dirname, 'src/modules/theme/Theme.js'),
@@ -79,6 +80,8 @@ module.exports = {
       blockform: path.resolve(__dirname, 'src/app/admin/pageform/blockeditor/blockform'),
       effects$: path.resolve(__dirname, 'src/js/effects.js'),
       "ref-utils$": path.resolve(__dirname, 'src/js/refUtils.js'),
+      canvas$: path.resolve(__dirname, 'src/modules/canvas/Canvas.jsx'),
+      games: path.resolve(__dirname, 'src/games'),
     }
   }
 };

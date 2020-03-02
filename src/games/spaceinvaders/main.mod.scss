@@ -1,0 +1,13 @@
+@import '~shadow';
+@import '~colors';
+
+.wrapper {
+  margin-top: 50px;
+
+  .canvas {
+    border: 1px solid $brand;
+    border-radius: 10px;
+
+    @include shadow();
+  }
+}
