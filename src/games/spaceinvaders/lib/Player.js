@@ -1,11 +1,11 @@
-const shipImg = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/mobs/ship-01-64.png'
+const shipUrl = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/mobs/ship-01-64.png'
 
 import Vector from 'games/core/Vector.js'
 
 export default class Player {
   constructor() {
     this.ship = new Image()
-    this.ship.src = shipImg
+    this.ship.src = shipUrl
   }
 
   configure(width, height, scale) {
@@ -18,6 +18,10 @@ export default class Player {
     this.pos = new Vector((this.gameWidth / 2) - (this.playerWidth / 2), this.gameHeight - this.playerHeight)
     this.lastPos = this.pos.clone()
     this.vel = new Vector(0, 0)
+  }
+
+  setBullets(bullets) {
+    this.bullets = bullets;
   }
 
   update() {
@@ -35,6 +39,8 @@ export default class Player {
       this.vel = new Vector(-5, 0)
     } else if (controller.right()) {
       this.vel = new Vector(5, 0)
+    } else if (controller.space()) {
+      this.bullets.addPlayerShot(this.pos.plus(new Vector(this.playerWidth / 2), 0));
     } else {
       this.vel = new Vector(0, 0)
     }

@@ -36,6 +36,10 @@ export default class MobWave {
     }
   }
 
+  setBullets(bullets) {
+    this.bullets = bullets;
+  }
+
   update() {
     if (this.commander.march()) {
       this.mobOffset = this.commander.getStep().timesVect(this.mobStep)
