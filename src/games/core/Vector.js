@@ -4,6 +4,22 @@ export default class Vector {
     this.y = y;
   }
 
+  setX(x) {
+    this.x = x;
+  }
+
+  setY(y) {
+    this.y = y;
+  }
+
+  getX() {
+    return this.x;
+  }
+
+  getY() {
+    return this.y;
+  }
+
   mult(scalar) {
     this.x *= scalar;
     this.y *= scalar;
@@ -50,6 +66,13 @@ export default class Vector {
     return new Vector(
       this.x * scalar,
       this.y * scalar
+    )
+  }
+
+  timesVect(vector) {
+    return new Vector(
+      this.x * vector.x,
+      this.y * vector.y
     )
   }
 
