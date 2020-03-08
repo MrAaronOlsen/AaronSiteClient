@@ -40,6 +40,16 @@ export default class MobWave {
     this.bullets = bullets;
   }
 
+  setCollisionGroup(collisionGroup) {
+    this.collisionGroup = collisionGroup;
+
+    this.mobLines.forEach((mobLine) => {
+      mobLine.getMobs().forEach((mob) => {
+        this.collisionGroup.addCollidable(mob);
+      });
+    });
+  }
+
   update() {
     if (this.commander.march()) {
       this.mobOffset = this.commander.getStep().timesVect(this.mobStep)
@@ -48,11 +58,15 @@ export default class MobWave {
     if (this.commander.getOver()) {
       this.commander.reset()
     }
+
+    this.mobLines.forEach((mobLine, line) => {
+      mobLine.update(line, this.mobOffset)
+    });
   }
 
   draw(ctx) {
     this.mobLines.forEach((mobLine, line) => {
-      mobLine.draw(ctx, line, this.mobOffset)
+      mobLine.draw(ctx)
     });
   }
 }

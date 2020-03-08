@@ -1,9 +1,12 @@
 const shipUrl = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/mobs/ship-01-64.png'
 
+import Collidable from './Collidable.js'
 import Vector from 'games/core/Vector.js'
 
-export default class Player {
+export default class Player extends Collidable {
   constructor() {
+    super()
+
     this.ship = new Image()
     this.ship.src = shipUrl
   }
@@ -12,10 +15,10 @@ export default class Player {
     this.gameWidth = width;
     this.gameHeight = height;
 
-    this.playerWidth = this.gameWidth / scale
-    this.playerHeight = this.gameHeight / scale
+    this.width = this.gameWidth / scale
+    this.height = this.gameHeight / scale
 
-    this.pos = new Vector((this.gameWidth / 2) - (this.playerWidth / 2), this.gameHeight - this.playerHeight)
+    this.pos = new Vector((this.gameWidth / 2) - (this.width / 2), this.gameHeight - this.height)
     this.lastPos = this.pos.clone()
     this.vel = new Vector(0, 0)
   }
@@ -27,7 +30,7 @@ export default class Player {
   update() {
     this.lastPos = this.pos.clone()
 
-    if (this.pos.x > (this.gameWidth - this.playerWidth) && this.vel.x > 0 || this.pos.x < 0 && this.vel.x < 0) {
+    if (this.pos.x > (this.gameWidth - this.width) && this.vel.x > 0 || this.pos.x < 0 && this.vel.x < 0) {
       return
     }
 
@@ -40,14 +43,14 @@ export default class Player {
     } else if (controller.right()) {
       this.vel = new Vector(5, 0)
     } else if (controller.space()) {
-      this.bullets.addPlayerShot(this.pos.plus(new Vector(this.playerWidth / 2), 0));
+      this.bullets.addPlayerShot(this.pos.plus(new Vector(this.width / 2), 0));
     } else {
       this.vel = new Vector(0, 0)
     }
   }
 
   draw(ctx) {
-    ctx.clearRect(this.lastPos.x, this.lastPos.y, this.playerWidth, this.playerHeight);
-    ctx.drawImage(this.ship, this.pos.x, this.pos.y, this.playerWidth, this.playerHeight);
+    ctx.clearRect(this.lastPos.x, this.lastPos.y, this.width, this.height);
+    ctx.drawImage(this.ship, this.pos.x, this.pos.y, this.width, this.height);
   }
 }

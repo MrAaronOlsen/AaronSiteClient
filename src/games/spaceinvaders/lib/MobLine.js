@@ -19,13 +19,30 @@ export default class MobLine {
     }
   }
 
-  update() {
+  getMobs() {
+    return this.mobs;
+  }
 
+  update(line, offset) {
+    this.mobs.forEach((mob, col) => {
+      if (mob == null) {
+        return;
+      }
+
+      if (mob.isDestroyed()) {
+        this.mobs[col] = null;
+        return;
+      }
+
+      mob.update(col, line, offset);
+    });
   }
 
   draw(ctx, line, offset) {
     this.mobs.forEach((mob, col) => {
-      mob.draw(ctx, new Vector(col * this.mobSize, line * this.mobSize).plus(offset) )
+      if (mob != null) {
+        mob.draw(ctx);
+      }
     });
   }
 }

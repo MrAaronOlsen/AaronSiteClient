@@ -1,25 +1,43 @@
 import Vector from 'games/core/Vector.js'
+import Collidable from './Collidable.js'
 
-export default class Mob {
+const PADDING = 16;
+const CENTER = new Vector(PADDING / 2, PADDING / 2);
 
-  constructor(asset, size) {
+export default class Mob extends Collidable {
+
+  constructor(asset, gridSize) {
+    super()
+
     this.asset = asset
-    this.size = size - 10;
+    this.gridSize = gridSize;
+
+    this.width = this.gridSize - PADDING;
+    this.height = this.width;
   }
 
-  update() {
-
-  }
-
-  draw(ctx, pos) {
-    var centeredPos = pos.plus(new Vector(5, 5))
-
-    if (this.prevPos) {
-      ctx.clearRect(this.prevPos.x, this.prevPos.y, this.size, this.size);
+  update(col, line, offset) {
+    if (this.pos) {
+      this.prevPos = this.pos.clone()
     }
 
-    ctx.drawImage(this.asset, centeredPos.x, centeredPos.y, this.size, this.size);
+    this.pos = new Vector(col * this.gridSize, line * this.gridSize).plus(offset).plus(CENTER);
+  }
 
-    this.prevPos = centeredPos.clone()
+  draw(ctx) {
+    if (!this.pos) {
+      return;
+    }
+
+    if (this.prevPos) {
+      ctx.clearRect(this.prevPos.x - 1, this.prevPos.y - 1, this.width + 2, this.height + 2);
+    }
+
+    if (this.markedDestroy) {
+      this.destroyed = true;
+      return;
+    }
+
+    ctx.drawImage(this.asset, this.pos.x, this.pos.y, this.width, this.height);
   }
 }

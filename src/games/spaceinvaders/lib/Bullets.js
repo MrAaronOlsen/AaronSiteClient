@@ -1,4 +1,4 @@
-const laserUrl = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/bullets/laser-01-32.png'
+const laserUrl = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/bullets/player-laser-01-32.png'
 
 import Vector from 'games/core/Vector.js';
 import Bullet from './Bullet.js';
@@ -16,12 +16,18 @@ export default class Bullets {
   addPlayerShot(pos) {
     if (!this.playerBullet) {
       var bullet = new Bullet(this.playerLaserAsset, pos, new Vector(0, -6));
-      bullet.configure(5, 16);
+      bullet.configure(3, 16);
       bullet.centerX();
-      bullet.alightBottom();
+      bullet.alignBottom();
 
+      this.playerBullets.addCollidable(bullet);
       this.playerBullet = bullet;
     }
+  }
+
+  setCollisionGroups(playerBullets, mobBullets) {
+    this.playerBullets = playerBullets;
+    this.mobBullets = mobBullets;
   }
 
   removePlayerShot() {

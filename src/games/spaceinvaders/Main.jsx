@@ -5,8 +5,8 @@ import styles from './main.mod.scss';
 
 import Game from './lib/Game.js';
 
-const sizeX = 640;
-const sizeY = 640;
+const sizeX = 800;
+const sizeY = 800;
 
 export default function Main(props) {
   const ref = React.createRef()
