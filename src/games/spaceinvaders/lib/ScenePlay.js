@@ -1,27 +1,19 @@
-import { Collider } from 'game_core';
-
-import Controller from './Controller.js';
-import Bounds from './Bounds.js';
+import Scene from './Scene.js';
 import Player from './Player.js';
 import MobWave from './MobWave.js';
 
-const SCENE_GRID = 15;
-const WAVE_LINES = 5;
-const WAVE_COLUMNS = 11;
-
-export default class ScenePlay {
+export default class ScenePlay extends Scene {
 
   constructor(game) {
-    this.game = game;
-    this.game.clearScene();
+    super(game)
 
-    this.width = game.width;
-    this.height = game.height;
+    this.scale = 15;
 
-    this.controller = new Controller();
-
-    this.collider = new Collider();
     this.collider.addGroups(["bounds", "mob", "player", "mobBullet", "playerBullet"])
+    this.collider.addCollidable("bounds", this)
+
+    this.player = new Player(this);
+    this.mobWave = new MobWave(this);
 
     this.collider.collidesWith("playerBullet", "bounds", (a, b) => {
       a.markDestroy();
@@ -34,6 +26,8 @@ export default class ScenePlay {
     this.collider.collidesWith("mob", "playerBullet", (a, b) =>  {
       a.markDestroy();
       b.markDestroy();
+
+      this.mobWave.pause();
     });
 
     this.collider.collidesWith("player", "mobBullet", (a, b) =>  {
@@ -43,15 +37,6 @@ export default class ScenePlay {
       this.game.setScene(new ScenePlay(this.game))
     });
 
-    this.collider.addCollidable("bounds", new Bounds(this.width, this.height))
-
-    this.player = new Player();
-    this.player.configure(this.width, this.height, SCENE_GRID);
-    this.player.setCollider(this.collider);
-
-    this.mobWave = new MobWave(WAVE_LINES, WAVE_COLUMNS);
-    this.mobWave.configure(this.width, this.height, SCENE_GRID);
-    this.mobWave.setCollider(this.collider);
   }
 
   update() {
@@ -67,9 +52,13 @@ export default class ScenePlay {
 
   input() {
     if (this.controller.esc()) {
-      this.game.setScene(new ScenePlay(this.game))
+      this.reset()
     }
 
     this.player.check(this.controller)
+  }
+
+  reset() {
+    this.setScene(new ScenePlay(this.game))
   }
 }

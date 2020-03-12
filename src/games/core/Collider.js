@@ -72,15 +72,9 @@ export default class Collider {
       return true;
     }
 
-    try {
-      if (collidable.isDestroyed()) {
-        group.removeCollidable(index);
-        return true;
-      }
-    } catch (err) {
-      console.log(group)
-      console.log(collidable)
-      console.log(index)
+    if (collidable.isDestroyed()) {
+      group.removeCollidable(index);
+      return true;
     }
 
     return false;

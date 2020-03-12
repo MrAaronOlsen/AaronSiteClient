@@ -12,6 +12,18 @@ export default class Collidable {
     this.markedDestroy = true;
   }
 
+  isMarkedDestroy() {
+    if (this.markedDestroy) {
+      this.destroy();
+    }
+
+    return this.isDestroyed();
+  }
+
+  destroy() {
+    this.destroyed = true;
+  }
+
   isDestroyed() {
     return this.destroyed;
   }

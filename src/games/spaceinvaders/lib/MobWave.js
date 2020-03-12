@@ -1,59 +1,58 @@
-const mobImg = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/mobs/bug-001-64.png'
-const bugLaserUrl = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/bullets/bug-laser-01-32.png'
+const MOB_ONE_IMG_URL = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/mobs/bug-001-64.png'
+const LASER_ONE_IMG_URL = 'https://aaron-site.s3-us-west-1.amazonaws.com/game-assets/space-invaders/bullets/bug-laser-01-32.png'
 
 import { Vector } from 'game_core'
 
-import MobLine from './MobLine.js';
+import Mob from './Mob.js';
 import Commander from './Commander.js';
 import BulletFactory from './BulletFactory.js';
 import Bullet from './Bullet.js';
+import ScenePlay from './ScenePlay.js'
+
+const WAVE_LINES = 5;
+const WAVE_COLUMNS = 11;
 
 export default class MobWave {
 
-  constructor(mobRows, mobColumns) {
-    this.mobRows = mobRows;
-    this.mobColumns = mobColumns;
+  constructor(scene) {
+    this.scene = scene;
+    this.mobs = [];
 
-    this.mobLines = [];
-
-    this.mob = new Image()
-    this.mob.src = mobImg;
+    this.mobImg = new Image()
+    this.mobImg.src = MOB_ONE_IMG_URL;
 
     this.bugLaserAsset = new Image();
-    this.bugLaserAsset.src = bugLaserUrl;
+    this.bugLaserAsset.src = LASER_ONE_IMG_URL;
 
-    this.commander = new Commander(this);
+    this.commander = new Commander();
+
+    this.gameWidth = scene.width;
+    this.gameHeight = scene.height;
+    this.scale = scene.scale;
+    this.collider = scene.collider;
+
+    this.configure();
+    this.setCollider();
   }
 
-  configure(gameWidth, gameHeight, scale) {
-    this.gameWidth = gameWidth;
-    this.gameHeight = gameHeight;
+  configure() {
+    this.mobSize = this.gameWidth / this.scale;
+    this.mobCenter = new Vector(this.mobSize / 2, this.mobSize)
 
-    this.mobSize = this.gameWidth / scale;
     this.mobStep = new Vector(this.mobSize / 4, this.mobSize);
     this.mobOffset = this.commander.getNextStep(this.mobStep);
 
-    this.bounds = new Vector(this.mobColumns * this.mobSize, this.mobRows * this.mobSize);
-
-    for (let row = 0; row < this.mobRows; row++) {
-      var mobLine = new MobLine(this.mob, this.mobColumns);
-      mobLine.configure(this.gameWidth, this.gameHeight, this.mobSize);
-
-      this.mobLines.push(mobLine)
+    for (let row = 0; row < WAVE_LINES; row++) {
+      for (let col = 0; col < WAVE_COLUMNS; col++) {
+        this.mobs.push(new Mob(this.mobImg, new Vector(col, row), this.mobSize))
+      }
     }
   }
 
-  getMobLines() {
-    return this.mobLines;
-  }
+  setCollider() {
 
-  setCollider(collider) {
-    this.collider = collider;
-
-    this.mobLines.forEach((mobLine) => {
-      mobLine.getMobs().forEach((mob) => {
-        this.collider.addCollidable("mob", mob);
-      });
+    this.mobs.forEach((mob) => {
+      this.collider.addCollidable("mob", mob);
     });
 
     this.bullets = new BulletFactory()
@@ -70,30 +69,53 @@ export default class MobWave {
   }
 
   update() {
+    if (this.mobs.length === 0) {
+      this.scene.reset()
+    }
+
     if (this.commander.march()) {
       this.mobOffset = this.commander.getNextStep(this.mobStep);
     }
 
-    if (this.commander.getOver()) {
+    if (this.commander.getOver(this.mobs)) {
       this.commander.reset()
     }
 
-    this.mobLines.forEach((mobLine, line) => {
-      mobLine.update(line, this.mobOffset)
+    this.mobs.forEach((mob, i) => {
+      if (mob == null) {
+        return;
+      }
+
+      if (mob.isDestroyed()) {
+        this.mobs[i] = null;
+        return;
+      }
+
+      mob.update(this.mobOffset);
     });
+
+    this.mobs = this.mobs.filter(mob => {
+      return mob != null;
+    })
 
     this.bullets.update();
 
-    const whoShoots = this.commander.whoShoots();
-    const pos = new Vector(whoShoots.x, whoShoots.y).times(this.mobSize).plus(this.mobOffset);
+    const whoShoots = this.commander.whoShoots(this.mobs);
+    if (whoShoots) {
+      const bulletPos = whoShoots.pos.plus(this.mobCenter)
+      this.bullets.addBullet(bulletPos);
+    }
+  }
 
-    const bulletPos = pos.plus(new Vector(this.mobSize / 2, this.mobSize));
-    this.bullets.addBullet(bulletPos);
+  pause() {
+    this.commander.pause();
   }
 
   draw(ctx) {
-    this.mobLines.forEach((mobLine, line) => {
-      mobLine.draw(ctx)
+    this.mobs.forEach((mob) => {
+      if (mob != null) {
+        mob.draw(ctx)
+      }
     });
 
     this.bullets.draw(ctx);

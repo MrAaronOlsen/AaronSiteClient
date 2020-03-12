@@ -1,6 +1,6 @@
-import { Collidable } from 'game_core'
+import GameAsset from './GameAsset.js'
 
-export default class Bullet extends Collidable {
+export default class Bullet extends GameAsset {
 
   constructor(asset, pos, vel) {
     super()
@@ -34,14 +34,7 @@ export default class Bullet extends Collidable {
     }
   }
 
-  draw(ctx) {
-    this.clearImg(ctx)
-
-    if (this.markedDestroy) {
-      this.destroyed = true;
-      return;
-    }
-
+  drawImg(ctx) {
     ctx.drawImage(this.asset, this.pos.x, this.pos.y, this.width, this.height);
   }
 }
