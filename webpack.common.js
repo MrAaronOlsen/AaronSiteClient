@@ -82,6 +82,7 @@ module.exports = {
       "ref-utils$": path.resolve(__dirname, 'src/js/refUtils.js'),
       canvas$: path.resolve(__dirname, 'src/modules/canvas/Canvas.jsx'),
       games: path.resolve(__dirname, 'src/games'),
+      game_core$: path.resolve(__dirname, 'src/games/core/Core.js')
     }
   }
 };

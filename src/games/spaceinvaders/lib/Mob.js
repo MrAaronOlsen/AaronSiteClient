@@ -1,5 +1,4 @@
-import Vector from 'games/core/Vector.js'
-import Collidable from './Collidable.js'
+import { Collidable, Vector } from 'game_core'
 
 const PADDING = 16;
 const CENTER = new Vector(PADDING / 2, PADDING / 2);

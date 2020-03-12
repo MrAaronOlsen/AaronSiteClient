@@ -1,5 +1,5 @@
 import Mob from './Mob.js';
-import Vector from 'games/core/Vector.js';
+import { Vector } from 'game_core'
 
 export default class MobLine {
 
@@ -38,8 +38,8 @@ export default class MobLine {
     });
   }
 
-  draw(ctx, line, offset) {
-    this.mobs.forEach((mob, col) => {
+  draw(ctx) {
+    this.mobs.forEach((mob) => {
       if (mob != null) {
         mob.draw(ctx);
       }

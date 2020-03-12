@@ -15,4 +15,8 @@ export default class Collidable {
   isDestroyed() {
     return this.destroyed;
   }
+
+  isBounds() {
+    return false;
+  }
 }

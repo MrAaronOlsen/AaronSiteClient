@@ -1,4 +1,4 @@
-import Collidable from './Collidable.js'
+import { Collidable } from 'game_core'
 
 export default class Bullet extends Collidable {
 

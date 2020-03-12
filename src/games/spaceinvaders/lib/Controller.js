@@ -1,16 +1,18 @@
 const KEY_CODES = {
   37: "LEFT",
   39: "RIGHT",
-  32: "SPACE"
+  32: "SPACE",
+  27: "ESC"
 }
 
-export default class Input {
+export default class Controller {
 
   constructor() {
     this.actions = {
       "LEFT": false,
       "RIGHT": false,
-      "SPACE": false
+      "SPACE": false,
+      "ESC": false
     }
 
     document.addEventListener("keydown", ((event) => {
@@ -40,5 +42,9 @@ export default class Input {
 
   space() {
     return this.actions.SPACE
+  }
+
+  esc() {
+    return this.actions.ESC
   }
 }

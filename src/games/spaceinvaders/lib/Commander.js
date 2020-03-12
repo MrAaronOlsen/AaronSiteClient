@@ -1,9 +1,9 @@
-import Vector from 'games/core/Vector.js';
-import TimeStep from 'games/core/TimeStep.js';
+import { Vector, TimeStep, Random } from 'game_core';
 
 export default class Commander {
 
-  constructor() {
+  constructor(mobWave) {
+    this.mobWave = mobWave;
     this.timeStep = new TimeStep(500)
     this.marchStep = new Vector(8, 2)
     this.direction = 1;
@@ -25,8 +25,21 @@ export default class Commander {
     return true;
   }
 
-  getStep() {
-    return this.marchStep;
+  whoShoots() {
+    const shotCandidates = [];
+
+    this.mobWave.getMobLines().forEach((mobLine, line) => {
+      mobLine.getMobs().forEach((mob, col) => {
+        shotCandidates.push({x: col, y: line})
+      });
+    });
+
+    var whoShoots = Random.get(shotCandidates.length - 1);
+    return shotCandidates[whoShoots];
+  }
+
+  getNextStep(mobStep) {
+    return this.marchStep.timesVect(mobStep)
   }
 
   getOver() {
